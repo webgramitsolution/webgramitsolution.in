@@ -1,0 +1,17 @@
+User-agent: *
+Disallow: /admin
+Disallow: /auth
+Disallow: /api/
+Disallow: /_serverFn/
+Disallow: /guest
+
+# Keep search crawlers eligible while opting out of listed training crawlers.
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+User-agent: meta-externalagent
+Disallow: /
+
+Sitemap: https://webgramitsolution.in/sitemap.xml

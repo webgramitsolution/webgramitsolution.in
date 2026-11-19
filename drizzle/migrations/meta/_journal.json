@@ -1,0 +1,181 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1790748456663,
+      "tag": "0000_create_secure_blog_system",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1790749815515,
+      "tag": "0001_guest_panel_credits",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1790750170435,
+      "tag": "0002_enquiries_and_post_notifications",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1790758160766,
+      "tag": "0003_restrict_blog_comments_read",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1790789110596,
+      "tag": "0004_add_blog_taxonomy_tags_and_faqs",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1790789180747,
+      "tag": "0005_allow_category_names_across_taxonomy_branches",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1790789205654,
+      "tag": "0006_add_blog_noindex_and_guest_seo",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1790789378568,
+      "tag": "0007_lock_down_guest_post_rpcs",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1790822389254,
+      "tag": "0008_create_homepage_reviews",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1790838541706,
+      "tag": "0009_enquiry_replies_and_post_views",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1790920910246,
+      "tag": "0010_add_admin_configurable_guest_post_cost",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1790921078163,
+      "tag": "0011_lock_legacy_guest_post_submission_paths",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1790921112721,
+      "tag": "0012_allow_safe_guest_article_images_with_dynamic_cost",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1790921300716,
+      "tag": "0013_restrict_blog_settings_table_to_admins",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1790929924351,
+      "tag": "0014_extend_guest_game_to_20_levels",
+      "breakpoints": true
+    },
+    {
+      "idx": 15,
+      "version": "7",
+      "when": 1790929961011,
+      "tag": "0015_add_secure_game_glass_purchase",
+      "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "7",
+      "when": 1790932657314,
+      "tag": "0016_tier_guest_game_rewards",
+      "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "7",
+      "when": 1790933749055,
+      "tag": "0017_credit_rules_v2",
+      "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "7",
+      "when": 1790936646113,
+      "tag": "0018_public_submit_enquiry",
+      "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "7",
+      "when": 1791427016166,
+      "tag": "0019_regional_demo_leads",
+      "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "7",
+      "when": 1792375778276,
+      "tag": "0020_guest_articles_400_words_one_url",
+      "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "7",
+      "when": 1792542544636,
+      "tag": "0021_retire_unused_legacy_share_reward",
+      "breakpoints": true
+    },
+    {
+      "idx": 22,
+      "version": "7",
+      "when": 1792542694759,
+      "tag": "0022_disable_unverified_sharing_credits",
+      "breakpoints": true
+    },
+    {
+      "idx": 23,
+      "version": "7",
+      "when": 1792542838418,
+      "tag": "0023_verified_game_attempt_rewards",
+      "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "7",
+      "when": 1794921096996,
+      "tag": "0024_retire_guest_section",
+      "breakpoints": true
+    }
+  ]
+}

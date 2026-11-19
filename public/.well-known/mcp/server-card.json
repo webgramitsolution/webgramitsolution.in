@@ -1,0 +1,16 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/mcp-server-card/v1.json",
+  "version": "1.0",
+  "protocolVersion": "2025-06-18",
+  "serverInfo": { "name": "webgram-it-solution", "title": "Webgram IT Solution", "version": "1.0.0" },
+  "description": "Read-only business information, portfolio and page navigation for Webgram IT Solution, a Delhi NCR ecommerce website development company.",
+  "websiteUrl": "https://webgramitsolution.com",
+  "transport": { "type": "streamable-http", "endpoint": "https://webgramitsolution.com/mcp" },
+  "capabilities": { "tools": { "listChanged": false } },
+  "authentication": { "required": false },
+  "tools": [
+    { "name": "get_business_info", "description": "Business name, contact, hours and services." },
+    { "name": "list_portfolio", "description": "Published portfolio websites." },
+    { "name": "open_page", "description": "Open a public page of the site." }
+  ]
+}

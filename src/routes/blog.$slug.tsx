@@ -1,0 +1,62 @@
+import { blogFaqSchema, normalizeBlogFaqs } from "@/lib/blog-faqs";
+import { createFileRoute, notFound } from "@tanstack/react-router";
+import { BlogDetailPage } from "@/components/blog-detail-page";
+import { getPublicBlogPost, getPublicBlog } from "@/lib/blog.functions";
+import { NotFoundPage } from "@/components/not-found-page";
+import { Button } from "@/components/ui/button";
+import { selectArticleRecommendations } from "@/lib/article-recommendations";
+
+import { BUSINESS_ID, WEBSITE_ID, businessIdentity } from "@/lib/site-identity";
+
+const SITE = "https://webgramitsolution.in";
+
+type SchemaPost = { title: string; seo_description?: string | null; excerpt?: string | null; featured_image?: string | null; featured_image_alt?: string | null; published_at?: string | null; updated_at?: string | null; author_name?: string | null; tags?: string[] | null; content?: string | null; category?: { name: string; slug: string } | null };
+
+function blogPostingSchema(post: SchemaPost, slug: string) {
+  const url = `${SITE}/blog/${slug}`;
+  const words = (post.content ?? "").trim().split(/\s+/).filter(Boolean).length;
+  const crumbs = [{ name: "Home", item: `${SITE}/` }, { name: "Blog", item: `${SITE}/resources/blog` }, ...(post.category ? [{ name: post.category.name, item: `${SITE}/blog/category/${post.category.slug}` }] : []), { name: post.title, item: url }];
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": `${url}#article`,
+        headline: post.title,
+        description: post.seo_description ?? post.excerpt ?? undefined,
+        url,
+        mainEntityOfPage: { "@type": "WebPage", "@id": url },
+        isPartOf: { "@id": WEBSITE_ID },
+        inLanguage: "en",
+        ...(post.featured_image ? { image: { "@type": "ImageObject", url: post.featured_image, caption: post.featured_image_alt ?? post.title } } : {}),
+        datePublished: post.published_at ?? undefined,
+        dateModified: post.updated_at ?? post.published_at ?? undefined,
+        author: { "@type": "Person", name: post.author_name || "Webgram IT Solution" },
+        publisher: { "@type": "Organization", "@id": BUSINESS_ID, name: businessIdentity.name, url: businessIdentity.url, logo: { "@type": "ImageObject", url: businessIdentity.logo }, sameAs: businessIdentity.sameAs },
+        ...(post.category ? { articleSection: post.category.name } : {}),
+        ...(post.tags?.length ? { keywords: post.tags.join(", ") } : {}),
+        ...(words ? { wordCount: words } : {}),
+      },
+      { "@type": "BreadcrumbList", itemListElement: crumbs.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.name, item: c.item })) },
+    ],
+  };
+}
+
+export const Route = createFileRoute("/blog/$slug")({
+  loader: async ({ params }) => { const [post, blog] = await Promise.all([getPublicBlogPost({ data: { slug: params.slug } }), getPublicBlog()]); if (!post) throw notFound(); return { ...post, related: selectArticleRecommendations(blog.posts, post), menuCategories: blog.categories }; },
+  notFoundComponent: NotFoundPage,
+  errorComponent: () => <div className="page-shell py-16"><h1>Article unavailable</h1><p className="my-4">Please try again shortly.</p><Button asChild><a href="/resources/blog">Back to blog</a></Button></div>,
+  head: ({ loaderData, params }) => { const faqs = normalizeBlogFaqs(loaderData?.faqs); return ({ links: [{ rel: "canonical", href: `${SITE}/blog/${params.slug}` }], scripts: loaderData ? [{ type: "application/ld+json", children: JSON.stringify(blogPostingSchema(loaderData, params.slug)) }, ...(faqs.length ? [{ type: "application/ld+json", children: JSON.stringify(blogFaqSchema(faqs, `${SITE}/blog/${params.slug}`, WEBSITE_ID)) }] : [])] : [], meta: [
+    { property: "og:url", content: `${SITE}/blog/${params.slug}` },
+    ...(loaderData?.published_at ? [{ property: "article:published_time", content: loaderData.published_at }, { property: "article:author", content: loaderData.author_name }] : []),
+    { title: loaderData ? `${loaderData.seo_title ?? loaderData.title} | Webgram Blog` : "Article | Webgram IT Solution" },
+    { name: "description", content: loaderData?.seo_description ?? loaderData?.excerpt ?? "Webgram digital commerce insight." },
+    { property: "og:title", content: loaderData?.seo_title ?? loaderData?.title ?? "Article | Webgram IT Solution" },
+    { property: "og:description", content: loaderData?.seo_description ?? loaderData?.excerpt ?? "Webgram digital commerce insight." },
+    { property: "og:type", content: "article" }, { name: "twitter:card", content: "summary_large_image" },
+    { name: "robots", content: loaderData?.noindex ? "noindex,follow" : "index,follow,max-image-preview:large" },
+    ...(loaderData?.featured_image ? [{ property: "og:image", content: loaderData.featured_image }, { name: "twitter:image", content: loaderData.featured_image }] : []),
+  ] }); },
+  component: Page,
+});
+function Page() { const post = Route.useLoaderData(); return <BlogDetailPage post={post} categories={post.menuCategories} />; }

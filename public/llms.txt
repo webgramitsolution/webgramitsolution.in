@@ -1,0 +1,41 @@
+# Webgram IT Solution
+
+> Webgram IT Solution is a Delhi NCR web development company (founded by Vikas Kumar; GST registered and working with clients since 2022; Sangam Vihar, New Delhi) building ecommerce websites, B2B commerce platforms, WooCommerce and Shopify stores, marketplaces and custom web portals for businesses across India.
+
+Contact: +91 7551120242, info@webgramitsolution.com. GSTIN 07CUHPK2017G1ZW. Hours Monday to Saturday, 10:00 to 19:00 IST. Pricing is quoted per project after a requirement call; there is no fixed public price list.
+
+## Services
+
+- [Ecommerce Development](https://webgramitsolution.in/solutions/ecommerce-development): Online stores with WooCommerce or Shopify, payments, shipping and SEO.
+- [B2B Commerce](https://webgramitsolution.in/solutions/b2b-commerce): Wholesale portals with customer pricing, MOQ, RFQ and ERP-ready integrations.
+- [Website Design](https://webgramitsolution.in/services/website-design): Business websites designed for enquiries and search.
+- [WooCommerce Development](https://webgramitsolution.in/services/woocommerce): WordPress-based stores.
+- [Shopify Development](https://webgramitsolution.in/services/shopify): Hosted Shopify stores.
+- [Web Portal Development](https://webgramitsolution.in/services/web-portal-development): Custom portals and dashboards.
+- [Website Maintenance](https://webgramitsolution.in/services/website-maintenance): Updates, security and support.
+
+## Locations
+
+- [Delhi](https://webgramitsolution.in/locations/delhi): Web development services in Delhi.
+- [Noida](https://webgramitsolution.in/locations/noida): Web development services in Noida.
+- [Gurugram (Gurgaon)](https://webgramitsolution.in/locations/gurugram): Web development services in Gurugram.
+- [Faridabad](https://webgramitsolution.in/locations/faridabad): Web development services in Faridabad.
+- [Delhi NCR](https://webgramitsolution.in/locations/delhi-ncr): Services across Delhi NCR.
+
+## Work
+
+- [Portfolio](https://webgramitsolution.in/work/portfolio): Live websites built for clients in India and Canada.
+- [Case Studies](https://webgramitsolution.in/work/case-studies): Project details and delivered scope.
+
+## Company
+
+- [About](https://webgramitsolution.in/about): Company background, founder and approach.
+- [FAQs](https://webgramitsolution.in/resources/faqs): Answers about cost, timelines, platforms and support.
+- [Contact](https://webgramitsolution.in/contact): Enquiry form, phone and address.
+- [Blog](https://webgramitsolution.in/resources/blog): Articles on ecommerce, SEO and technology.
+
+## Optional
+
+- [Full knowledge file](https://webgramitsolution.in/llms-full.txt): Case studies and technical architecture details.
+- [XML sitemap](https://webgramitsolution.in/sitemap.xml): All public URLs.
+- [RSS feed](https://webgramitsolution.in/feed.xml): Latest blog articles.

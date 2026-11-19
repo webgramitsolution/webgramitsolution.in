@@ -1,0 +1,146 @@
+# Webgram IT Solution
+
+> Webgram IT Solution is a Delhi NCR web development company (founded by Vikas Kumar; GST registered and working with clients since 2022; Sangam Vihar, New Delhi) building ecommerce websites, B2B commerce platforms, WooCommerce and Shopify stores, marketplaces and custom web portals for businesses across India.
+
+Contact: +91 7551120242, info@webgramitsolution.com. GSTIN 07CUHPK2017G1ZW. Hours Monday to Saturday, 10:00 to 19:00 IST. Pricing is quoted per project after a requirement call; there is no fixed public price list.
+
+## Services
+
+- [Ecommerce Development](https://webgramitsolution.in/solutions/ecommerce-development): Online stores with WooCommerce or Shopify, payments, shipping and SEO.
+- [B2B Commerce](https://webgramitsolution.in/solutions/b2b-commerce): Wholesale portals with customer pricing, MOQ, RFQ and ERP-ready integrations.
+- [Website Design](https://webgramitsolution.in/services/website-design): Business websites designed for enquiries and search.
+- [WooCommerce Development](https://webgramitsolution.in/services/woocommerce): WordPress-based stores.
+- [Shopify Development](https://webgramitsolution.in/services/shopify): Hosted Shopify stores.
+- [Web Portal Development](https://webgramitsolution.in/services/web-portal-development): Custom portals and dashboards.
+- [Website Maintenance](https://webgramitsolution.in/services/website-maintenance): Updates, security and support.
+
+## Locations
+
+- [Delhi](https://webgramitsolution.in/locations/delhi): Web development services in Delhi.
+- [Noida](https://webgramitsolution.in/locations/noida): Web development services in Noida.
+- [Gurugram (Gurgaon)](https://webgramitsolution.in/locations/gurugram): Web development services in Gurugram.
+- [Faridabad](https://webgramitsolution.in/locations/faridabad): Web development services in Faridabad.
+- [Delhi NCR](https://webgramitsolution.in/locations/delhi-ncr): Services across Delhi NCR.
+
+## Work
+
+- [Portfolio](https://webgramitsolution.in/work/portfolio): Live websites built for clients in India and Canada.
+- [Case Studies](https://webgramitsolution.in/work/case-studies): Project details and delivered scope.
+
+## Company
+
+- [About](https://webgramitsolution.in/about): Company background, founder and approach.
+- [FAQs](https://webgramitsolution.in/resources/faqs): Answers about cost, timelines, platforms and support.
+- [Contact](https://webgramitsolution.in/contact): Enquiry form, phone and address.
+- [Blog](https://webgramitsolution.in/resources/blog): Articles on ecommerce, SEO and technology.
+
+## Case Studies
+
+These are real, live client websites. Figures such as traffic or revenue are not published because clients have not approved them.
+
+### King Sports Management
+
+- Website: https://kingsportsmgt.com/
+- Sector: Sports & Athlete Management
+- Location: India
+- Summary: A premium corporate website for an Indian sports management company covering athlete management, brand partnerships, digital media and sports infrastructure across football, cricket and tennis.
+- Delivered: Custom corporate design, Service & athlete sections, SEO-ready page structure, Enquiry-focused layout
+
+### Houskase
+
+- Website: https://houskase.com/
+- Sector: D2C Ecommerce Store
+- Location: India
+- Summary: A high-utility ecommerce experience for household essentials, office supplies, mobile accessories and stationery. Clear collections, combo offers and frictionless product discovery support Houskase’s growing customer base across Delhi and beyond.
+- Delivered: WooCommerce storefront, Combo & offer collections, Mobile-first shopping, Payment & shipping setup
+
+### Regal Consulting Group
+
+- Website: https://regalconsultinggroup.ca/
+- Sector: Staffing & Recruitment
+- Location: Ontario, Canada
+- Summary: A professional website for an Ontario workforce solutions firm offering temporary staffing, permanent recruitment, executive search and payroll support for manufacturing and warehousing.
+- Delivered: Employer & job-seeker journeys, Industry pages, Registration forms, Clean corporate branding
+
+### Fresh & Bright Cleaners
+
+- Website: https://freshandbright.ca/
+- Sector: Local Service Business
+- Location: Mississauga, Canada
+- Summary: A conversion-focused website for a dry cleaning and laundry business with service listings, free pickup & delivery scheduling and a lead form that books customers directly.
+- Delivered: Pickup booking form, Service catalogue, Local SEO setup, Responsive design
+
+### Naval Medical
+
+- Website: https://navalmedical.com/
+- Sector: Healthcare & Pharma Distribution
+- Location: Lucknow, India
+- Summary: An institutional healthcare website for a Lucknow supplier established in 2005, presenting pharmaceuticals, surgical instruments, hospital furniture and GeM procurement support to government and private organisations.
+- Delivered: Product & service pages, Institutional sales focus, Trust-building content, Contact & enquiry flow
+
+### My Party Suppliers
+
+- Website: https://mypartysuppliers.com/
+- Sector: B2B Wholesale Ecommerce
+- Location: Gurgaon, India
+- Summary: A wholesale ecommerce website for party decorations and balloons, built for bulk buyers and resellers with category browsing and SEO-friendly product pages.
+- Delivered: Wholesale catalogue, Bulk enquiry flow, Category structure, Search-optimised pages
+
+### Chaatewala
+
+- Website: https://chaatewala.com/
+- Sector: Importer & Wholesale Supplier
+- Location: Delhi, India
+- Summary: A B2B website for a Delhi umbrella importer and wholesale supplier, helping gift, bulk and resale buyers explore products and request factory-price orders.
+- Delivered: Bulk order focus, Product showcase, Local SEO for Delhi, WhatsApp & call leads
+
+### Mukesh Murtikar
+
+- Website: https://mukeshmurtikar.com/
+- Sector: Handicraft Ecommerce
+- Location: India
+- Summary: An elegant online store for sculptures, statues, idols and wall décor with rich category navigation, offers and a heritage-inspired visual identity.
+- Delivered: Ecommerce store design, Category navigation, Offers & coupons, Customer accounts
+
+### Adlite Electricals
+
+- Website: https://www.adliteelectricals.com/
+- Sector: Electrical Engineering & Energy
+- Location: Faridabad, India
+- Summary: A focused industrial website for an electrical engineering company established in 2008, showcasing LT and HT VCB panels, breakers, transformers, EV chargers, renewable-energy EPC and consulting capabilities.
+- Delivered: Industrial product catalogue, Energy solution positioning, Enquiry-focused journeys, Responsive company profile
+
+## Technical Architecture
+
+### Ecommerce stores
+- Platform: WooCommerce (WordPress, PHP, MySQL) for full ownership and custom logic, or Shopify for hosted stores.
+- Payments: Razorpay, PayU or Cashfree with UPI, cards, net banking and COD rules.
+- Shipping: Shiprocket integration for rates, labels and tracking; GoKwik for checkout and RTO reduction where needed.
+- Messaging: WhatsApp Business API for order updates and lead capture.
+- Performance: compressed images, lazy loading, caching/CDN and Core Web Vitals checks before launch.
+- SEO: clean URL structure, schema markup (Product, Organization, BreadcrumbList), XML sitemap and canonical tags.
+
+### B2B commerce platforms
+- Customer groups with tiered and contract pricing visible only after login.
+- Minimum order quantities, bulk/quick order forms and RFQ (request for quote) workflows.
+- Dealer and multi-user company accounts, credit terms and GST invoicing.
+- ERP, inventory and accounting sync through REST APIs.
+
+### Custom web portals
+- Front end: React or Next.js with TypeScript.
+- Back end: Node.js and PostgreSQL (including Supabase) with role-based access and row-level security.
+- Authentication with email OTP or social sign-in; server-side validation for every write.
+
+### Delivery process
+1. Discovery and requirement mapping.
+2. Wireframes and UI design.
+3. Development and integrations.
+4. Testing on phones, tablets and computers.
+5. Launch, indexing setup and handover.
+6. Ongoing maintenance and support.
+
+## Optional
+
+- [Full knowledge file](https://webgramitsolution.in/llms-full.txt): Case studies and technical architecture details.
+- [XML sitemap](https://webgramitsolution.in/sitemap.xml): All public URLs.
+- [RSS feed](https://webgramitsolution.in/feed.xml): Latest blog articles.
