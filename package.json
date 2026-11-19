@@ -10,7 +10,9 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "start": "node .output/server/index.mjs"
+    "start": "node .output/server/index.mjs",
+    "db:setup": "node --experimental-strip-types --env-file-if-exists=.env scripts/mysql-setup.mjs",
+    "db:import-supabase": "node --experimental-strip-types --env-file-if-exists=.env scripts/import-supabase.mjs"
   },
   "overrides": {
     "js-yaml": "4.3.2",
@@ -76,6 +78,7 @@
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.575.0",
+    "mysql2": "3.24.6",
     "nodemailer": "^10.1.4",
     "react": "^19.2.0",
     "react-day-picker": "^9.14.0",

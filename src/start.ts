@@ -1,9 +1,6 @@
 import { createStart, createCsrfMiddleware, createMiddleware } from "@tanstack/react-start";
 
 import { renderErrorPage } from "./lib/error-page";
-// Replaces the generated attachSupabaseAuth with an equivalent that loads the client on demand.
-import { attachSupabaseAuthLazily } from "@/lib/lazy-auth-attacher";
-
 const errorMiddleware = createMiddleware().server(async ({ next }) => {
   try {
     return await next();
@@ -49,6 +46,5 @@ const csrfMiddleware = createCsrfMiddleware({
 });
 
 export const startInstance = createStart(() => ({
-  functionMiddleware: [attachSupabaseAuthLazily],
   requestMiddleware: [errorMiddleware, agentMiddleware, csrfMiddleware],
 }));

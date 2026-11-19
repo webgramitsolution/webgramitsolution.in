@@ -24,7 +24,7 @@
 - Manrope and semantic h1–h6/paragraph rules are global; page utilities may refine responsive presentation.
 - Keep ImageKit URLs verbatim and supplied Next.js/API Integration logos.
 - Email delivery uses Hostinger SMTP through a server-only helper.
-- Blog management requires server-checked admin roles; public posts require published status and elapsed publish time.
+- Blog management requires a server-checked MySQL admin allowlist; public posts require published status and elapsed publish time.
 - Guest section is retired: no guest routes, sign-up or comment form, and guest/credit/game RPCs are revoked from visitors so it cannot be used directly; old credit records stay append-only.
 - AdSense is consent-gated and limited to blog lists/articles and legal rails; disclosure helpers set ad counts; no sitewide/footer ads.
 - Blog previews share a limit selector; excerpts stay in search/social data. Related links rank by category/tags/recency without duplicates.
@@ -39,7 +39,7 @@
 - Legacy article aliases use explicit HTTP 301 routes to confirmed equivalent canonical articles, preserving query parameters; aliases stay out of the sitemap.
 - `/services/website-design` and `/services/shopify` have dedicated static routes so their custom pages, metadata and visible-FAQ schema cannot fall through the generic service renderer.
 - Service CTA bands share `TrustFacts` and FAQ answers come from one approved content module (pickFaqs throws on unknown questions), so no page shows invented counts or placeholder answers.
-- Public enquiries use the validated `submit_enquiry` security-definer RPC via the publishable key, so Hostinger needs no private key.
+- Runtime data uses Hostinger MySQL through server functions. Supabase Auth verifies admin identities and MySQL holds the admin allowlist. Enquiries use server validation and a per-email database lock to enforce the submission limit.
 - Self-hosted builds use Nitro `node-server` (`npm run build` → `npm start`) since Hostinger runs Node.js; Lovable builds override the preset.
 - Search pings: admin-only server fn calls Google Indexing API and IndexNow (key file in public/); RSS at /feed.xml.
 - Share the supplied testimonial strip above the public footer; never duplicate it in pages.

@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import { requireAdmin } from "./admin-auth.functions";
 
 const enquirySchema = z.object({
   name: z.string().trim().min(2).max(100),
@@ -17,11 +17,6 @@ const enquirySchema = z.object({
 export const submitEnquiry = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => enquirySchema.parse(input))
   .handler(async ({ data }) => {
-    // Public client + validated security-definer RPC: works on any host without the private key.
-    const { createClient } = await import("@supabase/supabase-js");
-    const url = process.env["SUPABASE_URL"] ?? process.env["VITE_SUPABASE_URL"] ?? import.meta.env["VITE_SUPABASE_URL"];
-    const key = process.env["SUPABASE_PUBLISHABLE_KEY"] ?? process.env["VITE_SUPABASE_PUBLISHABLE_KEY"] ?? import.meta.env["VITE_SUPABASE_PUBLISHABLE_KEY"];
-    const client = createClient(url, key, { auth: { persistSession: false, autoRefreshToken: false } });
     const projectDetails = [
       data.business && `Business: ${data.business}`,
       data.budget && `Budget: ${data.budget}`,
@@ -29,10 +24,8 @@ export const submitEnquiry = createServerFn({ method: "POST" })
     ].filter(Boolean);
     const message = [data.message, ...projectDetails].join("\n");
     if (message.length > 3000) throw new Error("Please shorten your project description.");
-    const { data: id, error } = await client.rpc("submit_enquiry", {
-      _name: data.name, _email: data.email, _phone: data.phone, _service: data.service, _message: message,
-    });
-    if (error || !id) throw new Error("Enquiry could not be saved. Please try again.");
+    const { createEnquiry } = await import("./enquiry-data.server");
+    const id = await createEnquiry({ ...data, message });
 
     const inbox = process.env["ENQUIRY_INBOX"] || "info@webgramitsolution.com";
     const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
@@ -59,13 +52,12 @@ export const submitEnquiry = createServerFn({ method: "POST" })
   });
 
 export const replyToEnquiry = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireAdmin])
   .inputValidator((input: unknown) => z.object({ id: z.string().uuid(), message: z.string().trim().min(5).max(5000) }).parse(input))
-  .handler(async ({ data, context }) => {
-    const { data: isAdmin } = await context.supabase.rpc("has_role", { _user_id: context.userId, _role: "admin" });
-    if (!isAdmin) throw new Error("Administrator access required.");
-    const { data: enquiry, error } = await context.supabase.from("enquiries").select("id,name,email,service").eq("id", data.id).single();
-    if (error || !enquiry) throw new Error("Enquiry not found.");
+  .handler(async ({ data }) => {
+    const { rows, write } = await import("./mysql.server");
+    const [enquiry] = await rows<{ id: string; name: string; email: string; service: string }>("SELECT id,name,email,service FROM enquiries WHERE id = ?", [data.id]);
+    if (!enquiry) throw new Error("Enquiry not found.");
     const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
     const { sendSmtpMail } = await import("./smtp.server");
     await sendSmtpMail({
@@ -75,7 +67,10 @@ export const replyToEnquiry = createServerFn({ method: "POST" })
       html: `<p>Hi ${esc(enquiry.name)},</p><p style="white-space:pre-line">${esc(data.message)}</p><p>Webgram IT Solution<br/>info@webgramitsolution.com</p>`,
       replyTo: "info@webgramitsolution.com",
     });
-    const { error: upErr } = await context.supabase.from("enquiries").update({ reply_message: data.message, replied_at: new Date().toISOString(), status: "contacted" }).eq("id", data.id);
-    if (upErr) throw new Error("Reply sent, but could not be saved.");
+    try {
+      await write("UPDATE enquiries SET reply_message = ?, replied_at = UTC_TIMESTAMP(3), status = 'contacted' WHERE id = ?", [data.message, data.id]);
+    } catch {
+      throw new Error("Reply sent, but could not be saved.");
+    }
     return { ok: true };
   });

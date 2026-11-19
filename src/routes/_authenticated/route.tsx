@@ -7,8 +7,11 @@ export const Route = createFileRoute("/_authenticated")({
     const { supabase } = await import("@/integrations/supabase/client");
     const { data, error } = await supabase.auth.getUser();
     if (error || !data.user) throw redirect({ to: "/auth" });
-    const { data: isAdmin } = await supabase.rpc("has_role", { _user_id: data.user.id, _role: "admin" });
-    if (!isAdmin) throw redirect({ to: "/auth" });
+    const { getAdminAccess } = await import("@/lib/admin-auth.functions");
+    if (!(await getAdminAccess())) {
+      await supabase.auth.signOut({ scope: "local" });
+      throw redirect({ to: "/auth" });
+    }
     return { user: data.user };
   },
   component: () => <Outlet />,

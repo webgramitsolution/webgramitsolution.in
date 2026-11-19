@@ -1,101 +1,96 @@
 import { createServerFn } from "@tanstack/react-start";
-import { createClient } from "@supabase/supabase-js";
 import { z } from "zod";
 
-import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import { requireAdmin } from "./admin-auth.functions";
 import type { Database } from "@/integrations/supabase/types";
 
-const slugSchema = z.string().trim().min(1).max(180).regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
+type Tables = Database["public"]["Tables"];
+type Post = Tables["blog_posts"]["Row"];
+type Category = Tables["blog_categories"]["Row"];
+type PostCard = Pick<Post, "id" | "title" | "slug" | "excerpt" | "featured_image" | "featured_image_alt" | "published_at">;
+type PostListItem = PostCard & Pick<Post, "category_id" | "subcategory_id" | "tags" | "author_name">;
 
-function publicClient() {
-  const url = process.env["SUPABASE_URL"];
-  const key = process.env["SUPABASE_PUBLISHABLE_KEY"];
-  if (!url || !key) throw new Error("Blog service is not configured.");
-  return createClient<Database>(url, key, {
-    auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
-  });
-}
+const slugSchema = z.string().trim().min(1).max(180).regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
+const cardColumns = "id,title,slug,excerpt,featured_image,featured_image_alt,published_at";
+const listColumns = `${cardColumns},category_id,subcategory_id,tags,author_name`;
+const published = "status = 'published' AND published_at <= UTC_TIMESTAMP(3)";
 
 export const getPublicBlog = createServerFn({ method: "GET" }).handler(async () => {
-  const client = publicClient();
-  const [{ data: categories, error: categoryError }, { data: posts, error: postError }] =
-    await Promise.all([
-      client.from("blog_categories").select("id,name,slug,description,display_order,parent_id").eq("is_active", true).order("display_order"),
-      client.from("blog_posts").select("id,title,slug,excerpt,featured_image,featured_image_alt,category_id,subcategory_id,tags,author_name,published_at").eq("status", "published").order("published_at", { ascending: false }),
-    ]);
-  if (categoryError || postError) throw categoryError ?? postError;
-  return { categories: categories ?? [], posts: posts ?? [] };
+  const { rows } = await import("./mysql.server");
+  const [categories, posts] = await Promise.all([
+    rows<Category>("SELECT id,name,slug,description,display_order,parent_id FROM blog_categories WHERE is_active = TRUE ORDER BY display_order"),
+    rows<PostListItem>(`SELECT ${listColumns} FROM blog_posts WHERE ${published} ORDER BY published_at DESC, slug`),
+  ]);
+  return { categories, posts };
 });
 
 export const getPublicBlogPost = createServerFn({ method: "GET" })
   .inputValidator((input: unknown) => z.object({ slug: slugSchema }).parse(input))
   .handler(async ({ data }) => {
-    const client = publicClient();
-    const { data: post, error } = await client
-      .from("blog_posts")
-      .select("id,title,slug,excerpt,content,featured_image,featured_image_alt,author_name,published_at,updated_at,seo_title,seo_description,category_id,subcategory_id,tags,faqs,noindex,view_count")
-      .eq("slug", data.slug)
-      .eq("status", "published")
-      .maybeSingle();
-    if (error) throw error;
+    const { rows } = await import("./mysql.server");
+    const [post] = await rows<Pick<Post, "id" | "title" | "slug" | "excerpt" | "content" | "featured_image" | "featured_image_alt" | "author_name" | "published_at" | "updated_at" | "seo_title" | "seo_description" | "category_id" | "subcategory_id" | "tags" | "faqs" | "noindex" | "view_count">>(
+      `SELECT ${listColumns},content,updated_at,seo_title,seo_description,faqs,noindex,view_count FROM blog_posts WHERE slug = ? AND ${published}`,
+      [data.slug],
+    );
     if (!post) return null;
-    const { data: category } = post.category_id
-      ? await client.from("blog_categories").select("name,slug").eq("id", post.category_id).maybeSingle()
-      : { data: null };
-    const { data: subcategory } = post.subcategory_id
-      ? await client.from("blog_categories").select("name,slug").eq("id", post.subcategory_id).maybeSingle()
-      : { data: null };
-    const { data: related } = await client
-      .from("blog_posts")
-      .select("id,title,slug,excerpt,featured_image,featured_image_alt,published_at")
-      .eq("status", "published")
-      .neq("id", post.id)
-      .order("published_at", { ascending: false })
-      .limit(3);
-    return { ...post, category, subcategory, related: related ?? [] };
+    const categoryById = async (id: string | null) => id
+      ? (await rows<Pick<Category, "name" | "slug">>("SELECT name,slug FROM blog_categories WHERE id = ?", [id]))[0] ?? null
+      : null;
+    const [category, subcategory, related] = await Promise.all([
+      categoryById(post.category_id),
+      categoryById(post.subcategory_id),
+      rows<PostCard>(`SELECT ${cardColumns} FROM blog_posts WHERE id <> ? AND ${published} ORDER BY published_at DESC, slug LIMIT 3`, [post.id]),
+    ]);
+    return { ...post, category, subcategory, related };
   });
 
 export const getPublicBlogCategory = createServerFn({ method: "GET" })
   .inputValidator((input: unknown) => z.object({ slug: slugSchema }).parse(input))
   .handler(async ({ data }) => {
-    const client = publicClient();
-    const { data: category, error: categoryError } = await client
-      .from("blog_categories")
-      .select("id,name,slug,description,parent_id")
-      .eq("slug", data.slug)
-      .eq("is_active", true)
-      .is("parent_id", null)
-      .maybeSingle();
-    if (categoryError) throw categoryError;
+    const { rows } = await import("./mysql.server");
+    const [category] = await rows<Pick<Category, "id" | "name" | "slug" | "description" | "parent_id">>(
+      "SELECT id,name,slug,description,parent_id FROM blog_categories WHERE slug = ? AND is_active = TRUE AND parent_id IS NULL", [data.slug],
+    );
     if (!category) return null;
-    const [{ data: children, error: childError }, { data: posts, error: postError }] = await Promise.all([
-      client.from("blog_categories").select("id,name,slug,parent_id").eq("parent_id", category.id).eq("is_active", true).order("display_order"),
-      client.from("blog_posts").select("id,title,slug,excerpt,featured_image,featured_image_alt,category_id,subcategory_id,tags,author_name,published_at").eq("category_id", category.id).eq("status", "published").eq("noindex", false).lte("published_at", new Date().toISOString()).order("published_at", { ascending: false }),
+    const [children, posts] = await Promise.all([
+      rows<Pick<Category, "id" | "name" | "slug" | "parent_id">>("SELECT id,name,slug,parent_id FROM blog_categories WHERE parent_id = ? AND is_active = TRUE ORDER BY display_order", [category.id]),
+      rows<PostListItem>(`SELECT ${listColumns} FROM blog_posts WHERE category_id = ? AND ${published} AND noindex = FALSE ORDER BY published_at DESC, slug`, [category.id]),
     ]);
-    if (childError || postError) throw childError ?? postError;
-    return { category, children: children ?? [], posts: posts ?? [] };
+    return { category, children, posts };
   });
 
-async function requireAdmin(context: { supabase: ReturnType<typeof publicClient>; userId: string }) {
-  const { data, error } = await context.supabase.rpc("has_role", {
-    _user_id: context.userId,
-    _role: "admin",
+export const getLatestBlogPosts = createServerFn({ method: "GET" }).handler(async () => {
+  const { rows } = await import("./mysql.server");
+  return rows<PostCard>(`SELECT ${cardColumns} FROM blog_posts WHERE ${published} ORDER BY published_at DESC, slug LIMIT 3`);
+});
+
+export const getBlogComments = createServerFn({ method: "GET" })
+  .inputValidator((input: unknown) => z.object({ postId: z.string().uuid() }).parse(input))
+  .handler(async ({ data }) => {
+    const { rows } = await import("./mysql.server");
+    return rows<Pick<Tables["blog_comments"]["Row"], "id" | "author_name" | "body" | "created_at">>(
+      "SELECT c.id,c.author_name,c.body,c.created_at FROM blog_comments c JOIN blog_posts p ON p.id = c.post_id WHERE p.id = ? AND p.status = 'published' AND p.published_at <= UTC_TIMESTAMP(3) ORDER BY c.created_at",
+      [data.postId],
+    );
   });
-  if (error || !data) throw new Error("Administrator access required.");
-}
+
+export const incrementBlogView = createServerFn({ method: "POST" })
+  .inputValidator((input: unknown) => z.object({ slug: slugSchema }).parse(input))
+  .handler(async ({ data }) => {
+    const { write } = await import("./mysql.server");
+    await write(`UPDATE blog_posts SET view_count = view_count + 1 WHERE slug = ? AND ${published}`, [data.slug]);
+  });
 
 export const getAdminBlog = createServerFn({ method: "GET" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireAdmin])
   .handler(async ({ context }) => {
-    await requireAdmin(context);
-    const [{ data: posts, error: postError }, { data: categories, error: categoryError }, { data: profile }] =
-      await Promise.all([
-        context.supabase.from("blog_posts").select("*").order("updated_at", { ascending: false }),
-        context.supabase.from("blog_categories").select("*").order("display_order"),
-        context.supabase.from("profiles").select("display_name,avatar_url").eq("id", context.userId).maybeSingle(),
-      ]);
-    if (postError || categoryError) throw postError ?? categoryError;
-    return { posts: posts ?? [], categories: categories ?? [], profile };
+    const { rows } = await import("./mysql.server");
+    const [posts, categories, [profile]] = await Promise.all([
+      rows<Post>("SELECT * FROM blog_posts ORDER BY updated_at DESC"),
+      rows<Category>("SELECT id,name,slug,description,display_order,parent_id,is_active,created_at FROM blog_categories ORDER BY display_order"),
+      rows<Pick<Tables["profiles"]["Row"], "display_name" | "avatar_url">>("SELECT display_name,avatar_url FROM profiles WHERE id = ?", [context.userId]),
+    ]);
+    return { posts, categories, profile: profile ?? null };
   });
 
 const postInput = z.object({
@@ -118,10 +113,9 @@ const postInput = z.object({
 });
 
 export const saveBlogPost = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireAdmin])
   .inputValidator((input: unknown) => postInput.parse(input))
   .handler(async ({ context, data }) => {
-    await requireAdmin(context);
     if (data.featuredImage && data.featuredImageAlt.length < 5) throw new Error("Add a meaningful image description for search and accessibility.");
     const record = {
       title: data.title,
@@ -132,37 +126,29 @@ export const saveBlogPost = createServerFn({ method: "POST" })
       featured_image_alt: data.featuredImageAlt,
       category_id: data.categoryId,
       subcategory_id: data.subcategoryId,
-      tags: data.tags,
-      faqs: data.faqs,
+      tags: JSON.stringify(data.tags),
+      faqs: JSON.stringify(data.faqs),
       noindex: data.noindex,
       author_name: data.authorName,
       status: data.status,
       seo_title: data.seoTitle || null,
       seo_description: data.seoDescription || null,
-      updated_at: new Date().toISOString(),
-      published_at: data.status === "published" ? new Date().toISOString() : null,
+      updated_at: new Date(),
+      published_at: data.status === "published" ? new Date() : null,
     };
-    if (data.id) {
-      const { data: saved, error } = await context.supabase.from("blog_posts").update(record).eq("id", data.id).select("id,slug").single();
-      if (error) throw error;
-      return saved;
-    }
-    const { data: saved, error } = await context.supabase
-      .from("blog_posts")
-      .insert({ ...record, author_id: context.userId })
-      .select("id,slug")
-      .single();
-    if (error) throw error;
-    return saved;
+    const { saveRecord } = await import("./mysql.server");
+    const id = data.id ?? crypto.randomUUID();
+    const result = await saveRecord("blog_posts", id, data.id ? record : { ...record, author_id: context.userId }, Boolean(data.id));
+    if (!result.affectedRows) throw new Error("Article not found.");
+    return { id, slug: data.slug };
   });
 
 export const deleteBlogPost = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireAdmin])
   .inputValidator((input: unknown) => z.object({ id: z.string().uuid() }).parse(input))
-  .handler(async ({ context, data }) => {
-    await requireAdmin(context);
-    const { error } = await context.supabase.from("blog_posts").delete().eq("id", data.id);
-    if (error) throw error;
+  .handler(async ({ data }) => {
+    const { write } = await import("./mysql.server");
+    await write("DELETE FROM blog_posts WHERE id = ?", [data.id]);
     return { ok: true };
   });
 
@@ -177,23 +163,30 @@ const categoryInput = z.object({
 });
 
 export const saveBlogCategory = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireAdmin])
   .inputValidator((input: unknown) => categoryInput.parse(input))
-  .handler(async ({ context, data }) => {
-    await requireAdmin(context);
-    const record = { name: data.name, slug: data.slug, description: data.description, display_order: data.displayOrder, parent_id: data.parentId, is_active: data.isActive };
-    const query = data.id ? context.supabase.from("blog_categories").update(record).eq("id", data.id) : context.supabase.from("blog_categories").insert(record);
-    const { data: saved, error } = await query.select("id").single();
-    if (error) throw error;
-    return saved;
+  .handler(async ({ data }) => {
+    const { rows, saveRecord } = await import("./mysql.server");
+    if (data.parentId) {
+      const [parent] = await rows<Pick<Category, "id" | "parent_id">>("SELECT id,parent_id FROM blog_categories WHERE id = ?", [data.parentId]);
+      if (!parent || parent.id === data.id || parent.parent_id) throw new Error("Select a primary category.");
+      if (data.id && (await rows("SELECT id FROM blog_categories WHERE parent_id = ? LIMIT 1", [data.id])).length) {
+        throw new Error("Move this category's subcategories before changing its parent.");
+      }
+    }
+    const id = data.id ?? crypto.randomUUID();
+    const result = await saveRecord("blog_categories", id, {
+      name: data.name, slug: data.slug, description: data.description, display_order: data.displayOrder, parent_id: data.parentId, parent_scope: data.parentId ?? "", is_active: data.isActive,
+    }, Boolean(data.id));
+    if (!result.affectedRows) throw new Error("Category not found.");
+    return { id };
   });
 
 export const deleteBlogCategory = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireAdmin])
   .inputValidator((input: unknown) => z.object({ id: z.string().uuid() }).parse(input))
-  .handler(async ({ context, data }) => {
-    await requireAdmin(context);
-    const { error } = await context.supabase.from("blog_categories").delete().eq("id", data.id);
-    if (error) throw error;
+  .handler(async ({ data }) => {
+    const { write } = await import("./mysql.server");
+    await write("DELETE FROM blog_categories WHERE id = ?", [data.id]);
     return { ok: true };
   });

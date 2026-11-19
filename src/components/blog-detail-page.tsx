@@ -1,7 +1,7 @@
 import { normalizeBlogFaqs } from "@/lib/blog-faqs";
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { supabase } from "@/integrations/supabase/client";
+import { incrementBlogView } from "@/lib/blog.functions";
 import { ArrowRight, CalendarDays, Clock3, Eye, Home } from "lucide-react";
 
 import { BlogPublicHeader, type BlogMenuCategory } from "@/components/blog-public-header";
@@ -120,7 +120,7 @@ export function BlogDetailPage({ post, categories }: { post: Post; categories: B
     const key = `viewed:${post.slug}`;
     if (sessionStorage.getItem(key)) return;
     sessionStorage.setItem(key, "1");
-    void supabase.rpc("increment_post_view", { _slug: post.slug });
+    void incrementBlogView({ data: { slug: post.slug } }).catch(() => sessionStorage.removeItem(key));
   }, [post.slug]);
   return <div className="min-h-screen bg-background text-foreground">
     <BlogPublicHeader categories={categories} activeSlug={post.category?.slug} />

@@ -2,13 +2,17 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
-import { supabase } from "@/integrations/supabase/client";
+import { getLatestBlogPosts } from "@/lib/blog.functions";
 
 type Post = { id: string; title: string; slug: string; excerpt: string; featured_image: string | null; featured_image_alt: string; published_at: string | null };
 
 export function LatestBlogPosts() {
   const [posts, setPosts] = useState<Post[]>([]);
-  useEffect(() => { void supabase.from("blog_posts").select("id,title,slug,excerpt,featured_image,featured_image_alt,published_at").eq("status", "published").lte("published_at", new Date().toISOString()).order("published_at", { ascending: false }).limit(3).then(({ data }) => setPosts(data ?? [])); }, []);
+  useEffect(() => {
+    let active = true;
+    void getLatestBlogPosts().then((items) => { if (active) setPosts(items); }).catch(() => {});
+    return () => { active = false; };
+  }, []);
   if (!posts.length) return null;
   return <section className="border-t border-border bg-card py-7"><div className="page-shell">
     <div className="flex items-end justify-between gap-4"><div><p className="page-eyebrow text-primary">From our blog</p><h2 className="mt-2 text-[22px] font-extrabold leading-tight text-navy md:text-[26px]">Latest insights</h2></div><Link to="/resources/$slug" params={{ slug: "blog" }} className="inline-flex shrink-0 items-center gap-1 text-xs font-bold text-primary">View all articles <ArrowRight className="h-3.5 w-3.5" /></Link></div>

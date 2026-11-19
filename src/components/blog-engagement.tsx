@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Facebook, Instagram, Linkedin, MessageSquare, Pin, Share2, Twitter } from "lucide-react";
 
+import { getBlogComments } from "@/lib/blog.functions";
 import { Button } from "@/components/ui/button";
 
 type Comment = { id: string; author_name: string; body: string; created_at: string };
@@ -33,10 +34,10 @@ export function BlogEngagement({ postId }: { postId: string; title: string }) {
   const [comments, setComments] = useState<Comment[]>([]);
   useEffect(() => {
     let cancelled = false;
-    void import("@/integrations/supabase/client").then(async ({ supabase }) => {
-      const { data } = await supabase.from("blog_comments").select("id,author_name,body,created_at").eq("post_id", postId).order("created_at");
-      if (!cancelled) setComments(data ?? []);
-    });
+    setComments([]);
+    void getBlogComments({ data: { postId } }).then((items) => {
+      if (!cancelled) setComments(items);
+    }).catch(() => {});
     return () => { cancelled = true; };
   }, [postId]);
   if (!comments.length) return null;

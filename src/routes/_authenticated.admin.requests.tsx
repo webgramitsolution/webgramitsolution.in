@@ -5,7 +5,7 @@ import { pingSearchEngines } from "@/lib/indexing.functions";
 
 import { AdminShell } from "@/components/admin-blog";
 import { Button } from "@/components/ui/button";
-import { supabase } from "@/integrations/supabase/client";
+import { deleteHomepageReview, getAdminRequests, saveHomepageReview, updateRequestStatus } from "@/lib/admin-requests.functions";
 import { useServerFn } from "@tanstack/react-start";
 import { replyToEnquiry } from "@/lib/enquiry.functions";
 
@@ -23,7 +23,6 @@ const blankReview = { customer_name: "", customer_role: "", company_name: "", re
 
 const when = (v: string) => new Date(v).toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" });
 const statusSets = { enquiries: ["new", "contacted", "closed"], indexing: ["pending", "done", "rejected"], tickets: ["open", "closed"] } as const;
-const table = { enquiries: "enquiries", indexing: "indexing_requests", tickets: "support_tickets" } as const;
 
 function RequestsPage() {
   const [tab, setTab] = useState<Tab>("enquiries");
@@ -35,13 +34,15 @@ function RequestsPage() {
   const [reviewForm, setReviewForm] = useState(blankReview);
   const [error, setError] = useState("");
   async function load() {
-    const [a, b, c, d] = await Promise.all([
-      supabase.from("enquiries").select("*").order("created_at", { ascending: false }),
-      supabase.from("indexing_requests").select("*").order("created_at", { ascending: false }),
-      supabase.from("support_tickets").select("*").order("created_at", { ascending: false }),
-      supabase.from("homepage_reviews").select("id,customer_name,customer_role,company_name,review_text,rating,is_published,display_order").order("display_order"),
-    ]);
-    setEnquiries(a.data ?? []); setIndexing(b.data ?? []); setTickets(c.data ?? []); setReviews(d.data ?? []);
+    try {
+      const result = await getAdminRequests();
+      setEnquiries(result.enquiries);
+      setIndexing(result.indexing);
+      setTickets(result.tickets);
+      setReviews(result.reviews);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Could not load requests.");
+    }
   }
   useEffect(() => { void load(); }, []);
   const sendReply = useServerFn(replyToEnquiry);
@@ -70,12 +71,36 @@ function RequestsPage() {
   }
   async function setStatus(t: Exclude<Tab, "reviews">, id: string, status: string) {
     setError("");
-    const { error: e } = await supabase.from(table[t]).update({ status } as never).eq("id", id);
-    if (e) setError(e.message); else await load();
+    try {
+      if (t === "enquiries" && (status === "new" || status === "contacted" || status === "closed")) {
+        await updateRequestStatus({ data: { queue: t, id, status } });
+      } else if (t === "indexing" && (status === "pending" || status === "done" || status === "rejected")) {
+        await updateRequestStatus({ data: { queue: t, id, status } });
+      } else if (t === "tickets" && (status === "open" || status === "closed")) {
+        await updateRequestStatus({ data: { queue: t, id, status } });
+      }
+      await load();
+    } catch (e) { setError(e instanceof Error ? e.message : "Could not update status."); }
   }
-  async function saveReview(event: React.FormEvent) { event.preventDefault(); setError(""); const record = { ...reviewForm, updated_at: new Date().toISOString() }; const result = editingReview ? await supabase.from("homepage_reviews").update(record).eq("id", editingReview) : await supabase.from("homepage_reviews").insert(record); if (result.error) setError(result.error.message); else { setEditingReview(null); setReviewForm(blankReview); await load(); } }
+  async function saveReview(event: React.FormEvent) {
+    event.preventDefault();
+    setError("");
+    try {
+      await saveHomepageReview({ data: { ...reviewForm, id: editingReview } });
+      setEditingReview(null);
+      setReviewForm(blankReview);
+      await load();
+    } catch (e) { setError(e instanceof Error ? e.message : "Could not save review."); }
+  }
   function editReview(review: Review) { setEditingReview(review.id); setReviewForm({ customer_name: review.customer_name, customer_role: review.customer_role, company_name: review.company_name, review_text: review.review_text, rating: review.rating, is_published: review.is_published, display_order: review.display_order }); }
-  async function deleteReview(id: string) { if (!window.confirm("Delete this review?")) return; const { error: reviewError } = await supabase.from("homepage_reviews").delete().eq("id", id); if (reviewError) setError(reviewError.message); else await load(); }
+  async function deleteReview(id: string) {
+    if (!window.confirm("Delete this review?")) return;
+    setError("");
+    try {
+      await deleteHomepageReview({ data: { id } });
+      await load();
+    } catch (e) { setError(e instanceof Error ? e.message : "Could not delete review."); }
+  }
   const counts = { enquiries: enquiries.filter((x) => x.status === "new").length, indexing: indexing.filter((x) => x.status === "pending").length, tickets: tickets.filter((x) => x.status === "open").length, reviews: reviews.filter((x) => x.is_published).length };
   const Status = ({ t, id, value }: { t: Exclude<Tab, "reviews">; id: string; value: string }) => <select aria-label="Status" value={value} onChange={(e) => void setStatus(t, id, e.target.value)} className="h-9 rounded-md border border-input bg-card px-2 text-xs font-bold uppercase text-navy">{statusSets[t].map((s) => <option key={s} value={s}>{s}</option>)}</select>;
   return <AdminShell><main className="page-shell py-8">
