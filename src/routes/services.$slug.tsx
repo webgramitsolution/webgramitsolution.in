@@ -34,7 +34,6 @@ const seoTitles: Record<string, string> = {
   "wordpress": "WordPress Website Development in India | Webgram",
   "api-integration": "API Integration Services in India | Webgram",
   "website-maintenance": "Website Maintenance Services in Delhi NCR | Webgram",
-  "speed-optimization": "Website Speed and Core Web Vitals Optimisation in India | Webgram",
 };
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {

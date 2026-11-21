@@ -100,13 +100,6 @@ export const menuSections: Record<SectionKey, MenuSection> = {
           "Ongoing updates, backups, security monitoring and content changes so your website stays healthy around the clock.",
         points: ["Regular updates", "Daily backups", "Security monitoring", "Content updates"],
       },
-      "speed-optimization": {
-        title: "Speed Optimization",
-        tagline: "Faster pages, better rankings",
-        description:
-          "We audit and optimize your website for Core Web Vitals — faster load times, better SEO and higher conversions.",
-        points: ["Core Web Vitals", "Image & code optimization", "Caching & CDN setup", "Performance audits"],
-      },
     },
   },
   industries: {
