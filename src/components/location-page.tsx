@@ -62,12 +62,12 @@ export function LocationPage({ location: l }: { location: ServiceLocation }) {
         <div className="absolute inset-0 hidden bg-gradient-to-r from-navy via-navy/75 to-transparent md:block" aria-hidden="true" />
         <div className="page-shell relative flex h-full items-center py-10 md:py-0">
           <div className="min-w-0 max-w-[620px]">
-            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-[14px] text-on-dark/80">
-              <Link to="/" className="hover:text-on-dark">Home</Link><span>›</span>
-              <Link to="/locations" className="hover:text-on-dark">Locations</Link><span>›</span>
+            <nav aria-label="Breadcrumb" className="sr-only">
+              <Link tabIndex={-1} to="/" className="hover:text-on-dark">Home</Link><span aria-hidden="true">›</span>
+              <Link tabIndex={-1} to="/locations" className="hover:text-on-dark">Locations</Link><span aria-hidden="true">›</span>
               <span aria-current="page" className="text-on-dark">{l.city}</span>
             </nav>
-            <h1 className="mt-4 text-balance text-[30px] font-medium leading-[1.15] md:text-[36px] lg:text-[40px]">{l.keyword}</h1>
+            <h1 className="text-balance text-[30px] font-medium leading-[1.15] md:text-[36px] lg:text-[40px]">{l.keyword}</h1>
             <p className="mt-3 text-[16px] leading-7 text-on-dark/90">{l.intro}</p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Link to="/contact" className="inline-flex h-11 items-center gap-2 rounded-md bg-gold px-6 text-[15px] font-semibold text-navy hover:opacity-90">Get a Free Quote <ArrowRight className="h-4 w-4" /></Link>
@@ -223,8 +223,8 @@ export function LocationsHub() {
       <SiteHeader />
       <section className="location-hero relative overflow-hidden bg-navy text-on-dark">
         <div className="page-shell relative py-12 md:py-14">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-[14px] text-on-dark/75"><Link to="/" className="hover:text-on-dark">Home</Link><span>›</span><span aria-current="page" className="text-on-dark">Locations</span></nav>
-          <h1 className="mt-4 max-w-[780px] text-balance text-[30px] font-medium leading-[1.15] md:text-[38px]">Website & Ecommerce Development Across Delhi NCR</h1>
+          <nav aria-label="Breadcrumb" className="sr-only"><Link tabIndex={-1} to="/" className="hover:text-on-dark">Home</Link><span aria-hidden="true">›</span><span aria-current="page" className="text-on-dark">Locations</span></nav>
+          <h1 className="max-w-[780px] text-balance text-[30px] font-medium leading-[1.15] md:text-[38px]">Website & Ecommerce Development Across Delhi NCR</h1>
           <p className="mt-4 max-w-[700px] text-[16px] leading-7 text-on-dark/85 md:text-[17px]">From our office in Sangam Vihar, New Delhi, we build websites and online stores for businesses in Delhi, Noida, Gurugram, Faridabad and nearby areas.</p>
         </div>
       </section>
