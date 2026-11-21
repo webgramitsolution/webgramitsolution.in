@@ -674,6 +674,8 @@ a.bg-gold, button.bg-gold {
 .article-gallery { display: grid; gap: 0.5rem; margin-block: 1.25rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .article-gallery img { width: 100%; height: 180px; border-radius: var(--radius); object-fit: cover; }
 @media (max-width: 639px) { .article-gallery { grid-template-columns: 1fr; } .article-gallery img { height: auto; max-height: 360px; } }
+.article-gallery-four img { height: auto; aspect-ratio: 4 / 3; }
+@media (min-width: 768px) { .article-gallery-four { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 
 .contact-hero {
   position: relative;

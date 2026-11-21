@@ -30,5 +30,5 @@ export const Route = createFileRoute("/services/website-design")({
 });
 
 function WebsiteDesignPage() {
-  return <><WebsiteDesignDevelopmentPage designOnly /><ServicePlanning plan={servicePlans.design} whiteBackground /><LatestBlogPosts /></>;
+  return <><WebsiteDesignDevelopmentPage designOnly /><ServicePlanning plan={servicePlans.design} whiteIntro /><LatestBlogPosts /></>;
 }

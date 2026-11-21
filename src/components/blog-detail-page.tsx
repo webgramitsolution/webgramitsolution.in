@@ -32,7 +32,7 @@ function InlineText({ value }: { value: string }) {
   })}</>;
 }
 
-const imagePattern = /^!\[([^\]]*)\]\((https:\/\/[^\s)]+)\)$/i;
+const imagePattern = /^!\[([^\]]*)\]\(((?:https:\/\/|\/images\/)[^\s)]+)\)$/i;
 
 export function ArticleBody({ content, preview = false, advertisements = false, recommendations = [], collapsed = false }: { content: string; preview?: boolean; advertisements?: boolean; recommendations?: Related[]; collapsed?: boolean }) {
   const [phone, setPhone] = useState(false);
@@ -55,16 +55,16 @@ export function ArticleBody({ content, preview = false, advertisements = false, 
       blocks.push(<div key={`align-${index}`} className={alignment === "center" ? "text-center" : alignment === "right" ? "text-right" : "text-left"}><InlineText value={aligned.join(" ").trim()} /></div>);
       index += 1; continue;
     }
-    if (line === ":::gallery" || line === ":::grid") {
+    if (line === ":::gallery" || line === ":::gallery-four" || line === ":::grid") {
       const mode = line.slice(3); const items: string[] = []; let current: string[] = [];
       index += 1;
       while (index < lines.length && lines[index]?.trim() !== ":::") {
-        if (mode === "grid" && lines[index]?.trim() === "---") { items.push(current.join("\n").trim()); current = []; }
+        if (mode !== "gallery" && lines[index]?.trim() === "---") { items.push(current.join("\n").trim()); current = []; }
         else current.push(lines[index] ?? "");
         index += 1;
       }
       items.push(current.join("\n").trim());
-      blocks.push(<div key={`rich-${index}`} className={mode === "gallery" ? "article-gallery" : "article-grid"}>{items.filter(Boolean).map((item, itemIndex) => { const match = item.match(imagePattern); return match ? <img key={itemIndex} src={match[2]} alt={match[1] || "Article gallery image"} loading="lazy" /> : <p key={itemIndex}><InlineText value={item} /></p>; })}</div>);
+      blocks.push(<div key={`rich-${index}`} className={mode === "grid" ? "article-grid" : mode === "gallery-four" ? "article-gallery article-gallery-four" : "article-gallery"}>{items.filter(Boolean).map((item, itemIndex) => { const match = item.match(imagePattern); return match ? <img key={itemIndex} src={match[2]} alt={match[1] || "Article gallery image"} loading="lazy" /> : <p key={itemIndex}><InlineText value={item} /></p>; })}</div>);
       index += 1; continue;
     }
     const image = line.match(imagePattern);
@@ -112,17 +112,18 @@ export function ArticleBody({ content, preview = false, advertisements = false, 
   return <div className={`blog-prose ${preview ? "blog-prose-preview" : ""}`}>{blocks.length ? blocks.map((block, blockIndex) => <div key={blockIndex} hidden={collapsed && blockIndex >= previewCount}>{block}{!preview && (!collapsed || blockIndex < previewCount) ? recommendations.map((item, itemIndex) => recommendationBoundaries[itemIndex] === blockIndex ? <aside key={item.id} className="my-6 border-y border-border bg-primary-soft px-4 py-4" aria-label="Related article"><span className="mb-2 block text-[13px] font-medium text-muted-foreground">{itemIndex === 0 ? "Also read this blog" : "Read about this"}</span><Link to="/blog/$slug" params={{ slug: item.slug }} className="flex items-start justify-between gap-3 text-[16px] font-medium leading-6 text-primary">{item.title}<ArrowRight className="mt-1 h-4 w-4 shrink-0" /></Link></aside> : null) : null}{advertisements && !preview && (!collapsed || blockIndex < previewCount) ? adBoundaries.map((boundary, adIndex) => boundary === blockIndex ? <BlogAdBand key={`article-ad-${adIndex}`} position={adIndex % 2 === 0 ? "articleFeed" : "articleContent"} label={`Article advertisement ${adIndex + 1}`} /> : null) : null}</div>) : preview ? <p className="text-muted-foreground">Your formatted article preview will appear here.</p> : null}</div>;
 }
 
-export function BlogDetailPage({ post, categories }: { post: Post; categories: BlogMenuCategory[] }) {
+export function BlogDetailPage({ post, categories, trackViews = true }: { post: Post; categories: BlogMenuCategory[]; trackViews?: boolean }) {
   const [expandedSlug, setExpandedSlug] = useState<string | null>(null);
   const expanded = expandedSlug === post.slug;
   const minutes = Math.max(2, Math.ceil(post.content.split(/\s+/).length / 200));
   const faqs = normalizeBlogFaqs(post.faqs);
   useEffect(() => {
+    if (!trackViews) return;
     const key = `viewed:${post.slug}`;
     if (sessionStorage.getItem(key)) return;
     sessionStorage.setItem(key, "1");
     void incrementBlogView({ data: { slug: post.slug } }).catch(() => sessionStorage.removeItem(key));
-  }, [post.slug]);
+  }, [post.slug, trackViews]);
   return <div className="min-h-screen bg-background text-foreground">
     <BlogPublicHeader categories={categories} activeSlug={post.category?.slug} />
     <main className="bg-card">
@@ -136,7 +137,7 @@ export function BlogDetailPage({ post, categories }: { post: Post; categories: B
         <p className="inline-flex rounded-sm bg-primary px-2 py-1 text-[13px] font-extrabold uppercase text-primary-foreground">{post.category?.name ?? "Webgram Journal"}</p>
         <HeroHeading className="mt-2 text-[1.65rem] font-extrabold leading-[1.12] text-navy md:text-[1.9rem]" title={post.title} />
         <div className="mt-4 grid gap-3 border-b border-border pb-4 md:grid-cols-[1fr_auto] md:items-center">
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[14px] text-muted-foreground"><span className="grid h-7 w-7 place-items-center rounded-full bg-navy font-bold text-on-dark">{post.author_name.charAt(0).toUpperCase()}</span><strong className="text-navy">By {post.author_name}</strong><span className="flex items-center gap-1"><CalendarDays className="h-3.5 w-3.5" />{date(post.published_at)}</span><span className="flex items-center gap-1"><Clock3 className="h-3.5 w-3.5" />{minutes} Min Read</span><span className="flex items-center gap-1"><Eye className="h-3.5 w-3.5" />{post.view_count.toLocaleString("en-IN")} Views</span></div>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[14px] text-muted-foreground"><span className="grid h-7 w-7 place-items-center rounded-full bg-navy font-bold text-on-dark">{post.author_name.charAt(0).toUpperCase()}</span><strong className="text-navy">By {post.author_name}</strong><span className="flex items-center gap-1"><CalendarDays className="h-3.5 w-3.5" />{date(post.published_at)}</span><span className="flex items-center gap-1"><Clock3 className="h-3.5 w-3.5" />{minutes} Min Read</span>{trackViews && <span className="flex items-center gap-1"><Eye className="h-3.5 w-3.5" />{post.view_count.toLocaleString("en-IN")} Views</span>}</div>
           <BlogShareButtons postId={post.id} title={post.title} />
         </div>
       </section>

@@ -1,13 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { EcommerceBuyerGuide } from "@/components/ecommerce-buyer-guide";
-import { SiteHeader } from "@/components/site-header";
-import { ecommerceBuyerGuide as guide } from "@/lib/ecommerce-buyer-guide";
+import { BlogDetailPage } from "@/components/blog-detail-page";
+import { getPublicBlog } from "@/lib/blog.functions";
+import { ecommerceBuyerGuide as guide, ecommerceBuyerGuideContent } from "@/lib/ecommerce-buyer-guide";
 import { BUSINESS_ID, SITE_URL, publicPageSchema } from "@/lib/site-identity";
 
 const url = SITE_URL + guide.path;
 const image = SITE_URL + guide.image;
 
 export const Route = createFileRoute("/blog/ecommerce-website-development-india-guide")({
+  loader: () => getPublicBlog().catch(() => ({ categories: [], posts: [] })),
   head: () => ({
     links: [{ rel: "canonical", href: url }],
     meta: [
@@ -37,5 +38,15 @@ export const Route = createFileRoute("/blog/ecommerce-website-development-india-
       }),
     }],
   }),
-  component: () => <><SiteHeader /><main><EcommerceBuyerGuide /></main></>,
+  component: BuyerGuidePage,
 });
+
+function BuyerGuidePage() {
+  const { categories } = Route.useLoaderData();
+  return <BlogDetailPage categories={categories} trackViews={false} post={{
+    id: guide.slug, slug: guide.slug, title: guide.title, excerpt: guide.description,
+    content: ecommerceBuyerGuideContent, featured_image: guide.image, featured_image_alt: guide.imageAlt,
+    author_name: "Webgram IT Solution", published_at: null, tags: [], faqs: [], view_count: 0,
+    category: null, subcategory: null, related: [],
+  }} />;
+}
