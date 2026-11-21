@@ -13,8 +13,8 @@ import { NotFoundPage } from "@/components/not-found-page";
 
 const section = menuSections.solutions;
 const search = {
-  "ecommerce-development": { plan: servicePlans.ecommerce, title: "Ecommerce Website Development in Delhi NCR | Webgram" },
-  "b2b-commerce": { plan: servicePlans.b2b, title: "B2B Ecommerce & Wholesale Portal Development | Webgram" },
+  "ecommerce-development": { plan: servicePlans.ecommerce, title: "D2C & B2C Ecommerce Store Development in India | Webgram" },
+  "b2b-commerce": { plan: servicePlans.b2b, title: "B2B Ecommerce & Dealer Ordering Portal Development | Webgram" },
   "website-design-development": { plan: servicePlans.development, title: "Website Development Company in Delhi NCR | Webgram" },
   "marketplace-development": { plan: servicePlans.marketplace, title: "B2B Marketplace Website Development in India | Webgram" },
 } as const;

@@ -33,6 +33,13 @@ export function BlogPage({ categories, posts, initialCategory = "all" }: { categ
     <main>
       <BlogPublicHeader categories={categories} activeSlug={roots.find((item) => item.id === category)?.slug} onSelect={(id) => { setCategory(id); setSubcategory("all"); }} />
 
+      <section className="bg-navy py-10 text-on-dark">
+        <div className="page-shell">
+          <h1 className="text-3xl font-extrabold md:text-4xl">Webgram Ecommerce and Web Development Blog</h1>
+          <p className="mt-3 max-w-2xl leading-7 text-on-dark/80">Practical notes on storefronts, wholesale ordering, integrations and website upkeep for business owners and ecommerce teams.</p>
+        </div>
+      </section>
+
       <div className="page-shell"><BlogAdBand position="top" label="Advertisement above search" /></div>
 
       <section className="border-y border-border bg-sky-soft py-5">

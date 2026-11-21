@@ -31,7 +31,7 @@ import { getPublishedHomepageReviews } from "@/lib/reviews.functions";
 import { publicPageSchema } from "@/lib/site-identity";
 
 const HOME_TITLE = "Ecommerce Website Development Company in Delhi NCR | Webgram IT Solution";
-const HOME_DESCRIPTION = "Webgram IT Solution is a Delhi NCR based ecommerce website development company. We build custom WooCommerce, Shopify, B2B commerce platforms and multi-vendor marketplaces for businesses across India. Call +91 7551120242.";
+const HOME_DESCRIPTION = "Delhi NCR ecommerce development partner for Indian manufacturers, wholesalers and D2C brands. Build and maintain Shopify, WooCommerce and custom commerce platforms.";
 const HERO_DESKTOP = "/images/commerce-hero.webp";
 const HERO_PHONE = "/images/commerce-hero-mobile.webp";
 const SOCIAL_IMAGE = "https://webgramitsolution.in/images/commerce-social.jpg";
@@ -212,7 +212,7 @@ function Hero() {
             Ecommerce websites built in <span className="text-[#f4c657]">Delhi NCR.</span>
           </h1>
           <p className="mt-4 max-w-[500px] text-[14px] font-normal leading-5 text-on-dark/90 sm:text-[15px]">
-            Grow your online business with custom B2B and B2C ecommerce websites built using WooCommerce and Shopify. We create professional online stores for wholesalers, retailers, manufacturers and growing businesses across India.
+            Build a Shopify or WooCommerce store, a wholesale ordering portal, or a custom commerce platform. Our Delhi NCR team supports Indian manufacturers, distributors and D2C brands from planning through launch and ongoing maintenance.
           </p>
           <div className="mt-5 flex flex-wrap gap-2.5">
             <Button

@@ -14,7 +14,7 @@ export type ServicePlan = {
 export const servicePlans = {
   ecommerce: {
     title: "Choose how to build your online store",
-    summary: "Our ecommerce website development team in Delhi NCR helps Indian brands compare Shopify, WooCommerce and custom ecommerce before choosing a platform.",
+    summary: "Launch or rebuild a D2C online store with mobile product pages, payment and shipping integrations, and a platform your team can maintain.",
     image: IMAGES.ecommerce,
     alt: "Illustration of an ecommerce storefront on desktop and mobile",
     choices: [
@@ -26,13 +26,13 @@ export const servicePlans = {
   },
   b2b: {
     title: "Plan a B2B ecommerce portal around your sales workflow",
-    summary: "A wholesale ordering website helps one supplier serve its trade buyers. A B2B marketplace connects buyers with multiple suppliers and needs separate vendor roles and moderation.",
+    summary: "Give trade buyers dealer logins, contract pricing, order minimums and quotation workflows. Scope GST invoicing, credit terms and multi-warehouse inventory around your operations.",
     image: IMAGES.b2b,
     alt: "Illustration of a B2B commerce dashboard",
     choices: [
       { title: "Dealer and distributor portal", text: "Give approved trade accounts their own price lists, pack sizes and repeat orders. Define who approves a new account before launch." },
       { title: "B2B ordering and quotation", text: "Use direct ordering for standard stock and RFQs for negotiated orders. Map how the sales team returns quotes and tracks approvals." },
-      { title: "ERP and inventory integration", text: "Make one system responsible for prices and stock, then decide when your portal reads updates and how it handles failed syncs." },
+      { title: "ERP and inventory integration", text: "Map warehouse-specific stock, account credit and GST invoice data to the systems that own them. Define approval routes for credit purchases and exceptions before launch." },
     ],
     links: [{ href: "/solutions/marketplace-development", label: "Multi-vendor B2B marketplace development" }, { href: "/locations/delhi-ncr", label: "B2B ecommerce development in Delhi NCR" }],
   },

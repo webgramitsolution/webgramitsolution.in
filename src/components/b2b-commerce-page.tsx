@@ -138,9 +138,8 @@ export function B2BCommercePage() {
               Development
             </nav>
             <h1 className="text-[29px] font-medium leading-[1.08] sm:text-[32px] md:text-[32px] lg:text-[34px]">
-              Powerful B2B Ecommerce Solutions
-              <br />
-              for <span className="text-gold">Wholesale Growth.</span>
+              B2B Ecommerce Portals<br />
+              for <span className="text-gold">Wholesale Ordering</span>
             </h1>
             <p className="mt-2 max-w-[540px] text-[14px] font-medium leading-[1.5] text-on-dark/90 md:text-[15px]">
               We build secure B2B commerce platforms for manufacturers, wholesalers and

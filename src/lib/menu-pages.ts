@@ -3,6 +3,7 @@ export type Subpage = {
   tagline: string;
   description: string;
   points: string[];
+  planning?: { heading: string; text: string };
 };
 
 export type MenuSection = {
@@ -67,7 +68,8 @@ export const menuSections: Record<SectionKey, MenuSection> = {
       },
       wordpress: {
         title: "WordPress",
-        tagline: "Flexible & easy to manage",
+        tagline: "WordPress websites your team can edit",
+        planning: { heading: "Plan your WordPress CMS and handover", text: "Identify the pages and forms your team needs to update, and who can publish. We scope reusable page blocks, author permissions, updates and backups around your workflow." },
         description:
           "Custom WordPress websites with tailored themes and plugins — easy for your team to update every day.",
         points: ["Custom themes", "Plugin development", "Easy content management", "SEO-friendly setup"],
@@ -143,6 +145,18 @@ export const menuSections: Record<SectionKey, MenuSection> = {
         description: "Electronics stores with detailed specs, comparisons, warranties and EMI options.",
         points: ["Spec comparisons", "Warranty management", "EMI options", "Accessory bundling"],
       },
+      beauty: {
+        title: "Beauty & Personal Care",
+        tagline: "Online stores for beauty brands",
+        description: "Product discovery and repeat ordering for beauty and personal care brands.",
+        points: ["Ingredient and usage information", "Routine bundles", "Product variants", "Reorder journeys"],
+      },
+      distribution: {
+        title: "Distribution",
+        tagline: "Connect reseller orders and warehouse stock",
+        description: "Distributor portals for trade ordering, inventory coordination and approvals.",
+        points: ["Reseller accounts", "Multi-warehouse inventory", "Approval workflows", "Order sync"],
+      },
       "building-materials": {
         title: "Building Materials",
         tagline: "Heavy commerce, handled",
@@ -170,7 +184,8 @@ export const menuSections: Record<SectionKey, MenuSection> = {
       },
       "client-stories": {
         title: "Client Stories",
-        tagline: "In their words",
+        tagline: "What clients say about working with Webgram",
+        planning: { heading: "Discuss a project like yours", text: "Ask about comparable projects and what the team delivered. Use the public portfolio to review the live catalogue, service pages or enquiry journey before your first call." },
         description: "Hear directly from the businesses we partner with about their growth journey with Webgram.",
         points: ["Client testimonials", "Success stories", "Long-term partnerships", "Growth journeys"],
       },

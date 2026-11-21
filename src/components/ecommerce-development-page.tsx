@@ -110,37 +110,22 @@ const technologies = [
 
 const projects = [
   {
-    title: "Fashion Ecommerce",
-    description: "From a local store to a national brand",
+    title: "Fashion storefront concept",
+    description: "Plan collection drops, size guides and mobile product discovery.",
     image: fashionCaseImage,
     tags: ["Design", "Development", "Marketing"],
-    metrics: [
-      ["3x", "Sales Growth"],
-      ["200+", "Daily Orders"],
-      ["50%", "Higher Conversion"],
-    ],
   },
   {
-    title: "Furniture Store",
-    description: "Modern ecommerce experience",
+    title: "Furniture store concept",
+    description: "Show dimensions, material options and delivery information before checkout.",
     image: furnitureCaseImage,
     tags: ["WooCommerce", "Custom Design"],
-    metrics: [
-      ["2.5x", "Revenue Growth"],
-      ["60%", "Repeat Customers"],
-      ["40%", "Higher AOV"],
-    ],
   },
   {
-    title: "Electronics Store",
-    description: "Multi-category ecommerce platform",
+    title: "Electronics store concept",
+    description: "Make specifications, warranty terms and compatible accessories easy to find.",
     image: electronicsCaseImage,
     tags: ["Custom Development", "API Integration"],
-    metrics: [
-      ["70%", "Faster Orders"],
-      ["100+", "Product Categories"],
-      ["3x", "Customer Base"],
-    ],
   },
 ] as const;
 
@@ -223,13 +208,11 @@ export function EcommerceDevelopmentPage() {
               <span className="px-1.5">›</span> Ecommerce Development
             </nav>
             <h1 className="text-[30px] font-medium leading-[1.08] sm:text-[34px] md:text-[36px] lg:text-[39px]">
-              High-Converting Ecommerce Websites
-              <br />
-              for <span className="text-gold">Growing Businesses.</span>
+              Custom Online Stores<br />
+              for <span className="text-gold">D2C and Retail Brands</span>
             </h1>
             <p className="mt-3 max-w-[500px] text-[14px] leading-[1.5] text-on-dark/90 sm:text-[14px]">
-              We design and develop powerful, scalable and conversion-focused ecommerce websites
-              that help you attract customers, increase sales and build a strong online brand.
+              We design mobile storefronts, product catalogues and checkout flows for Indian retail and D2C brands. We also scope migrations, inventory, payment gateways and launch support.
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Button
@@ -466,18 +449,17 @@ export function EcommerceDevelopmentPage() {
         </div>
       </section>
 
-      <section className="bg-sky-soft py-6" aria-label="Ecommerce success stories">
+      <section className="bg-sky-soft py-6" aria-label="Ecommerce storefront concepts">
         <div className="ecom-shell grid min-w-0 gap-4 md:grid-cols-[200px_minmax(0,1fr)] xl:grid-cols-[280px_minmax(0,1fr)]">
           <div className="self-center">
-            <Eyebrow>Success Stories</Eyebrow>
+            <Eyebrow>Storefront Planning</Eyebrow>
             <h2 className="ecom-title mt-2">
-              Ecommerce Projects
+              Ecommerce Concepts
               <br />
-              We Have Delivered
+              by Industry
             </h2>
             <p className="ecom-copy mt-2">
-              Explore some of our recent ecommerce projects and see how we helped businesses grow
-              online.
+              Compare storefront concepts for fashion, furniture and electronics. Visit the portfolio to see live client websites.
             </p>
             <Button
               asChild
@@ -506,7 +488,7 @@ export function EcommerceDevelopmentPage() {
                   <div className="absolute inset-y-0 right-0 w-[35%] overflow-hidden">
                     <img
                       src={project.image}
-                      alt={`${project.title} project`}
+                      alt={`Illustration of ${project.title.toLowerCase()}`}
                       width={1024}
                       height={768}
                       loading="lazy"
@@ -517,21 +499,6 @@ export function EcommerceDevelopmentPage() {
                 </div>
                 <div className="flex min-h-16 flex-wrap content-start gap-1.5 px-3 pb-3 pt-2 md:min-h-20 lg:min-h-16">
                   {project.tags.map((tag) => <span key={tag} className="max-w-full rounded-sm bg-primary-soft px-1.5 py-1 text-[13px] font-medium leading-4 text-navy">{tag}</span>)}
-                </div>
-                <div className="grid min-h-[88px] grid-cols-3 border-t border-border md:grid-cols-1 lg:grid-cols-3">
-                  {project.metrics.map(([value, label], index) => (
-                    <div
-                      key={label}
-                      className={`flex min-w-0 flex-col px-2 py-3 md:flex-row md:items-start md:gap-2 md:py-2 lg:flex-col lg:gap-0 lg:py-3 ${index ? "border-l border-border md:border-l-0 md:border-t lg:border-l lg:border-t-0" : ""}`}
-                    >
-                      <strong className="block shrink-0 text-[15px] font-semibold leading-5 text-navy md:w-11 lg:w-auto">
-                        {value}
-                      </strong>
-                      <span className="mt-1 block text-[13px] leading-4 text-muted-foreground md:mt-0 md:leading-5 lg:mt-1 lg:leading-4">
-                        {label}
-                      </span>
-                    </div>
-                  ))}
                 </div>
               </article>
             ))}

@@ -14,6 +14,13 @@ Contact: +91 7551120242, info@webgramitsolution.in. GSTIN 07CUHPK2017G1ZW. Hours
 - [Web Portal Development](https://webgramitsolution.in/services/web-portal-development): Custom portals and dashboards.
 - [Website Maintenance](https://webgramitsolution.in/services/website-maintenance): Updates, security and support.
 
+## Industries
+
+- [Manufacturing](https://webgramitsolution.in/industries/manufacturing): Technical catalogues and dealer portals.
+- [Wholesale](https://webgramitsolution.in/industries/wholesale): Trade terms and repeat ordering.
+- [Distribution](https://webgramitsolution.in/industries/distribution): Reseller orders, branch inventory and approvals.
+- [Retail](https://webgramitsolution.in/industries/retail), [fashion](https://webgramitsolution.in/industries/fashion), [beauty](https://webgramitsolution.in/industries/beauty), [furniture](https://webgramitsolution.in/industries/furniture) and [electronics](https://webgramitsolution.in/industries/electronics): Storefront design by industry.
+
 ## Locations
 
 - [Delhi](https://webgramitsolution.in/locations/delhi): Web development services in Delhi.

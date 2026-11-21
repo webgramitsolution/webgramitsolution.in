@@ -1,30 +1,22 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 
 import { SubpageTemplate } from "@/components/subpage";
+import { industryContent } from "@/lib/industry-content";
 import { getSubpage } from "@/lib/menu-pages";
 import { publicPageSchema, SITE_URL } from "@/lib/site-identity";
-
-const searchTitles: Record<string, string> = {
-  manufacturing: "B2B Portal Development for Manufacturers in India",
-  retail: "Retail Ecommerce Website Development in India",
-  wholesale: "Wholesale Ordering Portal Development in India",
-  furniture: "Furniture Ecommerce Website Development in India",
-  fashion: "Fashion Ecommerce Website Development in India",
-  electronics: "Electronics Ecommerce Website Development in India",
-  "building-materials": "B2B Websites for Building Material Suppliers in India",
-};
 
 export const Route = createFileRoute("/industries/$slug")({
   loader: ({ params }) => {
     const page = getSubpage("industries", params.slug);
-    if (!page) throw notFound();
-    return page;
+    const content = industryContent[params.slug as keyof typeof industryContent];
+    if (!page || !content) throw notFound();
+    return { page, content };
   },
   head: ({ loaderData, params }) => {
     if (!loaderData) return {};
     const path = `/industries/${params.slug}`;
-    const title = `${searchTitles[params.slug]} | Webgram`;
-    const description = loaderData.description;
+    const { heading, description } = loaderData.content;
+    const title = `${heading} | Webgram`;
     return {
       links: [{ rel: "canonical", href: `${SITE_URL}${path}` }],
       meta: [
@@ -42,5 +34,22 @@ export const Route = createFileRoute("/industries/$slug")({
 });
 
 function IndustriesPage() {
-  return <SubpageTemplate sectionLabel="Industries" page={Route.useLoaderData()} />;
+  const { page, content } = Route.useLoaderData();
+  return (
+    <SubpageTemplate sectionLabel="Industries" page={{ ...page, description: content.description }} heading={content.heading}>
+      <section className="border-t border-border bg-sky-soft py-10">
+        <div className="page-shell">
+          <div className="grid gap-5 md:grid-cols-2">
+            {content.sections.map(([title, copy]) => (
+              <article key={title} className="rounded-xl border border-border bg-card p-6 shadow-card">
+                <h2 className="text-xl font-extrabold text-navy">{title}</h2>
+                <p className="mt-3 leading-7 text-muted-foreground">{copy}</p>
+              </article>
+            ))}
+          </div>
+          <a href={content.next.href} className="mt-6 inline-block font-semibold text-primary hover:underline">{content.next.label}</a>
+        </div>
+      </section>
+    </SubpageTemplate>
+  );
 }

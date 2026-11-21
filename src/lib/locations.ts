@@ -14,8 +14,8 @@ export const locations: ServiceLocation[] = [
   {
     slug: "delhi",
     city: "Delhi",
-    keyword: "Ecommerce Website Development Company in Delhi",
-    title: "Ecommerce Website Development Company in Delhi | Webgram IT Solution",
+    keyword: "Ecommerce Website Developers for Delhi Retailers",
+    title: "Online Store Developers for Delhi Retailers | Webgram",
     description: "Webgram IT Solution is an ecommerce website development company in Delhi building fast, SEO-ready online stores, WooCommerce shops and custom ecommerce platforms.",
     intro: "From our office in Sangam Vihar, New Delhi, we design and develop ecommerce websites for Delhi retailers, wholesalers and D2C brands — with a focus on fast pages, search-friendly structure and clear checkout.",
     areas: ["Connaught Place", "Karol Bagh", "Chandni Chowk", "Lajpat Nagar", "Dwarka", "Rohini", "Janakpuri", "Laxmi Nagar"],
@@ -74,8 +74,8 @@ export const locations: ServiceLocation[] = [
   {
     slug: "delhi-ncr",
     city: "Delhi NCR",
-    keyword: "B2B Ecommerce Website Development Company in Delhi NCR",
-    title: "B2B Ecommerce Website Development Company in Delhi NCR | Webgram",
+    keyword: "Wholesale and Dealer Portal Development in Delhi NCR",
+    title: "Wholesale and Dealer Portal Developers in Delhi NCR | Webgram",
     description: "B2B ecommerce website development company in Delhi NCR building wholesale portals, dealer–distributor ordering, bulk pricing and ERP-ready B2B stores.",
     intro: "We build B2B ecommerce platforms for Delhi NCR manufacturers, distributors and wholesalers — with tiered pricing, bulk orders, quote requests, credit terms and dealer logins.",
     areas: ["Delhi", "Noida", "Gurugram", "Faridabad", "Ghaziabad", "Greater Noida"],

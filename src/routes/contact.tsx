@@ -105,9 +105,9 @@ function ContactHero() {
           </nav>
           <p className="sr-only">Get in Touch</p>
           <h1 className="text-[34px] font-extrabold leading-[1.03] sm:text-[41px] lg:text-[48px]">
-            Let’s Build Something
+            Request a Website
             <br />
-            Great <span className="text-gold">Together.</span>
+            Development <span className="text-gold">Quote</span>
           </h1>
           <p className="mt-4 text-[13px] leading-[1.55] text-on-dark/90 sm:text-[14px]">
             Have a project in mind? We’re here to help you turn your ideas

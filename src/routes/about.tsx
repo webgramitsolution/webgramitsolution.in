@@ -33,11 +33,11 @@ import { businessIdentity, publicPageSchema } from "@/lib/site-identity";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Webgram IT Solution | Purpose, Team & Workspace" },
+      { title: "About Webgram | Delhi NCR Commerce Development Team" },
       {
         name: "description",
         content:
-          "Meet Webgram IT Solution, discover our mission, vision and values, and explore the collaborative workspace behind our digital growth services.",
+          "Meet the New Delhi team behind Webgram IT Solution. Learn how we plan, build and support ecommerce websites and B2B commerce platforms for Indian businesses.",
       },
       { property: "og:title", content: "About Webgram IT Solution" },
       {
@@ -88,10 +88,8 @@ function AboutHero() {
       <div className="page-shell relative z-10 flex h-full items-center py-6 md:absolute md:inset-0">
         <div className="max-w-[440px] text-on-dark">
           <h1 className="mt-2 text-[32px] font-extrabold leading-[1.05] sm:text-[38px] lg:text-[42px]">
-            Building Digital Commerce
-            <br />
-            for a{" "}
-            <span className="text-gold">Better Tomorrow</span>
+            The Delhi NCR Team Behind<br />
+            <span className="text-gold">Webgram IT Solution</span>
           </h1>
           <p className="mt-4 max-w-[400px] text-[14px] leading-[1.6] text-on-dark/90">
             We are a technology-driven company focused on building high-performance eCommerce, B2B,

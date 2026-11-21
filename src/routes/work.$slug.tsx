@@ -9,20 +9,24 @@ import { getPublishedHomepageReviews } from "@/lib/reviews.functions";
 import { Star } from "lucide-react";
 
 const section = menuSections.work;
+const workTitles: Record<string, string> = {
+  "case-studies": "Ecommerce and Business Website Case Studies",
+  "client-stories": "Webgram Client Stories and Website Feedback",
+};
 
 export const Route = createFileRoute("/work/$slug")({
   loader: async ({ params }) => {
     const page = getSubpage("work", params.slug);
     if (!page) throw notFound();
-    const reviews = params.slug === "case-studies" ? await getPublishedHomepageReviews().catch(() => []) : [];
+    const reviews = ["case-studies", "client-stories"].includes(params.slug) ? await getPublishedHomepageReviews().catch(() => []) : [];
     return { page, reviews };
   },
   head: ({ loaderData, params }) => ({
     links: [{ rel: "canonical", href: `https://webgramitsolution.in/work/${params.slug}` }],
     meta: [
-      { title: `${loaderData?.page.title ?? "Work"} | Webgram IT Solution` },
+      { title: `${workTitles[params.slug] ?? loaderData?.page.title ?? "Work"} | Webgram IT Solution` },
       { name: "description", content: loaderData?.page.description ?? "" },
-      { property: "og:title", content: `${loaderData?.page.title ?? "Work"} | Webgram IT Solution` },
+      { property: "og:title", content: `${workTitles[params.slug] ?? loaderData?.page.title ?? "Work"} | Webgram IT Solution` },
       { property: "og:description", content: loaderData?.page.description ?? "" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -49,7 +53,7 @@ function WorkPage() {
         <SiteHeader />
         <section className="bg-navy py-12 text-on-dark md:py-16">
           <div className="header-shell">
-            <h1 className="page-title max-w-[720px]">Real Client Projects<br /><span className="text-gold">Built for Business Growth.</span></h1>
+            <h1 className="page-title max-w-[720px]">Ecommerce and Business Website<br /> <span className="text-gold">Case Studies</span></h1>
             <p className="page-lead mt-3 max-w-[680px] text-on-dark/85">Every case study below links to a published client website. Explore the business requirements, target audience and experience delivered for each project.</p>
           </div>
         </section>
@@ -69,5 +73,24 @@ function WorkPage() {
       </div>
     );
   }
-  return <SubpageTemplate sectionLabel={section.label} page={page} />;
+  return (
+    <SubpageTemplate sectionLabel={section.label} page={page} heading="Client Stories and Website Feedback">
+      <section className="border-t border-border bg-sky-soft py-10">
+        <div className="page-shell">
+          <h2 className="text-2xl font-extrabold text-navy">{reviews.length ? "Feedback from clients" : "Explore the work behind the stories"}</h2>
+          {reviews.length ? (
+            <div className="mt-5 grid gap-4 md:grid-cols-3">
+              {reviews.map((review) => (
+                <figure key={review.id} className="rounded-xl border border-border bg-card p-5">
+                  <blockquote className="leading-7">“{review.review_text}”</blockquote>
+                  <figcaption className="mt-3 font-semibold text-navy">{review.customer_name}{review.company_name ? ` · ${review.company_name}` : ""}</figcaption>
+                </figure>
+              ))}
+            </div>
+          ) : <p className="mt-3 max-w-2xl leading-7 text-muted-foreground">See Houskase’s retail storefront, the staffing website for Regal Consulting Group in Canada and Adlite Electricals’ industrial product website.</p>}
+          <a href="/work/portfolio" className="mt-5 inline-block font-semibold text-primary hover:underline">Browse the live client websites</a>
+        </div>
+      </section>
+    </SubpageTemplate>
+  );
 }
