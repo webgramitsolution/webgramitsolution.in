@@ -6,6 +6,7 @@ export type ServicePlan = {
   title: string;
   summary: string;
   image: string;
+  imageSize?: { width: number; height: number };
   alt: string;
   choices: { title: string; text: string }[];
   links: { href: string; label: string }[];
@@ -76,6 +77,7 @@ export const servicePlans = {
     title: "Business & Corporate Website Design",
     summary: "Work with a Delhi NCR website agency on corporate sites, mobile redesigns and enquiry pages. We plan the site around what visitors need to learn or do.",
     image: IMAGES.platforms,
+    imageSize: { width: 1200, height: 499 },
     alt: "Business site and dashboard design mockups across devices",
     choices: [
       { title: "Corporate website design", text: "Show what you offer, who you serve and how buyers can contact you. Use relevant case studies and service details to answer evaluation questions." },
