@@ -1,7 +1,7 @@
 import { HeroHeading } from "@/components/hero-heading";
 import { localSearch, locationAnswers } from "@/lib/location-search";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Building2, CheckCircle2, Clock3, KeyRound, MapPin, MessageCircle, Search, ShoppingCart, Smartphone, Wrench, ClipboardList, Palette, Code2, ShieldCheck, Rocket, type LucideIcon } from "lucide-react";
+import { ArrowRight, Building2, CheckCircle2, Clock3, KeyRound, MapPin, MessageCircle, Search, ShoppingBag, ShoppingCart, Smartphone, Wrench, ClipboardList, Palette, Code2, ShieldCheck, Rocket, type LucideIcon } from "lucide-react";
 
 import { ScrollingFrame } from "@/components/portfolio-showcase";
 import { SiteHeader } from "@/components/site-header";
@@ -69,54 +69,72 @@ export function LocationPage({ location: l }: { location: ServiceLocation }) {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
-      <section className="location-hero relative flex flex-col overflow-hidden bg-navy text-on-dark md:block md:min-h-[410px]">
-        <img src={image.src} alt={image.alt} width={image.size} height={image.size} fetchPriority="high" className="order-last aspect-[16/9] w-full object-cover object-center md:absolute md:inset-y-0 md:right-0 md:h-full md:w-[58%]" />
-        <div className="absolute inset-0 hidden bg-gradient-to-r from-navy via-navy/75 to-transparent md:block" aria-hidden="true" />
-        <div className="page-shell relative flex min-h-[360px] items-center py-10 md:min-h-[410px] md:py-12">
-          <div className="min-w-0 max-w-[620px]">
+      <section className="location-hero relative flex flex-col overflow-hidden bg-navy text-on-dark md:block md:min-h-[348px]">
+        <img src={image.src} alt={image.alt} width={image.size} height={image.size} fetchPriority="high" className="order-last aspect-[2/1] w-full object-cover object-center md:absolute md:inset-y-0 md:right-0 md:h-full md:w-[60%]" />
+        <div className="absolute inset-0 hidden bg-gradient-to-r from-navy from-35% via-navy/85 via-56% to-transparent md:block" aria-hidden="true" />
+        <div className="ecom-shell relative flex items-center py-6 md:min-h-[348px]">
+          <div className="min-w-0 w-full max-w-[540px] lg:max-w-[52%]">
             <nav aria-label="Breadcrumb" className="sr-only">
               <Link tabIndex={-1} to="/" className="hover:text-on-dark">Home</Link><span aria-hidden="true">›</span>
               <Link tabIndex={-1} to="/locations" className="hover:text-on-dark">Locations</Link><span aria-hidden="true">›</span>
               <span aria-current="page" className="text-on-dark">{l.city}</span>
             </nav>
             <p className="mb-3 text-xs font-extrabold uppercase tracking-widest text-[#f4c657]">Website design &amp; development</p>
-            <HeroHeading className="text-[32px] font-extrabold leading-[1.12] md:text-[37px] lg:text-[44px]" title={l.keyword} />
-            <p className="mt-3 text-[16px] leading-7 text-on-dark/90">{l.intro}</p>
-            <div className="mt-5 flex flex-wrap gap-3">
-              <Link to="/contact" className="inline-flex h-11 items-center gap-2 rounded-md bg-[#f4c657] px-6 text-[15px] font-bold text-navy hover:bg-[#ffe29c]">Get a Free Consultation <ArrowRight className="h-4 w-4" /></Link>
-              <Link to="/work/portfolio" className="inline-flex h-11 items-center gap-2 rounded-md border border-on-dark/60 px-6 text-[15px] font-semibold text-on-dark hover:bg-on-dark/10">View Our Work <ArrowRight className="h-4 w-4" /></Link>
+            <HeroHeading className="text-[29px] font-medium leading-[1.08] md:text-[36px] lg:text-[39px]" title={l.keyword} accent="text-gold" />
+            <p className="mt-3 max-w-[480px] text-[14px] leading-relaxed text-on-dark/90">{l.intro}</p>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <Link to="/contact" className="inline-flex min-h-10 items-center gap-2 rounded-md bg-[#f4c657] px-4 text-[13px] font-bold text-navy hover:bg-[#ffe29c]">Get a Free Consultation <ArrowRight className="h-4 w-4" /></Link>
+              <Link to="/work/portfolio" className="inline-flex min-h-10 items-center gap-2 rounded-md border border-on-dark/60 px-4 text-[13px] font-semibold text-on-dark hover:bg-on-dark/10">View Our Work <ArrowRight className="h-4 w-4" /></Link>
             </div>
+            <ul aria-label="Webgram at a glance" className="mt-4 grid max-w-[500px] grid-cols-2 gap-3 sm:grid-cols-4">
+              {glance.map(([Icon, label, value]) => (
+                <li key={label} className="text-center text-[12px] leading-tight">
+                  <span className="mx-auto mb-1.5 grid size-9 place-items-center rounded-full border border-on-dark/50"><Icon className="size-4" aria-hidden="true" /></span>
+                  <span className="block font-semibold">{label}</span>
+                  <span className="mt-0.5 block text-on-dark/80">{value}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
 
-      <section aria-label="Webgram at a glance" className="border-b border-border bg-card">
-        <ul className="page-shell grid grid-cols-2 gap-4 py-5 lg:grid-cols-4">
-          {glance.map(([Icon, label, value]) => (
-            <li key={label} className="flex min-w-0 items-start gap-3">
-              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary-soft text-primary"><Icon className="h-5 w-5" /></span>
-              <span className="min-w-0"><span className="block text-[13px] text-muted-foreground">{label}</span><span className="block text-[15px] font-semibold leading-6 text-navy">{value}</span></span>
-            </li>
-          ))}
-        </ul>
+      <section className="bg-card py-6 md:py-7">
+        <div className="ecom-shell grid gap-5 lg:grid-cols-[1fr_2fr] lg:items-center">
+          <div>
+            <Eyebrow>Why choose Webgram</Eyebrow>
+            <h2 className="mt-2 text-[23px] leading-tight text-navy md:text-[27px]">Why {l.city} businesses choose Webgram IT Solution</h2>
+          </div>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {reasons.map(([title, description]) => (
+              <article key={title} className="rounded-md border border-border bg-card p-3.5 shadow-card">
+                <CheckCircle2 className="size-7 text-primary" aria-hidden="true" />
+                <h3 className="mt-2 text-sm font-extrabold text-navy">{title}</h3>
+                <p className="mt-1 text-sm leading-snug text-muted-foreground">{description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
       </section>
 
-      <section className="py-12 md:py-16">
-        <div className="page-shell">
+      <section className="bg-sky-soft py-6 md:py-7">
+        <div className="ecom-shell">
           <Eyebrow>Our services</Eyebrow>
-          <h2 className="mt-2 text-[26px] leading-tight text-navy md:text-[30px]">Website services for {l.city} businesses</h2>
-          <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <h2 className="mt-2 text-[23px] leading-tight text-navy md:text-[27px]">Website services for {l.city} businesses</h2>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {featured.map((index) => {
               const [name, to, Icon, text] = services[index]!;
               const visual = serviceImages[index];
               return (
-                <a key={to} href={to} className="group flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card shadow-card transition-colors hover:border-primary">
-                  {visual ? <img src={visual} alt="" width={800} height={450} loading="lazy" className="aspect-[16/9] w-full object-cover" /> : null}
-                  <div className="flex flex-1 flex-col p-5">
-                    <span className="grid h-10 w-10 place-items-center rounded-lg bg-primary-soft text-primary"><Icon className="h-5 w-5" aria-hidden="true" /></span>
-                    <h3 className="mt-3 text-lg font-extrabold leading-snug text-navy">{name}</h3>
-                    <p className="mt-2 flex-1 leading-6 text-muted-foreground">{text}</p>
-                    <span className="mt-4 inline-flex items-center gap-1.5 font-semibold text-primary">Explore service <ArrowRight className="h-4 w-4" aria-hidden="true" /></span>
+                <a key={to} href={to} className="group flex min-w-0 flex-col overflow-hidden rounded-md border border-border bg-card shadow-card transition-colors hover:border-primary">
+                  {visual ? <img src={visual} alt="" width={800} height={450} loading="lazy" className="h-[132px] w-full object-cover" /> : null}
+                  <div className="flex flex-1 flex-col p-3.5">
+                    <div className="flex items-center gap-2.5">
+                      <span className="grid size-9 shrink-0 place-items-center rounded-md bg-primary-soft text-primary"><Icon className="size-5" aria-hidden="true" /></span>
+                      <h3 className="text-sm font-extrabold leading-snug text-navy">{name}</h3>
+                    </div>
+                    <p className="mt-2 flex-1 text-sm leading-snug text-muted-foreground">{text}</p>
+                    <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">Explore service <ArrowRight className="h-4 w-4" aria-hidden="true" /></span>
                   </div>
                 </a>
               );
@@ -126,10 +144,10 @@ export function LocationPage({ location: l }: { location: ServiceLocation }) {
       </section>
 
       {l.projectFocus ? (
-        <section className="bg-sky-soft py-12 md:py-16">
-          <div className="page-shell">
+        <section className="bg-sky-soft py-6 md:py-7">
+          <div className="ecom-shell">
             <Eyebrow>Project planning</Eyebrow>
-            <h2 className="mt-2 text-[26px] leading-tight text-navy md:text-[30px]">Planning your website in {l.city}</h2>
+            <h2 className="mt-2 text-[23px] leading-tight text-navy md:text-[27px]">Planning your website in {l.city}</h2>
             <ol className="mt-7 grid grid-cols-[repeat(auto-fit,minmax(min(100%,15rem),1fr))] gap-4">
               {l.projectFocus.map((focus, index) => (
                 <li key={focus.title} className="min-w-0 rounded-xl border border-border bg-card p-6 shadow-card">
@@ -143,8 +161,8 @@ export function LocationPage({ location: l }: { location: ServiceLocation }) {
         </section>
       ) : null}
 
-      <section className="py-12 md:py-16">
-        <div className="page-shell grid gap-5 md:grid-cols-2">
+      <section className="py-6 md:py-7">
+        <div className="ecom-shell grid gap-5 md:grid-cols-2">
           <div className="rounded-xl border border-border bg-card p-6 shadow-card md:p-7">
             <h2 className="text-[22px] text-navy md:text-[24px]">Industries we serve in {l.city}</h2>
             <div className="mt-5 flex flex-wrap gap-2">{l.industries.map((i) => <span key={i} className="rounded-full border border-border bg-primary-soft px-3.5 py-1.5 text-[14px] font-medium text-navy">{i}</span>)}</div>
@@ -156,47 +174,56 @@ export function LocationPage({ location: l }: { location: ServiceLocation }) {
         </div>
       </section>
 
-      <section className="border-t border-border py-12">
-        <div className="page-shell">
+      <section className="border-t border-border bg-sky-soft py-6 md:py-7">
+        <div className="ecom-shell">
           <Eyebrow>Our development process</Eyebrow>
-          <h2 className="mt-2 text-3xl font-extrabold text-navy">From requirements to a live website</h2>
-          <ol className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
-            {process.map(([Icon, title, description]) => (
-              <li key={title}>
-                <span className="grid h-11 w-11 place-items-center rounded-full bg-primary-soft text-primary"><Icon className="h-5 w-5" aria-hidden="true" /></span>
-                <h3 className="mt-3 font-extrabold text-navy">{title}</h3>
-                <p className="mt-1 text-sm leading-6 text-muted-foreground">{description}</p>
+          <h2 className="mt-2 text-[23px] leading-tight text-navy md:text-[27px]">From requirements to a live website</h2>
+          <ol className="mt-5 grid gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 xl:gap-3">
+            {process.map(([Icon, title, description], index) => (
+              <li key={title} className="relative grid grid-cols-[40px_minmax(0,1fr)] gap-2">
+                {index < process.length - 1 && <span aria-hidden="true" className="absolute left-9 right-0 top-5 hidden h-px bg-primary/25 xl:block" />}
+                <span className="relative grid size-10 place-items-center rounded-full bg-primary-soft text-primary"><Icon className="size-5" aria-hidden="true" /></span>
+                <div className="relative">
+                  <span aria-hidden="true" className="bg-sky-soft pr-2 text-xs font-bold text-primary">{String(index + 1).padStart(2, "0")}</span>
+                  <h3 className="mt-0.5 text-sm font-extrabold text-navy">{title}</h3>
+                  <p className="mt-1 text-sm leading-snug text-muted-foreground">{description}</p>
+                </div>
               </li>
             ))}
           </ol>
-          <div className="mt-8 grid items-center gap-5 border-t border-border pt-6 md:grid-cols-[1fr_2fr]">
-            <h2 className="text-xl font-extrabold text-navy">Platforms and technology we use</h2>
-            <ul className="flex flex-wrap gap-3">
-              {locationTech.map(({ name, src }) => (
-                <li key={name} className="flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm font-semibold">
-                  <img src={src} alt="" width={28} height={28} loading="lazy" className="h-7 w-7 object-contain" />{name}
-                </li>
-              ))}
-              <li className="rounded-lg border border-border bg-card px-3 py-2 text-sm font-semibold">Shopify</li>
-            </ul>
-          </div>
+        </div>
+      </section>
+
+      <section className="bg-card py-6 md:py-7">
+        <div className="ecom-shell">
+          <h2 className="ecom-eyebrow text-primary">Platforms and technology we use</h2>
+          <ul className="mt-4 grid grid-cols-3 gap-2.5 sm:grid-cols-6">
+            {locationTech.map(({ name, src }) => (
+              <li key={name} className="grid min-w-0 justify-items-center gap-2 rounded-md border border-border bg-card p-3 text-center text-sm font-semibold text-navy shadow-card">
+                {src && <img src={src} alt="" width={32} height={32} loading="lazy" className="size-8 object-contain" />}{name}
+              </li>
+            ))}
+            <li className="grid justify-items-center gap-2 rounded-md border border-border bg-card p-3 text-center text-sm font-semibold text-navy shadow-card">
+              <ShoppingBag className="size-8 text-primary" aria-hidden="true" />Shopify
+            </li>
+          </ul>
         </div>
       </section>
 
       {projects.items.length ? (
-        <section className="bg-sky-soft py-12 md:py-16">
-          <div className="page-shell">
+        <section className="bg-sky-soft py-6 md:py-7">
+          <div className="ecom-shell">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div className="min-w-0">
                 <Eyebrow>Our work</Eyebrow>
-                <h2 className="mt-2 text-[26px] leading-tight text-navy md:text-[30px]">{projects.local ? (projects.withNcr ? `Websites we built in ${l.city} & Delhi NCR` : `Websites we built in ${l.city}`) : "Websites we built across Delhi NCR"}</h2>
+                <h2 className="mt-2 text-[23px] leading-tight text-navy md:text-[27px]">{projects.local ? (projects.withNcr ? `Websites we built in ${l.city} & Delhi NCR` : `Websites we built in ${l.city}`) : "Websites we built across Delhi NCR"}</h2>
               </div>
               <Link to="/work/$slug" params={{ slug: "portfolio" }} className="inline-flex items-center gap-1.5 text-[15px] font-semibold text-primary">View full portfolio <ArrowRight className="h-4 w-4" /></Link>
             </div>
-            <div className="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {projects.items.map((item) => (
-                <article key={item.url} className="flex min-w-0 flex-col gap-3 rounded-xl border border-border bg-card p-3 shadow-card">
-                  <ScrollingFrame item={item} height={220} />
+                <article key={item.url} className="flex min-w-0 flex-col gap-2 overflow-hidden rounded-md border border-border bg-card p-2 shadow-card">
+                  <ScrollingFrame item={item} height={144} />
                   <div className="px-1 pb-2">
                     <p className="flex items-center gap-1 text-[13px] text-muted-foreground"><MapPin className="h-3.5 w-3.5" />{item.location}</p>
                     <h3 className="mt-1 text-[18px] text-navy">{item.name}</h3>
@@ -209,46 +236,39 @@ export function LocationPage({ location: l }: { location: ServiceLocation }) {
         </section>
       ) : null}
 
-      <section className="py-12 md:py-16">
-        <div className="page-shell">
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center">
-          <div id="faq" className="rounded-2xl border border-border bg-sky-soft p-6 md:p-8">
-            <h2 className="text-2xl font-extrabold text-navy">Questions about websites in {l.city}</h2>
-            <div className="mt-4 divide-y divide-border">
-              {faqs.map(([question, answer]) => (
-                <details key={question} className="py-4">
-                  <summary className="cursor-pointer font-bold text-navy">{question}</summary>
-                  <p className="mt-3 leading-7 text-muted-foreground">{answer}</p>
-                </details>
-              ))}
-            </div>
-          </div>
-          <div className="min-w-0">
-          <Eyebrow>Why Webgram</Eyebrow>
-          <h2 className="mt-2 text-[26px] leading-tight text-navy md:text-[30px]">Why {l.city} businesses choose Webgram IT Solution</h2>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            {reasons.map(([t, d]) => (
-              <div key={t} className="rounded-xl border border-border bg-card p-5 shadow-card"><CheckCircle2 className="h-6 w-6 text-primary" /><h3 className="mt-3 text-[18px] text-navy">{t}</h3><p className="mt-2 text-[15px] leading-6 text-muted-foreground">{d}</p></div>
+      <section className="bg-card py-6 md:py-7">
+        <div id="faq" className="ecom-shell">
+          <Eyebrow>Frequently asked questions</Eyebrow>
+          <h2 className="mt-2 text-[23px] leading-tight text-navy md:text-[27px]">Questions about websites in {l.city}</h2>
+          <div className="mt-4 divide-y divide-border rounded-md border border-border bg-sky-soft px-4">
+            {faqs.map(([question, answer]) => (
+              <details key={question} className="py-3">
+                <summary className="cursor-pointer font-bold text-navy">{question}</summary>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{answer}</p>
+              </details>
             ))}
-          </div>
-          </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-navy py-12 text-on-dark md:py-14">
-        <div className="page-shell grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-center">
+      <section className="relative overflow-hidden bg-navy py-7 text-on-dark">
+        <img src={image.src} alt="" width={image.size} height={image.size} loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-20" />
+        <div className="bg-cta-overlay absolute inset-0" aria-hidden="true" />
+        <div className="ecom-shell relative grid gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-center">
           <div className="min-w-0">
             <h2 className="text-[26px] leading-tight md:text-[30px]">Ready to discuss your {l.city} website?</h2>
             <p className="mt-3 max-w-[560px] text-[16px] leading-7 text-on-dark/85">Share your goals and we will suggest the right platform, scope and timeline, with a fixed itemised quote after discussion.</p>
-            <Link to="/contact" className="mt-6 inline-flex h-11 items-center gap-2 rounded-md bg-gold px-6 text-[15px] font-semibold text-navy hover:opacity-90">Get a Free Quote <ArrowRight className="h-4 w-4" /></Link>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <Link to="/contact" className="inline-flex min-h-10 items-center gap-2 rounded-md bg-gold px-4 text-sm font-semibold text-navy hover:opacity-90">Get a Free Quote <ArrowRight className="size-4" aria-hidden="true" /></Link>
+              <a href="tel:+917551120242" className="inline-flex min-h-10 items-center rounded-md border border-on-dark/60 px-4 text-sm font-semibold hover:bg-on-dark/10">Talk to an Expert</a>
+            </div>
           </div>
           <TrustFacts />
         </div>
       </section>
 
-      <section className="py-10 md:py-12">
-        <div className="page-shell">
+      <section className="py-6">
+        <div className="ecom-shell">
           <h2 className="text-[20px] text-navy">Explore other service areas</h2>
           <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {nearby.map((x) => (
@@ -269,30 +289,35 @@ export function LocationsHub() {
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
       <section className="location-hero relative overflow-hidden bg-navy text-on-dark">
-        <div className="page-shell relative py-12 md:py-14">
-          <nav aria-label="Breadcrumb" className="sr-only"><Link tabIndex={-1} to="/" className="hover:text-on-dark">Home</Link><span aria-hidden="true">›</span><span aria-current="page" className="text-on-dark">Locations</span></nav>
-          <HeroHeading className="max-w-[780px] text-[30px] font-medium leading-[1.15] md:text-[38px]" lines={["Website Development", "Service Areas Across India"]} />
-          <p className="mt-4 max-w-[700px] text-[16px] leading-7 text-on-dark/85 md:text-[17px]">From our office in Sangam Vihar, New Delhi, we build websites and ecommerce platforms for businesses in Delhi NCR and work remotely with teams in Gujarat, Ludhiana and across India.</p>
+        <img src={IMAGES.ecommerce} alt="" width={800} height={450} fetchPriority="high" className="absolute inset-y-0 right-0 hidden h-full w-[58%] object-cover md:block" />
+        <div className="absolute inset-0 hidden bg-gradient-to-r from-navy from-35% via-navy/85 via-56% to-transparent md:block" aria-hidden="true" />
+        <div className="ecom-shell relative flex items-center py-8 md:min-h-[290px]">
+          <div className="w-full max-w-[540px]">
+            <nav aria-label="Breadcrumb" className="sr-only"><Link tabIndex={-1} to="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Locations</span></nav>
+            <HeroHeading className="text-[29px] font-medium leading-[1.08] md:text-[36px] lg:text-[39px]" lines={["Website Development", "Service Areas Across India"]} accent="text-gold" />
+            <p className="mt-3 max-w-[480px] text-[14px] leading-relaxed text-on-dark/90">From our office in Sangam Vihar, New Delhi, we build websites and ecommerce platforms for businesses in Delhi NCR and work remotely with teams in Gujarat, Ludhiana and across India.</p>
+            <a href="#service-areas" className="mt-4 inline-flex min-h-10 items-center gap-2 rounded-md bg-gold px-4 text-sm font-semibold text-navy hover:opacity-90">Browse service areas <ArrowRight className="size-4" aria-hidden="true" /></a>
+          </div>
         </div>
       </section>
-      <section className="py-12 md:py-16">
-        <div className="page-shell space-y-12">
+      <section id="service-areas" className="scroll-mt-24 bg-sky-soft py-6 md:py-7">
+        <div className="ecom-shell space-y-8">
           {locationGroups.map((group) => (
             <section key={group.title}>
-              <h2 className="mb-5 text-2xl font-extrabold text-navy md:text-3xl">{group.title}</h2>
-              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              <h2 className="mb-4 text-[23px] font-extrabold text-navy md:text-[27px]">{group.title}</h2>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 {group.locations.map((l) => {
                   const image = locationVisual(l);
                   return (
-            <Link key={l.slug} to="/locations/$city" params={{ city: l.slug }} className="group flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card shadow-card transition-colors hover:border-primary">
-              <img src={image.src} alt={image.alt} width={image.size} height={image.size} loading="lazy" className="aspect-[2/1] w-full object-cover object-right" />
-              <div className="flex flex-1 flex-col p-6">
-              <p className="flex items-center gap-2 text-[14px] font-semibold text-primary"><MapPin className="h-4 w-4" />{l.city}</p>
-              <h3 className="mt-3 text-[20px] leading-snug text-navy">{l.keyword}</h3>
-              <p className="mt-3 flex-1 text-[15px] leading-6 text-muted-foreground">{localSearch[l.slug]?.description ?? l.description}</p>
-              <span className="mt-5 inline-flex items-center gap-1.5 text-[15px] font-semibold text-primary">View {l.city} page <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" /></span>
-              </div>
-            </Link>
+                    <Link key={l.slug} to="/locations/$city" params={{ city: l.slug }} className="group flex min-w-0 flex-col overflow-hidden rounded-md border border-border bg-card shadow-card transition-colors hover:border-primary">
+                      <img src={image.src} alt={image.alt} width={image.size} height={image.size} loading="lazy" className="h-[132px] w-full object-cover object-right" />
+                      <div className="flex flex-1 flex-col p-3.5">
+                      <p className="flex items-center gap-2 text-[14px] font-semibold text-primary"><MapPin className="h-4 w-4" />{l.city}</p>
+                      <h3 className="mt-2 text-[17px] leading-snug text-navy">{l.keyword}</h3>
+                      <p className="mt-2 flex-1 text-sm leading-snug text-muted-foreground">{localSearch[l.slug]?.description ?? l.description}</p>
+                      <span className="mt-3 inline-flex items-center gap-1.5 text-[15px] font-semibold text-primary">View {l.city} page <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" /></span>
+                      </div>
+                    </Link>
                   );
                 })}
               </div>
