@@ -104,7 +104,7 @@ export function LocationPage({ location: l }: { location: ServiceLocation }) {
         <div className="page-shell">
           <Eyebrow>Our services</Eyebrow>
           <h2 className="mt-2 text-[26px] leading-tight text-navy md:text-[30px]">Website services for {l.city} businesses</h2>
-          <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {featured.map((index) => {
               const [name, to, Icon, text] = services[index]!;
               const visual = serviceImages[index];
