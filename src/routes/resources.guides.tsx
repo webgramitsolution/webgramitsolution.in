@@ -1,3 +1,4 @@
+import { projectGuides } from "@/lib/project-guides";
 import { HeroHeading } from "@/components/hero-heading";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
@@ -110,6 +111,14 @@ function GuidesPage() {
             </ul>
           </nav>
           <div className="grid gap-8">
+            <section className="grid gap-3 sm:grid-cols-2" aria-label="Project checklists">
+              {Object.values(projectGuides).map((guide) => (
+                <a key={guide.path} href={guide.path} className="rounded-lg border border-border bg-card p-4 shadow-card hover:border-primary">
+                  <h2 className="text-lg text-navy">{guide.lines.join(" ")}</h2>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{guide.description}</p>
+                </a>
+              ))}
+            </section>
             {guides.map((guide, index) => (
               <article key={guide.id} id={guide.id} className="scroll-mt-28 rounded-xl border border-border bg-card p-5 shadow-card md:p-7">
                 <p className="text-[13px] font-semibold uppercase text-primary">Guide {index + 1}</p>

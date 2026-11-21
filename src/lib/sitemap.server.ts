@@ -1,3 +1,4 @@
+import { projectGuides } from "@/lib/project-guides";
 import { ecommerceBuyerGuide as guide } from "@/lib/ecommerce-buyer-guide";
 import { locations } from "@/lib/locations";
 import { menuSections } from "@/lib/menu-pages";
@@ -18,6 +19,7 @@ const staticGroups: SitemapGroup[] = [
       .filter(([slug]) => slug !== "insights")
       .map(([slug, page]) => ({ path: `${base}/${slug}`, label: page.title })),
   })),
+  { title: "Project checklists", entries: Object.values(projectGuides).map(({ path, lines }) => ({ path, label: lines.join(" ") })) },
   { title: "Blog", entries: [{ path: "/blog", label: "All articles" }, { path: guide.path, label: guide.title }] },
   { title: "Locations", entries: [
     { path: "/locations", label: "All locations" },

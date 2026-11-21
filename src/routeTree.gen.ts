@@ -32,8 +32,10 @@ import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 import { Route as LocationsIndexRouteImport } from './routes/locations.index'
 import { Route as LocationsCityRouteImport } from './routes/locations.$city'
 import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
+import { Route as ResourcesEcommerceRedesignChecklistRouteImport } from './routes/resources.ecommerce-redesign-checklist'
 import { Route as ResourcesFaqsRouteImport } from './routes/resources.faqs'
 import { Route as ResourcesGuidesRouteImport } from './routes/resources.guides'
+import { Route as ResourcesWebsiteHandoverChecklistRouteImport } from './routes/resources.website-handover-checklist'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as ServicesShopifyRouteImport } from './routes/services.shopify'
 import { Route as ServicesWebsiteDesignRouteImport } from './routes/services.website-design'
@@ -165,6 +167,12 @@ const ResourcesSlugRoute = ResourcesSlugRouteImport.update({
   path: '/resources/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResourcesEcommerceRedesignChecklistRoute =
+  ResourcesEcommerceRedesignChecklistRouteImport.update({
+    id: '/resources/ecommerce-redesign-checklist',
+    path: '/resources/ecommerce-redesign-checklist',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ResourcesFaqsRoute = ResourcesFaqsRouteImport.update({
   id: '/resources/faqs',
   path: '/resources/faqs',
@@ -175,6 +183,12 @@ const ResourcesGuidesRoute = ResourcesGuidesRouteImport.update({
   path: '/resources/guides',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResourcesWebsiteHandoverChecklistRoute =
+  ResourcesWebsiteHandoverChecklistRouteImport.update({
+    id: '/resources/website-handover-checklist',
+    path: '/resources/website-handover-checklist',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ServicesSlugRoute = ServicesSlugRouteImport.update({
   id: '/services/$slug',
   path: '/services/$slug',
@@ -261,8 +275,10 @@ export interface FileRoutesByFullPath {
   '/industries/$slug': typeof IndustriesSlugRoute
   '/locations/$city': typeof LocationsCityRoute
   '/resources/$slug': typeof ResourcesSlugRoute
+  '/resources/ecommerce-redesign-checklist': typeof ResourcesEcommerceRedesignChecklistRoute
   '/resources/faqs': typeof ResourcesFaqsRoute
   '/resources/guides': typeof ResourcesGuidesRoute
+  '/resources/website-handover-checklist': typeof ResourcesWebsiteHandoverChecklistRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/shopify': typeof ServicesShopifyRoute
   '/services/website-design': typeof ServicesWebsiteDesignRoute
@@ -299,8 +315,10 @@ export interface FileRoutesByTo {
   '/industries/$slug': typeof IndustriesSlugRoute
   '/locations/$city': typeof LocationsCityRoute
   '/resources/$slug': typeof ResourcesSlugRoute
+  '/resources/ecommerce-redesign-checklist': typeof ResourcesEcommerceRedesignChecklistRoute
   '/resources/faqs': typeof ResourcesFaqsRoute
   '/resources/guides': typeof ResourcesGuidesRoute
+  '/resources/website-handover-checklist': typeof ResourcesWebsiteHandoverChecklistRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/shopify': typeof ServicesShopifyRoute
   '/services/website-design': typeof ServicesWebsiteDesignRoute
@@ -338,8 +356,10 @@ export interface FileRoutesById {
   '/industries/$slug': typeof IndustriesSlugRoute
   '/locations/$city': typeof LocationsCityRoute
   '/resources/$slug': typeof ResourcesSlugRoute
+  '/resources/ecommerce-redesign-checklist': typeof ResourcesEcommerceRedesignChecklistRoute
   '/resources/faqs': typeof ResourcesFaqsRoute
   '/resources/guides': typeof ResourcesGuidesRoute
+  '/resources/website-handover-checklist': typeof ResourcesWebsiteHandoverChecklistRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/shopify': typeof ServicesShopifyRoute
   '/services/website-design': typeof ServicesWebsiteDesignRoute
@@ -378,8 +398,10 @@ export interface FileRouteTypes {
     | '/industries/$slug'
     | '/locations/$city'
     | '/resources/$slug'
+    | '/resources/ecommerce-redesign-checklist'
     | '/resources/faqs'
     | '/resources/guides'
+    | '/resources/website-handover-checklist'
     | '/services/$slug'
     | '/services/shopify'
     | '/services/website-design'
@@ -416,8 +438,10 @@ export interface FileRouteTypes {
     | '/industries/$slug'
     | '/locations/$city'
     | '/resources/$slug'
+    | '/resources/ecommerce-redesign-checklist'
     | '/resources/faqs'
     | '/resources/guides'
+    | '/resources/website-handover-checklist'
     | '/services/$slug'
     | '/services/shopify'
     | '/services/website-design'
@@ -454,8 +478,10 @@ export interface FileRouteTypes {
     | '/industries/$slug'
     | '/locations/$city'
     | '/resources/$slug'
+    | '/resources/ecommerce-redesign-checklist'
     | '/resources/faqs'
     | '/resources/guides'
+    | '/resources/website-handover-checklist'
     | '/services/$slug'
     | '/services/shopify'
     | '/services/website-design'
@@ -494,8 +520,10 @@ export interface RootRouteChildren {
   IndustriesSlugRoute: typeof IndustriesSlugRoute
   LocationsCityRoute: typeof LocationsCityRoute
   ResourcesSlugRoute: typeof ResourcesSlugRoute
+  ResourcesEcommerceRedesignChecklistRoute: typeof ResourcesEcommerceRedesignChecklistRoute
   ResourcesFaqsRoute: typeof ResourcesFaqsRoute
   ResourcesGuidesRoute: typeof ResourcesGuidesRoute
+  ResourcesWebsiteHandoverChecklistRoute: typeof ResourcesWebsiteHandoverChecklistRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   ServicesShopifyRoute: typeof ServicesShopifyRoute
   ServicesWebsiteDesignRoute: typeof ServicesWebsiteDesignRoute
@@ -670,6 +698,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/resources/ecommerce-redesign-checklist': {
+      id: '/resources/ecommerce-redesign-checklist'
+      path: '/resources/ecommerce-redesign-checklist'
+      fullPath: '/resources/ecommerce-redesign-checklist'
+      preLoaderRoute: typeof ResourcesEcommerceRedesignChecklistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/resources/faqs': {
       id: '/resources/faqs'
       path: '/resources/faqs'
@@ -682,6 +717,13 @@ declare module '@tanstack/react-router' {
       path: '/resources/guides'
       fullPath: '/resources/guides'
       preLoaderRoute: typeof ResourcesGuidesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources/website-handover-checklist': {
+      id: '/resources/website-handover-checklist'
+      path: '/resources/website-handover-checklist'
+      fullPath: '/resources/website-handover-checklist'
+      preLoaderRoute: typeof ResourcesWebsiteHandoverChecklistRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/$slug': {
@@ -826,8 +868,12 @@ const rootRouteChildren: RootRouteChildren = {
   IndustriesSlugRoute: IndustriesSlugRoute,
   LocationsCityRoute: LocationsCityRoute,
   ResourcesSlugRoute: ResourcesSlugRoute,
+  ResourcesEcommerceRedesignChecklistRoute:
+    ResourcesEcommerceRedesignChecklistRoute,
   ResourcesFaqsRoute: ResourcesFaqsRoute,
   ResourcesGuidesRoute: ResourcesGuidesRoute,
+  ResourcesWebsiteHandoverChecklistRoute:
+    ResourcesWebsiteHandoverChecklistRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   ServicesShopifyRoute: ServicesShopifyRoute,
   ServicesWebsiteDesignRoute: ServicesWebsiteDesignRoute,

@@ -1,3 +1,4 @@
+import { projectGuides } from "@/lib/project-guides";
 import { Link, useLocation } from "@tanstack/react-router";
 import { AreasWeServe } from "@/components/areas-we-serve";
 import { ArrowRight, Facebook, Instagram, Linkedin, Youtube, type LucideIcon } from "lucide-react";
@@ -5,11 +6,41 @@ import { ArrowRight, Facebook, Instagram, Linkedin, Youtube, type LucideIcon } f
 const LOGO_URL = "https://ik.imagekit.io/x3cipokny/webgram%20it%20solution?updatedAt=1790815003792";
 
 const columns = [
-  ["Solutions", [{ label: "Ecommerce", to: "/solutions/ecommerce-development" }, { label: "B2B Commerce", to: "/solutions/b2b-commerce" }, { label: "Website Design & Development", to: "/solutions/website-design-development" }]],
-  ["Services", [{ label: "Web Portal Development", to: "/services/web-portal-development" }, { label: "Website Design", to: "/services/website-design" }, { label: "WooCommerce", to: "/services/woocommerce" }, { label: "API Integration", to: "/services/api-integration" }]],
-  ["Resources", [{ label: "Guides", to: "/resources/guides" }, { label: "FAQs", to: "/resources/faqs" }]],
-  ["Company", [{ label: "Blog", to: "/blog" }, { label: "About Us", to: "/about" }, { label: "Contact", to: "/contact" }, { label: "Privacy Policy", to: "/privacy-policy" }, { label: "Sitemap", to: "/sitemap" }]],
-  ["Legal", [{ label: "DPDP Policy", to: "/dpdp-policy" }, { label: "Terms & Conditions", to: "/terms-and-conditions" }, { label: "Cookie Policy", to: "/cookie-policy" }, { label: "Disclaimer", to: "/disclaimer" }]],
+  ["Solutions", [
+    { label: "Ecommerce Development", to: "/solutions/ecommerce-development" },
+    { label: "B2B Commerce", to: "/solutions/b2b-commerce" },
+    { label: "Website Development", to: "/solutions/website-design-development" },
+    { label: "Marketplace Development", to: "/solutions/marketplace-development" },
+  ]],
+  ["Services", [
+    { label: "Web Portal Development", to: "/services/web-portal-development" },
+    { label: "Website Design", to: "/services/website-design" },
+    { label: "WooCommerce Development", to: "/services/woocommerce" },
+    { label: "Shopify Development", to: "/services/shopify" },
+    { label: "API Integration", to: "/services/api-integration" },
+    { label: "Website Maintenance", to: "/services/website-maintenance" },
+  ]],
+  ["Resources", [
+    { label: "Website Guides", to: "/resources/guides" },
+    { label: "FAQs", to: "/resources/faqs" },
+    { label: "Ecommerce Buyer’s Guide", to: "/blog/ecommerce-website-development-india-guide" },
+    { label: "Ecommerce Redesign", to: projectGuides.redesign.path },
+    { label: "Website Handover", to: projectGuides.handover.path },
+  ]],
+  ["Company", [
+    { label: "Blog", to: "/blog" },
+    { label: "About Us", to: "/about" },
+    { label: "Website Portfolio", to: "/work/portfolio" },
+    { label: "Contact", to: "/contact" },
+    { label: "Sitemap", to: "/sitemap" },
+  ]],
+  ["Legal", [
+    { label: "Privacy Policy", to: "/privacy-policy" },
+    { label: "DPDP Policy", to: "/dpdp-policy" },
+    { label: "Terms & Conditions", to: "/terms-and-conditions" },
+    { label: "Cookie Policy", to: "/cookie-policy" },
+    { label: "Disclaimer", to: "/disclaimer" },
+  ]],
 ] as const;
 
 const WHATSAPP_ICON_URL = "https://ik.imagekit.io/x3cipokny/icon/whatsapp.png";
@@ -51,8 +82,13 @@ export function SiteFooter() {
         <div className="md:pr-3 lg:pr-5">
           <img src={LOGO_URL} alt="Webgram IT Solution" width={720} height={177} loading="lazy" className="h-9 w-auto object-contain brightness-0 invert" />
           <p className="mt-2 max-w-[250px] text-sm leading-relaxed text-on-dark/85">
-            Custom websites and ecommerce solutions built for measurable business growth.
+            Webgram IT Solution builds ecommerce stores, B2B ordering portals and business websites from New Delhi for clients across India.
           </p>
+          <address className="mt-3 grid gap-1 text-[13px] not-italic text-on-dark/85">
+            <span>Sangam Vihar, New Delhi, India</span>
+            <a className="hover:underline" href="tel:+917551120242">+91 75511 20242</a>
+            <a className="break-all hover:underline" href="mailto:info@webgramitsolution.in">info@webgramitsolution.in</a>
+          </address>
         </div>
         <div className="divide-y divide-on-dark/15 border-y border-on-dark/15 sm:hidden">
           {columns.map(([title, items]) => (

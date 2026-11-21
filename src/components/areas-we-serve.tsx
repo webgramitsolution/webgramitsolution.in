@@ -12,6 +12,7 @@ export function AreasWeServe() {
             All service areas <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
           </Link>
         </div>
+        <p className="mt-1 text-[13px] leading-5 text-muted-foreground">Website design, ecommerce development and support across Delhi NCR and India.</p>
         <div className="mt-1 space-y-1">
           {locationGroups.map((group) => (
             <div key={group.title} className="grid gap-0.5 md:grid-cols-[8.25rem_minmax(0,1fr)] md:gap-2">
