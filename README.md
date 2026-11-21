@@ -18,7 +18,7 @@ Use the Node.js web app feature in hPanel. Build with `npm ci && npm run build` 
 
 Set the environment variables from `.env.example` in hPanel. Supply the Vite values during the build and the server values at runtime. Attach `webgramitsolution.in` to the app and enable HTTPS. At the old .com host, configure a permanent redirect to the corresponding .in path, including the query string. Route www to the apex too. Verify Supabase Auth Site URL and allowed callbacks for the .in domain before testing admin login.
 
-For email, use a verified Hostinger mailbox and the Hostinger-provided SPF, DKIM and DMARC DNS settings. Set `ENQUIRY_INBOX` to the monitored team inbox. The existing .com contact mailbox is the default until you configure an alternative. Submit one controlled enquiry, then verify the admin record, team email and client acknowledgement before directing traffic to the site.
+For email, use a verified Hostinger mailbox and the Hostinger-provided SPF, DKIM and DMARC DNS settings. Set `ENQUIRY_INBOX` to the monitored team inbox. The default enquiry inbox is `info@webgramitsolution.in`. Set the SMTP username and From address to the verified mailbox and keep its password in hPanel. Submit one controlled enquiry, then verify the admin record, team email and client acknowledgement before directing traffic to the site.
 
 A fresh deployment initializes the MySQL tables on its first database request. Set `DB_ADMIN_USER_ID` in hPanel to the existing administrator's Supabase Auth user UUID before testing admin sign-in.
 

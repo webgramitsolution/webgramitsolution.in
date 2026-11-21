@@ -281,7 +281,7 @@ function DirectContact() {
     [
       Mail,
       "Email Us",
-      "info@webgramitsolution.com",
+      "info@webgramitsolution.in",
       "We usually reply within one business day",
       "text-primary",
     ],
@@ -404,7 +404,7 @@ function Location() {
                 <br />
                 <a href="tel:+917551120242" className="font-semibold text-navy">+91 7551120242</a>
                 <br />
-                <a href="mailto:info@webgramitsolution.com" className="font-semibold text-navy">info@webgramitsolution.com</a>
+                <a href="mailto:info@webgramitsolution.in" className="font-semibold text-navy">info@webgramitsolution.in</a>
               </p>
             </div>
           </div>

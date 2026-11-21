@@ -27,7 +27,7 @@ export const submitEnquiry = createServerFn({ method: "POST" })
     const { createEnquiry } = await import("./enquiry-data.server");
     const id = await createEnquiry({ ...data, message });
 
-    const inbox = process.env["ENQUIRY_INBOX"] || "info@webgramitsolution.com";
+    const inbox = process.env["ENQUIRY_INBOX"] || "info@webgramitsolution.in";
     const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
     const deliveries = [
       ["team email", sendTemplateEmail("new-enquiry", inbox, {
@@ -63,9 +63,9 @@ export const replyToEnquiry = createServerFn({ method: "POST" })
     await sendSmtpMail({
       to: enquiry.email,
       subject: `Re: Your Webgram enquiry — ${enquiry.service || "Project"}`,
-      text: `Hi ${enquiry.name},\n\n${data.message}\n\nWebgram IT Solution\ninfo@webgramitsolution.com`,
-      html: `<p>Hi ${esc(enquiry.name)},</p><p style="white-space:pre-line">${esc(data.message)}</p><p>Webgram IT Solution<br/>info@webgramitsolution.com</p>`,
-      replyTo: "info@webgramitsolution.com",
+      text: `Hi ${enquiry.name},\n\n${data.message}\n\nWebgram IT Solution\ninfo@webgramitsolution.in`,
+      html: `<p>Hi ${esc(enquiry.name)},</p><p style="white-space:pre-line">${esc(data.message)}</p><p>Webgram IT Solution<br/>info@webgramitsolution.in</p>`,
+      replyTo: "info@webgramitsolution.in",
     });
     try {
       await write("UPDATE enquiries SET reply_message = ?, replied_at = UTC_TIMESTAMP(3), status = 'contacted' WHERE id = ?", [data.message, data.id]);

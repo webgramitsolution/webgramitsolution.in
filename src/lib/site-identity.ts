@@ -16,7 +16,7 @@ export const businessIdentity = {
   foundingDate: "2022",
   founder: { "@type": "Person", name: "Vikas Kumar", sameAs: "https://www.linkedin.com/in/digivikas/" },
   telephone: "+917551120242",
-  email: "info@webgramitsolution.com",
+  email: "info@webgramitsolution.in",
   vatID: "07CUHPK2017G1ZW",
   address: {
     "@type": "PostalAddress",
@@ -44,7 +44,7 @@ export const businessIdentity = {
     "@type": "ContactPoint",
     contactType: "sales",
     telephone: "+917551120242",
-    email: "info@webgramitsolution.com",
+    email: "info@webgramitsolution.in",
     areaServed: "IN",
     availableLanguage: ["en", "hi"],
   },

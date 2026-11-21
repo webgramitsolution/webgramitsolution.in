@@ -14,7 +14,7 @@ export const faqGroups: Array<{ title: string; items: FaqItem[] }> = [
   {
     title: "Projects & pricing",
     items: [
-      ["How much does a website cost?", "Cost depends on the number of pages, features, integrations and content. After a short discussion we share a fixed itemised quote. Contact us at +91 7551120242 or info@webgramitsolution.com."],
+      ["How much does a website cost?", "Cost depends on the number of pages, features, integrations and content. After a short discussion we share a fixed itemised quote. Contact us at +91 7551120242 or info@webgramitsolution.in."],
       ["How long does a website project take?", "A business website usually takes 2 to 4 weeks. Ecommerce stores take around 4 to 8 weeks. B2B portals or marketplaces depend on the workflows and integrations involved."],
       ["Can you work on my existing website?", "Yes. We redesign, fix, speed up and extend existing WordPress, WooCommerce, Shopify and custom websites."],
       ["What do you need from me to start?", "Your logo, business details, service or product information, photos and any reference websites you like. We guide you through everything else."],
@@ -36,7 +36,7 @@ export const faqGroups: Array<{ title: string; items: FaqItem[] }> = [
     items: [
       ["Do you provide support after the website is launched?", "Yes. We offer maintenance plans that include updates, backups, security monitoring and content changes."],
       ["Who owns the website after it is built?", "You do. After final payment the website, content and domain are fully yours."],
-      ["How do I contact Webgram IT Solution?", "Call +91 7551120242, email info@webgramitsolution.com or use the contact form on the website. We usually reply within one business day."],
+      ["How do I contact Webgram IT Solution?", "Call +91 7551120242, email info@webgramitsolution.in or use the contact form on the website. We usually reply within one business day."],
     ],
   },
 ];
