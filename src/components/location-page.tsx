@@ -48,10 +48,11 @@ const reasons: [string, string][] = [
 ];
 
 const glance: [LucideIcon, string, string][] = [
-  [MapPin, "Office", "Sangam Vihar, New Delhi"],
-  [Clock3, "Working hours", "Mon–Sat, 10 AM – 7 PM"],
-  [MessageCircle, "Reply time", "Usually within one business day"],
-  [KeyRound, "Ownership", "You own the website, content and domain"],
+  [MapPin, "New Delhi", "Office"],
+  [Clock3, "Mon–Sat", "Support"],
+  [Smartphone, "Mobile-First", "Design"],
+  [MessageCircle, "Project", "Consultation"],
+  [KeyRound, "Website", "Ownership"],
 ];
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
@@ -69,29 +70,27 @@ export function LocationPage({ location: l }: { location: ServiceLocation }) {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
-      <section className="location-hero relative flex flex-col overflow-hidden bg-navy text-on-dark md:block md:min-h-[348px]">
-        <img src={image.src} alt={image.alt} width={image.size} height={image.size} fetchPriority="high" className="order-last aspect-[2/1] w-full object-cover object-center md:absolute md:inset-y-0 md:right-0 md:h-full md:w-[60%]" />
-        <div className="absolute inset-0 hidden bg-gradient-to-r from-navy from-35% via-navy/85 via-56% to-transparent md:block" aria-hidden="true" />
-        <div className="ecom-shell relative flex items-center py-6 md:min-h-[348px]">
-          <div className="min-w-0 w-full max-w-[540px] lg:max-w-[52%]">
+      <section className="ecom-hero location-hero relative overflow-hidden bg-navy text-on-dark">
+        <img src={image.src} alt={image.alt} width={image.size} height={image.size} fetchPriority="high" className="location-hero-image absolute inset-y-0 right-0 h-full w-full object-cover object-center" />
+        <div className="ecom-hero-shade absolute inset-0" aria-hidden="true" />
+        <div className="ecom-shell relative flex h-full items-center py-5">
+          <div className="max-w-[520px]">
             <nav aria-label="Breadcrumb" className="sr-only">
               <Link tabIndex={-1} to="/" className="hover:text-on-dark">Home</Link><span aria-hidden="true">›</span>
               <Link tabIndex={-1} to="/locations" className="hover:text-on-dark">Locations</Link><span aria-hidden="true">›</span>
               <span aria-current="page" className="text-on-dark">{l.city}</span>
             </nav>
-            <p className="mb-3 text-xs font-extrabold uppercase tracking-widest text-[#f4c657]">Website design &amp; development</p>
-            <HeroHeading className="text-[29px] font-medium leading-[1.08] md:text-[36px] lg:text-[39px]" title={l.keyword} accent="text-gold" />
-            <p className="mt-3 max-w-[480px] text-[14px] leading-relaxed text-on-dark/90">{l.intro}</p>
+            <HeroHeading className="text-[27px] font-medium leading-[1.08] sm:text-[33px] md:text-[36px] lg:text-[39px]" title={l.keyword} accent="text-gold" />
+            <p className="mt-3 max-w-[470px] text-[13px] leading-[1.45] text-on-dark/90 md:text-[14px]">{l.intro}</p>
             <div className="mt-4 flex flex-wrap gap-3">
-              <Link to="/contact" className="inline-flex min-h-10 items-center gap-2 rounded-md bg-[#f4c657] px-4 text-[13px] font-bold text-navy hover:bg-[#ffe29c]">Get a Free Consultation <ArrowRight className="h-4 w-4" /></Link>
-              <Link to="/work/portfolio" className="inline-flex min-h-10 items-center gap-2 rounded-md border border-on-dark/60 px-4 text-[13px] font-semibold text-on-dark hover:bg-on-dark/10">View Our Work <ArrowRight className="h-4 w-4" /></Link>
+              <Link to="/contact" className="inline-flex min-h-10 items-center gap-2 rounded-md bg-gold px-6 text-[13px] font-bold text-on-dark hover:bg-gold/90">Get a Free Consultation <ArrowRight className="h-4 w-4" /></Link>
+              <Link to="/work/portfolio" className="inline-flex min-h-10 items-center gap-2 rounded-md border border-on-dark/70 px-6 text-[13px] font-bold text-on-dark hover:bg-on-dark/10">View Our Work <ArrowRight className="h-4 w-4" /></Link>
             </div>
-            <ul aria-label="Webgram at a glance" className="mt-4 grid max-w-[500px] grid-cols-2 gap-3 sm:grid-cols-4">
+            <ul aria-label="Webgram at a glance" className="mt-4 grid max-w-[500px] grid-cols-3 gap-3 sm:grid-cols-5">
               {glance.map(([Icon, label, value]) => (
-                <li key={label} className="text-center text-[12px] leading-tight">
+                <li key={label} className="text-center text-[12px] font-semibold leading-[1.25]">
                   <span className="mx-auto mb-1.5 grid size-9 place-items-center rounded-full border border-on-dark/50"><Icon className="size-4" aria-hidden="true" /></span>
-                  <span className="block font-semibold">{label}</span>
-                  <span className="mt-0.5 block text-on-dark/80">{value}</span>
+                  {label}<br />{value}
                 </li>
               ))}
             </ul>
@@ -288,14 +287,14 @@ export function LocationsHub() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
-      <section className="location-hero relative overflow-hidden bg-navy text-on-dark">
-        <img src={IMAGES.ecommerce} alt="" width={800} height={450} fetchPriority="high" className="absolute inset-y-0 right-0 hidden h-full w-[58%] object-cover md:block" />
-        <div className="absolute inset-0 hidden bg-gradient-to-r from-navy from-35% via-navy/85 via-56% to-transparent md:block" aria-hidden="true" />
-        <div className="ecom-shell relative flex items-center py-8 md:min-h-[290px]">
+      <section className="ecom-hero location-hero relative overflow-hidden bg-navy text-on-dark">
+        <img src={IMAGES.ecommerce} alt="" width={800} height={450} fetchPriority="high" className="location-hero-image absolute inset-y-0 right-0 h-full w-full object-cover" />
+        <div className="ecom-hero-shade absolute inset-0" aria-hidden="true" />
+        <div className="ecom-shell relative flex h-full items-center py-5">
           <div className="w-full max-w-[540px]">
             <nav aria-label="Breadcrumb" className="sr-only"><Link tabIndex={-1} to="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Locations</span></nav>
-            <HeroHeading className="text-[29px] font-medium leading-[1.08] md:text-[36px] lg:text-[39px]" lines={["Website Development", "Service Areas Across India"]} accent="text-gold" />
-            <p className="mt-3 max-w-[480px] text-[14px] leading-relaxed text-on-dark/90">From our office in Sangam Vihar, New Delhi, we build websites and ecommerce platforms for businesses in Delhi NCR and work remotely with teams in Gujarat, Ludhiana and across India.</p>
+            <HeroHeading className="text-[27px] font-medium leading-[1.08] sm:text-[33px] md:text-[36px] lg:text-[39px]" lines={["Website Development", "Service Areas Across India"]} accent="text-gold" />
+            <p className="mt-3 max-w-[470px] text-[13px] leading-[1.45] text-on-dark/90 md:text-[14px]">From our office in Sangam Vihar, New Delhi, we build websites and ecommerce platforms for businesses in Delhi NCR and work remotely with teams in Gujarat, Ludhiana and across India.</p>
             <a href="#service-areas" className="mt-4 inline-flex min-h-10 items-center gap-2 rounded-md bg-gold px-4 text-sm font-semibold text-navy hover:opacity-90">Browse service areas <ArrowRight className="size-4" aria-hidden="true" /></a>
           </div>
         </div>

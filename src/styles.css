@@ -1205,3 +1205,11 @@ h1, h2, h3, h4, h5, h6 { font-weight: 500 !important; }
     radial-gradient(ellipse at 10% 120%, color-mix(in oklab, var(--primary) 22%, transparent), transparent 50%),
     var(--navy);
 }
+
+@media (min-width: 768px) {
+  .location-hero > .location-hero-image {
+    width: 58%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
