@@ -137,7 +137,7 @@ function ProjectCarousel() {
   );
 }
 
-export function WebsiteDesignDevelopmentPage() {
+export function WebsiteDesignDevelopmentPage({ designOnly = false }: { designOnly?: boolean }) {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <SiteHeader />
@@ -151,8 +151,8 @@ export function WebsiteDesignDevelopmentPage() {
         <div className="ecom-shell relative flex h-full items-center py-5">
           <div className="max-w-[525px]">
             <nav className="sr-only" aria-label="Breadcrumb"><Link to="/">Home</Link> › Solutions › Website Design &amp; Development</nav>
-            <h1 className="text-[30px] font-medium leading-[1.08] sm:text-[34px] md:text-[37px] lg:text-[40px]">Professional Websites<br />That Bring <span className="text-gold">Real Results.</span></h1>
-            <p className="mt-3 max-w-[500px] text-[14px] leading-[1.45] text-on-dark/90 md:text-[14px]">We design and develop modern, high-performing websites for businesses, corporates and professionals. From strategy and design to development and launch, we create digital experiences that build your brand, attract customers and drive growth.</p>
+            <h1 className="text-[30px] font-medium leading-[1.08] sm:text-[34px] md:text-[37px] lg:text-[40px]">{designOnly ? <>Website Design in <span className="text-gold">Delhi NCR</span></> : <>Business Website <span className="text-gold">Development</span> in Delhi NCR</>}</h1>
+            <p className="mt-3 max-w-[500px] text-[14px] leading-[1.45] text-on-dark/90 md:text-[14px]">{designOnly ? "Responsive corporate websites, landing pages and redesigns that help customers find relevant information and enquire." : "From content planning and CMS development to integrations, testing and launch, we build business websites your team can maintain."}</p>
             <div className="mt-4 flex flex-wrap gap-3">
               <Button asChild className="h-10 bg-gold px-6 text-[13px] font-bold text-navy hover:bg-gold/90"><Link to="/contact">Get a Free Consultation <ArrowRight /></Link></Button>
               <Button asChild variant="outline" className="h-10 border-on-dark/70 bg-transparent px-6 text-[13px] font-bold text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><Link to="/work/$slug" params={{ slug: "portfolio" }}>View Our Work <ArrowRight /></Link></Button>

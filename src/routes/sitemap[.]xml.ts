@@ -9,7 +9,7 @@ const STATIC_PATHS = [
   ...locations.map(({ slug }) => `/locations/${slug}`),
   ...Object.values(menuSections).flatMap(({ base, pages }) =>
     Object.keys(pages)
-      .filter((slug) => slug !== "marketplace-development" && slug !== "insights")
+      .filter((slug) => slug !== "insights")
       .map((slug) => `${base}/${slug}`),
   ),
 ];

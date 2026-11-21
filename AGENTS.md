@@ -32,7 +32,7 @@
 - Ads share one renderer, one initialization per visible unit and consent events across navigation.
 - AdSense slot 9892982015 serves blog category bands and slot 6145308694 serves sticky side rails; auto/anchor ads are not part of the site layout.
 - Legal content lives on dedicated public routes linked from the shared footer.
-- Legal pages, including the dedicated India DPDP Policy, share one structured long-form renderer; Marketplace Development remains available only as a noindex legacy URL and is excluded from navigation and sitemap.
+- Legal pages, including the dedicated India DPDP Policy, share one structured long-form renderer. The B2B Marketplace Development page covers multi-vendor workflows and links to the single-supplier B2B Commerce page.
 - Homepage reviews are public only when published; administrators manage review visibility and ordering through the secured requests area.
 - Primary blog categories have indexable `/blog/category/:slug` pages and belong in the dynamic sitemap; subcategories remain filters.
 - Public blog/category/sitemap URLs use the canonical apex `https://webgramitsolution.in`.

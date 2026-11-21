@@ -1,3 +1,5 @@
+import { ServicePlanning } from "@/components/service-planning";
+import { servicePlans } from "@/lib/service-planning";
 import { createFileRoute, notFound, redirect } from "@tanstack/react-router";
 
 import { ApiIntegrationPage } from "@/components/api-integration-page";
@@ -19,6 +21,7 @@ const maintenanceBanner = "https://ik.imagekit.io/x3cipokny/maintence%20banner.p
 const websiteDesignBanner = "https://ik.imagekit.io/archfacingb2b/Modern%20E-Commerce%20Tech%20Hero%20Banner.png";
 
 const dedicatedBanners: Record<string, string> = {
+  woocommerce: new URL(servicePlans.woocommerce.image, "https://webgramitsolution.in").href,
   "web-portal-development": portalBanner,
   "api-integration": apiIntegrationBanner,
   "website-maintenance": maintenanceBanner,
@@ -45,9 +48,9 @@ export const Route = createFileRoute("/services/$slug")({
     links: [{ rel: "canonical", href: `https://webgramitsolution.in/services/${params.slug}` }],
     meta: [
       { title: (seoTitles[params.slug] ?? `${loaderData?.title ?? "Services"} | Webgram IT Solution`) },
-      { name: "description", content: loaderData?.description ?? "" },
+      { name: "description", content: params.slug === "woocommerce" ? servicePlans.woocommerce.summary : loaderData?.description ?? "" },
       { property: "og:title", content: (seoTitles[params.slug] ?? `${loaderData?.title ?? "Services"} | Webgram IT Solution`) },
-      { property: "og:description", content: loaderData?.description ?? "" },
+      { property: "og:description", content: params.slug === "woocommerce" ? servicePlans.woocommerce.summary : loaderData?.description ?? "" },
       { property: "og:type", content: "website" },
       { property: "og:url", content: `https://webgramitsolution.in/services/${params.slug}` },
       { name: "twitter:card", content: "summary_large_image" },
@@ -76,5 +79,5 @@ function ServicesPage() {
     slug === "website-maintenance" ? <WebsiteMaintenancePage /> :
     <SubpageTemplate sectionLabel={section.label} page={page} />;
   const showLatestPosts = slug !== "web-portal-development" && slug !== "website-maintenance";
-  return <>{body}{showLatestPosts ? <LatestBlogPosts /> : null}</>;
+  return <>{body}{slug === "woocommerce" ? <ServicePlanning plan={servicePlans.woocommerce} /> : null}{showLatestPosts ? <LatestBlogPosts /> : null}</>;
 }

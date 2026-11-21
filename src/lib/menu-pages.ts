@@ -40,9 +40,9 @@ export const menuSections: Record<SectionKey, MenuSection> = {
         points: ["Business-focused strategy", "Creative modern design", "Responsive development", "Ongoing support"],
       },
       "marketplace-development": {
-        title: "Marketplace Development",
+        title: "B2B Marketplace Development",
         tagline: "Multi-vendor commerce, built to scale",
-        description: "A legacy overview of marketplace planning, vendor workflows, catalogues, commissions and order management. This page is not currently promoted or indexed.",
+        description: "Multi-vendor B2B marketplace website development for supplier onboarding, product discovery, wholesale enquiries and order management.",
         points: ["Vendor onboarding", "Commission workflows", "Product moderation", "Order management"],
       },
     },

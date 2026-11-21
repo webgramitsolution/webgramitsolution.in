@@ -2,7 +2,7 @@ import type { FaqItem } from "@/lib/faq-content";
 
 /** Visible copy for the dedicated Shopify service page; FAQ schema is generated from the same answers. */
 export const SHOPIFY_URL = "https://webgramitsolution.in/services/shopify";
-export const SHOPIFY_TITLE = "Shopify Website Development Company in Delhi NCR | Webgram IT Solution";
+export const SHOPIFY_TITLE = "Shopify Website Design & Development in Delhi NCR | Webgram";
 export const SHOPIFY_DESCRIPTION =
   "Shopify store setup, custom theme design, Razorpay and GoKwik checkout, Shiprocket shipping, WATI WhatsApp and Judge.me reviews for Indian brands. Delhi NCR based, serving Pan-India and overseas.";
 

@@ -27,7 +27,7 @@ const subpage = (section: "solutions" | "services" | "industries" | "work" | "re
 
 const menu: Array<{ label: string; target?: Target; items?: Array<[string, Target]> }> = [
   { label: "Home", target: { to: "/" } },
-  { label: "Solutions", items: ["Ecommerce Development", "B2B Commerce", "Website Design & Development"].map((label) => [label, subpage("solutions", label)]) },
+  { label: "Solutions", items: [...["Ecommerce Development", "B2B Commerce", "Website Design & Development"].map((label): [string, Target] => [label, subpage("solutions", label)]), ["B2B Marketplace Development", subpage("solutions", "marketplace-development")]] },
   { label: "Services", items: ["Web Portal Development", "Website Design", "WordPress", "WooCommerce", "Shopify", "API Integration", "Website Maintenance", "Speed Optimization"].map((label) => [label, subpage("services", label)]) },
   { label: "Work", items: ["Portfolio", "Case Studies", "Client Stories"].map((label) => [label, subpage("work", label)]) },
   { label: "Resources", items: ["Blog", "Guides", "FAQs"].map((label) => [label, subpage("resources", label)]) },

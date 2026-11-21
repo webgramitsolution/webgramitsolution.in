@@ -17,7 +17,7 @@ export const locations: ServiceLocation[] = [
     keyword: "Ecommerce Website Development Company in Delhi",
     title: "Ecommerce Website Development Company in Delhi | Webgram IT Solution",
     description: "Webgram IT Solution is an ecommerce website development company in Delhi building fast, SEO-ready online stores, WooCommerce shops and custom ecommerce platforms.",
-    intro: "From our office in Sangam Vihar, New Delhi, we design and develop ecommerce websites for Delhi retailers, wholesalers and D2C brands — online stores that load fast, rank on Google and convert visitors into orders.",
+    intro: "From our office in Sangam Vihar, New Delhi, we design and develop ecommerce websites for Delhi retailers, wholesalers and D2C brands — with a focus on fast pages, search-friendly structure and clear checkout.",
     areas: ["Connaught Place", "Karol Bagh", "Chandni Chowk", "Lajpat Nagar", "Dwarka", "Rohini", "Janakpuri", "Laxmi Nagar"],
     industries: ["Fashion & apparel", "Electronics", "Wholesale traders", "Home décor", "Healthcare supplies", "Handicrafts"],
     projectFocus: [
@@ -46,7 +46,7 @@ export const locations: ServiceLocation[] = [
     city: "Faridabad",
     keyword: "Ecommerce Website Developer in Faridabad",
     title: "Ecommerce Website Developer in Faridabad | Webgram IT Solution",
-    description: "Hire an experienced ecommerce website developer in Faridabad for WooCommerce stores, B2B catalogues and industrial product websites that rank and convert.",
+    description: "Hire an experienced ecommerce website developer in Faridabad for WooCommerce stores, B2B catalogues and industrial product websites with clear specifications and enquiry paths.",
     intro: "Faridabad's manufacturers and traders trust us to build product catalogues, B2B ordering websites and online stores — including industrial projects like Adlite Electricals.",
     areas: ["NIT Faridabad", "Sector 15", "Ballabgarh", "Old Faridabad", "Greater Faridabad", "Sector 37"],
     industries: ["Industrial & electrical", "Auto parts", "Manufacturing", "Wholesale", "Retail", "Engineering"],

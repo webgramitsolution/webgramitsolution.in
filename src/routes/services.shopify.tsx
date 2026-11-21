@@ -1,10 +1,12 @@
+import { ServicePlanning } from "@/components/service-planning";
+import { servicePlans } from "@/lib/service-planning";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { LatestBlogPosts } from "@/components/latest-blog-posts";
 import { ShopifyPage } from "@/components/shopify-page";
 import { servicePageSchema } from "@/lib/schema";
 import { getSubpage } from "@/lib/menu-pages";
-import { BUSINESS_ID, WEBSITE_ID } from "@/lib/site-identity";
+import { BUSINESS_ID, WEBSITE_ID, SITE_URL } from "@/lib/site-identity";
 import { SHOPIFY_DESCRIPTION, SHOPIFY_TITLE, SHOPIFY_URL, shopifyFaqs } from "@/lib/shopify-content";
 
 export const Route = createFileRoute("/services/shopify")({
@@ -18,6 +20,8 @@ export const Route = createFileRoute("/services/shopify")({
       { property: "og:type", content: "website" },
       { property: "og:url", content: SHOPIFY_URL },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: new URL(servicePlans.shopify.image, SITE_URL).href },
+      { name: "twitter:image", content: new URL(servicePlans.shopify.image, SITE_URL).href },
     ],
     scripts: [
       ...servicePageSchema("services", "Services", "shopify", getSubpage("services", "shopify")),
@@ -43,6 +47,7 @@ export const Route = createFileRoute("/services/shopify")({
   component: () => (
     <>
       <ShopifyPage />
+      <ServicePlanning plan={servicePlans.shopify} />
       <LatestBlogPosts />
     </>
   ),
