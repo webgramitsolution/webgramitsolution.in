@@ -1,3 +1,4 @@
+import { HeroHeading } from "@/components/hero-heading";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -208,9 +209,7 @@ function Hero() {
       <div className="absolute inset-0 bg-hero-overlay" />
       <div className="page-shell hero-copy">
         <div className="max-w-[510px]">
-          <h1 className="max-w-[510px] text-[36px] font-extrabold leading-[1.08] tracking-tight lg:text-[54px]">
-            Ecommerce websites built in <span className="text-[#f4c657]">Delhi NCR.</span>
-          </h1>
+          <HeroHeading className="max-w-[510px] text-[36px] font-extrabold leading-[1.08] tracking-tight lg:text-[54px]" lines={["Ecommerce websites", "built in Delhi NCR."]} accent="text-[#f4c657]" />
           <p className="mt-4 max-w-[500px] text-[14px] font-normal leading-5 text-on-dark/90 sm:text-[15px]">
             Build a Shopify or WooCommerce store, a wholesale ordering portal, or a custom commerce platform. Our Delhi NCR team supports Indian manufacturers, distributors and D2C brands from planning through launch and ongoing maintenance.
           </p>

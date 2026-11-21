@@ -1,3 +1,4 @@
+import { HeroHeading } from "@/components/hero-heading";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -66,7 +67,7 @@ export function ShopifyPage() {
         <div className="ecom-shell relative flex h-full items-center py-5">
           <div className="relative max-w-[540px]">
             <nav className="sr-only" aria-label="Breadcrumb"><Link to="/">Home</Link> › Services › Shopify Development</nav>
-            <h1 className="text-[29px] font-medium leading-[1.08] sm:text-[33px] md:text-[36px] lg:text-[39px]">Shopify Website Development<br />for <span className="text-gold">Indian Brands.</span></h1>
+            <HeroHeading className="text-[29px] font-medium leading-[1.08] sm:text-[33px] md:text-[36px] lg:text-[39px]" lines={["Shopify Website Development", "for Indian Brands."]} accent="text-gold" />
             <p className="mt-3 max-w-[470px] text-[14px] leading-[1.5] text-on-dark/90">Delhi NCR based Shopify developers for store setup, custom themes, GoKwik and Razorpay checkout, Shiprocket shipping and WhatsApp order updates.</p>
             <div className="mt-4 flex flex-wrap gap-3">
               <Button asChild className="h-10 bg-gold px-6 text-[13px] font-bold text-navy hover:bg-gold/90"><Link to="/contact">Get a Free Consultation <ArrowRight /></Link></Button>

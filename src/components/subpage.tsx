@@ -1,3 +1,4 @@
+import { HeroHeading } from "@/components/hero-heading";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
@@ -12,7 +13,7 @@ export function SubpageTemplate({ sectionLabel, page, heading, children }: { sec
       <section className="ecom-waves bg-navy py-12 text-on-dark md:py-16">
         <div className="header-shell">
           <p className="mb-3 text-sm font-bold text-gold">{sectionLabel}</p>
-          <h1 className="page-title max-w-[720px] leading-[1.12]">{heading ?? <>{page.title}<br /> <span className="text-gold">{page.tagline}</span></>}</h1>
+          <HeroHeading className="page-title max-w-[720px] leading-[1.12]" {...(heading ? { title: heading } : { lines: [page.title, page.tagline] as const, accent: "text-gold" })} />
           <p className="page-lead mt-3 max-w-[620px] text-on-dark/80">{page.description}</p>
         </div>
       </section>

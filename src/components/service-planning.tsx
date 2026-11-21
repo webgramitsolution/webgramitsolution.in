@@ -1,8 +1,9 @@
+import { HeroHeading } from "@/components/hero-heading";
 import { ArrowRight } from "lucide-react";
 import type { ServicePlan } from "@/lib/service-planning";
 
 export function ServicePlanning({ plan, headline = false }: { plan: ServicePlan; headline?: boolean }) {
-  const Heading = headline ? "h1" : "h2";
+  const headingClass = "max-w-2xl text-3xl font-extrabold leading-tight text-navy md:text-4xl";
   const CardHeading = headline ? "h2" : "h3";
 
   return (
@@ -10,7 +11,7 @@ export function ServicePlanning({ plan, headline = false }: { plan: ServicePlan;
       <div className="page-shell">
         <div className="grid items-center gap-7 md:grid-cols-[1.05fr_0.95fr]">
           <div>
-            <Heading className="max-w-2xl text-balance text-3xl font-extrabold leading-tight text-navy md:text-4xl">{plan.title}</Heading>
+            {headline ? <HeroHeading className={headingClass} title={plan.title} /> : <h2 className={`${headingClass} text-balance`}>{plan.title}</h2>}
             <p className="mt-4 max-w-xl text-base leading-7 text-muted-foreground">{plan.summary}</p>
           </div>
           <img src={plan.image} alt={plan.alt} loading={headline ? "eager" : "lazy"} fetchPriority={headline ? "high" : undefined} width={800} height={450} className="aspect-[16/9] w-full rounded-2xl bg-card object-cover shadow-card" />

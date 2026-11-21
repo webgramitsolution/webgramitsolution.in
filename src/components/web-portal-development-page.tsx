@@ -1,3 +1,4 @@
+import { HeroHeading } from "@/components/hero-heading";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowLeft,
@@ -128,7 +129,7 @@ export function WebPortalDevelopmentPage() {
       <div className="ecom-shell relative flex h-full items-center py-5">
         <div className="max-w-[520px]">
           <nav className="sr-only" aria-label="Breadcrumb"><Link to="/">Home</Link> › Services › Web Portal Development</nav>
-          <h1 className="text-[27px] font-medium leading-[1.08] sm:text-[33px] md:text-[36px] lg:text-[39px]"><span className="block whitespace-nowrap">Custom Web Portals</span><span className="block">for <span className="text-gold">Customers and Teams</span></span></h1>
+          <HeroHeading className="text-[27px] font-medium leading-[1.08] sm:text-[33px] md:text-[36px] lg:text-[39px]" lines={["Custom Web Portals", "for Customers and Teams"]} accent="text-gold" />
           <p className="mt-3 max-w-[470px] text-[13px] leading-[1.45] text-on-dark/90 md:text-[14px]">We design and develop powerful web portals tailored to your business needs — including customer portals, vendor portals, employee portals and advanced dashboards.</p>
           <div className="mt-4 flex flex-wrap gap-3"><Button asChild className="h-10 bg-gold px-6 text-[13px] font-bold text-navy hover:bg-gold/90"><Link to="/contact">Get a Free Consultation <ArrowRight /></Link></Button><Button asChild variant="outline" className="h-10 border-on-dark/70 bg-transparent px-6 text-[13px] font-bold text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><Link to="/work/$slug" params={{ slug: "portfolio" }}>View Our Work <ArrowRight /></Link></Button></div>
           <div className="mt-4 grid max-w-[500px] grid-cols-3 gap-3 sm:grid-cols-5">{heroBenefits.map(([Icon, first, second]) => <div key={first} className="text-center text-[12px] font-semibold leading-[1.25]"><span className="mx-auto mb-1.5 grid h-9 w-9 place-items-center rounded-full border border-on-dark/50"><Icon className="h-4 w-4" /></span>{first}<br />{second}</div>)}</div>

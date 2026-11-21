@@ -1,3 +1,4 @@
+import { HeroHeading } from "@/components/hero-heading";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowLeft,
@@ -207,10 +208,7 @@ export function EcommerceDevelopmentPage() {
               <Link to="/">Home</Link> <span className="px-1.5">›</span> Solutions{" "}
               <span className="px-1.5">›</span> Ecommerce Development
             </nav>
-            <h1 className="text-[30px] font-medium leading-[1.08] sm:text-[34px] md:text-[36px] lg:text-[39px]">
-              Custom Online Stores<br />
-              for <span className="text-gold">D2C and Retail Brands</span>
-            </h1>
+            <HeroHeading className="text-[30px] font-medium leading-[1.08] sm:text-[34px] md:text-[36px] lg:text-[39px]" lines={["Custom Online Stores", "for D2C and Retail Brands"]} accent="text-gold" />
             <p className="mt-3 max-w-[500px] text-[14px] leading-[1.5] text-on-dark/90 sm:text-[14px]">
               We design mobile storefronts, product catalogues and checkout flows for Indian retail and D2C brands. We also scope migrations, inventory, payment gateways and launch support.
             </p>

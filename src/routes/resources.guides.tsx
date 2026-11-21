@@ -1,3 +1,4 @@
+import { HeroHeading } from "@/components/hero-heading";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
@@ -94,7 +95,7 @@ function GuidesPage() {
       <section className="contact-hero bg-navy py-12 text-on-dark md:py-16">
         <div className="header-shell">
           <p className="page-eyebrow text-gold">Resources</p>
-          <h1 className="page-title mt-2">Guides for Growing Your Business Online</h1>
+          <HeroHeading className="page-title mt-2" lines={["Guides for Growing", "Your Business Online"]} />
           <p className="page-lead mt-3 max-w-[680px] text-on-dark/85">
             Practical, jargon-free playbooks from the Webgram IT Solution team — based on 100+ websites, ecommerce stores and B2B portals we have delivered.
           </p>

@@ -1,3 +1,4 @@
+import { HeroHeading } from "@/components/hero-heading";
 import { SiteHeader } from "@/components/site-header";
 import { BlogAdBand, BlogAdsConsent } from "@/components/blog-ads";
 import { FileText, ShieldCheck, Info } from "lucide-react";
@@ -15,7 +16,7 @@ export function LegalPage({ eyebrow, title, summary, updated, sections }: { eyeb
         <div className="page-shell relative py-9 md:py-12">
           <div className="max-w-[58%] lg:max-w-[620px]">
             <p className="text-xs font-extrabold uppercase tracking-wide text-primary">{eyebrow}</p>
-            <h1 className="mt-1.5 text-3xl font-extrabold leading-tight text-navy lg:text-4xl">{title}</h1>
+            <HeroHeading className="mt-1.5 text-3xl font-extrabold leading-tight text-navy lg:text-4xl" title={title} />
             <p className="mt-3 max-w-lg text-[16px] leading-7 text-muted-foreground">{summary}</p>
             <p className="mt-4 text-[13px] font-bold uppercase tracking-wider text-navy opacity-70">Last updated: {updated}</p>
           </div>

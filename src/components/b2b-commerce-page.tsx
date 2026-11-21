@@ -1,3 +1,4 @@
+import { HeroHeading } from "@/components/hero-heading";
 import { Link } from "@tanstack/react-router";
 import { ComparisonTable, DirectAnswer } from "@/components/direct-answer";
 import {
@@ -137,10 +138,7 @@ export function B2BCommercePage() {
               <Link to="/">Home</Link> <span>›</span> Solutions <span>›</span> B2B Ecommerce
               Development
             </nav>
-            <h1 className="text-[29px] font-medium leading-[1.08] sm:text-[32px] md:text-[32px] lg:text-[34px]">
-              B2B Ecommerce Portals<br />
-              for <span className="text-gold">Wholesale Ordering</span>
-            </h1>
+            <HeroHeading className="text-[29px] font-medium leading-[1.08] sm:text-[32px] md:text-[32px] lg:text-[34px]" lines={["B2B Ecommerce Portals", "for Wholesale Ordering"]} accent="text-gold" />
             <p className="mt-2 max-w-[540px] text-[14px] font-medium leading-[1.5] text-on-dark/90 md:text-[15px]">
               We build secure B2B commerce platforms for manufacturers, wholesalers and
               distributors, combining contract pricing, bulk ordering, RFQ workflows, dealer

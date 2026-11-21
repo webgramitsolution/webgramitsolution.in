@@ -1,3 +1,4 @@
+import { HeroHeading } from "@/components/hero-heading";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowLeft,
@@ -114,7 +115,7 @@ export function WooCommercePage() {
       <div className="ecom-shell relative flex h-full items-center py-5">
         <div className="relative max-w-[540px]">
           <nav className="sr-only" aria-label="Breadcrumb"><Link to="/">Home</Link> › Services › WooCommerce Development</nav>
-          <h1 className="text-[29px] font-medium leading-[1.08] sm:text-[33px] md:text-[36px] lg:text-[39px]">WooCommerce Stores<br />Built on <span className="text-gold">WordPress</span></h1>
+          <HeroHeading className="text-[29px] font-medium leading-[1.08] sm:text-[33px] md:text-[36px] lg:text-[39px]" lines={["WooCommerce Stores", "Built on WordPress"]} accent="text-gold" />
           <p className="mt-3 max-w-[470px] text-[13px] leading-[1.45] text-on-dark/90 md:text-[14px]">We build scalable WooCommerce stores with custom features, secure payment integrations and seamless user experiences to help you sell more online.</p>
           <div className="mt-4 flex flex-wrap gap-3"><Button asChild className="h-10 bg-gold px-6 text-[13px] font-bold text-navy hover:bg-gold/90"><Link to="/contact">Get a Free Consultation <ArrowRight /></Link></Button><Button asChild variant="outline" className="h-10 border-on-dark/70 bg-transparent px-6 text-[13px] font-bold text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><Link to="/work/$slug" params={{ slug: "portfolio" }}>View Our Work <ArrowRight /></Link></Button></div>
           <div className="mt-4 grid max-w-[410px] grid-cols-4 gap-3">{heroBenefits.map(([Icon, first, second]) => <div key={first} className="text-center text-[12px] font-semibold leading-[1.25]"><span className="mx-auto mb-1.5 grid h-9 w-9 place-items-center rounded-full border border-on-dark/50"><Icon className="h-4 w-4" /></span>{first}<br />{second}</div>)}</div>

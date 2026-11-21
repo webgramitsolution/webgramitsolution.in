@@ -1,3 +1,4 @@
+import { HeroHeading } from "@/components/hero-heading";
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
@@ -104,11 +105,7 @@ function ContactHero() {
             <span className="mx-2">›</span>Contact Us
           </nav>
           <p className="sr-only">Get in Touch</p>
-          <h1 className="text-[34px] font-extrabold leading-[1.03] sm:text-[41px] lg:text-[48px]">
-            Request a Website
-            <br />
-            Development <span className="text-gold">Quote</span>
-          </h1>
+          <HeroHeading className="text-[34px] font-extrabold leading-[1.03] sm:text-[41px] lg:text-[48px]" lines={["Request a Website", "Development Quote"]} accent="text-gold" />
           <p className="mt-4 text-[13px] leading-[1.55] text-on-dark/90 sm:text-[14px]">
             Have a project in mind? We’re here to help you turn your ideas
             <br className="hidden sm:block" /> into a powerful digital commerce experience.

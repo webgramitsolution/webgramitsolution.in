@@ -1,3 +1,4 @@
+import { HeroHeading } from "@/components/hero-heading";
 import { Link, useRouter } from "@tanstack/react-router";
 import { ArrowLeft, BriefcaseBusiness, FileText, Home, Phone, Search, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -15,7 +16,7 @@ export function NotFoundPage() {
           <div className="not-found-copy">
             <p className="text-[13px] font-medium uppercase text-primary">Oops! Page not found</p>
             <div className="not-found-number" aria-hidden="true">404<Search className="not-found-lens" /></div>
-            <h1 id="not-found-heading" className="not-found-title"><span className="sr-only">404 — </span>Looks Like You’ve<br /><span className="text-primary">Taken a Wrong Turn!</span></h1>
+            <HeroHeading id="not-found-heading" className="not-found-title" lines={["Looks Like You’ve", "Taken a Wrong Turn!"]} accent="text-primary" />
             <p className="mt-3 text-[15px] leading-6 text-muted-foreground">The page you’re looking for doesn’t exist or may have been moved.<br className="hidden lg:block" /> Don’t worry, let’s get you back on track.</p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Button asChild className="h-11 bg-navy px-5 text-[14px] text-on-dark hover:bg-navy/90"><Link to="/"><Home />Go to Home Page</Link></Button>

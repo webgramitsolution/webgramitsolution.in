@@ -1,3 +1,4 @@
+import { HeroHeading } from "@/components/hero-heading";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -87,10 +88,7 @@ function AboutHero() {
       />
       <div className="page-shell relative z-10 flex h-full items-center py-6 md:absolute md:inset-0">
         <div className="max-w-[440px] text-on-dark">
-          <h1 className="mt-2 text-[32px] font-extrabold leading-[1.05] sm:text-[38px] lg:text-[42px]">
-            The Delhi NCR Team Behind<br />
-            <span className="text-gold">Webgram IT Solution</span>
-          </h1>
+          <HeroHeading className="mt-2 text-[32px] font-extrabold leading-[1.05] sm:text-[38px] lg:text-[42px]" lines={["The Delhi NCR Team Behind", "Webgram IT Solution"]} accent="text-gold" />
           <p className="mt-4 max-w-[400px] text-[14px] leading-[1.6] text-on-dark/90">
             We are a technology-driven company focused on building high-performance eCommerce, B2B,
             B2C and custom digital solutions that help businesses grow, scale and succeed.

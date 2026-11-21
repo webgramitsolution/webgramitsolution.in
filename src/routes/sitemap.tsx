@@ -1,3 +1,4 @@
+import { HeroHeading } from "@/components/hero-heading";
 import { createFileRoute } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { ArrowUpRight } from "lucide-react";
@@ -35,7 +36,7 @@ function Sitemap() {
         <section className="bg-navy py-10 text-on-dark md:py-14">
           <div className="page-shell flex flex-wrap items-end justify-between gap-5">
             <div>
-              <h1 className="text-4xl font-extrabold">Sitemap</h1>
+              <HeroHeading className="text-4xl font-extrabold" lines={["Website", "Sitemap"]} />
               <p className="mt-3 text-on-dark/80">Find our services, locations, resources and project examples.</p>
             </div>
             <a href="/sitemap.xml" className="inline-flex items-center gap-2 rounded-lg border border-on-dark/45 px-4 py-2 font-semibold hover:bg-on-dark/10">

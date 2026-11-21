@@ -1,3 +1,4 @@
+import { HeroHeading } from "@/components/hero-heading";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
@@ -65,7 +66,7 @@ function PortfolioPage() {
       <section className="contact-hero text-on-dark">
         <img src={heroImage} alt="Webgram IT Solution website portfolio" width={1536} height={1024} className="absolute inset-0 h-full w-full object-cover object-right" />
         <div className="header-shell relative z-10 flex h-full flex-col justify-center py-6"><div className="max-w-[50%] max-md:max-w-full">
-          <h1 className="page-title max-w-[720px] leading-[1.08]">Live Website Portfolio<br /><span className="text-gold">India and Canada</span></h1>
+          <HeroHeading className="page-title max-w-[720px] leading-[1.08]" lines={["Live Website Portfolio", "India and Canada"]} accent="text-gold" />
           <p className="page-lead mt-2 max-w-[680px] text-on-dark/85">
             Real, live projects for businesses in India and Canada — ecommerce stores, B2B wholesale platforms and lead-generating business websites. Each preview scrolls through the actual homepage.
           </p></div>

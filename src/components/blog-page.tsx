@@ -1,3 +1,4 @@
+import { HeroHeading } from "@/components/hero-heading";
 import { useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { CalendarDays, Search } from "lucide-react";
@@ -35,7 +36,7 @@ export function BlogPage({ categories, posts, initialCategory = "all" }: { categ
 
       <section className="bg-navy py-10 text-on-dark">
         <div className="page-shell">
-          <h1 className="text-3xl font-extrabold md:text-4xl">Webgram Ecommerce and Web Development Blog</h1>
+          <HeroHeading className="text-3xl font-extrabold md:text-4xl" lines={["Webgram Ecommerce", "and Web Development Blog"]} />
           <p className="mt-3 max-w-2xl leading-7 text-on-dark/80">Practical notes on storefronts, wholesale ordering, integrations and website upkeep for business owners and ecommerce teams.</p>
         </div>
       </section>

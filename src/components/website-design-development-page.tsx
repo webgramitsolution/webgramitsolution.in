@@ -1,3 +1,4 @@
+import { HeroHeading } from "@/components/hero-heading";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowLeft,
@@ -151,7 +152,7 @@ export function WebsiteDesignDevelopmentPage({ designOnly = false }: { designOnl
         <div className="ecom-shell relative flex h-full items-center py-5">
           <div className="max-w-[525px]">
             <nav className="sr-only" aria-label="Breadcrumb"><Link to="/">Home</Link> › Solutions › Website Design &amp; Development</nav>
-            <h1 className="text-[30px] font-medium leading-[1.08] sm:text-[34px] md:text-[37px] lg:text-[40px]">{designOnly ? <>Website Design in <span className="text-gold">Delhi NCR</span></> : <>Business Website <span className="text-gold">Development</span> in Delhi NCR</>}</h1>
+            <HeroHeading className="text-[30px] font-medium leading-[1.08] sm:text-[34px] md:text-[37px] lg:text-[40px]" lines={designOnly ? ["Website Design", "in Delhi NCR"] : ["Business Website Development", "in Delhi NCR"]} accent="text-gold" />
             <p className="mt-3 max-w-[500px] text-[14px] leading-[1.45] text-on-dark/90 md:text-[14px]">{designOnly ? "Responsive corporate websites, landing pages and redesigns that help customers find relevant information and enquire." : "From content planning and CMS development to integrations, testing and launch, we build business websites your team can maintain."}</p>
             <div className="mt-4 flex flex-wrap gap-3">
               <Button asChild className="h-10 bg-gold px-6 text-[13px] font-bold text-navy hover:bg-gold/90"><Link to="/contact">Get a Free Consultation <ArrowRight /></Link></Button>

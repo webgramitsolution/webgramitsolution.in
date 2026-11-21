@@ -1,3 +1,4 @@
+import { HeroHeading } from "@/components/hero-heading";
 import { createFileRoute, notFound } from "@tanstack/react-router";
 
 import { SubpageTemplate } from "@/components/subpage";
@@ -53,7 +54,7 @@ function WorkPage() {
         <SiteHeader />
         <section className="bg-navy py-12 text-on-dark md:py-16">
           <div className="header-shell">
-            <h1 className="page-title max-w-[720px]">Ecommerce and Business Website<br /> <span className="text-gold">Case Studies</span></h1>
+            <HeroHeading className="page-title max-w-[720px]" lines={["Ecommerce and Business", "Website Case Studies"]} accent="text-gold" />
             <p className="page-lead mt-3 max-w-[680px] text-on-dark/85">Every case study below links to a published client website. Explore the business requirements, target audience and experience delivered for each project.</p>
           </div>
         </section>

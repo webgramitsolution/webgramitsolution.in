@@ -1,3 +1,4 @@
+import { HeroHeading } from "@/components/hero-heading";
 import { localSearch, locationAnswers } from "@/lib/location-search";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Building2, CheckCircle2, Clock3, KeyRound, MapPin, MessageCircle, Search, ShoppingCart, Smartphone, Wrench, ClipboardList, Palette, Code2, ShieldCheck, Rocket, type LucideIcon } from "lucide-react";
@@ -79,7 +80,7 @@ export function LocationPage({ location: l }: { location: ServiceLocation }) {
               <span aria-current="page" className="text-on-dark">{l.city}</span>
             </nav>
             <p className="mb-3 text-xs font-extrabold uppercase tracking-widest text-[#f4c657]">Website design &amp; development</p>
-            <h1 className="text-balance text-[32px] font-extrabold leading-[1.12] md:text-[37px] lg:text-[44px]">{l.keyword}</h1>
+            <HeroHeading className="text-[32px] font-extrabold leading-[1.12] md:text-[37px] lg:text-[44px]" title={l.keyword} />
             <p className="mt-3 text-[16px] leading-7 text-on-dark/90">{l.intro}</p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Link to="/contact" className="inline-flex h-11 items-center gap-2 rounded-md bg-[#f4c657] px-6 text-[15px] font-bold text-navy hover:bg-[#ffe29c]">Get a Free Consultation <ArrowRight className="h-4 w-4" /></Link>
@@ -270,7 +271,7 @@ export function LocationsHub() {
       <section className="location-hero relative overflow-hidden bg-navy text-on-dark">
         <div className="page-shell relative py-12 md:py-14">
           <nav aria-label="Breadcrumb" className="sr-only"><Link tabIndex={-1} to="/" className="hover:text-on-dark">Home</Link><span aria-hidden="true">›</span><span aria-current="page" className="text-on-dark">Locations</span></nav>
-          <h1 className="max-w-[780px] text-balance text-[30px] font-medium leading-[1.15] md:text-[38px]">Website Development Service Areas Across India</h1>
+          <HeroHeading className="max-w-[780px] text-[30px] font-medium leading-[1.15] md:text-[38px]" lines={["Website Development", "Service Areas Across India"]} />
           <p className="mt-4 max-w-[700px] text-[16px] leading-7 text-on-dark/85 md:text-[17px]">From our office in Sangam Vihar, New Delhi, we build websites and ecommerce platforms for businesses in Delhi NCR and work remotely with teams in Gujarat, Ludhiana and across India.</p>
         </div>
       </section>
