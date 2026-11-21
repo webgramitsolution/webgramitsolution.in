@@ -50,4 +50,4 @@
 - Agent readiness: start.ts redirects Markdown requests on `/` to llms.txt and advertises it in the Link header; WebMCP tools stay read-only.
 - `/locations` pages share `location-page.tsx`; `projectsForLocation` shows only genuine city/NCR portfolio items.
 - Blog FAQs use `normalizeBlogFaqs` for both the visible section and FAQPage schema, so they always match.
-- Speed: GTM loads late, Manrope self-hosted, sign-in client loaded on demand, ImageKit sized via `ikResize`.
+- Speed: GTM loads asynchronously from the shared document head, Manrope self-hosted, sign-in client loaded on demand, ImageKit sized via `ikResize`.

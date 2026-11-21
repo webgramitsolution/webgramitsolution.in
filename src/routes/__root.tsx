@@ -19,7 +19,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { NotFoundPage } from "@/components/not-found-page";
 import { SiteWebMCPTools } from "@/components/site-webmcp-tools";
 import { businessIdentity, BUSINESS_ID, WEBSITE_ID } from "@/lib/site-identity";
-import { DEFERRED_GTM_SNIPPET } from "@/lib/third-party-loader";
+import { GTM_ID, GTM_INITIALIZATION } from "@/lib/third-party-loader";
 
 function NotFoundComponent() {
   return <NotFoundPage />;
@@ -135,14 +135,14 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en-IN">
       <head>
-        {/* Google Tag Manager — starts after first interaction or shortly after load. */}
-        <script dangerouslySetInnerHTML={{ __html: DEFERRED_GTM_SNIPPET }} />
+        <script dangerouslySetInnerHTML={{ __html: GTM_INITIALIZATION }} />
+        <script async src={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`} />
         <HeadContent />
       </head>
       <body>
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-TWNQJB9"
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}
