@@ -27,6 +27,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as BlogEcommerceWebsiteDevelopmentIndiaGuideRouteImport } from './routes/blog.ecommerce-website-development-india-guide'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 import { Route as LocationsIndexRouteImport } from './routes/locations.index'
 import { Route as LocationsCityRouteImport } from './routes/locations.$city'
@@ -138,6 +139,12 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogEcommerceWebsiteDevelopmentIndiaGuideRoute =
+  BlogEcommerceWebsiteDevelopmentIndiaGuideRouteImport.update({
+    id: '/blog/ecommerce-website-development-india-guide',
+    path: '/blog/ecommerce-website-development-india-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const IndustriesSlugRoute = IndustriesSlugRouteImport.update({
   id: '/industries/$slug',
   path: '/industries/$slug',
@@ -250,6 +257,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/blog/ecommerce-website-development-india-guide': typeof BlogEcommerceWebsiteDevelopmentIndiaGuideRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/locations/$city': typeof LocationsCityRoute
   '/resources/$slug': typeof ResourcesSlugRoute
@@ -287,6 +295,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/blog/ecommerce-website-development-india-guide': typeof BlogEcommerceWebsiteDevelopmentIndiaGuideRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/locations/$city': typeof LocationsCityRoute
   '/resources/$slug': typeof ResourcesSlugRoute
@@ -325,6 +334,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/blog/ecommerce-website-development-india-guide': typeof BlogEcommerceWebsiteDevelopmentIndiaGuideRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/locations/$city': typeof LocationsCityRoute
   '/resources/$slug': typeof ResourcesSlugRoute
@@ -364,6 +374,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms-and-conditions'
     | '/blog/$slug'
+    | '/blog/ecommerce-website-development-india-guide'
     | '/industries/$slug'
     | '/locations/$city'
     | '/resources/$slug'
@@ -401,6 +412,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms-and-conditions'
     | '/blog/$slug'
+    | '/blog/ecommerce-website-development-india-guide'
     | '/industries/$slug'
     | '/locations/$city'
     | '/resources/$slug'
@@ -438,6 +450,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms-and-conditions'
     | '/blog/$slug'
+    | '/blog/ecommerce-website-development-india-guide'
     | '/industries/$slug'
     | '/locations/$city'
     | '/resources/$slug'
@@ -477,6 +490,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsAndConditionsRoute: typeof TermsAndConditionsRoute
   BlogSlugRoute: typeof BlogSlugRoute
+  BlogEcommerceWebsiteDevelopmentIndiaGuideRoute: typeof BlogEcommerceWebsiteDevelopmentIndiaGuideRoute
   IndustriesSlugRoute: typeof IndustriesSlugRoute
   LocationsCityRoute: typeof LocationsCityRoute
   ResourcesSlugRoute: typeof ResourcesSlugRoute
@@ -619,6 +633,13 @@ declare module '@tanstack/react-router' {
       path: '/blog/$slug'
       fullPath: '/blog/$slug'
       preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/ecommerce-website-development-india-guide': {
+      id: '/blog/ecommerce-website-development-india-guide'
+      path: '/blog/ecommerce-website-development-india-guide'
+      fullPath: '/blog/ecommerce-website-development-india-guide'
+      preLoaderRoute: typeof BlogEcommerceWebsiteDevelopmentIndiaGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/industries/$slug': {
@@ -800,6 +821,8 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsAndConditionsRoute: TermsAndConditionsRoute,
   BlogSlugRoute: BlogSlugRoute,
+  BlogEcommerceWebsiteDevelopmentIndiaGuideRoute:
+    BlogEcommerceWebsiteDevelopmentIndiaGuideRoute,
   IndustriesSlugRoute: IndustriesSlugRoute,
   LocationsCityRoute: LocationsCityRoute,
   ResourcesSlugRoute: ResourcesSlugRoute,

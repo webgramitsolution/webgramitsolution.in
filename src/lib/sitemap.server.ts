@@ -1,3 +1,4 @@
+import { ecommerceBuyerGuide as guide } from "@/lib/ecommerce-buyer-guide";
 import { locations } from "@/lib/locations";
 import { menuSections } from "@/lib/menu-pages";
 import { rows } from "./mysql.server";
@@ -17,7 +18,7 @@ const staticGroups: SitemapGroup[] = [
       .filter(([slug]) => slug !== "insights")
       .map(([slug, page]) => ({ path: `${base}/${slug}`, label: page.title })),
   })),
-  { title: "Blog", entries: [{ path: "/blog", label: "All articles" }] },
+  { title: "Blog", entries: [{ path: "/blog", label: "All articles" }, { path: guide.path, label: guide.title }] },
   { title: "Locations", entries: [
     { path: "/locations", label: "All locations" },
     ...locations.map(({ slug, city }) => ({ path: `/locations/${slug}`, label: city })),

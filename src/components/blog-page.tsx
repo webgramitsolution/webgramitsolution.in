@@ -1,3 +1,4 @@
+import { ecommerceBuyerGuide as guide } from "@/lib/ecommerce-buyer-guide";
 import { HeroHeading } from "@/components/hero-heading";
 import { useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
@@ -28,6 +29,7 @@ export function BlogPage({ categories, posts, initialCategory = "all" }: { categ
     return matchesText && (category === "all" || post.category_id === category) && (subcategory === "all" || post.subcategory_id === subcategory);
   }), [posts, query, category, subcategory]);
   const roots = categories.filter((item) => !item.parent_id); const children = categories.filter((item) => item.parent_id === category);
+  const showGuide = category === "all" && `${guide.title} ${guide.description}`.toLowerCase().includes(query.trim().toLowerCase());
   const grouped = roots.map((item) => ({ category: item, posts: filtered.filter((post) => post.category_id === item.id), children: categories.filter((child) => child.parent_id === item.id) })).filter((group) => group.posts.length);
 
   return <div className="min-h-screen bg-background text-foreground">
@@ -58,6 +60,16 @@ export function BlogPage({ categories, posts, initialCategory = "all" }: { categ
       <div className="mx-auto grid max-w-[1540px] px-3 xl:grid-cols-[180px_minmax(0,1fr)_180px] xl:px-0">
       <aside className="hidden xl:block"><div className="sticky top-28 py-9"><BlogAdBand rail position="detailLeft" label="Advertisement — left" /></div></aside>
       <section className="min-w-0 px-3 py-9 md:px-5">
+        {showGuide && (
+          <article className="mb-6 grid overflow-hidden rounded-lg border border-border bg-card shadow-card sm:grid-cols-[12rem_minmax(0,1fr)]">
+            <img src={guide.image} alt={guide.imageAlt} width={480} height={360} className="h-full max-h-52 w-full object-cover" />
+            <div className="p-4">
+              <h2 className="text-xl text-navy"><a className="hover:underline" href={guide.path}>{guide.title}</a></h2>
+              <p className="mt-2 text-sm text-muted-foreground">{guide.description}</p>
+              <a className="mt-3 inline-block text-sm font-semibold text-primary hover:underline" href={guide.path}>Read the buyer’s guide</a>
+            </div>
+          </article>
+        )}
         {grouped.length ? grouped.map((group, groupIndex) => <div key={group.category.id}>
           {groupIndex > 0 ? <BlogAdBand position="category" label={`Advertisement above ${group.category.name}`} /> : null}
           <div id={`category-${group.category.slug}`}>
@@ -69,7 +81,7 @@ export function BlogPage({ categories, posts, initialCategory = "all" }: { categ
             <div className="flex flex-1 flex-col p-3"><h3 className="line-clamp-3 text-[14px] font-medium leading-[1.35] text-navy group-hover:text-primary"><Link to="/blog/$slug" params={{ slug: post.slug }}>{post.title}</Link></h3><span className="mt-2 block truncate text-[13px] font-semibold text-navy">By {post.author_name || "Webgram Team"}</span><span className="mt-1 flex items-center gap-1.5 text-[13px] text-muted-foreground"><CalendarDays className="h-3 w-3" />{formatDate(post.published_at)}</span><div className="mt-auto pt-3"><Button asChild variant="link" className="h-auto p-0 text-[14px]"><Link to="/blog/$slug" params={{ slug: post.slug }} aria-label={`Read more: ${post.title}`}>Read More</Link></Button></div></div>
           </div>)}
            </div><div className="h-12" /></div>
-        </div>) : <div className="py-16 text-center text-sm text-muted-foreground">No articles match your search.</div>}
+        </div>) : showGuide ? null : <div className="py-16 text-center text-sm text-muted-foreground">No articles match your search.</div>}
       </section>
       <aside className="hidden xl:block"><div className="sticky top-28 py-9"><BlogAdBand rail position="detailRight" label="Advertisement — right" /></div></aside>
       </div>

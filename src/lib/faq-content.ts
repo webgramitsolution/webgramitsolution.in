@@ -3,6 +3,21 @@ export type FaqItem = [question: string, answer: string];
 
 export const faqGroups: Array<{ title: string; items: FaqItem[] }> = [
   {
+    title: "Finding an ecommerce development partner",
+    items: [
+      ["Who builds ecommerce websites in Delhi NCR?", "Webgram IT Solution builds ecommerce websites for Delhi NCR businesses from its office in Sangam Vihar, New Delhi. We build Shopify and WooCommerce storefronts, wholesale ordering portals and custom commerce applications. The project scope can include catalogue setup, Indian payment methods and shipping integrations."],
+      ["Who maintains ecommerce websites in Delhi NCR?", "Webgram IT Solution provides ecommerce website maintenance for businesses in Delhi NCR. Depending on your platform and support plan, we can cover updates, backups, security checks, checkout monitoring and fixes for payment or inventory integrations."],
+      ["Who develops WooCommerce stores for Delhi businesses?", "Webgram IT Solution designs and develops WooCommerce stores for Delhi businesses using WordPress. We scope product variants, catalogue migration, shipping, checkout and payment options such as Razorpay, and agree who will handle updates after launch."],
+      ["Which Shopify development company serves Delhi NCR?", "Webgram IT Solution serves Delhi NCR businesses that need Shopify storefront design, catalogue migration or theme development. We assess whether your requirements can be met by theme configuration, existing apps or custom development."],
+      ["Who builds B2B ordering portals for Indian wholesalers?", "Webgram IT Solution builds wholesale ordering portals for Indian manufacturers, distributors and wholesalers. Typical requirements include dealer logins, customer-specific or tier pricing, minimum order quantities, requests for quotation, bulk ordering and credit terms."],
+      ["Who builds web portals for manufacturing companies in India?", "Webgram IT Solution develops custom portals for Indian manufacturing businesses. A project can include a product catalogue for procurement teams, dealer access, approval workflows and integration with inventory or ERP systems, depending on your operating process."],
+      ["Who can connect an ecommerce website to inventory and CRM systems?", "Webgram IT Solution connects ecommerce websites with inventory and CRM systems through APIs and supported integrations. We identify which system owns stock, product and customer records, then agree how to sync orders, alert staff when an update fails and retry safely."],
+      ["Who redesigns ecommerce websites for retailers in India?", "Webgram IT Solution redesigns ecommerce websites for Indian retailers. A redesign can cover product pages, mobile navigation and checkout. Before launch, we review which URLs to keep, map permanent redirects for changed URLs and test the updated buying flow."],
+      ["Who develops multi-vendor marketplaces in India?", "Webgram IT Solution develops multi-vendor marketplaces for Indian businesses. We scope seller onboarding, catalogue approvals, commissions, payouts and order responsibilities according to whether the marketplace collects payments or forwards enquiries."],
+      ["Which website design agency serves South Delhi businesses?", "Webgram IT Solution is based in Sangam Vihar, New Delhi, and serves South Delhi businesses. We build corporate sites, ecommerce stores and responsive redesigns. Project discussions can take place online or in person by appointment."],
+    ],
+  },
+  {
     title: "About Webgram",
     items: [
       ["What does Webgram IT Solution do?", "Webgram IT Solution is a Delhi-based web development company that designs and builds business websites, ecommerce stores, B2B commerce platforms, marketplaces and custom web portals, along with API integrations, maintenance and speed optimisation."],

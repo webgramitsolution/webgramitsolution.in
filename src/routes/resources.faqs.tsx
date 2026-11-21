@@ -1,3 +1,4 @@
+import { ecommerceBuyerGuide as guide } from "@/lib/ecommerce-buyer-guide";
 import { HeroHeading } from "@/components/hero-heading";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ChevronDown } from "lucide-react";
@@ -79,6 +80,7 @@ function FaqsPage() {
               </div>
             </div>
           ))}
+          <a className="font-semibold text-primary underline underline-offset-4" href={guide.path}>Read the 10-step ecommerce website development guide</a>
           <div className="rounded-xl bg-sky-soft p-6">
             <h2 className="text-[22px] text-navy">Still have a question?</h2>
             <p className="mt-1 text-[16px] text-muted-foreground">Send us a message and our team will get back to you.</p>
