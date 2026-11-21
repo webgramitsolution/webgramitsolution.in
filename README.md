@@ -20,6 +20,8 @@ Set the environment variables from `.env.example` in hPanel. Supply the Vite val
 
 For email, use a verified Hostinger mailbox and the Hostinger-provided SPF, DKIM and DMARC DNS settings. Set `ENQUIRY_INBOX` to the monitored team inbox. The existing .com contact mailbox is the default until you configure an alternative. Submit one controlled enquiry, then verify the admin record, team email and client acknowledgement before directing traffic to the site.
 
+A fresh deployment initializes the MySQL tables on its first database request. Set `DB_ADMIN_USER_ID` in hPanel to the existing administrator's Supabase Auth user UUID before testing admin sign-in.
+
 ## Move existing data to Hostinger MySQL
 
 1. Provision a dedicated MySQL database. Hostinger can set `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER` and `DB_PASSWORD` automatically. Use `127.0.0.1` on the Hostinger app server. Preserve these entries when adding the Supabase Auth and SMTP settings in hPanel.

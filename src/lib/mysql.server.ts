@@ -26,8 +26,14 @@ export function database() {
   return pool;
 }
 
+export async function readyDatabase() {
+  const { initializeDatabase } = await import("./mysql-bootstrap.server");
+  await initializeDatabase();
+  return database();
+}
+
 export async function rows<T>(sql: string, values: Value[] = []): Promise<T[]> {
-  const [result] = await database().execute<RowDataPacket[]>(sql, values);
+  const [result] = await (await readyDatabase()).execute<RowDataPacket[]>(sql, values);
   // mysql2 returns UTC Date objects and MariaDB can return JSON as text.
   return result.map((row) => Object.fromEntries(Object.entries(row).map(([key, value]) => {
     if (value instanceof Date) return [key, value.toISOString()];
@@ -38,7 +44,7 @@ export async function rows<T>(sql: string, values: Value[] = []): Promise<T[]> {
 }
 
 export async function write(sql: string, values: Value[] = []) {
-  const [result] = await database().execute<ResultSetHeader>(sql, values);
+  const [result] = await (await readyDatabase()).execute<ResultSetHeader>(sql, values);
   return result;
 }
 

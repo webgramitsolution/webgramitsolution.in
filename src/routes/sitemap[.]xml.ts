@@ -23,7 +23,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           const { rows } = await import("@/lib/mysql.server");
           const [posts, categories] = await Promise.all([
             rows<{ slug: string; published_at: string }>("SELECT slug,published_at FROM blog_posts WHERE status = 'published' AND noindex = FALSE AND published_at <= UTC_TIMESTAMP(3) ORDER BY published_at DESC, slug"),
-            rows<{ slug: string }>("SELECT slug FROM blog_categories WHERE is_active = TRUE AND parent_id IS NULL ORDER BY display_order"),
+            rows<{ slug: string }>("SELECT c.slug FROM blog_categories c WHERE c.is_active = TRUE AND c.parent_id IS NULL AND EXISTS (SELECT 1 FROM blog_posts p WHERE p.category_id = c.id AND p.status = 'published' AND p.noindex = FALSE AND p.published_at <= UTC_TIMESTAMP(3)) ORDER BY c.display_order"),
           ]);
           const urls = [
             ...STATIC_PATHS.map((p) => `<url><loc>${SITE_URL}${p}</loc></url>`),

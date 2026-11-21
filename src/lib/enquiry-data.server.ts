@@ -1,11 +1,11 @@
 import { createHash, randomUUID } from "node:crypto";
 import type { RowDataPacket } from "mysql2/promise";
-import { database } from "./mysql.server";
+import { readyDatabase } from "./mysql.server";
 
 export async function createEnquiry(data: { name: string; email: string; phone: string; service: string; message: string }) {
   const email = data.email.toLowerCase();
   const lock = createHash("sha256").update(`webgram:enquiry:${email}`).digest("hex");
-  const connection = await database().getConnection();
+  const connection = await (await readyDatabase()).getConnection();
   let locked = false;
   try {
     const [result] = await connection.execute<RowDataPacket[]>("SELECT GET_LOCK(?, 5) AS acquired", [lock]);

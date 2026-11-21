@@ -28,7 +28,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/site-header";
 import { aboutImages, ikResize } from "@/lib/site-images";
-import { publicPageSchema } from "@/lib/site-identity";
+import { businessIdentity, publicPageSchema } from "@/lib/site-identity";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -71,8 +71,8 @@ function AboutHero() {
   const stats = [
     ["2022", "Client Work Since"],
     ["2022", "GST Registered"],
-    ["5+", "Years of Experience"],
-    ["India", "& Overseas Clients"],
+
+    ["Delhi NCR", "Based in India"],
   ];
   return (
     <section className="site-hero relative min-h-[520px] overflow-hidden bg-navy md:h-[348px] md:min-h-[348px]">
@@ -382,7 +382,7 @@ function Workspace() {
 
 function WhyChoose() {
   const items = [
-    [BadgeCheck, "Proven Expertise", "100+ successful projects across industries."],
+    [BadgeCheck, "Proven Expertise", "Published examples of our ecommerce and web development work."],
     [HeartHandshake, "Client-Centric Approach", "Solutions tailored to your business goals."],
     [Clock, "Quality & Timely Delivery", "On-time project delivery with best practices."],
     [MessageSquare, "Transparent Communication", "Clear updates at every stage of development."],
@@ -423,6 +423,17 @@ function AboutPage() {
       <Journey />
       <Workspace />
       <WhyChoose />
+      <section id="editorial" className="border-t border-border bg-card py-10">
+        <div className="page-shell max-w-3xl">
+          <h2 className="text-2xl font-extrabold text-navy">Who is behind Webgram’s guides?</h2>
+          <p className="mt-3 leading-7 text-muted-foreground">
+            Webgram IT Solution was founded by <a className="font-semibold text-primary underline" href={businessIdentity.founder.sameAs}>Vikas Kumar</a> in New Delhi. Our team publishes guides on ecommerce, web development and B2B portals. Article bylines and dates identify the author and when the guidance was published or updated.
+          </p>
+          <p className="mt-3 leading-7 text-muted-foreground">
+            Explore our <Link to="/work/portfolio" className="font-semibold text-primary underline">published client work</Link> to see examples of what we build. If you spot an error in a guide, <Link to="/contact" className="font-semibold text-primary underline">send us the page link and the correction</Link>.
+          </p>
+        </div>
+      </section>
     </main>
   );
 }

@@ -8,7 +8,7 @@ import { Bold, Code2, Eye, Image, Images, Italic, Link2, List, ListOrdered, Maxi
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArticleBody } from "@/components/blog-detail-page";
-import { guestArticleStats } from "@/lib/guest-post-validation";
+import { articleWordCount } from "@/lib/article-word-count";
 
 // Existing article Markdown remains the saved format, not clipboard HTML.
 export function VisualArticleEditor({ value, onChange }: { value: string; onChange: (value: string) => void }) {
@@ -52,7 +52,7 @@ export function VisualArticleEditor({ value, onChange }: { value: string; onChan
   return <div className={full ? "fixed inset-0 z-[70] overflow-auto bg-background p-3 sm:p-6" : "mt-2 min-w-0"}>
     <div className="min-w-0 overflow-hidden rounded-md border border-input bg-card">
       <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2 border-b border-border px-3 py-2">
-        <span className="text-[13px] text-muted-foreground">{guestArticleStats(value).words} words</span>
+        <span className="text-[13px] text-muted-foreground">{articleWordCount(value)} words</span>
         <div className="flex shrink-0 items-center gap-1" role="group" aria-label="Editor view"><Button type="button" variant={!preview ? "secondary" : "ghost"} size="sm" className="h-8 text-[13px]" onClick={() => setPreview(false)}><Pencil className="h-3.5 w-3.5" />Write</Button><Button type="button" variant={preview ? "secondary" : "ghost"} size="sm" className="h-8 text-[13px]" onClick={() => setPreview(true)}><Eye className="h-3.5 w-3.5" />Preview</Button>{tool(full ? "Exit full screen" : "Full screen", full ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />, () => setFull(!full))}</div>
       </div>
       {!preview ? <>

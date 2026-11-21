@@ -39,3 +39,5 @@ Contact: +91 7551120242, info@webgramitsolution.com. GSTIN 07CUHPK2017G1ZW. Hour
 - [Full knowledge file](https://webgramitsolution.in/llms-full.txt): Case studies and technical architecture details.
 - [XML sitemap](https://webgramitsolution.in/sitemap.xml): All public URLs.
 - [RSS feed](https://webgramitsolution.in/feed.xml): Latest blog articles.
+
+- [Editorial information](https://webgramitsolution.in/about#editorial): Company authorship, portfolio examples and where to report a correction.

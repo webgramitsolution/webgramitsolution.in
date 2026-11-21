@@ -6,9 +6,9 @@ import { NotFoundPage } from "@/components/not-found-page";
 import { Button } from "@/components/ui/button";
 import { selectArticleRecommendations } from "@/lib/article-recommendations";
 
-import { BUSINESS_ID, WEBSITE_ID, businessIdentity } from "@/lib/site-identity";
+import { BUSINESS_ID, SITE_URL, WEBSITE_ID, businessIdentity } from "@/lib/site-identity";
 
-const SITE = "https://webgramitsolution.in";
+const SITE = SITE_URL;
 
 type SchemaPost = { title: string; seo_description?: string | null; excerpt?: string | null; featured_image?: string | null; featured_image_alt?: string | null; published_at?: string | null; updated_at?: string | null; author_name?: string | null; tags?: string[] | null; content?: string | null; category?: { name: string; slug: string } | null };
 
@@ -27,11 +27,13 @@ function blogPostingSchema(post: SchemaPost, slug: string) {
         url,
         mainEntityOfPage: { "@type": "WebPage", "@id": url },
         isPartOf: { "@id": WEBSITE_ID },
-        inLanguage: "en",
+        inLanguage: "en-IN",
         ...(post.featured_image ? { image: { "@type": "ImageObject", url: post.featured_image, caption: post.featured_image_alt ?? post.title } } : {}),
         datePublished: post.published_at ?? undefined,
         dateModified: post.updated_at ?? post.published_at ?? undefined,
-        author: { "@type": "Person", name: post.author_name || "Webgram IT Solution" },
+        author: post.author_name?.trim() && post.author_name.trim() !== businessIdentity.name
+          ? { "@type": "Person", name: post.author_name.trim(), ...(post.author_name.trim() === businessIdentity.founder.name ? { url: businessIdentity.founder.sameAs } : {}) }
+          : { "@id": BUSINESS_ID },
         publisher: { "@type": "Organization", "@id": BUSINESS_ID, name: businessIdentity.name, url: businessIdentity.url, logo: { "@type": "ImageObject", url: businessIdentity.logo }, sameAs: businessIdentity.sameAs },
         ...(post.category ? { articleSection: post.category.name } : {}),
         ...(post.tags?.length ? { keywords: post.tags.join(", ") } : {}),

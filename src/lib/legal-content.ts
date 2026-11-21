@@ -11,8 +11,8 @@ const commonSections: LegalSection[] = [
   {
     title: "Children, accessibility and responsible use",
     paragraphs: [
-      "Our commercial services, guest-author programme and account features are intended for adults and organisations. A person under eighteen should use the website only with a parent or lawful guardian and should not independently submit business, payment or publishing information. If we learn that a child’s personal data was submitted without valid authority, we may restrict the account and take reasonable steps to delete the information, subject to legal retention and security needs.",
-      "We aim to keep public information readable and accessible across common devices and assistive technologies. Visitors may contact us if a page, consent choice or document is difficult to access. Responsible use includes respecting other people, intellectual property, system security and applicable law. Automated scraping, credential attacks, fraudulent ad activity, impersonation, malicious uploads, spam and attempts to manipulate credits, rankings, reviews or analytics are prohibited and may lead to access restrictions and preservation of relevant evidence.",
+      "Our commercial services and account features are intended for adults and organisations. A person under eighteen should use the website only with a parent or lawful guardian and should not independently submit business, payment or publishing information. If we learn that a child’s personal data was submitted without valid authority, we may restrict the account and take reasonable steps to delete the information, subject to legal retention and security needs.",
+      "We aim to keep public information readable and accessible across common devices and assistive technologies. Visitors may contact us if a page, consent choice or document is difficult to access. Responsible use includes respecting other people, intellectual property, system security and applicable law. Automated scraping, credential attacks, fraudulent ad activity, impersonation, malicious uploads, spam and attempts to manipulate rankings, reviews or analytics are prohibited and may lead to access restrictions and preservation of relevant evidence.",
     ],
   },
   {
@@ -28,14 +28,14 @@ export const dpdpSections: LegalSection[] = [
   {
     title: "Purpose, legal context and scope",
     paragraphs: [
-      "This Digital Personal Data Protection Policy explains how Webgram IT Solution handles digital personal data in connection with webgramitsolution.in, business enquiries, client communications, guest-author accounts, article submissions, comments, support requests and related digital services. It is intended to support compliance with the Digital Personal Data Protection Act, 2023 of India, together with rules, notifications and directions that are applicable and in force when a processing activity takes place. The Act and its commencement provisions may be brought into force in stages; this page should therefore be read with the law actually effective on the relevant date.",
+      "This Digital Personal Data Protection Policy explains how Webgram IT Solution handles digital personal data in connection with webgramitsolution.in, business enquiries, client communications, support requests and related digital services. It is intended to support compliance with the Digital Personal Data Protection Act, 2023 of India, together with rules, notifications and directions that are applicable and in force when a processing activity takes place. The Act and its commencement provisions may be brought into force in stages; this page should therefore be read with the law actually effective on the relevant date.",
       "For activities where Webgram IT Solution determines the purpose and means of processing, we act as the Data Fiduciary. A person to whom the personal data relates is the Data Principal. A hosting, email, analytics, advertising, database or other supplier processing data for an instructed purpose may act as a Data Processor. When we process personal data solely on a client’s documented instructions, the client may be the relevant Data Fiduciary and the project agreement may assign additional responsibilities.",
     ],
   },
   {
     title: "Personal data and collection channels",
     paragraphs: [
-      "Personal data may include your name, business or professional details, email address, telephone number, country, project requirements, enquiry history, support messages and communications. Guest authors may also provide login information, a display name, biography, profile details, article drafts, publication instructions, comments and credit-related activity. Client delivery records may include authorised system contacts, approvals, invoices, service requests and materials supplied for a project. Please do not place passwords, complete payment-card details, government identity documents or unrelated sensitive information in ordinary forms or articles.",
+      "Personal data may include your name, business or professional details, email address, telephone number, country, project requirements, enquiry history, support messages and communications. Client delivery records may include authorised system contacts, approvals, invoices, service requests and materials supplied for a project. Please do not place passwords, complete payment-card details, government identity documents or unrelated sensitive information in ordinary forms or articles.",
       "Technical records may include an IP address, date and time, requested page, browser and device details, referring page, language or country selection, consent choice, session and security events. We collect information directly from you, automatically from your browser where permitted, from an organisation that authorises you to communicate for it, and from service providers used to deliver a requested feature. We do not collect personal data merely because it is technically possible, and we do not sell contact lists or personal data.",
     ],
     bullets: ["Contact and business-enquiry details", "Account, content and moderation records", "Project communications and approvals", "Consent, technical and security records"],
@@ -50,7 +50,7 @@ export const dpdpSections: LegalSection[] = [
   {
     title: "Permitted and legitimate uses",
     paragraphs: [
-      "We use personal data to respond to an enquiry, prepare a proposal, take requested pre-contract steps, deliver and support agreed services, authenticate users, manage guest content, moderate and publish approved articles, operate programme credits, send transactional notices, maintain records, prevent fraud, secure systems, comply with law and establish or defend legal claims. We may also handle data for certain legitimate uses recognised by applicable DPDP law, including specified voluntary provision, compliance with judgments or legal duties, responding to medical or safety emergencies where relevant, and protecting systems or people from unlawful activity.",
+      "We use personal data to respond to an enquiry, prepare a proposal, take requested pre-contract steps, deliver and support agreed services, authenticate administrators and publish company articles, send transactional notices, maintain records, prevent fraud, secure systems, comply with law and establish or defend legal claims. We may also handle data for certain legitimate uses recognised by applicable DPDP law, including specified voluntary provision, compliance with judgments or legal duties, responding to medical or safety emergencies where relevant, and protecting systems or people from unlawful activity.",
       "A legitimate use is not a blanket permission for unrelated marketing or unrestricted reuse. We consider the context in which information was supplied, the purpose communicated, reasonable expectations and applicable restrictions. Optional analytics or advertising technologies are subject to the consent controls described on the website and in our Cookie Policy. We do not use consent language to conceal a materially different purpose, and we do not make decisions producing significant effects solely through undisclosed automated profiling.",
     ],
   },
@@ -65,13 +65,13 @@ export const dpdpSections: LegalSection[] = [
     title: "Duties of Data Principals",
     paragraphs: [
       "The DPDP framework also places duties on Data Principals. You should comply with applicable law while exercising rights, provide authentic information, avoid impersonating another person, avoid suppressing material information when seeking correction or erasure, and not register a false or frivolous grievance. Contact details and account information should be kept reasonably current so notices and security messages reach the correct person.",
-      "You are responsible for protecting access codes, using forms and guest features lawfully, and notifying us promptly if an account or communication channel appears compromised. Rights requests must not be used to obtain another person’s data, disrupt legitimate records, conceal fraud or interfere with legal obligations. These duties do not remove genuine rights or prevent a good-faith complaint. We assess requests on their circumstances rather than rejecting them merely because they require effort.",
+      "You are responsible for protecting access codes, using forms lawfully, and notifying us promptly if an account or communication channel appears compromised. Rights requests must not be used to obtain another person’s data, disrupt legitimate records, conceal fraud or interfere with legal obligations. These duties do not remove genuine rights or prevent a good-faith complaint. We assess requests on their circumstances rather than rejecting them merely because they require effort.",
     ],
   },
   {
     title: "Children and persons with lawful guardians",
     paragraphs: [
-      "Our commercial, client and guest-author services are intended for adults and organisations. A person under eighteen should not independently create a guest account, submit an enquiry containing personal data, publish content, participate in credits or provide project information. Where the DPDP Act requires verifiable consent from a parent or lawful guardian before processing a child’s personal data or the data of a person with a lawful guardian, the required authorisation must be established before the relevant processing begins.",
+      "Our commercial and client services are intended for adults and organisations. A person under eighteen should not independently submit an enquiry containing personal data or provide project information. Where the DPDP Act requires verifiable consent from a parent or lawful guardian before processing a child’s personal data or the data of a person with a lawful guardian, the required authorisation must be established before the relevant processing begins.",
       "We do not knowingly undertake tracking or behavioural monitoring of children, or targeted advertising directed at children. If we learn that personal data of a child was submitted without valid authority, we may restrict access and take reasonable steps to erase it, subject to security, legal preservation and verification needs. A parent or lawful guardian may contact us with sufficient details to identify the material while avoiding unnecessary disclosure of the child’s information.",
     ],
   },
@@ -92,7 +92,7 @@ export const dpdpSections: LegalSection[] = [
   {
     title: "Accuracy, retention and erasure",
     paragraphs: [
-      "Where personal data is used to make a decision affecting a person or is likely to be disclosed to another Data Fiduciary, we take reasonable steps to keep it complete, accurate and consistent. You can help by correcting changed contact or project information. Published author details, approved articles and comments may remain public until corrected, withdrawn or removed under editorial and legal rules. Search engines and third-party archives may retain copies outside our direct control after source content changes.",
+      "Where personal data is used to make a decision affecting a person or is likely to be disclosed to another Data Fiduciary, we take reasonable steps to keep it complete, accurate and consistent. You can help by correcting changed contact or project information. Published author details and company articles may remain public until corrected, withdrawn or removed under editorial and legal rules. Search engines and third-party archives may retain copies outside our direct control after source content changes.",
       "We keep personal data only while reasonably necessary for the specified purpose or another lawful requirement. Retention considers account operation, project delivery, tax and accounting duties, dispute limitation periods, fraud prevention, security evidence, publication integrity and legal holds. When consent is withdrawn or the purpose is no longer served, data is erased or anonymised unless retention is necessary under law. Backups may expire through controlled rotation rather than immediate deletion, with use restricted during that period.",
     ],
   },
@@ -123,14 +123,14 @@ export const privacySections: LegalSection[] = [
   {
     title: "Who controls information and the scope of this policy",
     paragraphs: [
-      "Webgram IT Solution determines why and how personal information is handled when you browse this website, request a quotation, contact support, create a guest-author account, submit an article, leave a comment or communicate about a digital project. This policy applies to information collected through webgramitsolution.in and directly related communications. A separate written agreement may add project-specific privacy duties where we process information for a client.",
+      "Webgram IT Solution determines why and how personal information is handled when you browse this website, request a quotation, contact support, communicate about a digital project. This policy applies to information collected through webgramitsolution.in and directly related communications. A separate written agreement may add project-specific privacy duties where we process information for a client.",
       "This policy does not control a third-party website, payment provider, social network, advertiser or platform merely because it is mentioned or linked. Those organisations decide their own practices. We use ‘personal data’ in the sense used by applicable law: digital information about an identifiable individual. Business information may also be protected when it identifies a proprietor, employee, customer or contact person.",
     ],
   },
   {
     title: "Personal data we collect",
     paragraphs: [
-      "Information you provide can include name, business name, email address, phone number, country, project requirements, support messages, enquiry history, account details and article submissions. Guest authors may provide a display name, biography, profile details, draft content and publication instructions. We never ask you to place passwords, full payment-card numbers, government identification or highly sensitive personal details inside an ordinary enquiry or article field.",
+      "Information you provide can include name, business name, email address, phone number, country, project requirements, support messages, enquiry history, and account details. We never ask you to place passwords, full payment-card numbers, government identification or highly sensitive personal details inside an ordinary enquiry or article field.",
       "Our systems may receive IP address, date and time, requested page, browser and device information, referring page, language, country choice, cookie consent and security events. These records help deliver pages, diagnose faults, prevent abuse and understand aggregate performance. Advertising and analytics data is processed only when enabled and subject to the relevant consent and platform controls. We do not intentionally build hidden personal profiles for sale.",
     ],
     bullets: ["Contact and business enquiry details", "Account, article and moderation records", "Technical, consent and security events", "Project communications and agreed delivery records"],
@@ -138,14 +138,14 @@ export const privacySections: LegalSection[] = [
   {
     title: "Purpose, consent and lawful processing",
     paragraphs: [
-      "We process data to answer enquiries, prepare proposals, deliver contracted services, authenticate users, review and publish approved content, operate credits, send transactional notices, secure the website, comply with law and establish or defend legal claims. Where consent is the appropriate basis, the request should be clear and limited to the stated purpose. You may withdraw consent for future optional processing as easily as it was given, although withdrawal does not invalidate earlier lawful activity.",
+      "We process data to answer enquiries, prepare proposals, deliver contracted services, authenticate administrators and publish company content, send transactional notices, secure the website, comply with law and establish or defend legal claims. Where consent is the appropriate basis, the request should be clear and limited to the stated purpose. You may withdraw consent for future optional processing as easily as it was given, although withdrawal does not invalidate earlier lawful activity.",
       "Some processing is necessary to take requested steps or perform a contract. Other activity may be needed for legal compliance or legitimate operational purposes such as fraud prevention, service security and maintaining business records, balanced against individual rights. We do not use consent to bypass a legal restriction. Optional promotional communication and non-essential advertising technologies are separated from essential account, security and service messages wherever reasonably possible.",
     ],
   },
   {
     title: "How information is used and decisions are made",
     paragraphs: [
-      "Authorised team members use relevant information to understand your request, communicate next steps, manage work, issue service notices, moderate submissions and improve the clarity and reliability of our website. Automated checks may identify spam, malformed input, duplicate activity or publication timing, but material account or editorial decisions can be reviewed by a person. Credits and rewards are governed by published programme rules and protected transaction records.",
+      "Authorised team members use relevant information to understand your request, communicate next steps, manage work, issue service notices, moderate submissions and improve the clarity and reliability of our website. Automated checks may identify spam, malformed input, duplicate activity or publication timing, but material account or editorial decisions can be reviewed by a person.",
       "We may create aggregated statistics that no longer reasonably identify an individual, such as broad page-performance totals or service-interest trends. Such summaries help planning and quality improvement. We do not sell personal data, rent contact lists or disclose an enquiry merely because another company wants leads. We do not send your unpublished article or confidential project brief to an unrelated party for its own marketing.",
     ],
   },
@@ -185,7 +185,7 @@ export const termsSections: LegalSection[] = [
     title: "Permitted use and prohibited conduct",
     paragraphs: [
       "You may browse, print reasonable extracts for internal evaluation and contact us for legitimate business purposes. You may not interfere with availability, bypass access controls, probe vulnerabilities without written permission, introduce malware, overload forms, harvest contact details, send spam, impersonate another person or use the website to violate law or third-party rights. Automated access must respect published controls and must not impair normal visitors.",
-      "Manipulating advertising interactions, account credits, article reads, shares, reviews, analytics or search signals is prohibited. Coordinated clicking, self-clicking advertisements, encouraging others to click, bot traffic and deceptive placement activity can harm advertisers and the website. We may suppress features, invalidate credits, suspend access, preserve relevant logs and cooperate with platforms or authorities when activity reasonably indicates abuse. Legitimate accidental actions are not treated as misconduct without supporting context.",
+      "Manipulating advertising interactions, article reads, shares, reviews, analytics or search signals is prohibited. Coordinated clicking, self-clicking advertisements, encouraging others to click, bot traffic and deceptive placement activity can harm advertisers and the website. We may suppress features, suspend access, preserve relevant logs and cooperate with platforms or authorities when activity reasonably indicates abuse. Legitimate accidental actions are not treated as misconduct without supporting context.",
     ],
   },
   {
@@ -200,13 +200,6 @@ export const termsSections: LegalSection[] = [
     paragraphs: [
       "Clients must provide accurate requirements, lawful content, timely feedback and authorised access to necessary systems. They are responsible for reviewing spelling, prices, product claims, legal notices, tax treatment, accessibility obligations and regulated-industry content before launch. An approval confirms that the supplied stage may proceed. Later reversal can affect cost and timing. We may refuse instructions that appear deceptive, infringing, unsafe or unlawful.",
       "The client must maintain backups and suitable access controls after handover unless maintenance is included. Platform updates, third-party integrations and security conditions can change after launch. Search visibility, advertising performance, sales and uptime depend on factors beyond development work. We provide professional effort within the agreed scope but do not promise a particular ranking, revenue, conversion rate, approval or uninterrupted third-party service.",
-    ],
-  },
-  {
-    title: "Guest authors, comments and community content",
-    paragraphs: [
-      "Guest submissions must be original, useful, lawful, accurate to the author’s knowledge and meet current editorial rules, including minimum length and link restrictions. The author must own the material or have permission to submit it. Plagiarism, undisclosed promotional content, malicious code, fabricated experience, unlawful claims and content that violates privacy or intellectual property are prohibited. Credits are programme benefits, not cash, wages or guaranteed consideration.",
-      "Submission does not guarantee publication. We may review, format, fact-check, request changes, reject, schedule, unpublish or remove content for quality, safety, legal or operational reasons. Authors remain responsible for their claims and must cooperate with legitimate correction requests. By submitting content, the author grants us a non-exclusive, worldwide, royalty-free licence to host, edit for presentation, reproduce, promote and archive it in connection with the website and its channels.",
     ],
   },
   {
@@ -238,7 +231,7 @@ export const cookieSections: LegalSection[] = [
     title: "Essential storage and site preferences",
     paragraphs: [
       "Essential technologies support account authentication, one-time-code flows, security, fraud prevention, load delivery and consent records. They may also remember language, country and interface preferences. Blocking them can prevent sign-in, saved drafts, secure forms or reliable page operation. We use essential storage because it is needed to provide a feature you request or protect the service, not to create an unrelated advertising profile.",
-      "A consent record remembers whether advertising was accepted or rejected so the prompt does not repeatedly interrupt browsing. Guest drafts may be stored in the visitor’s own browser until submitted or cleared. Removing browser storage may erase those drafts and reset preferences. Users on shared devices should sign out and clear sensitive local information after use.",
+      "A consent record remembers whether advertising was accepted or rejected so the prompt does not repeatedly interrupt browsing. Clearing browser storage may reset preferences. Users on shared devices should sign out and clear sensitive local information after use.",
     ],
   },
   {
@@ -323,9 +316,8 @@ export const disclaimerSections: LegalSection[] = [
     ],
   },
   {
-    title: "User content, testimonials and reviews",
+    title: "Testimonials and reviews",
     paragraphs: [
-      "Guest articles, comments and other user contributions represent their respective authors unless expressly adopted by Webgram IT Solution. We may moderate for quality and safety, but cannot guarantee every statement is complete or correct. Authors are responsible for originality, permissions, lawful claims and disclosure of relevant commercial relationships.",
       "Testimonials and reviews reflect the experience and opinion of the person who provided them. Individual outcomes vary. We do not invent project-specific endorsements or treat a short rating as proof of a particular result. Reviews may be selected for relevance and readability, and publication status may be managed to prevent spam or abuse. Selection does not change the substance of a genuine review.",
     ],
   },

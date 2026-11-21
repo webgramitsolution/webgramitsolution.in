@@ -1,3 +1,4 @@
+import { DEFAULT_AUTH_URL, DEFAULT_AUTH_PUBLISHABLE_KEY } from "./public-config";
 // Validates Supabase Auth identity for protected server functions.
 import { createMiddleware } from '@tanstack/react-start'
 import { getRequest } from '@tanstack/react-start/server'
@@ -34,8 +35,8 @@ function createSupabaseFetch(supabaseKey: string): typeof fetch {
 export const requireSupabaseAuth = createMiddleware({ type: 'function' }).middleware([attachSupabaseAuthLazily]).server(
   async ({ next }) => {
 
-    const SUPABASE_URL = process.env['SUPABASE_URL'];
-    const SUPABASE_PUBLISHABLE_KEY = process.env['SUPABASE_PUBLISHABLE_KEY'];
+    const SUPABASE_URL = (typeof process !== 'undefined' ? process.env['SUPABASE_URL'] : undefined) || DEFAULT_AUTH_URL;
+    const SUPABASE_PUBLISHABLE_KEY = (typeof process !== 'undefined' ? process.env['SUPABASE_PUBLISHABLE_KEY'] : undefined) || DEFAULT_AUTH_PUBLISHABLE_KEY;
 
     if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
       const missing = [

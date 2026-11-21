@@ -5,7 +5,7 @@ import { incrementBlogView } from "@/lib/blog.functions";
 import { ArrowRight, CalendarDays, Clock3, Eye, Home } from "lucide-react";
 
 import { BlogPublicHeader, type BlogMenuCategory } from "@/components/blog-public-header";
-import { BlogEngagement, BlogShareButtons } from "@/components/blog-engagement";
+import { BlogShareButtons } from "@/components/blog-engagement";
 import { BlogAdBand, BlogAdsConsent } from "@/components/blog-ads";
 import { Button } from "@/components/ui/button";
 import { articlePreviewBlockCount, articleAdBoundaries } from "@/lib/article-disclosure";
@@ -144,7 +144,7 @@ export function BlogDetailPage({ post, categories }: { post: Post; categories: B
       {!expanded ? <BlogAdBand position="afterPreview" label="Advertisement below Read more" /> : null}
       {faqs.length ? <section id="article-faqs" aria-labelledby="article-faqs-title" className="mx-auto mb-10 w-[min(100%,760px)]"><h2 id="article-faqs-title" className="text-2xl font-extrabold text-navy">Frequently Asked Questions</h2><div className="mt-4 divide-y rounded-md border border-border bg-card">{faqs.map((faq, index) => <details key={`${index}-${faq.question}`} className="group p-4"><summary className="cursor-pointer font-bold text-navy">{faq.question}</summary><p className="mt-3 text-sm leading-6 text-muted-foreground">{faq.answer}</p></details>)}</div></section> : null}
       <div hidden={!expanded}>
-      {expanded ? <><BlogEngagement postId={post.id} title={post.title} /><BlogAdBand position="afterComments" label="Advertisement below comments" /></> : null}
+      {expanded ? <BlogAdBand position="afterComments" label="Advertisement below article" /> : null}
       </div>
         </div>
         <aside className="hidden xl:block"><div className="sticky top-28"><BlogAdBand rail position="detailRight" label="Advertisement — right" /></div></aside>

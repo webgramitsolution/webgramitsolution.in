@@ -38,13 +38,25 @@ import { Textarea } from "@/components/ui/textarea";
 import { contactImages, ikResize } from "@/lib/site-images";
 import { SiteHeader } from "@/components/site-header";
 import { submitEnquiry } from "@/lib/enquiry.functions";
-import { publicPageSchema } from "@/lib/site-identity";
+import { publicPageSchema, SITE_URL } from "@/lib/site-identity";
 import { contactFaqQuestions, pickFaqs } from "@/lib/faq-content";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     links: [{ rel: "canonical", href: "https://webgramitsolution.in/contact" }],
-    scripts: publicPageSchema("/contact", "Contact Webgram IT Solution", "Contact the Webgram IT Solution team in Sangam Vihar, New Delhi for website and ecommerce development.", "ContactPage"),
+    scripts: [...publicPageSchema("/contact", "Contact Webgram IT Solution", "Contact the Webgram IT Solution team in Sangam Vihar, New Delhi for website and ecommerce development.", "ContactPage"), {
+      type: "application/ld+json",
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "@id": `${SITE_URL}/contact#faq`,
+        mainEntity: faqs.map(([question, answer]) => ({
+          "@type": "Question",
+          name: question,
+          acceptedAnswer: { "@type": "Answer", text: answer },
+        })),
+      }),
+    }],
     meta: [
       { title: "Request a Website Development Quote | Webgram India" },
       {

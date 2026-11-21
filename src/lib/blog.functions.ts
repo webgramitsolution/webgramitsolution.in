@@ -18,7 +18,7 @@ const published = "status = 'published' AND published_at <= UTC_TIMESTAMP(3)";
 export const getPublicBlog = createServerFn({ method: "GET" }).handler(async () => {
   const { rows } = await import("./mysql.server");
   const [categories, posts] = await Promise.all([
-    rows<Category>("SELECT id,name,slug,description,display_order,parent_id FROM blog_categories WHERE is_active = TRUE ORDER BY display_order"),
+    rows<Category>("SELECT id,name,slug,description,display_order,parent_id FROM blog_categories c WHERE is_active = TRUE AND EXISTS (SELECT 1 FROM blog_posts p WHERE (p.category_id = c.id OR p.subcategory_id = c.id) AND p.status = 'published' AND p.noindex = FALSE AND p.published_at <= UTC_TIMESTAMP(3)) ORDER BY display_order"),
     rows<PostListItem>(`SELECT ${listColumns} FROM blog_posts WHERE ${published} ORDER BY published_at DESC, slug`),
   ]);
   return { categories, posts };
@@ -56,23 +56,13 @@ export const getPublicBlogCategory = createServerFn({ method: "GET" })
       rows<Pick<Category, "id" | "name" | "slug" | "parent_id">>("SELECT id,name,slug,parent_id FROM blog_categories WHERE parent_id = ? AND is_active = TRUE ORDER BY display_order", [category.id]),
       rows<PostListItem>(`SELECT ${listColumns} FROM blog_posts WHERE category_id = ? AND ${published} AND noindex = FALSE ORDER BY published_at DESC, slug`, [category.id]),
     ]);
-    return { category, children, posts };
+    return posts.length ? { category, children, posts } : null;
   });
 
 export const getLatestBlogPosts = createServerFn({ method: "GET" }).handler(async () => {
   const { rows } = await import("./mysql.server");
   return rows<PostCard>(`SELECT ${cardColumns} FROM blog_posts WHERE ${published} ORDER BY published_at DESC, slug LIMIT 3`);
 });
-
-export const getBlogComments = createServerFn({ method: "GET" })
-  .inputValidator((input: unknown) => z.object({ postId: z.string().uuid() }).parse(input))
-  .handler(async ({ data }) => {
-    const { rows } = await import("./mysql.server");
-    return rows<Pick<Tables["blog_comments"]["Row"], "id" | "author_name" | "body" | "created_at">>(
-      "SELECT c.id,c.author_name,c.body,c.created_at FROM blog_comments c JOIN blog_posts p ON p.id = c.post_id WHERE p.id = ? AND p.status = 'published' AND p.published_at <= UTC_TIMESTAMP(3) ORDER BY c.created_at",
-      [data.postId],
-    );
-  });
 
 export const incrementBlogView = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => z.object({ slug: slugSchema }).parse(input))
