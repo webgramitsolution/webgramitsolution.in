@@ -3,8 +3,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LocationsHub } from "@/components/location-page";
 
 const URL = "https://webgramitsolution.in/locations";
-const TITLE = "Website Development Locations in Delhi NCR | Webgram IT Solution";
-const DESCRIPTION = "Website and ecommerce development for Delhi, South Delhi, Noida, Gurugram, Faridabad and Delhi NCR businesses by Webgram IT Solution, New Delhi.";
+const TITLE = "Areas We Serve — Website Development Across India | Webgram";
+const DESCRIPTION = "Explore website design and development services in Delhi NCR, Delhi neighbourhoods and industrial areas, Gujarat and Ludhiana, with remote delivery across India.";
 
 export const Route = createFileRoute("/locations/")({
   head: () => ({

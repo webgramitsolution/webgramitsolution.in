@@ -1,21 +1,42 @@
-import { localSearch } from "@/lib/location-search";
+import { localSearch, locationAnswers } from "@/lib/location-search";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Building2, CheckCircle2, Clock3, KeyRound, MapPin, MessageCircle, Phone, Search, ShoppingCart, Smartphone, Wrench, type LucideIcon } from "lucide-react";
+import { ArrowRight, Building2, CheckCircle2, Clock3, KeyRound, MapPin, MessageCircle, Search, ShoppingCart, Smartphone, Wrench, ClipboardList, Palette, Code2, ShieldCheck, Rocket, type LucideIcon } from "lucide-react";
 
 import { ScrollingFrame } from "@/components/portfolio-showcase";
 import { SiteHeader } from "@/components/site-header";
 import { TrustFacts } from "@/components/trust-facts";
-import { locations, projectsForLocation, type ServiceLocation } from "@/lib/locations";
+import { locations, locationGroups, projectsForLocation, type ServiceLocation } from "@/lib/locations";
 import { portfolio } from "@/lib/portfolio";
 
+import { locationVisual } from "@/lib/location-visuals";
+import { IMAGES, maintenanceImages, technologyStack } from "@/lib/site-images";
+import corporateImage from "@/assets/corporate-websites.jpg";
+import businessImage from "@/assets/business-websites.jpg";
+import shopifyImage from "@/assets/shopify-hero.jpg";
+import wooImage from "@/assets/woocommerce-hero.jpg";
+
+const serviceImages = [IMAGES.ecommerce, IMAGES.b2b, corporateImage, wooImage, IMAGES.custom, maintenanceImages.hero, shopifyImage, businessImage];
+
+const process = [
+  [Search, "Discovery", "Review your buyers, catalogue and growth goals."],
+  [ClipboardList, "Scope", "Agree page structure, features and integrations."],
+  [Palette, "Design", "Review responsive layouts and key user journeys."],
+  [Code2, "Build", "Develop the website, content tools and workflows."],
+  [ShieldCheck, "Test", "Check mobile pages, forms, checkout and redirects."],
+  [Rocket, "Launch", "Go live, hand over and agree ongoing support."],
+] as const;
+
+const locationTech = technologyStack.filter(({ name }) => ["WordPress", "WooCommerce", "React.js", "Next.js", "Node.js"].includes(name));
+
 const services: [string, string, LucideIcon, string][] = [
-  ["Ecommerce Website Development", "/solutions/ecommerce-development", ShoppingCart, "Online stores with product catalogues, secure checkout, payments and shipping."],
-  ["B2B Ecommerce & Wholesale Portals", "/solutions/b2b-commerce", Building2, "Trade logins, bulk ordering, quote requests and customer-specific pricing."],
+  ["Ecommerce Website Design & Development", "/solutions/ecommerce-development", ShoppingCart, "Online stores with product catalogues, secure checkout, payments and shipping."],
+  ["B2B & B2C Ecommerce Websites", "/solutions/b2b-commerce", Building2, "Trade logins, bulk ordering, quote requests and customer-specific pricing."],
   ["Business & Corporate Websites", "/solutions/website-design-development", Smartphone, "Mobile-first company websites built to explain services and win enquiries."],
-  ["WooCommerce Development", "/services/woocommerce", ShoppingCart, "Custom WooCommerce stores with Razorpay, COD and Shiprocket integrations."],
-  ["Custom Web Portals", "/services/web-portal-development", Wrench, "Dashboards, member areas and workflow portals for your team and customers."],
+  ["Custom WooCommerce Website Development", "/services/woocommerce", ShoppingCart, "WordPress ecommerce website design with product variants, checkout and shipping."],
+  ["Custom Ecommerce Solutions", "/services/web-portal-development", Wrench, "Commerce applications, account dashboards and workflow portals tailored to your operations."],
   ["Website Maintenance & SEO", "/services/website-maintenance", Search, "Updates, backups, speed fixes and on-page SEO after your website launches."],
-  ["Shopify Website Design", "/services/shopify", ShoppingCart, "Shopify theme design, store migration, payments and shipping setup."],
+  ["Shopify & WooCommerce Websites", "/services/shopify", ShoppingCart, "Shopify theme design, storefront migration and platform selection support."],
+  ["Website Redesign & Development", "/services/website-design", Smartphone, "Update mobile layouts, enquiry flows and redirects for an existing website."],
 ];
 
 const reasons: [string, string][] = [
@@ -32,46 +53,37 @@ const glance: [LucideIcon, string, string][] = [
   [KeyRound, "Ownership", "You own the website, content and domain"],
 ];
 
-const heroDescriptions: Record<string, string> = {
-  delhi: "Illustrative photo of a Delhi market retailer packing ecommerce orders",
-  noida: "Illustrative photo of a developer working in a Noida software office",
-  faridabad: "Illustrative photo of a Faridabad industrial supplier checking electrical stock",
-  gurugram: "Illustrative photo of glass office towers in Gurugram",
-  "delhi-ncr": "Illustrative photo of Delhi NCR wholesale staff reviewing inventory on a laptop",
-  "south-delhi": "Illustrative photo of a South Delhi boutique owner working on a laptop",
-};
-
-const imageFor = (slug: string) => `/images/locations/${slug}.webp`;
-
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return <p className="flex items-center gap-2 text-[13px] font-bold uppercase tracking-[0.14em] text-primary"><span className="h-0.5 w-7 bg-primary" />{children}</p>;
 }
 
 export function LocationPage({ location: l }: { location: ServiceLocation }) {
   const content = localSearch[l.slug];
-  const featured = content ? [...content.priority, ...services.keys()].filter((value, index, all) => all.indexOf(value) === index).map((i) => services[i]!) : services;
+  const priorities = content?.priority ?? (l.zone === "delhi-industrial" ? [1, 4, 3] : l.zone === "delhi-neighbourhoods" ? [2, 7, 0] : [0, 1, 2]);
+  const featured = [...new Set([...priorities, ...services.keys()])];
+  const faqs = locationAnswers(l);
   const projects = projectsForLocation(l.slug, portfolio);
-  const others = locations.filter((x) => x.slug !== l.slug);
-  const img = imageFor(l.slug);
-  const imgAlt = heroDescriptions[l.slug];
+  const nearby = locations.filter((location) => location.slug !== l.slug && location.zone === l.zone).slice(0, 5);
+  const image = locationVisual(l);
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
-      <section className="location-hero relative flex flex-col overflow-hidden bg-navy text-on-dark md:block md:h-[420px]">
-        <img src={img} alt={imgAlt} width={504} height={504} fetchPriority="high" className="order-last aspect-[16/9] w-full object-cover object-center md:absolute md:inset-y-0 md:right-0 md:h-full md:w-[58%]" />
+      <section className="location-hero relative flex flex-col overflow-hidden bg-navy text-on-dark md:block md:min-h-[410px]">
+        <img src={image.src} alt={image.alt} width={image.size} height={image.size} fetchPriority="high" className="order-last aspect-[16/9] w-full object-cover object-center md:absolute md:inset-y-0 md:right-0 md:h-full md:w-[58%]" />
         <div className="absolute inset-0 hidden bg-gradient-to-r from-navy via-navy/75 to-transparent md:block" aria-hidden="true" />
-        <div className="page-shell relative flex h-full items-center py-10 md:py-0">
+        <div className="page-shell relative flex min-h-[360px] items-center py-10 md:min-h-[410px] md:py-12">
           <div className="min-w-0 max-w-[620px]">
             <nav aria-label="Breadcrumb" className="sr-only">
               <Link tabIndex={-1} to="/" className="hover:text-on-dark">Home</Link><span aria-hidden="true">›</span>
               <Link tabIndex={-1} to="/locations" className="hover:text-on-dark">Locations</Link><span aria-hidden="true">›</span>
               <span aria-current="page" className="text-on-dark">{l.city}</span>
             </nav>
-            <h1 className="text-balance text-[30px] font-medium leading-[1.15] md:text-[36px] lg:text-[40px]">{l.keyword}</h1>
+            <p className="mb-3 text-xs font-extrabold uppercase tracking-widest text-[#f4c657]">Website design &amp; development</p>
+            <h1 className="text-balance text-[32px] font-extrabold leading-[1.12] md:text-[37px] lg:text-[44px]">{l.keyword}</h1>
             <p className="mt-3 text-[16px] leading-7 text-on-dark/90">{l.intro}</p>
             <div className="mt-5 flex flex-wrap gap-3">
-              <Link to="/contact" className="inline-flex h-11 items-center gap-2 rounded-md bg-gold px-6 text-[15px] font-semibold text-navy hover:opacity-90">Get a Free Quote <ArrowRight className="h-4 w-4" /></Link>
-              <a href="tel:+917551120242" className="inline-flex h-11 items-center gap-2 rounded-md border border-on-dark/60 px-6 text-[15px] font-semibold text-on-dark hover:bg-on-dark/10"><Phone className="h-4 w-4" />+91 75511 20242</a>
+              <Link to="/contact" className="inline-flex h-11 items-center gap-2 rounded-md bg-[#f4c657] px-6 text-[15px] font-bold text-navy hover:bg-[#ffe29c]">Get a Free Consultation <ArrowRight className="h-4 w-4" /></Link>
+              <Link to="/work/portfolio" className="inline-flex h-11 items-center gap-2 rounded-md border border-on-dark/60 px-6 text-[15px] font-semibold text-on-dark hover:bg-on-dark/10">View Our Work <ArrowRight className="h-4 w-4" /></Link>
             </div>
           </div>
         </div>
@@ -93,14 +105,21 @@ export function LocationPage({ location: l }: { location: ServiceLocation }) {
           <Eyebrow>Our services</Eyebrow>
           <h2 className="mt-2 text-[26px] leading-tight text-navy md:text-[30px]">Website services for {l.city} businesses</h2>
           <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {featured.map(([name, to, Icon, text]) => (
-              <a key={to} href={to} className="group flex min-w-0 flex-col rounded-xl border border-border bg-card p-5 shadow-card transition-colors hover:border-primary">
-                <span className="grid h-11 w-11 place-items-center rounded-lg bg-primary-soft text-primary"><Icon className="h-5 w-5" /></span>
-                <h3 className="mt-4 text-[18px] leading-snug text-navy">{name}</h3>
-                <p className="mt-2 flex-1 text-[15px] leading-6 text-muted-foreground">{text}</p>
-                <span className="mt-4 inline-flex items-center gap-1.5 text-[15px] font-semibold text-primary">Learn more <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" /></span>
-              </a>
-            ))}
+            {featured.map((index) => {
+              const [name, to, Icon, text] = services[index]!;
+              const visual = serviceImages[index];
+              return (
+                <a key={to} href={to} className="group flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card shadow-card transition-colors hover:border-primary">
+                  {visual ? <img src={visual} alt="" width={800} height={450} loading="lazy" className="aspect-[16/9] w-full object-cover" /> : null}
+                  <div className="flex flex-1 flex-col p-5">
+                    <span className="grid h-10 w-10 place-items-center rounded-lg bg-primary-soft text-primary"><Icon className="h-5 w-5" aria-hidden="true" /></span>
+                    <h3 className="mt-3 text-lg font-extrabold leading-snug text-navy">{name}</h3>
+                    <p className="mt-2 flex-1 leading-6 text-muted-foreground">{text}</p>
+                    <span className="mt-4 inline-flex items-center gap-1.5 font-semibold text-primary">Explore service <ArrowRight className="h-4 w-4" aria-hidden="true" /></span>
+                  </div>
+                </a>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -110,7 +129,7 @@ export function LocationPage({ location: l }: { location: ServiceLocation }) {
           <div className="page-shell">
             <Eyebrow>Project planning</Eyebrow>
             <h2 className="mt-2 text-[26px] leading-tight text-navy md:text-[30px]">Planning your website in {l.city}</h2>
-            <ol className="mt-7 grid gap-4 md:grid-cols-3">
+            <ol className="mt-7 grid grid-cols-[repeat(auto-fit,minmax(min(100%,15rem),1fr))] gap-4">
               {l.projectFocus.map((focus, index) => (
                 <li key={focus.title} className="min-w-0 rounded-xl border border-border bg-card p-6 shadow-card">
                   <span className="grid h-10 w-10 place-items-center rounded-full bg-navy text-[16px] font-semibold text-on-dark">{index + 1}</span>
@@ -132,6 +151,33 @@ export function LocationPage({ location: l }: { location: ServiceLocation }) {
           <div className="rounded-xl border border-border bg-card p-6 shadow-card md:p-7">
             <h2 className="text-[22px] text-navy md:text-[24px]">Areas we cover</h2>
             <ul className="mt-5 grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-3">{l.areas.map((a) => <li key={a} className="flex min-w-0 items-center gap-2 text-[15px] text-navy"><MapPin className="h-4 w-4 shrink-0 text-primary" /><span className="min-w-0">{a}</span></li>)}</ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-border py-12">
+        <div className="page-shell">
+          <Eyebrow>Our development process</Eyebrow>
+          <h2 className="mt-2 text-3xl font-extrabold text-navy">From requirements to a live website</h2>
+          <ol className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
+            {process.map(([Icon, title, description]) => (
+              <li key={title}>
+                <span className="grid h-11 w-11 place-items-center rounded-full bg-primary-soft text-primary"><Icon className="h-5 w-5" aria-hidden="true" /></span>
+                <h3 className="mt-3 font-extrabold text-navy">{title}</h3>
+                <p className="mt-1 text-sm leading-6 text-muted-foreground">{description}</p>
+              </li>
+            ))}
+          </ol>
+          <div className="mt-8 grid items-center gap-5 border-t border-border pt-6 md:grid-cols-[1fr_2fr]">
+            <h2 className="text-xl font-extrabold text-navy">Platforms and technology we use</h2>
+            <ul className="flex flex-wrap gap-3">
+              {locationTech.map(({ name, src }) => (
+                <li key={name} className="flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm font-semibold">
+                  <img src={src} alt="" width={28} height={28} loading="lazy" className="h-7 w-7 object-contain" />{name}
+                </li>
+              ))}
+              <li className="rounded-lg border border-border bg-card px-3 py-2 text-sm font-semibold">Shopify</li>
+            </ul>
           </div>
         </div>
       </section>
@@ -165,10 +211,10 @@ export function LocationPage({ location: l }: { location: ServiceLocation }) {
       <section className="py-12 md:py-16">
         <div className="page-shell">
           <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center">
-          <div className="rounded-2xl border border-border bg-sky-soft p-6 md:p-8">
+          <div id="faq" className="rounded-2xl border border-border bg-sky-soft p-6 md:p-8">
             <h2 className="text-2xl font-extrabold text-navy">Questions about websites in {l.city}</h2>
             <div className="mt-4 divide-y divide-border">
-              {content?.answers.map(([question, answer]) => (
+              {faqs.map(([question, answer]) => (
                 <details key={question} className="py-4">
                   <summary className="cursor-pointer font-bold text-navy">{question}</summary>
                   <p className="mt-3 leading-7 text-muted-foreground">{answer}</p>
@@ -202,9 +248,9 @@ export function LocationPage({ location: l }: { location: ServiceLocation }) {
 
       <section className="py-10 md:py-12">
         <div className="page-shell">
-          <h2 className="text-[20px] text-navy">We also serve</h2>
+          <h2 className="text-[20px] text-navy">Explore other service areas</h2>
           <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-            {others.map((x) => (
+            {nearby.map((x) => (
               <Link key={x.slug} to="/locations/$city" params={{ city: x.slug }} className="flex min-w-0 items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-[15px] font-medium text-navy shadow-card hover:border-primary hover:text-primary">
                 <MapPin className="h-4 w-4 shrink-0 text-primary" /><span className="min-w-0">{x.city}</span><ArrowRight className="ml-auto h-4 w-4 shrink-0" />
               </Link>
@@ -224,22 +270,32 @@ export function LocationsHub() {
       <section className="location-hero relative overflow-hidden bg-navy text-on-dark">
         <div className="page-shell relative py-12 md:py-14">
           <nav aria-label="Breadcrumb" className="sr-only"><Link tabIndex={-1} to="/" className="hover:text-on-dark">Home</Link><span aria-hidden="true">›</span><span aria-current="page" className="text-on-dark">Locations</span></nav>
-          <h1 className="max-w-[780px] text-balance text-[30px] font-medium leading-[1.15] md:text-[38px]">Website & Ecommerce Development Across Delhi NCR</h1>
-          <p className="mt-4 max-w-[700px] text-[16px] leading-7 text-on-dark/85 md:text-[17px]">From our office in Sangam Vihar, New Delhi, we build websites and online stores for businesses in Delhi, Noida, Gurugram, Faridabad and nearby areas.</p>
+          <h1 className="max-w-[780px] text-balance text-[30px] font-medium leading-[1.15] md:text-[38px]">Website Development Service Areas Across India</h1>
+          <p className="mt-4 max-w-[700px] text-[16px] leading-7 text-on-dark/85 md:text-[17px]">From our office in Sangam Vihar, New Delhi, we build websites and ecommerce platforms for businesses in Delhi NCR and work remotely with teams in Gujarat, Ludhiana and across India.</p>
         </div>
       </section>
       <section className="py-12 md:py-16">
-        <div className="page-shell grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {locations.map((l) => (
+        <div className="page-shell space-y-12">
+          {locationGroups.map((group) => (
+            <section key={group.title}>
+              <h2 className="mb-5 text-2xl font-extrabold text-navy md:text-3xl">{group.title}</h2>
+              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {group.locations.map((l) => {
+                  const image = locationVisual(l);
+                  return (
             <Link key={l.slug} to="/locations/$city" params={{ city: l.slug }} className="group flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card shadow-card transition-colors hover:border-primary">
-              <img src={imageFor(l.slug)} alt={heroDescriptions[l.slug]} width={504} height={504} loading="lazy" className="aspect-[2/1] w-full object-cover object-right" />
+              <img src={image.src} alt={image.alt} width={image.size} height={image.size} loading="lazy" className="aspect-[2/1] w-full object-cover object-right" />
               <div className="flex flex-1 flex-col p-6">
               <p className="flex items-center gap-2 text-[14px] font-semibold text-primary"><MapPin className="h-4 w-4" />{l.city}</p>
-              <h2 className="mt-3 text-[20px] leading-snug text-navy">{l.keyword}</h2>
+              <h3 className="mt-3 text-[20px] leading-snug text-navy">{l.keyword}</h3>
               <p className="mt-3 flex-1 text-[15px] leading-6 text-muted-foreground">{localSearch[l.slug]?.description ?? l.description}</p>
               <span className="mt-5 inline-flex items-center gap-1.5 text-[15px] font-semibold text-primary">View {l.city} page <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" /></span>
               </div>
             </Link>
+                  );
+                })}
+              </div>
+            </section>
           ))}
         </div>
       </section>

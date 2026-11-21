@@ -1,12 +1,14 @@
-import { localSearch } from "@/lib/location-search";
-import { createFileRoute, notFound } from "@tanstack/react-router";
+import { localSearch, locationAnswers } from "@/lib/location-search";
+import { createFileRoute, notFound, redirect } from "@tanstack/react-router";
 import { LocationPage } from "@/components/location-page";
+import { locationVisual } from "@/lib/location-visuals";
 import { getLocation } from "@/lib/locations";
 
 const BASE = "https://webgramitsolution.in";
 
 export const Route = createFileRoute("/locations/$city")({
-  loader: ({ params }) => {
+  loader: ({ params, location: requestLocation }) => {
+    if (params.city === "gurgaon") throw redirect({ href: `/locations/gurugram${requestLocation.searchStr}`, statusCode: 301 });
     const location = getLocation(params.city);
     if (!location) throw notFound();
     return location;
@@ -14,6 +16,9 @@ export const Route = createFileRoute("/locations/$city")({
   head: ({ loaderData, params }) => {
     if (!loaderData) return { meta: [{ title: "Location not found" }, { name: "robots", content: "noindex" }] };
     const description = localSearch[params.city]?.description ?? loaderData.description;
+    const faqs = locationAnswers(loaderData);
+    const image = BASE + locationVisual(loaderData).src;
+    const areaType = loaderData.place ?? (["delhi-ncr", "south-delhi"].includes(params.city) ? "Place" : "City");
     const url = `${BASE}/locations/${params.city}`;
     return {
       links: [{ rel: "canonical", href: url }],
@@ -25,15 +30,24 @@ export const Route = createFileRoute("/locations/$city")({
         { property: "og:type", content: "website" },
         { property: "og:url", content: url },
         { name: "twitter:card", content: "summary_large_image" },
-        { property: "og:image", content: `${BASE}/images/locations/${params.city}.webp` },
-        { name: "twitter:image", content: `${BASE}/images/locations/${params.city}.webp` },
+        { property: "og:image", content: image },
+        { name: "twitter:image", content: image },
       ],
       scripts: [{
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@graph": [
-            { "@type": "Service", name: loaderData.keyword, serviceType: "Website & Ecommerce Development", description, areaServed: { "@type": ["delhi-ncr", "south-delhi"].includes(params.city) ? "Place" : "City", name: loaderData.city, containedInPlace: { "@type": "Country", name: "India" } }, provider: { "@id": `${BASE}/#business` }, url },
+            { "@type": "Service", name: loaderData.keyword, serviceType: "Website & Ecommerce Development", description, areaServed: { "@type": areaType, name: loaderData.city, ...(areaType === "Country" ? {} : { containedInPlace: { "@type": "Country", name: "India" } }) }, provider: { "@id": `${BASE}/#business` }, url },
+            ...(faqs.length ? [{
+              "@type": "FAQPage",
+              "@id": `${url}#faq`,
+              mainEntity: faqs.map(([question, answer]) => ({
+                "@type": "Question",
+                name: question,
+                acceptedAnswer: { "@type": "Answer", text: answer },
+              })),
+            }] : []),
             { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: `${BASE}/` }, { "@type": "ListItem", position: 2, name: "Locations", item: `${BASE}/locations` }, { "@type": "ListItem", position: 3, name: loaderData.city, item: url }] },
           ],
         }),

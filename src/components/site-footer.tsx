@@ -1,5 +1,5 @@
 import { Link, useLocation } from "@tanstack/react-router";
-import { locations } from "@/lib/locations";
+import { AreasWeServe } from "@/components/areas-we-serve";
 import { ArrowRight, Facebook, Instagram, Linkedin, Youtube, type LucideIcon } from "lucide-react";
 
 const LOGO_URL = "https://ik.imagekit.io/x3cipokny/webgram%20it%20solution?updatedAt=1790815003792";
@@ -46,12 +46,7 @@ export function SiteFooter() {
           </div>
         </div>
       )}
-      <nav aria-label="Areas we serve" className="page-shell border-b border-on-dark/15 py-5">
-        <p className="text-[14px] font-semibold">Areas We Serve</p>
-        <ul className="mt-2 flex flex-wrap gap-x-5 gap-y-2">
-          {locations.map((l) => <li key={l.slug}><a href={`/locations/${l.slug}`} className="text-[13px] text-on-dark/75 hover:text-on-dark">{l.keyword}</a></li>)}
-        </ul>
-      </nav>
+      <AreasWeServe />
       <div className="page-shell grid gap-y-7 py-9 md:grid-cols-[1.3fr_repeat(5,1fr)] md:gap-0 lg:grid-cols-[1.6fr_repeat(5,1fr)]">
         <div className="md:pr-6 lg:pr-10">
           <img src={LOGO_URL} alt="Webgram IT Solution" width={720} height={177} loading="lazy" className="h-[44px] w-auto object-contain brightness-0 invert" />

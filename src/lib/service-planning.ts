@@ -61,8 +61,8 @@ export const servicePlans = {
     links: [{ href: "/solutions/ecommerce-development", label: "Compare ecommerce platforms" }, { href: "/locations/gurugram", label: "Website designers serving Gurgaon and Gurugram" }],
   },
   woocommerce: {
-    title: "WooCommerce website design and WordPress store development",
-    summary: "WooCommerce suits businesses that want a WordPress storefront with control over hosting, plugins and catalogue rules. The right setup depends on how you sell and maintain the store.",
+    title: "Custom WooCommerce Website Development",
+    summary: "Our WordPress ecommerce website design covers catalogues, checkout and store updates for businesses that want control over their hosting, plugins and catalogue rules.",
     image: wooImage,
     alt: "WooCommerce online store design concept",
     choices: [
@@ -73,8 +73,8 @@ export const servicePlans = {
     links: [{ href: "/services/shopify", label: "Compare Shopify development" }, { href: "/locations/faridabad", label: "Ecommerce website developers serving Faridabad" }],
   },
   design: {
-    title: "Plan a responsive website design for your business",
-    summary: "Our Delhi NCR website design team maps the pages and actions visitors need, then designs mobile and desktop layouts around those requirements.",
+    title: "Business & Corporate Website Design",
+    summary: "Work with a Delhi NCR website agency on corporate sites, mobile redesigns and enquiry pages. We plan the site around what visitors need to learn or do.",
     image: IMAGES.platforms,
     alt: "Business site and dashboard design mockups across devices",
     choices: [

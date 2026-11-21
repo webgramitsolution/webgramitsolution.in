@@ -1,3 +1,5 @@
+import { expandedLocations } from "./location-expansion";
+
 export type ServiceLocation = {
   slug: string;
   city: string;
@@ -7,6 +9,9 @@ export type ServiceLocation = {
   intro: string;
   areas: string[];
   industries: string[];
+  zone?: "delhi-neighbourhoods" | "delhi-industrial" | "india";
+  place?: "Place" | "City" | "State" | "Country";
+  faq?: [string, string];
   projectFocus?: { title: string; text: string }[];
 };
 
@@ -15,7 +20,7 @@ export const locations: ServiceLocation[] = [
     slug: "delhi",
     city: "Delhi",
     keyword: "Ecommerce Website Developers for Delhi Retailers",
-    title: "Online Store Developers for Delhi Retailers | Webgram",
+    title: "Website Development Company in Delhi | Webgram",
     description: "Webgram IT Solution is an ecommerce website development company in Delhi building fast, SEO-ready online stores, WooCommerce shops and custom ecommerce platforms.",
     intro: "From our office in Sangam Vihar, New Delhi, we design and develop ecommerce websites for Delhi retailers, wholesalers and D2C brands — with a focus on fast pages, search-friendly structure and clear checkout.",
     areas: ["Connaught Place", "Karol Bagh", "Chandni Chowk", "Lajpat Nagar", "Dwarka", "Rohini", "Janakpuri", "Laxmi Nagar"],
@@ -60,7 +65,7 @@ export const locations: ServiceLocation[] = [
     slug: "gurugram",
     city: "Gurugram",
     keyword: "Website Designing Company in Gurgaon",
-    title: "Website Designing Company in Gurgaon (Gurugram) | Webgram IT Solution",
+    title: "Website Development Company in Gurgaon (Gurugram) | Webgram",
     description: "Premium website designing company in Gurgaon creating corporate websites, ecommerce stores and conversion-focused landing pages for Gurugram businesses.",
     intro: "We design modern, mobile-first corporate and ecommerce websites for Gurugram companies — including wholesale ecommerce for My Party Suppliers — focused on brand trust and lead generation.",
     areas: ["Cyber City", "Golf Course Road", "Sohna Road", "Udyog Vihar", "MG Road", "Sector 29"],
@@ -91,7 +96,15 @@ export const locations: ServiceLocation[] = [
     areas: ["Saket", "Hauz Khas", "Greater Kailash", "Malviya Nagar", "Sangam Vihar", "Kalkaji", "Nehru Place", "Vasant Kunj"],
     industries: ["Local retail", "Clinics & healthcare", "Restaurants", "Boutiques", "Coaching institutes", "Professional services"],
   },
+  ...expandedLocations,
 ];
+
+export const locationGroups = [
+  { key: "ncr", title: "Delhi NCR" },
+  { key: "delhi-neighbourhoods", title: "Delhi neighbourhoods" },
+  { key: "delhi-industrial", title: "Delhi industrial areas" },
+  { key: "india", title: "Across India" },
+].map(({ key, title }) => ({ title, locations: locations.filter((location) => (location.zone ?? "ncr") === key) }));
 
 export const getLocation = (slug: string) => locations.find((l) => l.slug === slug);
 

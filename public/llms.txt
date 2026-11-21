@@ -23,11 +23,12 @@ Contact: +91 7551120242, info@webgramitsolution.in. GSTIN 07CUHPK2017G1ZW. Hours
 
 ## Locations
 
-- [Delhi](https://webgramitsolution.in/locations/delhi): Web development services in Delhi.
-- [Noida](https://webgramitsolution.in/locations/noida): Web development services in Noida.
-- [Gurugram (Gurgaon)](https://webgramitsolution.in/locations/gurugram): Web development services in Gurugram.
-- [Faridabad](https://webgramitsolution.in/locations/faridabad): Web development services in Faridabad.
-- [Delhi NCR](https://webgramitsolution.in/locations/delhi-ncr): Services across Delhi NCR.
+Webgram’s office is in Sangam Vihar, New Delhi. We serve the listed neighbourhoods, industrial areas and other cities from that office and through remote project delivery.
+
+- [All service areas](https://webgramitsolution.in/locations): Directory of Delhi NCR, Delhi neighbourhood, industrial area and India pages.
+- [Delhi](https://webgramitsolution.in/locations/delhi), [Noida](https://webgramitsolution.in/locations/noida), [Gurugram (Gurgaon)](https://webgramitsolution.in/locations/gurugram), [Faridabad](https://webgramitsolution.in/locations/faridabad), [Delhi NCR](https://webgramitsolution.in/locations/delhi-ncr) and [South Delhi](https://webgramitsolution.in/locations/south-delhi).
+- [Gujarat](https://webgramitsolution.in/locations/gujarat) and [Ludhiana](https://webgramitsolution.in/locations/ludhiana): Ecommerce, product catalogues and trade portals with remote delivery.
+- [India](https://webgramitsolution.in/locations/india): Website development services and remote consultation.
 
 ## Work
 

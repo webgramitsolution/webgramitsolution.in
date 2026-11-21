@@ -10,6 +10,7 @@ export const localSearch: Record<string, LocalSearch> = {
     priority: [0, 6, 3],
     answers: [
       ["Can a Delhi retailer hire Webgram for Shopify or WooCommerce development?", "Yes. Our New Delhi team scopes design and development for both platforms. We compare catalogue structure, hosting preferences, checkout needs and the cost of maintaining your store."],
+      ["How do I choose a website development company near me in Delhi?", "Look for relevant live projects, a clear breakdown of what the build includes, and a plan for support after launch. Our office is in Sangam Vihar, New Delhi, and you can discuss your project with us in person by appointment or online."],
       ["What should I share for an ecommerce website quote in Delhi?", "Share your catalogue size, existing website, payment and shipping requirements, and whether customers need separate retail and trade accounts."],
     ],
   },
@@ -54,3 +55,7 @@ export const localSearch: Record<string, LocalSearch> = {
     ],
   },
 };
+
+export function locationAnswers(location: { slug: string; faq?: readonly [string, string] }) {
+  return location.faq ? [location.faq] : localSearch[location.slug]?.answers ?? [];
+}
