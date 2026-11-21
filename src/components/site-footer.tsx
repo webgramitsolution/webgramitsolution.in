@@ -35,7 +35,7 @@ export function SiteFooter() {
     <footer className="bg-navy text-on-dark">
       {showQuote && (
         <div className="ecom-waves border-b border-on-dark/15">
-          <div className="page-shell flex flex-wrap items-center justify-between gap-5 py-7">
+          <div className="page-shell flex flex-wrap items-center justify-between gap-3 py-4">
             <div>
               <h2 className="text-xl font-extrabold">Ready to discuss your project?</h2>
               <p className="mt-1 text-sm text-on-dark/75">Share what you need with our team in Delhi NCR.</p>
@@ -47,21 +47,21 @@ export function SiteFooter() {
         </div>
       )}
       <AreasWeServe />
-      <div className="page-shell grid gap-y-7 py-9 md:grid-cols-[1.3fr_repeat(5,1fr)] md:gap-0 lg:grid-cols-[1.6fr_repeat(5,1fr)]">
-        <div className="md:pr-6 lg:pr-10">
-          <img src={LOGO_URL} alt="Webgram IT Solution" width={720} height={177} loading="lazy" className="h-[44px] w-auto object-contain brightness-0 invert" />
-          <p className="mt-4 max-w-[290px] text-on-dark/85">
+      <div className="page-shell grid gap-y-4 py-5 md:grid-cols-[1.3fr_repeat(5,1fr)] md:gap-0 lg:grid-cols-[1.6fr_repeat(5,1fr)]">
+        <div className="md:pr-3 lg:pr-5">
+          <img src={LOGO_URL} alt="Webgram IT Solution" width={720} height={177} loading="lazy" className="h-9 w-auto object-contain brightness-0 invert" />
+          <p className="mt-2 max-w-[250px] text-sm leading-relaxed text-on-dark/85">
             Custom websites and ecommerce solutions built for measurable business growth.
           </p>
         </div>
         <div className="divide-y divide-on-dark/15 border-y border-on-dark/15 sm:hidden">
           {columns.map(([title, items]) => (
             <details key={title} className="group">
-              <summary className="flex cursor-pointer list-none items-center justify-between py-3 text-on-dark [&::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer list-none items-center justify-between py-2 text-on-dark [&::-webkit-details-marker]:hidden">
                 <span className="font-semibold">{title}</span>
                 <span aria-hidden className="text-lg transition-transform group-open:rotate-45">+</span>
               </summary>
-              <ul className="space-y-2 pb-4">
+              <ul className="space-y-1 pb-3">
                 {items.map((item) => (
                   <li key={item.label}><a href={item.to} className="text-[13px] text-on-dark/75 hover:text-on-dark">{item.label}</a></li>
                 ))}
@@ -69,15 +69,15 @@ export function SiteFooter() {
             </details>
           ))}
         </div>
-        <div className="hidden grid-cols-3 gap-x-4 gap-y-7 sm:grid md:contents">
+        <div className="hidden grid-cols-3 gap-x-3 gap-y-4 sm:grid md:contents">
           {columns.map(([title, items]) => (
-            <nav key={title} aria-label={`${title} links`} className="border-l border-on-dark/15 pl-5">
-              <h3 className="text-on-dark">{title}</h3>
-              <ul className="mt-3 space-y-2">
+            <nav key={title} aria-label={`${title} links`} className="min-w-0 border-l border-on-dark/15 pl-3">
+              <h3 className="text-base text-on-dark">{title}</h3>
+              <ul className="mt-2 space-y-1">
                 {items.map((item) => (
                   <li key={item.label}>
                     <a href={item.to}
-                      className="inline-block text-[14px] text-on-dark/70 transition-colors hover:text-on-dark focus-visible:underline"
+                      className="inline-block text-[13px] leading-5 text-on-dark/75 transition-colors hover:text-on-dark focus-visible:underline"
                     >
                       {item.label}
                     </a>
@@ -88,7 +88,7 @@ export function SiteFooter() {
           ))}
         </div>
       </div>
-      <div className="page-shell flex flex-col items-center justify-between gap-4 border-t border-on-dark/15 py-5 sm:flex-row">
+      <div className="page-shell flex flex-col items-center justify-between gap-2 border-t border-on-dark/15 py-[10px] sm:flex-row">
         <div className="text-center text-[14px] text-on-dark/90 sm:text-left">
           <span>© 2026 Webgram IT Solution. All rights reserved.</span>
         </div>
