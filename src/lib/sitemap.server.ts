@@ -17,6 +17,7 @@ const staticGroups: SitemapGroup[] = [
       .filter(([slug]) => slug !== "insights")
       .map(([slug, page]) => ({ path: `${base}/${slug}`, label: page.title })),
   })),
+  { title: "Blog", entries: [{ path: "/blog", label: "All articles" }] },
   { title: "Locations", entries: [
     { path: "/locations", label: "All locations" },
     ...locations.map(({ slug, city }) => ({ path: `/locations/${slug}`, label: city })),

@@ -25,6 +25,7 @@ import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as SitemapRouteImport } from './routes/sitemap'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 import { Route as LocationsIndexRouteImport } from './routes/locations.index'
@@ -125,6 +126,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const TermsAndConditionsRoute = TermsAndConditionsRouteImport.update({
   id: '/terms-and-conditions',
   path: '/terms-and-conditions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
@@ -255,6 +261,7 @@ export interface FileRoutesByFullPath {
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/work/portfolio': typeof WorkPortfolioRoute
+  '/blog/': typeof BlogIndexRoute
   '/locations/': typeof LocationsIndexRoute
   '/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
   '/admin/requests': typeof AuthenticatedAdminRequestsRoute
@@ -291,6 +298,7 @@ export interface FileRoutesByTo {
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/work/portfolio': typeof WorkPortfolioRoute
+  '/blog': typeof BlogIndexRoute
   '/locations': typeof LocationsIndexRoute
   '/admin/requests': typeof AuthenticatedAdminRequestsRoute
   '/blog/category/$slug': typeof BlogCategorySlugRoute
@@ -328,6 +336,7 @@ export interface FileRoutesById {
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/work/portfolio': typeof WorkPortfolioRoute
+  '/blog/': typeof BlogIndexRoute
   '/locations/': typeof LocationsIndexRoute
   '/_authenticated/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
   '/_authenticated/admin/requests': typeof AuthenticatedAdminRequestsRoute
@@ -366,6 +375,7 @@ export interface FileRouteTypes {
     | '/solutions/$slug'
     | '/work/$slug'
     | '/work/portfolio'
+    | '/blog/'
     | '/locations/'
     | '/admin/blog'
     | '/admin/requests'
@@ -402,6 +412,7 @@ export interface FileRouteTypes {
     | '/solutions/$slug'
     | '/work/$slug'
     | '/work/portfolio'
+    | '/blog'
     | '/locations'
     | '/admin/requests'
     | '/blog/category/$slug'
@@ -438,6 +449,7 @@ export interface FileRouteTypes {
     | '/solutions/$slug'
     | '/work/$slug'
     | '/work/portfolio'
+    | '/blog/'
     | '/locations/'
     | '/_authenticated/admin/blog'
     | '/_authenticated/admin/requests'
@@ -476,6 +488,7 @@ export interface RootRouteChildren {
   SolutionsSlugRoute: typeof SolutionsSlugRoute
   WorkSlugRoute: typeof WorkSlugRoute
   WorkPortfolioRoute: typeof WorkPortfolioRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   LocationsIndexRoute: typeof LocationsIndexRoute
   BlogCategorySlugRoute: typeof BlogCategorySlugRoute
 }
@@ -592,6 +605,13 @@ declare module '@tanstack/react-router' {
       path: '/terms-and-conditions'
       fullPath: '/terms-and-conditions'
       preLoaderRoute: typeof TermsAndConditionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/$slug': {
@@ -791,6 +811,7 @@ const rootRouteChildren: RootRouteChildren = {
   SolutionsSlugRoute: SolutionsSlugRoute,
   WorkSlugRoute: WorkSlugRoute,
   WorkPortfolioRoute: WorkPortfolioRoute,
+  BlogIndexRoute: BlogIndexRoute,
   LocationsIndexRoute: LocationsIndexRoute,
   BlogCategorySlugRoute: BlogCategorySlugRoute,
 }

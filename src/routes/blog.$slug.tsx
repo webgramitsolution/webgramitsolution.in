@@ -15,7 +15,7 @@ type SchemaPost = { title: string; seo_description?: string | null; excerpt?: st
 function blogPostingSchema(post: SchemaPost, slug: string) {
   const url = `${SITE}/blog/${slug}`;
   const words = (post.content ?? "").trim().split(/\s+/).filter(Boolean).length;
-  const crumbs = [{ name: "Home", item: `${SITE}/` }, { name: "Blog", item: `${SITE}/resources/blog` }, ...(post.category ? [{ name: post.category.name, item: `${SITE}/blog/category/${post.category.slug}` }] : []), { name: post.title, item: url }];
+  const crumbs = [{ name: "Home", item: `${SITE}/` }, { name: "Blog", item: `${SITE}/blog` }, ...(post.category ? [{ name: post.category.name, item: `${SITE}/blog/category/${post.category.slug}` }] : []), { name: post.title, item: url }];
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -47,7 +47,7 @@ function blogPostingSchema(post: SchemaPost, slug: string) {
 export const Route = createFileRoute("/blog/$slug")({
   loader: async ({ params }) => { const [post, blog] = await Promise.all([getPublicBlogPost({ data: { slug: params.slug } }), getPublicBlog()]); if (!post) throw notFound(); return { ...post, related: selectArticleRecommendations(blog.posts, post), menuCategories: blog.categories }; },
   notFoundComponent: NotFoundPage,
-  errorComponent: () => <div className="page-shell py-16"><h1>Article unavailable</h1><p className="my-4">Please try again shortly.</p><Button asChild><a href="/resources/blog">Back to blog</a></Button></div>,
+  errorComponent: () => <div className="page-shell py-16"><h1>Article unavailable</h1><p className="my-4">Please try again shortly.</p><Button asChild><a href="/blog">Back to blog</a></Button></div>,
   head: ({ loaderData, params }) => { const faqs = normalizeBlogFaqs(loaderData?.faqs); return ({ links: [{ rel: "canonical", href: `${SITE}/blog/${params.slug}` }], scripts: loaderData ? [{ type: "application/ld+json", children: JSON.stringify(blogPostingSchema(loaderData, params.slug)) }, ...(faqs.length ? [{ type: "application/ld+json", children: JSON.stringify(blogFaqSchema(faqs, `${SITE}/blog/${params.slug}`, WEBSITE_ID)) }] : [])] : [], meta: [
     { property: "og:url", content: `${SITE}/blog/${params.slug}` },
     ...(loaderData?.published_at ? [{ property: "article:published_time", content: loaderData.published_at }, { property: "article:author", content: loaderData.author_name }] : []),

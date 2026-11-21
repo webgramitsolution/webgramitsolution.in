@@ -9,7 +9,7 @@ const PAGES = {
   b2b: "/solutions/b2b-commerce",
   portfolio: "/work/portfolio",
   faqs: "/resources/faqs",
-  blog: "/resources/blog",
+  blog: "/blog",
   contact: "/contact",
   about: "/about",
 } as const;

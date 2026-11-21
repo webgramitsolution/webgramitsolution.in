@@ -28,7 +28,7 @@ export function NotFoundPage() {
         <Link to="/"><Home /><span>Home<small>Back to homepage</small></span></Link>
         <Link to="/services/website-design"><Settings /><span>Our Services<small>Explore what we do</small></span></Link>
         <Link to="/work/portfolio"><BriefcaseBusiness /><span>Our Portfolio<small>See our work</small></span></Link>
-        <Link to="/resources/$slug" params={{ slug: "blog" }}><FileText /><span>Latest Blog<small>Read helpful tips</small></span></Link>
+        <Link to="/blog"><FileText /><span>Latest Blog<small>Read helpful tips</small></span></Link>
         <Link to="/contact"><Phone /><span>Contact Us<small>Let’s talk</small></span></Link>
       </nav>
     </main>

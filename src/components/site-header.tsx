@@ -14,6 +14,7 @@ const LOGO_URL = "https://ik.imagekit.io/x3cipokny/webgram%20it%20solution?updat
 type Target =
   | { to: "/" }
   | { to: "/about" }
+  | { to: "/blog" }
   | { to: "/contact" }
   | { to: "/auth" }
   | { to: "/solutions/$slug"; params: { slug: string } }
@@ -30,7 +31,8 @@ const menu: Array<{ label: string; target?: Target; items?: Array<[string, Targe
   { label: "Solutions", items: [...["Ecommerce Development", "B2B Commerce", "Website Design & Development"].map((label): [string, Target] => [label, subpage("solutions", label)]), ["B2B Marketplace Development", subpage("solutions", "marketplace-development")]] },
   { label: "Services", items: ["Web Portal Development", "Website Design", "WordPress", "WooCommerce", "Shopify", "API Integration", "Website Maintenance", "Speed Optimization"].map((label) => [label, subpage("services", label)]) },
   { label: "Work", items: ["Portfolio", "Case Studies", "Client Stories"].map((label) => [label, subpage("work", label)]) },
-  { label: "Resources", items: ["Blog", "Guides", "FAQs"].map((label) => [label, subpage("resources", label)]) },
+  { label: "Blog", target: { to: "/blog" } },
+  { label: "Resources", items: ["Guides", "FAQs"].map((label) => [label, subpage("resources", label)]) },
   { label: "Industries", items: Object.entries(menuSections.industries.pages).map(([slug, page]) => [page.title, { to: "/industries/$slug", params: { slug } }]) },
   { label: "About Us", target: { to: "/about" } },
   { label: "Contact Us", target: { to: "/contact" } },
@@ -43,7 +45,7 @@ const mobileItems: Array<{ label: string; icon: typeof Home; target: Target }> =
   { label: "B2B Commerce", icon: BriefcaseBusiness, target: subpage("solutions", "b2b-commerce") },
   { label: "Services", icon: Settings, target: subpage("services", "web-portal-development") },
   { label: "Portfolio", icon: Building2, target: { to: "/work/$slug", params: { slug: "portfolio" } } },
-  { label: "Blog", icon: Newspaper, target: subpage("resources", "blog") },
+  { label: "Blog", icon: Newspaper, target: { to: "/blog" } },
   { label: "Resources", icon: BookOpen, target: subpage("resources", "guides") },
   { label: "Company", icon: Users, target: { to: "/about" } },
 ];

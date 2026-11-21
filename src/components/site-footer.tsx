@@ -7,8 +7,8 @@ const LOGO_URL = "https://ik.imagekit.io/x3cipokny/webgram%20it%20solution?updat
 const columns = [
   ["Solutions", [{ label: "Ecommerce", to: "/solutions/ecommerce-development" }, { label: "B2B Commerce", to: "/solutions/b2b-commerce" }, { label: "Website Design & Development", to: "/solutions/website-design-development" }]],
   ["Services", [{ label: "Web Portal Development", to: "/services/web-portal-development" }, { label: "Website Design", to: "/services/website-design" }, { label: "WooCommerce", to: "/services/woocommerce" }, { label: "API Integration", to: "/services/api-integration" }]],
-  ["Resources", [{ label: "Blog", to: "/resources/blog" }, { label: "Guides", to: "/resources/guides" }, { label: "FAQs", to: "/resources/faqs" }]],
-  ["Company", [{ label: "About Us", to: "/about" }, { label: "Contact", to: "/contact" }, { label: "Privacy Policy", to: "/privacy-policy" }, { label: "Sitemap", to: "/sitemap" }]],
+  ["Resources", [{ label: "Guides", to: "/resources/guides" }, { label: "FAQs", to: "/resources/faqs" }]],
+  ["Company", [{ label: "Blog", to: "/blog" }, { label: "About Us", to: "/about" }, { label: "Contact", to: "/contact" }, { label: "Privacy Policy", to: "/privacy-policy" }, { label: "Sitemap", to: "/sitemap" }]],
   ["Legal", [{ label: "DPDP Policy", to: "/dpdp-policy" }, { label: "Terms & Conditions", to: "/terms-and-conditions" }, { label: "Cookie Policy", to: "/cookie-policy" }, { label: "Disclaimer", to: "/disclaimer" }]],
 ] as const;
 

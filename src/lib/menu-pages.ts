@@ -187,12 +187,6 @@ export const menuSections: Record<SectionKey, MenuSection> = {
     label: "Resources",
     base: "/resources",
     pages: {
-      blog: {
-        title: "Blog",
-        tagline: "Ideas & updates",
-        description: "Articles on ecommerce, technology and digital growth from the Webgram team.",
-        points: ["Ecommerce tips", "Technology trends", "Growth strategies", "Product updates"],
-      },
       guides: {
         title: "Guides",
         tagline: "Step-by-step playbooks",

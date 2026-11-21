@@ -9,7 +9,7 @@ export function BlogPublicHeader({ categories, activeSlug, onSelect }: { categor
       <div className="flex min-w-0 items-center gap-4 lg:gap-7">
         <Link to="/" className="shrink-0" aria-label="Webgram IT Solution home"><img src="https://ik.imagekit.io/x3cipokny/webgram%20it%20solution?updatedAt=1790815003792" alt="Webgram IT Solution" width={720} height={177} className="h-[30px] w-auto object-contain brightness-0 invert lg:h-[36px]" /></Link>
         <nav className="flex min-w-0 items-center gap-1 overflow-x-auto py-1 [scrollbar-width:none] lg:gap-3 [&::-webkit-scrollbar]:hidden" aria-label="Blog categories">
-          <Button asChild variant={!activeSlug ? "default" : "ghost"} size="sm" className="shrink-0 text-[13px] uppercase text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><Link to="/resources/$slug" params={{ slug: "blog" }} onClick={onSelect ? (event) => { event.preventDefault(); onSelect("all"); } : undefined}>All</Link></Button>
+          <Button asChild variant={!activeSlug ? "default" : "ghost"} size="sm" className="shrink-0 text-[13px] uppercase text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><Link to="/blog" onClick={onSelect ? (event) => { event.preventDefault(); onSelect("all"); } : undefined}>All</Link></Button>
           {items.map((category) => <Button key={category.id} asChild size="sm" variant={activeSlug === category.slug ? "default" : "ghost"} className="shrink-0 text-[13px] uppercase text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><Link to="/blog/category/$slug" params={{ slug: category.slug }} onClick={onSelect ? (event) => { event.preventDefault(); onSelect(category.id); } : undefined}>{category.name}</Link></Button>)}
         </nav>
       </div>

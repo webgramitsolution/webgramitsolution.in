@@ -8,7 +8,7 @@ export function CardTitle({ icon: Icon, children }: { icon: LucideIcon; children
 export function FormPageTitle({ title }: { title: string }) {
   return <div className="flex flex-wrap items-end justify-between gap-3">
     <div><h1 className="text-2xl font-extrabold text-navy sm:text-3xl">{title}</h1><p className="text-sm text-muted-foreground">Share your knowledge and ideas with our community</p></div>
-    <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-muted-foreground"><Link to="/">Home</Link><ChevronRight className="h-3 w-3" /><a href="/resources/blog">Blog</a><ChevronRight className="h-3 w-3" /><span className="text-navy">{title}</span></nav>
+    <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-muted-foreground"><Link to="/">Home</Link><ChevronRight className="h-3 w-3" /><a href="/blog">Blog</a><ChevronRight className="h-3 w-3" /><span className="text-navy">{title}</span></nav>
   </div>;
 }
 
