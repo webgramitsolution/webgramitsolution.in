@@ -1,4 +1,4 @@
-import { HeroHeading } from "@/components/hero-heading";
+import { BlogCoverImage } from "@/components/blog-cover-image";
 import { normalizeBlogFaqs } from "@/lib/blog-faqs";
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
@@ -132,10 +132,10 @@ export function BlogDetailPage({ post, categories, trackViews = true }: { post: 
         <aside className="hidden xl:block"><div className="sticky top-28"><BlogAdBand rail position="detailLeft" label="Advertisement — left" /></div></aside>
         <div className="min-w-0 bg-card px-3 md:px-5 xl:px-0">
       <BlogAdBand position="top" label="Advertisement above featured image" />
-      {post.featured_image ? <figure className="aspect-[16/6.2] overflow-hidden rounded-md border border-border bg-muted shadow-card"><img src={post.featured_image} alt={post.featured_image_alt || post.title} className="h-full w-full object-cover" /></figure> : null}
+      {post.featured_image ? <figure className="aspect-[16/6.2] overflow-hidden rounded-md border border-border bg-muted shadow-card"><BlogCoverImage src={post.featured_image} alt={post.featured_image_alt || post.title} className="h-full w-full object-cover" priority /></figure> : null}
       <section className="pt-4">
         <p className="inline-flex rounded-sm bg-primary px-2 py-1 text-[13px] font-extrabold uppercase text-primary-foreground">{post.category?.name ?? "Webgram Journal"}</p>
-        <HeroHeading className="mt-2 text-[1.65rem] font-extrabold leading-[1.12] text-navy md:text-[1.9rem]" title={post.title} />
+        <h1 className="mt-2 text-[1.65rem] leading-[1.18] text-navy [overflow-wrap:anywhere] md:text-[1.9rem]">{post.title}</h1>
         <div className="mt-4 grid gap-3 border-b border-border pb-4 md:grid-cols-[1fr_auto] md:items-center">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[14px] text-muted-foreground"><span className="grid h-7 w-7 place-items-center rounded-full bg-navy font-bold text-on-dark">{post.author_name.charAt(0).toUpperCase()}</span><strong className="text-navy">By {post.authorPath ? <a href={post.authorPath} rel="author" className="underline underline-offset-2">{post.author_name}</a> : post.author_name}</strong><span className="flex items-center gap-1"><CalendarDays className="h-3.5 w-3.5" />{date(post.published_at)}</span><span className="flex items-center gap-1"><Clock3 className="h-3.5 w-3.5" />{minutes} Min Read</span>{trackViews && <span className="flex items-center gap-1"><Eye className="h-3.5 w-3.5" />{post.view_count.toLocaleString("en-IN")} Views</span>}</div>
           <BlogShareButtons postId={post.id} title={post.title} />

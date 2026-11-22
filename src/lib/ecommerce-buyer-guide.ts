@@ -3,8 +3,8 @@ export const ecommerceBuyerGuide = {
   path: "/blog/ecommerce-website-development-india-guide",
   title: "Ecommerce Website Development in India: A 10-Step Buyer’s Guide",
   description: "Plan an ecommerce website in India with this 10-step guide to Shopify vs WooCommerce, development quotes, B2B portals, payments, SEO migrations and handover.",
-  image: "/images/ecommerce-guide/retail.webp",
-  imageAlt: "Fashion ecommerce website design example",
+  image: "/images/blog-covers/ecommerce-website-development-india-guide.webp",
+  imageAlt: "Ecommerce founder planning a store launch with a laptop and packaging samples",
 } as const;
 
 export const ecommerceBuyerGuideContent = `Start with how customers buy, how your team fulfils orders and what you need to own after launch. Those decisions shape your platform, development quote and rollout.

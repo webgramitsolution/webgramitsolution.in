@@ -1,3 +1,4 @@
+import { BlogCoverImage } from "@/components/blog-cover-image";
 import { editorialBlogCards } from "@/lib/editorial-posts";
 import { ecommerceBuyerGuide as guide } from "@/lib/ecommerce-buyer-guide";
 import { HeroHeading } from "@/components/hero-heading";
@@ -18,7 +19,7 @@ type Post = { id: string; title: string; slug: string; excerpt: string; featured
 const formatDate = (value: string | null) => value ? new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", year: "numeric" }).format(new Date(value)) : "";
 
 function PostImage({ post, className }: { post: Post; className: string }) {
-  return post.featured_image ? <img src={post.featured_image} alt={post.featured_image_alt || post.title} className={className} /> : <div className={`${className} bg-primary-soft`} aria-hidden />;
+  return post.featured_image ? <BlogCoverImage src={post.featured_image} alt={post.featured_image_alt || post.title} className={className} /> : <div className={`${className} bg-primary-soft`} aria-hidden />;
 }
 
 function BlogPostCards({ posts }: { posts: Post[] }) {
@@ -26,7 +27,7 @@ function BlogPostCards({ posts }: { posts: Post[] }) {
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {posts.map((post) => <div key={post.id} className="group flex min-w-0 flex-col overflow-hidden rounded-md border border-border bg-card shadow-card">
             <Link to="/blog/$slug" params={{ slug: post.slug }} className="block aspect-[16/9] overflow-hidden"><PostImage post={post} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" /></Link>
-            <div className="flex flex-1 flex-col p-3"><h3 className="line-clamp-3 text-[14px] font-medium leading-[1.35] text-navy group-hover:text-primary"><Link to="/blog/$slug" params={{ slug: post.slug }}>{post.title}</Link></h3><span className="mt-2 block truncate text-[13px] font-semibold text-navy">By {post.author_name || "Webgram Team"}</span><span className="mt-1 flex items-center gap-1.5 text-[13px] text-muted-foreground"><CalendarDays className="h-3 w-3" />{formatDate(post.published_at)}</span><div className="mt-auto pt-3"><Button asChild variant="link" className="h-auto p-0 text-[14px]"><Link to="/blog/$slug" params={{ slug: post.slug }} aria-label={`Read more: ${post.title}`}>Read More</Link></Button></div></div>
+            <div className="flex flex-1 flex-col p-3"><h3 className="text-[14px] [overflow-wrap:anywhere] font-medium leading-[1.35] text-navy group-hover:text-primary"><Link to="/blog/$slug" params={{ slug: post.slug }}>{post.title}</Link></h3><span className="mt-2 block truncate text-[13px] font-semibold text-navy">By {post.author_name || "Webgram Team"}</span><span className="mt-1 flex items-center gap-1.5 text-[13px] text-muted-foreground"><CalendarDays className="h-3 w-3" />{formatDate(post.published_at)}</span><div className="mt-auto pt-3"><Button asChild variant="link" className="h-auto p-0 text-[14px]"><Link to="/blog/$slug" params={{ slug: post.slug }} aria-label={`Read more: ${post.title}`}>Read More</Link></Button></div></div>
           </div>)}
           </div>
   );

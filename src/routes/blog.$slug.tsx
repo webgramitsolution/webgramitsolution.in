@@ -67,7 +67,7 @@ export const Route = createFileRoute("/blog/$slug")({
     { property: "og:description", content: loaderData?.seo_description ?? loaderData?.excerpt ?? "Webgram digital commerce insight." },
     { property: "og:type", content: "article" }, { name: "twitter:card", content: "summary_large_image" },
     { name: "robots", content: loaderData?.noindex ? "noindex,follow" : "index,follow,max-image-preview:large" },
-    ...(loaderData?.featured_image ? [{ property: "og:image", content: new URL(loaderData.featured_image, SITE).href }, { name: "twitter:image", content: new URL(loaderData.featured_image, SITE).href }] : []),
+    ...(loaderData?.featured_image ? [{ property: "og:image", content: new URL(loaderData.featured_image, SITE).href }, { property: "og:image:alt", content: loaderData.featured_image_alt || loaderData.title }, { name: "twitter:image", content: new URL(loaderData.featured_image, SITE).href }] : []),
   ] }); },
   component: Page,
 });
