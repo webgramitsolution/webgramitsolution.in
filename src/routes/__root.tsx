@@ -118,7 +118,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             ["B2B Commerce", "/solutions/b2b-commerce"],
             ["Website Design", "/services/website-design"],
             ["Blog", "/blog"],
-            ["About Us", "/about"],
+            ["About Us", "/about-us"],
             ["Contact", "/contact"],
           ].map(([name, path], i) => ({ "@type": "SiteNavigationElement", position: i + 1, name, url: `https://webgramitsolution.in${path}` })),
         }),

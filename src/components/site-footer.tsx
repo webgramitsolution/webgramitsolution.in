@@ -30,7 +30,7 @@ const columns = [
   ["Company", [
     { label: "Blog", to: "/blog" },
     { label: "Editorial Team", to: "/authors/webgram-editorial-team" },
-    { label: "About Us", to: "/about" },
+    { label: "About Us", to: "/about-us" },
     { label: "Website Portfolio", to: "/work/portfolio" },
     { label: "Contact", to: "/contact" },
     { label: "Sitemap", to: "/sitemap" },

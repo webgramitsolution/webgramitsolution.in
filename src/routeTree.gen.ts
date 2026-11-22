@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as AeRouteImport } from './routes/ae'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BoostYourBusinessWithWebgramItSolutionTheLeadingEcommerceWebsiteDevelopmentCompanyInDelhiRouteImport } from './routes/boost-your-business-with-webgram-it-solution-the-leading-ecommerce-website-development-company-in-delhi'
@@ -63,6 +64,11 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutUsRoute = AboutUsRouteImport.update({
+  id: '/about-us',
+  path: '/about-us',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AeRoute = AeRouteImport.update({
@@ -270,6 +276,7 @@ const AuthenticatedAdminBlogNewRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/about-us': typeof AboutUsRoute
   '/ae': typeof AeRoute
   '/auth': typeof AuthRoute
   '/boost-your-business-with-webgram-it-solution-the-leading-ecommerce-website-development-company-in-delhi': typeof BoostYourBusinessWithWebgramItSolutionTheLeadingEcommerceWebsiteDevelopmentCompanyInDelhiRoute
@@ -312,6 +319,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/about-us': typeof AboutUsRoute
   '/ae': typeof AeRoute
   '/auth': typeof AuthRoute
   '/boost-your-business-with-webgram-it-solution-the-leading-ecommerce-website-development-company-in-delhi': typeof BoostYourBusinessWithWebgramItSolutionTheLeadingEcommerceWebsiteDevelopmentCompanyInDelhiRoute
@@ -355,6 +363,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/about': typeof AboutRoute
+  '/about-us': typeof AboutUsRoute
   '/ae': typeof AeRoute
   '/auth': typeof AuthRoute
   '/boost-your-business-with-webgram-it-solution-the-leading-ecommerce-website-development-company-in-delhi': typeof BoostYourBusinessWithWebgramItSolutionTheLeadingEcommerceWebsiteDevelopmentCompanyInDelhiRoute
@@ -399,6 +408,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/about-us'
     | '/ae'
     | '/auth'
     | '/boost-your-business-with-webgram-it-solution-the-leading-ecommerce-website-development-company-in-delhi'
@@ -441,6 +451,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/about-us'
     | '/ae'
     | '/auth'
     | '/boost-your-business-with-webgram-it-solution-the-leading-ecommerce-website-development-company-in-delhi'
@@ -483,6 +494,7 @@ export interface FileRouteTypes {
     | '/'
     | '/_authenticated'
     | '/about'
+    | '/about-us'
     | '/ae'
     | '/auth'
     | '/boost-your-business-with-webgram-it-solution-the-leading-ecommerce-website-development-company-in-delhi'
@@ -527,6 +539,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
+  AboutUsRoute: typeof AboutUsRoute
   AeRoute: typeof AeRoute
   AuthRoute: typeof AuthRoute
   BoostYourBusinessWithWebgramItSolutionTheLeadingEcommerceWebsiteDevelopmentCompanyInDelhiRoute: typeof BoostYourBusinessWithWebgramItSolutionTheLeadingEcommerceWebsiteDevelopmentCompanyInDelhiRoute
@@ -583,6 +596,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about-us': {
+      id: '/about-us'
+      path: '/about-us'
+      fullPath: '/about-us'
+      preLoaderRoute: typeof AboutUsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ae': {
@@ -889,6 +909,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AboutRoute: AboutRoute,
+  AboutUsRoute: AboutUsRoute,
   AeRoute: AeRoute,
   AuthRoute: AuthRoute,
   BoostYourBusinessWithWebgramItSolutionTheLeadingEcommerceWebsiteDevelopmentCompanyInDelhiRoute:

@@ -45,7 +45,7 @@ function AuthorPage() {
         </div>
       </header>
       <div className="page-shell py-8">
-        <p className="max-w-3xl leading-7 text-muted-foreground">Our guides are written for business owners and teams evaluating an agency, launching a store or planning ongoing support. We use concrete project scenarios and link to official platform documentation where it applies. <a href="/about" className="text-primary underline">About Webgram IT Solution</a> · <a href="/contact" className="text-primary underline">Send a correction or comment</a></p>
+        <p className="max-w-3xl leading-7 text-muted-foreground">Our guides are written for business owners and teams evaluating an agency, launching a store or planning ongoing support. We use concrete project scenarios and link to official platform documentation where it applies. <a href="/about-us" className="text-primary underline">About Webgram IT Solution</a> · <a href="/contact" className="text-primary underline">Send a correction or comment</a></p>
         <h2 className="mt-8 text-2xl text-navy">Articles by the editorial team</h2>
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {editorialPosts.map((post) => (

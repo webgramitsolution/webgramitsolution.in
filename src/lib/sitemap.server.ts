@@ -11,7 +11,7 @@ type SitemapGroup = { title: string; entries: SitemapEntry[] };
 const staticGroups: SitemapGroup[] = [
   { title: "Company", entries: [
     { path: "/", label: "Home" },
-    { path: "/about", label: "About Webgram IT Solution" },
+    { path: "/about-us", label: "About Webgram IT Solution" },
     { path: "/contact", label: "Contact" },
   ] },
   ...Object.values(menuSections).map(({ label, base, pages }) => ({

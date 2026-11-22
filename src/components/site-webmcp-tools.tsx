@@ -11,7 +11,7 @@ const PAGES = {
   faqs: "/resources/faqs",
   blog: "/blog",
   contact: "/contact",
-  about: "/about",
+  about: "/about-us",
 } as const;
 type PageKey = keyof typeof PAGES;
 

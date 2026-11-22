@@ -13,7 +13,7 @@ const LOGO_URL = "https://ik.imagekit.io/x3cipokny/webgram%20it%20solution?updat
 
 type Target =
   | { to: "/" }
-  | { to: "/about" }
+  | { to: "/about-us" }
   | { to: "/blog" }
   | { to: "/contact" }
   | { to: "/auth" }
@@ -35,7 +35,7 @@ const menu: Array<{ label: string; target?: Target; items?: Array<[string, Targe
   { label: "Blog", target: { to: "/blog" } },
   { label: "Resources", items: ["Guides", "FAQs"].map((label) => [label, subpage("resources", label)]) },
   { label: "Industries", items: [["All Industries", { to: "/industries" }], ...Object.entries(menuSections.industries.pages).map(([slug, page]): [string, Target] => [page.title, { to: "/industries/$slug", params: { slug } }])] },
-  { label: "About Us", target: { to: "/about" } },
+  { label: "About Us", target: { to: "/about-us" } },
   { label: "Contact Us", target: { to: "/contact" } },
 ];
 const topLinks: Array<[string, Target]> = [["Contact Us", { to: "/contact" }], ["FAQs", { to: "/resources/$slug", params: { slug: "faqs" } }]];
@@ -48,7 +48,7 @@ const mobileItems: Array<{ label: string; icon: typeof Home; target: Target }> =
   { label: "Portfolio", icon: Building2, target: { to: "/work/$slug", params: { slug: "portfolio" } } },
   { label: "Blog", icon: Newspaper, target: { to: "/blog" } },
   { label: "Resources", icon: BookOpen, target: subpage("resources", "guides") },
-  { label: "Company", icon: Users, target: { to: "/about" } },
+  { label: "Company", icon: Users, target: { to: "/about-us" } },
 ];
 
 export function SiteHeader() {

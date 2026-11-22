@@ -74,7 +74,7 @@ Webgram’s office is in Sangam Vihar, New Delhi. We serve the listed neighbourh
 
 ## Company
 
-- [About](https://webgramitsolution.in/about): Company background, founder and approach.
+- [About](https://webgramitsolution.in/about-us): Company background, founder and approach.
 - [FAQs](https://webgramitsolution.in/resources/faqs): Answers about cost, timelines, platforms and support.
 - [Contact](https://webgramitsolution.in/contact): Enquiry form, phone and address.
 - [Blog](https://webgramitsolution.in/blog): Articles on ecommerce, SEO and technology.

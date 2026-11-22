@@ -7,10 +7,10 @@ import { readFileSync } from "node:fs";
 describe("public business identity", () => {
   it("uses only the canonical business domain in page identity", () => {
     assert.equal(SITE_URL, "https://webgramitsolution.in");
-    const script = publicPageSchema("/about", "About", "Business information", "AboutPage")[0];
+    const script = publicPageSchema("/about-us", "About", "Business information", "AboutPage")[0];
     if (!script) throw new Error("Expected page schema");
     const page = JSON.parse(script.children);
-    assert.equal(page.url, "https://webgramitsolution.in/about");
+    assert.equal(page.url, "https://webgramitsolution.in/about-us");
     assert.equal(page.about["@id"], "https://webgramitsolution.in/#business");
   });
   it("does not assert fixed prices or ratings without evidence", () => {
