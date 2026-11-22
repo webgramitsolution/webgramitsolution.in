@@ -1,0 +1,242 @@
+{
+  "ahmedabad": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "badli-industrial-area": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "bawana-industrial-area": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "chanakyapuri": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "chhatarpur": {
+    "height": 698,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "connaught-place": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "defence-colony": {
+    "height": 698,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "delhi": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "delhi-ncr": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "directory": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "dwarka": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "faridabad": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "geetanjali-enclave": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "greater-kailash": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "green-park": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "gujarat": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "gurugram": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "hauz-khas": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "india": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "janakpuri": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "jhilmil-industrial-area": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "jor-bagh": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "kirti-nagar-industrial-area": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "lajpat-nagar": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "ludhiana": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "malviya-nagar": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "mangolpuri-industrial-area": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "mayapuri-industrial-area": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "naraina-industrial-area": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "narela-industrial-area": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "nehru-place": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "new-friends-colony": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "noida": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "okhla-industrial-area": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "panchsheel-park": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "patparganj-industrial-area": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "rajkot": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "rajouri-garden": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "saket": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "shahdara": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "south-delhi": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "surat": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "udyog-nagar": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "vadodara": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "vasant-kunj": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "vasant-vihar": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "wazirpur-industrial-area": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  },
+  "west-delhi": {
+    "height": 480,
+    "mediumWidth": 900,
+    "width": 1536
+  }
+}

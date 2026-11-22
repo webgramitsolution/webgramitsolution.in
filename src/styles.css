@@ -1211,7 +1211,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: 500 !important; }
     min-height: 348px;
   }
 
-  .location-hero > .location-hero-image {
+  .location-hero .location-hero-image {
     width: 58%;
     object-fit: cover;
     object-position: center 38%;
@@ -1226,6 +1226,10 @@ h1, h2, h3, h4, h5, h6 { font-weight: 500 !important; }
 }
 
 @media (max-width: 767px) {
+  .location-hero-picture .location-hero-image {
+    object-position: center;
+  }
+
   .location-hero::before {
     background: linear-gradient(
       to bottom,

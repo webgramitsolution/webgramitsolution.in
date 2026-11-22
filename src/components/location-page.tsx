@@ -1,3 +1,4 @@
+import { LocationHeroPicture } from "@/components/location-hero-picture";
 import { locationServiceFocus } from "@/lib/location-service-focus";
 import { HeroHeading } from "@/components/hero-heading";
 import { localSearch, locationAnswers } from "@/lib/location-search";
@@ -72,7 +73,7 @@ export function LocationPage({ location: l }: { location: ServiceLocation }) {
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
       <section className="ecom-hero location-hero relative overflow-hidden bg-navy text-on-dark">
-        <img src={image.src} alt={image.alt} width={image.size} height={image.size} fetchPriority="high" className="location-hero-image absolute inset-y-0 right-0 h-full w-full object-cover object-center" />
+        <LocationHeroPicture slug={l.slug} alt={image.alt} fallback={{ src: image.src, width: image.size, height: image.size }} />
         <div className="ecom-shell relative flex h-full items-center py-5">
           <div className="max-w-[520px]">
             <nav aria-label="Breadcrumb" className="sr-only">
@@ -288,7 +289,7 @@ export function LocationsHub() {
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
       <section className="ecom-hero location-hero relative overflow-hidden bg-navy text-on-dark">
-        <img src={IMAGES.ecommerce} alt="" width={800} height={450} fetchPriority="high" className="location-hero-image absolute inset-y-0 right-0 h-full w-full object-cover" />
+        <LocationHeroPicture slug="directory" alt="" fallback={{ src: IMAGES.ecommerce, width: 800, height: 450 }} />
         <div className="ecom-shell relative flex h-full items-center py-5">
           <div className="w-full max-w-[540px]">
             <nav aria-label="Breadcrumb" className="sr-only"><Link tabIndex={-1} to="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Locations</span></nav>

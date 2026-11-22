@@ -1,3 +1,4 @@
+import { locationHeroVisual } from "@/lib/location-hero-visuals";
 import { localSearch, locationAnswers } from "@/lib/location-search";
 import { createFileRoute, notFound, redirect } from "@tanstack/react-router";
 import { LocationPage } from "@/components/location-page";
@@ -18,7 +19,7 @@ export const Route = createFileRoute("/locations/$city")({
     const description = localSearch[params.city]?.description ?? loaderData.description;
     const faqs = locationAnswers(loaderData);
     const visual = locationVisual(loaderData);
-    const image = BASE + visual.src;
+    const image = BASE + (locationHeroVisual(loaderData.slug)?.src ?? visual.src);
     const areaType = loaderData.place ?? (["delhi-ncr", "south-delhi"].includes(params.city) ? "Place" : "City");
     const url = `${BASE}/locations/${params.city}`;
     return {
