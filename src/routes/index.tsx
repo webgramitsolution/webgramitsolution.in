@@ -33,8 +33,8 @@ import { publicPageSchema } from "@/lib/site-identity";
 
 const HOME_TITLE = "Ecommerce Website Development Company in Delhi NCR | Webgram IT Solution";
 const HOME_DESCRIPTION = "Delhi NCR ecommerce development partner for Indian manufacturers, wholesalers and D2C brands. Build and maintain Shopify, WooCommerce and custom commerce platforms.";
-const HERO_DESKTOP = "/images/commerce-hero.webp";
-const HERO_PHONE = "/images/commerce-hero-mobile.webp";
+const HERO_DESKTOP = "/images/delhi-commerce-hero.webp";
+const HERO_PHONE = "/images/delhi-commerce-hero-mobile.webp";
 const SOCIAL_IMAGE = "https://webgramitsolution.in/images/commerce-social.jpg";
 
 export const Route = createFileRoute("/")({
@@ -196,17 +196,17 @@ function Hero() {
         <picture>
           <source media="(max-width: 767px)" srcSet={HERO_PHONE} />
           <img
-          src={HERO_DESKTOP}
-          loading="eager"
-          fetchPriority="high"
-          decoding="async"
-          alt="Webgram IT Solution digital commerce storefront displayed across laptop and mobile screens"
-          width={1600}
-          height={819}
+            src={HERO_DESKTOP}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            alt="Ecommerce storefront on laptop and phone with India Gate in the background"
+            width={2172}
+            height={724}
           />
         </picture>
       </div>
-      <div className="absolute inset-0 bg-hero-overlay" />
+      <div className="bg-hero-overlay pointer-events-none absolute inset-y-0 start-0" aria-hidden="true" />
       <div className="page-shell hero-copy">
         <div className="max-w-[510px]">
           <HeroHeading className="max-w-[510px] text-[36px] font-extrabold leading-[1.08] tracking-tight lg:text-[54px]" lines={["Ecommerce websites", "built in Delhi NCR."]} accent="text-[#f4c657]" />

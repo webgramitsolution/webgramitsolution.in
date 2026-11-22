@@ -631,13 +631,27 @@ a.bg-gold, button.bg-gold {
 }
 
 .bg-hero-overlay {
-  background: linear-gradient(
-    90deg,
-    color-mix(in oklab, var(--navy) 99%, transparent) 0%,
-    color-mix(in oklab, var(--navy) 92%, transparent) 30%,
-    color-mix(in oklab, var(--navy) 35%, transparent) 58%,
-    transparent 80%
-  );
+  width: min(78%, calc(620px + max(0px, (100% - 1440px) / 2)));
+  background: linear-gradient(to right, var(--navy), color-mix(in oklab, var(--navy) 88%, transparent) 72%, transparent);
+}
+@media (min-width: 768px) {
+  .hero-shell .hero-media img {
+    object-fit: cover;
+    object-position: right bottom;
+  }
+}
+@media (min-width: 1500px) {
+  .hero-shell .hero-copy {
+    min-height: clamp(445px, 28vw, 545px);
+  }
+  .hero-shell .hero-media img {
+    object-position: right center;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-shell .hero-copy > div {
+    max-width: 57%;
+  }
 }
 
 .bg-cta-overlay {
@@ -1111,7 +1125,7 @@ a.bg-gold, button.bg-gold {
 }
 /* Move the artwork, not its pixels: printed logos and labels stay readable. */
 @media (min-width: 768px) {
-  :is(html[dir="rtl"], html[lang="ar"]) :is(.hero-media, .ecom-hero > img, .contact-hero > img, .site-hero > img) {
+  :is(html[dir="rtl"], html[lang="ar"]) :is(.ecom-hero > img, .contact-hero > img, .site-hero > img) {
     width: 65%;
     left: 0;
     right: auto;
