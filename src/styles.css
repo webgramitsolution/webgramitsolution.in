@@ -804,29 +804,10 @@ a.bg-gold, button.bg-gold {
 }
 .industry-image {
   position: absolute;
-  top: 0;
+  inset: 0;
   height: 100%;
-  width: 600%;
-  max-width: none;
+  width: 100%;
   object-fit: cover;
-}
-.industry-image-0 {
-  left: 0;
-}
-.industry-image-1 {
-  left: -100%;
-}
-.industry-image-2 {
-  left: -200%;
-}
-.industry-image-3 {
-  left: -300%;
-}
-.industry-image-4 {
-  left: -400%;
-}
-.industry-image-5 {
-  left: -500%;
 }
 .industry-shade {
   position: absolute;

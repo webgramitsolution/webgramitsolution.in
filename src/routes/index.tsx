@@ -24,7 +24,6 @@ import { useState, type ComponentType } from "react";
 
 import { Button } from "@/components/ui/button";
 import { IMAGES, aboutImages, clientLogos, technologyStack } from "@/lib/site-images";
-import industriesImage from "@/assets/industries-strip.jpg";
 import { SiteHeader } from "@/components/site-header";
 import { ScrollingFrame } from "@/components/portfolio-showcase";
 import { portfolio } from "@/lib/portfolio";
@@ -83,6 +82,8 @@ export const Route = createFileRoute("/")({
 
 type Icon = ComponentType<{ className?: string }>;
 
+const HOME_ART = "/images/home-commerce";
+
 const services: Array<{
   icon: Icon;
   title: string;
@@ -100,8 +101,8 @@ const services: Array<{
     link: "Explore Ecommerce",
     to: "/solutions/$slug",
     slug: "ecommerce-development",
-    image: IMAGES.ecommerce,
-    alt: "Laptop and phone showing a fashion ecommerce storefront",
+    image: `${HOME_ART}/ecommerce.webp`,
+    alt: "Laptop and phone showing an Indian apparel storefront",
   },
   {
     icon: BriefcaseBusiness,
@@ -110,8 +111,8 @@ const services: Array<{
     link: "Explore B2B",
     to: "/solutions/$slug",
     slug: "b2b-commerce",
-    image: IMAGES.b2b,
-    alt: "Stacked cardboard shipping boxes for wholesale orders",
+    image: `${HOME_ART}/b2b.webp`,
+    alt: "Tablet with a wholesale dashboard in a distribution warehouse",
   },
 
   {
@@ -121,8 +122,8 @@ const services: Array<{
     link: "Explore Custom Solutions",
     to: "/services/$slug",
     slug: "web-portal-development",
-    image: IMAGES.custom,
-    alt: "Laptop showing custom commerce application source code",
+    image: `${HOME_ART}/custom.webp`,
+    alt: "Custom commerce workflow displayed on a laptop",
   },
   {
     icon: Store,
@@ -131,8 +132,8 @@ const services: Array<{
     link: "Explore Marketplace",
     to: "/solutions/$slug",
     slug: "b2b-commerce",
-    image: IMAGES.marketplace,
-    alt: "Multi-vendor marketplace storefront and seller dashboard",
+    image: `${HOME_ART}/marketplace.webp`,
+    alt: "Seller dashboard alongside parcels for a multi-vendor marketplace",
   },
 ];
 
@@ -314,7 +315,7 @@ function Services() {
                 {link} →
               </Link>
               <div className="service-visual max-md:!bottom-0 max-md:!left-0 max-md:!right-0 max-md:!top-auto max-md:!h-[112px] max-md:!w-full">
-                <img src={image} alt={alt} width={1536} height={1024} loading="lazy" />
+                <img src={image} alt={alt} width={640} height={640} loading="lazy" />
               </div>
             </article>
           ))}
@@ -347,20 +348,20 @@ function Ecosystem() {
         </div>
         <div className="min-w-0">
           <img
-            src={IMAGES.ecosystem}
+            src={`${HOME_ART}/ecosystem.webp`}
             alt="Webgram commerce ecosystem linking storefront, commerce, operations, payments, analytics and integrations"
-            width={6075}
-            height={2528}
+            width={1120}
+            height={244}
             loading="lazy"
             className="h-auto w-full object-contain"
           />
         </div>
         <div className="hidden min-w-0 md:block">
           <img
-            src={IMAGES.platforms}
+            src={`${HOME_ART}/platforms.webp`}
             alt="Webgram ecommerce website, B2B portal and mobile app"
-            width={1944}
-            height={809}
+            width={1120}
+            height={331}
             loading="lazy"
             className="h-auto w-full object-contain"
           />
@@ -415,15 +416,15 @@ function Industries() {
           </Button>
         </div>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-6">
-          {industries.map((industry, index) => (
+          {industries.map((industry) => (
             <article key={industry} className="industry-card">
               <img
-                src={industriesImage}
+                src={`${HOME_ART}/${industry.toLowerCase()}.webp`}
                 alt=""
                 loading="lazy"
-                width={1536}
+                width={512}
                 height={512}
-                className={`industry-image industry-image-${index}`}
+                className="industry-image"
               />
               <div className="industry-shade" />
               <strong>{industry} →</strong>
