@@ -189,3 +189,28 @@ These are real, live client websites. Figures such as traffic or revenue are not
 - [Full knowledge file](https://webgramitsolution.in/llms-full.txt): Case studies and technical architecture details.
 - [XML sitemap](https://webgramitsolution.in/sitemap.xml): All public URLs.
 - [RSS feed](https://webgramitsolution.in/feed.xml): Latest blog articles.
+
+## Editorial resources
+
+- [Editorial author profile](https://webgramitsolution.in/authors/webgram-editorial-team)
+- [Shopify vs WooCommerce for Indian Businesses](https://webgramitsolution.in/blog/shopify-vs-woocommerce-india)
+- [Ecommerce Website Development Cost and Quote Checklist](https://webgramitsolution.in/blog/ecommerce-development-quote-checklist)
+- [B2B Ecommerce Portals for Pricing, Quotes and Approvals](https://webgramitsolution.in/blog/b2b-ecommerce-portal-pricing-quotes-approvals)
+- [Ecommerce Website Requirements Your Developer Can Use](https://webgramitsolution.in/blog/ecommerce-website-requirements-brief)
+- [Ecommerce Maintenance Checklist for Updates and Backups](https://webgramitsolution.in/blog/ecommerce-website-maintenance-checklist)
+- [Payment Gateway Integration and Store Launch Checklist](https://webgramitsolution.in/blog/payment-gateway-integration-launch-checklist)
+- [Ecommerce Inventory and CRM Integration Planning](https://webgramitsolution.in/blog/ecommerce-inventory-crm-integration-plan)
+- [How to Protect Product URLs During an Ecommerce Redesign](https://webgramitsolution.in/blog/ecommerce-redesign-protect-product-urls)
+- [What to Scope Before Building a Multi-Vendor Marketplace](https://webgramitsolution.in/blog/multi-vendor-marketplace-development-scope)
+- [Website Handover for Accounts, Source Code and Support](https://webgramitsolution.in/blog/website-handover-accounts-source-code-support)
+
+## Additional Delhi neighbourhoods
+
+- [Janakpuri](https://webgramitsolution.in/locations/janakpuri)
+- [West Delhi](https://webgramitsolution.in/locations/west-delhi)
+- [Shahdara](https://webgramitsolution.in/locations/shahdara)
+- [Dwarka](https://webgramitsolution.in/locations/dwarka)
+- [Geetanjali Enclave](https://webgramitsolution.in/locations/geetanjali-enclave)
+- [Chhatarpur](https://webgramitsolution.in/locations/chhatarpur)
+- [Rajouri Garden](https://webgramitsolution.in/locations/rajouri-garden)
+- [Malviya Nagar](https://webgramitsolution.in/locations/malviya-nagar)

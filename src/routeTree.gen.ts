@@ -25,6 +25,7 @@ import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as SitemapRouteImport } from './routes/sitemap'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
+import { Route as AuthorsWebgramEditorialTeamRouteImport } from './routes/authors.webgram-editorial-team'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as BlogEcommerceWebsiteDevelopmentIndiaGuideRouteImport } from './routes/blog.ecommerce-website-development-india-guide'
@@ -131,6 +132,12 @@ const TermsAndConditionsRoute = TermsAndConditionsRouteImport.update({
   path: '/terms-and-conditions',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthorsWebgramEditorialTeamRoute =
+  AuthorsWebgramEditorialTeamRouteImport.update({
+    id: '/authors/webgram-editorial-team',
+    path: '/authors/webgram-editorial-team',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/blog/',
   path: '/blog/',
@@ -270,6 +277,7 @@ export interface FileRoutesByFullPath {
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/authors/webgram-editorial-team': typeof AuthorsWebgramEditorialTeamRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/ecommerce-website-development-india-guide': typeof BlogEcommerceWebsiteDevelopmentIndiaGuideRoute
   '/industries/$slug': typeof IndustriesSlugRoute
@@ -310,6 +318,7 @@ export interface FileRoutesByTo {
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/authors/webgram-editorial-team': typeof AuthorsWebgramEditorialTeamRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/ecommerce-website-development-india-guide': typeof BlogEcommerceWebsiteDevelopmentIndiaGuideRoute
   '/industries/$slug': typeof IndustriesSlugRoute
@@ -351,6 +360,7 @@ export interface FileRoutesById {
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/authors/webgram-editorial-team': typeof AuthorsWebgramEditorialTeamRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/ecommerce-website-development-india-guide': typeof BlogEcommerceWebsiteDevelopmentIndiaGuideRoute
   '/industries/$slug': typeof IndustriesSlugRoute
@@ -393,6 +403,7 @@ export interface FileRouteTypes {
     | '/sitemap'
     | '/sitemap.xml'
     | '/terms-and-conditions'
+    | '/authors/webgram-editorial-team'
     | '/blog/$slug'
     | '/blog/ecommerce-website-development-india-guide'
     | '/industries/$slug'
@@ -433,6 +444,7 @@ export interface FileRouteTypes {
     | '/sitemap'
     | '/sitemap.xml'
     | '/terms-and-conditions'
+    | '/authors/webgram-editorial-team'
     | '/blog/$slug'
     | '/blog/ecommerce-website-development-india-guide'
     | '/industries/$slug'
@@ -473,6 +485,7 @@ export interface FileRouteTypes {
     | '/sitemap'
     | '/sitemap.xml'
     | '/terms-and-conditions'
+    | '/authors/webgram-editorial-team'
     | '/blog/$slug'
     | '/blog/ecommerce-website-development-india-guide'
     | '/industries/$slug'
@@ -515,6 +528,7 @@ export interface RootRouteChildren {
   SitemapRoute: typeof SitemapRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsAndConditionsRoute: typeof TermsAndConditionsRoute
+  AuthorsWebgramEditorialTeamRoute: typeof AuthorsWebgramEditorialTeamRoute
   BlogSlugRoute: typeof BlogSlugRoute
   BlogEcommerceWebsiteDevelopmentIndiaGuideRoute: typeof BlogEcommerceWebsiteDevelopmentIndiaGuideRoute
   IndustriesSlugRoute: typeof IndustriesSlugRoute
@@ -647,6 +661,13 @@ declare module '@tanstack/react-router' {
       path: '/terms-and-conditions'
       fullPath: '/terms-and-conditions'
       preLoaderRoute: typeof TermsAndConditionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/authors/webgram-editorial-team': {
+      id: '/authors/webgram-editorial-team'
+      path: '/authors/webgram-editorial-team'
+      fullPath: '/authors/webgram-editorial-team'
+      preLoaderRoute: typeof AuthorsWebgramEditorialTeamRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -862,6 +883,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapRoute: SitemapRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsAndConditionsRoute: TermsAndConditionsRoute,
+  AuthorsWebgramEditorialTeamRoute: AuthorsWebgramEditorialTeamRoute,
   BlogSlugRoute: BlogSlugRoute,
   BlogEcommerceWebsiteDevelopmentIndiaGuideRoute:
     BlogEcommerceWebsiteDevelopmentIndiaGuideRoute,

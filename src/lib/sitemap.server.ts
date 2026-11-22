@@ -1,3 +1,4 @@
+import { editorialAuthor, editorialPosts } from "@/lib/editorial-posts";
 import { projectGuides } from "@/lib/project-guides";
 import { ecommerceBuyerGuide as guide } from "@/lib/ecommerce-buyer-guide";
 import { locations } from "@/lib/locations";
@@ -20,7 +21,7 @@ const staticGroups: SitemapGroup[] = [
       .map(([slug, page]) => ({ path: `${base}/${slug}`, label: page.title })),
   })),
   { title: "Project checklists", entries: Object.values(projectGuides).map(({ path, lines }) => ({ path, label: lines.join(" ") })) },
-  { title: "Blog", entries: [{ path: "/blog", label: "All articles" }, { path: guide.path, label: guide.title }] },
+  { title: "Blog", entries: [{ path: "/blog", label: "All articles" }, { path: guide.path, label: guide.title }, { path: editorialAuthor.path, label: editorialAuthor.name }, ...editorialPosts.map((post) => ({ path: `/blog/${post.slug}`, label: post.title, lastmod: post.published_at }))] },
   { title: "Locations", entries: [
     { path: "/locations", label: "All locations" },
     ...locations.map(({ slug, city }) => ({ path: `/locations/${slug}`, label: city })),
@@ -36,7 +37,7 @@ export async function getSitemapGroups(includeBlog = true): Promise<SitemapGroup
   return [
     ...staticGroups,
     ...(categories.length ? [{ title: "Blog categories", entries: categories.map(({ slug, name }) => ({ path: `/blog/category/${encodeURIComponent(slug)}`, label: name })) }] : []),
-    ...(posts.length ? [{ title: "Articles", entries: posts.map(({ slug, title, updated_at, published_at }) => ({
+    ...(posts.length ? [{ title: "Articles", entries: posts.filter(({ slug }) => slug !== guide.slug && !editorialPosts.some((post) => post.slug === slug)).map(({ slug, title, updated_at, published_at }) => ({
       path: `/blog/${encodeURIComponent(slug)}`,
       label: title,
       lastmod: (updated_at || published_at).slice(0, 10),

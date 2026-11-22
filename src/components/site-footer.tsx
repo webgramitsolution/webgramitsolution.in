@@ -29,6 +29,7 @@ const columns = [
   ]],
   ["Company", [
     { label: "Blog", to: "/blog" },
+    { label: "Editorial Team", to: "/authors/webgram-editorial-team" },
     { label: "About Us", to: "/about" },
     { label: "Website Portfolio", to: "/work/portfolio" },
     { label: "Contact", to: "/contact" },

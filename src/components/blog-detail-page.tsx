@@ -13,7 +13,7 @@ import { articlePreviewBlockCount, articleAdBoundaries } from "@/lib/article-dis
 
 type Related = { id: string; title: string; slug: string; excerpt: string; featured_image: string | null; featured_image_alt: string; published_at: string | null };
 type Faq = { question: string; answer: string };
-type Post = { id: string; title: string; slug: string; excerpt: string; content: string; featured_image: string | null; featured_image_alt: string; author_name: string; published_at: string | null; tags: string[]; faqs: unknown; view_count: number; category: { name: string; slug: string } | null; subcategory: { name: string; slug: string } | null; related: Related[] };
+type Post = { id: string; title: string; slug: string; excerpt: string; content: string; featured_image: string | null; featured_image_alt: string; author_name: string; authorPath?: string | undefined; published_at: string | null; tags: string[]; faqs: unknown; view_count: number; category: { name: string; slug: string } | null; subcategory: { name: string; slug: string } | null; related: Related[] };
 
 const date = (value: string | null) => value ? new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "long", year: "numeric" }).format(new Date(value)) : "";
 
@@ -137,7 +137,7 @@ export function BlogDetailPage({ post, categories, trackViews = true }: { post: 
         <p className="inline-flex rounded-sm bg-primary px-2 py-1 text-[13px] font-extrabold uppercase text-primary-foreground">{post.category?.name ?? "Webgram Journal"}</p>
         <HeroHeading className="mt-2 text-[1.65rem] font-extrabold leading-[1.12] text-navy md:text-[1.9rem]" title={post.title} />
         <div className="mt-4 grid gap-3 border-b border-border pb-4 md:grid-cols-[1fr_auto] md:items-center">
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[14px] text-muted-foreground"><span className="grid h-7 w-7 place-items-center rounded-full bg-navy font-bold text-on-dark">{post.author_name.charAt(0).toUpperCase()}</span><strong className="text-navy">By {post.author_name}</strong><span className="flex items-center gap-1"><CalendarDays className="h-3.5 w-3.5" />{date(post.published_at)}</span><span className="flex items-center gap-1"><Clock3 className="h-3.5 w-3.5" />{minutes} Min Read</span>{trackViews && <span className="flex items-center gap-1"><Eye className="h-3.5 w-3.5" />{post.view_count.toLocaleString("en-IN")} Views</span>}</div>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[14px] text-muted-foreground"><span className="grid h-7 w-7 place-items-center rounded-full bg-navy font-bold text-on-dark">{post.author_name.charAt(0).toUpperCase()}</span><strong className="text-navy">By {post.authorPath ? <a href={post.authorPath} rel="author" className="underline underline-offset-2">{post.author_name}</a> : post.author_name}</strong><span className="flex items-center gap-1"><CalendarDays className="h-3.5 w-3.5" />{date(post.published_at)}</span><span className="flex items-center gap-1"><Clock3 className="h-3.5 w-3.5" />{minutes} Min Read</span>{trackViews && <span className="flex items-center gap-1"><Eye className="h-3.5 w-3.5" />{post.view_count.toLocaleString("en-IN")} Views</span>}</div>
           <BlogShareButtons postId={post.id} title={post.title} />
         </div>
       </section>

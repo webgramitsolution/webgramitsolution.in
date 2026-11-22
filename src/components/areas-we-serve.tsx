@@ -5,8 +5,8 @@ import { locationGroups } from "@/lib/locations";
 export function AreasWeServe() {
   return (
     <nav aria-label="Areas we serve" className="border-y border-border bg-sky-soft text-navy">
-      <div className="page-shell py-2">
-        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 border-b border-border pb-1">
+      <div className="page-shell py-1.5">
+        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 border-b border-border pb-0.5">
           <h2 className="text-base font-extrabold">Areas We Serve</h2>
           <Link to="/locations" className="inline-flex items-center gap-1.5 py-0.5 text-xs font-bold leading-5 text-primary hover:underline">
             All service areas <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />

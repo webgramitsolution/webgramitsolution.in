@@ -1,3 +1,4 @@
+import { editorialBlogCards } from "@/lib/editorial-posts";
 import { ecommerceBuyerGuide as guide } from "@/lib/ecommerce-buyer-guide";
 import { HeroHeading } from "@/components/hero-heading";
 import { useMemo, useState } from "react";
@@ -40,7 +41,15 @@ export function BlogPage({ categories, posts, initialCategory = "all" }: { categ
     return matchesText && (category === "all" || post.category_id === category) && (subcategory === "all" || post.subcategory_id === subcategory);
   }), [posts, query, category, subcategory]);
   const roots = categories.filter((item) => !item.parent_id); const children = categories.filter((item) => item.parent_id === category);
-  const showGuide = category === "all" && `${guide.title} ${guide.description}`.toLowerCase().includes(query.trim().toLowerCase());
+  const editorialCards: Post[] = [
+    ...editorialBlogCards,
+    { id: guide.slug, slug: guide.slug, title: guide.title, excerpt: guide.description,
+      featured_image: guide.image, featured_image_alt: guide.imageAlt, author_name: "Webgram IT Solution",
+      published_at: null, category_id: null, subcategory_id: null, tags: [] },
+  ];
+  const matchingEditorial = category === "all" ? editorialCards.filter((post) =>
+    `${post.title} ${post.excerpt}`.toLowerCase().includes(query.trim().toLowerCase()),
+  ) : [];
   const grouped = roots.map((item) => ({ category: item, posts: filtered.filter((post) => post.category_id === item.id), children: categories.filter((child) => child.parent_id === item.id) })).filter((group) => group.posts.length);
 
   return <div className="min-h-screen bg-background text-foreground">
@@ -71,16 +80,7 @@ export function BlogPage({ categories, posts, initialCategory = "all" }: { categ
       <div className="mx-auto grid max-w-[1540px] px-3 xl:grid-cols-[180px_minmax(0,1fr)_180px] xl:px-0">
       <aside className="hidden xl:block"><div className="sticky top-28 py-9"><BlogAdBand rail position="detailLeft" label="Advertisement — left" /></div></aside>
       <section className="min-w-0 px-3 py-9 md:px-5">
-        {showGuide && (
-          <div className="mb-8">
-            <BlogPostCards posts={[{
-              id: guide.slug, slug: guide.slug, title: guide.title, excerpt: guide.description,
-              featured_image: guide.image, featured_image_alt: guide.imageAlt,
-              author_name: "Webgram IT Solution", published_at: null,
-              category_id: null, subcategory_id: null, tags: [],
-            }]} />
-          </div>
-        )}
+        {matchingEditorial.length > 0 && <div className="mb-8"><BlogPostCards posts={matchingEditorial} /></div>}
         {grouped.length ? grouped.map((group, groupIndex) => <div key={group.category.id}>
           {groupIndex > 0 ? <BlogAdBand position="category" label={`Advertisement above ${group.category.name}`} /> : null}
           <div id={`category-${group.category.slug}`}>
@@ -88,7 +88,7 @@ export function BlogPage({ categories, posts, initialCategory = "all" }: { categ
           <div className="mb-5 flex gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">{group.children.map((child) => <button key={child.id} onClick={() => { setCategory(group.category.id); setSubcategory(child.id); }} className="shrink-0 rounded-full border border-border bg-card px-3 py-1 text-xs font-semibold text-navy hover:text-primary">{child.name}</button>)}</div>
           <BlogPostCards posts={categoryPreviewPosts(group.posts, category !== "all")} />
           <div className="h-12" /></div>
-        </div>) : showGuide ? null : <div className="py-16 text-center text-sm text-muted-foreground">No articles match your search.</div>}
+        </div>) : matchingEditorial.length ? null : <div className="py-16 text-center text-sm text-muted-foreground">No articles match your search.</div>}
       </section>
       <aside className="hidden xl:block"><div className="sticky top-28 py-9"><BlogAdBand rail position="detailRight" label="Advertisement — right" /></div></aside>
       </div>
