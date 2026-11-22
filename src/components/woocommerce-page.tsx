@@ -112,7 +112,7 @@ export function WooCommercePage() {
       <picture className="pointer-events-none absolute inset-0">
         <img src="/images/woocommerce-showroom-hero.webp" alt="WooCommerce furniture store displayed on laptop and phone in a showroom" width={2172} height={724} fetchPriority="high" className="h-full w-full object-cover object-[76%_center] md:object-right" />
       </picture>
-      <div className="woocommerce-hero-shade pointer-events-none absolute inset-y-0 start-0 hidden md:block" aria-hidden="true" />
+      <div className="storefront-hero-shade pointer-events-none absolute inset-y-0 start-0 hidden md:block" aria-hidden="true" />
       <div className="ecom-shell relative flex h-full items-center py-5">
         <div className="relative max-w-[540px]">
           <nav className="sr-only" aria-label="Breadcrumb"><Link to="/">Home</Link> › Services › WooCommerce Development</nav>
