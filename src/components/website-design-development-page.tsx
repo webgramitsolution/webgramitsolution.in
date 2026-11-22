@@ -90,9 +90,9 @@ export function WebsiteDesignDevelopmentPage({ designOnly = false }: { designOnl
       <ServiceHero slug={designOnly ? "website-design" : "website-design-development"}>
         <div className="ecom-shell relative flex h-full items-center py-5">
           <div className="max-w-[525px]">
-            <nav className="sr-only" aria-label="Breadcrumb"><Link to="/">Home</Link> › Solutions › Website Design &amp; Development</nav>
-            <HeroHeading className="text-[30px] font-medium leading-[1.08] sm:text-[34px] md:text-[37px] lg:text-[40px]" lines={designOnly ? ["Website Design", "in Delhi NCR"] : ["Business Website Development", "in Delhi NCR"]} accent="text-gold" />
-            <p className="mt-3 max-w-[500px] text-[14px] leading-[1.45] text-on-dark/90 md:text-[14px]">{designOnly ? "Responsive corporate websites, landing pages and redesigns that help customers find relevant information and enquire." : "From content planning and CMS development to integrations, testing and launch, we build business websites your team can maintain."}</p>
+            <nav className="sr-only" aria-label="Breadcrumb"><Link to="/">Home</Link> › {designOnly ? "Services › Website Design" : "Solutions › Website Design & Development"}</nav>
+            <HeroHeading className="text-[30px] font-medium leading-[1.08] sm:text-[34px] md:text-[37px] lg:text-[40px]" lines={designOnly ? ["Custom Website Design", "for Delhi NCR Businesses"] : ["Business Website Development", "in Delhi NCR"]} accent={designOnly ? "text-[#f4c657]" : "text-gold"} />
+            <p className="mt-3 max-w-[500px] text-[14px] leading-[1.45] text-on-dark/90 md:text-[14px]">{designOnly ? "Webgram designs responsive corporate websites, landing pages and redesigns for businesses in Delhi NCR. Help visitors understand what you offer and make it easy to get in touch." : "From content planning and CMS development to integrations, testing and launch, we build business websites your team can maintain."}</p>
             <div className="mt-4 flex flex-wrap gap-3">
               <Button asChild className="h-10 bg-gold px-6 text-[13px] font-bold text-navy hover:bg-gold/90"><Link to="/contact">Get a Free Consultation <ArrowRight /></Link></Button>
               <Button asChild variant="outline" className="h-10 border-on-dark/70 bg-transparent px-6 text-[13px] font-bold text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><Link to="/work/$slug" params={{ slug: "portfolio" }}>View Our Work <ArrowRight /></Link></Button>

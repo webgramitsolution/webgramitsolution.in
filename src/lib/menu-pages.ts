@@ -71,7 +71,7 @@ export const menuSections: Record<SectionKey, MenuSection> = {
         tagline: "A CMS your team can edit",
         planning: { heading: "Plan your WordPress CMS and handover", text: "Identify the pages and forms your team needs to update, and who can publish. We scope reusable page blocks, author permissions, updates and backups around your workflow." },
         description:
-          "Custom WordPress websites with tailored themes and plugins — easy for your team to update every day.",
+          "WordPress website development from Delhi NCR. Get a custom theme, editable CMS, migration and ongoing support for your business website.",
         points: ["Custom themes", "Plugin development", "Easy content management", "SEO-friendly setup"],
       },
       woocommerce: {

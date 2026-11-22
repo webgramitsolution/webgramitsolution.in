@@ -32,7 +32,7 @@ export function WordPressPage() {
         <ServiceHero slug="wordpress">
           <div className="ecom-shell relative flex h-full items-center py-5">
             <div className="max-w-[540px]">
-              <HeroHeading lines={["WordPress Website Development", "for Indian Businesses"]} accent="text-gold" />
+              <HeroHeading className="text-[30px] font-medium leading-tight" lines={["Custom WordPress Websites", "Built for Easy Editing"]} accent="text-[#f4c657]" />
               <p className="mt-3 max-w-[470px] text-sm leading-relaxed text-on-dark/90">
                 Custom WordPress themes, reusable content blocks and publishing workflows. Our Delhi NCR team builds, redesigns and migrates websites your team can manage after launch.
               </p>

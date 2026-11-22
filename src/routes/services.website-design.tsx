@@ -10,7 +10,7 @@ import { WebsiteDesignDevelopmentPage } from "@/components/website-design-develo
 
 const heroImage = "https://webgramitsolution.in" + serviceHeroImage("website-design");
 const title = "Website Design Company in Delhi NCR | Webgram";
-const description = "Responsive website design, corporate sites, landing pages and redesigns for businesses in Delhi NCR.";
+const description = "Webgram designs responsive business websites, corporate sites and landing pages in Delhi NCR. Explore website redesigns and request a consultation.";
 
 export const Route = createFileRoute("/services/website-design")({
   head: () => ({
