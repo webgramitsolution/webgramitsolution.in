@@ -26,35 +26,35 @@ export function PortfolioCard({ item, compact = false, eager = false }: { item: 
   const technologies = technologyStack.filter((t) => t.name !== "More");
 
   return (
-    <article className={compact ? "flex min-w-0 flex-col gap-4 rounded-lg border border-border bg-card p-3 shadow-card" : "grid gap-6 rounded-lg border border-border bg-card p-4 shadow-card md:grid-cols-2 md:p-6 lg:gap-8"}>
+    <article className={compact ? "flex min-w-0 flex-col gap-3 rounded-lg border border-border bg-card p-3 shadow-card" : "grid gap-6 rounded-lg border border-border bg-card p-4 shadow-card md:grid-cols-2 md:p-6 lg:gap-8"}>
       <ScrollingFrame item={item} height={compact ? 260 : 460} eager={eager} />
-      <div className="flex min-w-0 flex-col">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <p className="text-[14px] font-semibold text-primary">{item.category}</p>
-          <p className="flex items-center gap-1 text-[14px] text-muted-foreground"><MapPin className="h-4 w-4" />{item.location}</p>
+      <div className={`flex min-w-0 flex-col ${compact ? "flex-1" : ""}`}>
+        <div className={`flex flex-wrap items-center justify-between ${compact ? "gap-x-2 gap-y-1 text-xs leading-4" : "gap-2 text-[14px]"}`}>
+          <p className="font-semibold text-primary">{item.category}</p>
+          <p className="flex items-center gap-1 text-muted-foreground"><MapPin className={compact ? "size-3.5 shrink-0" : "size-4 shrink-0"} aria-hidden="true" />{item.location}</p>
         </div>
-        <h2 className={compact ? "mt-2 text-[20px] leading-tight text-navy" : "mt-2 text-[26px] leading-tight text-navy md:text-[30px]"}>{item.name}</h2>
-        <p className="mt-3 text-[16px] leading-7 text-muted-foreground">{item.summary}</p>
-        <h3 className="mt-6 text-[19px] text-navy">Key Features</h3>
+        <h2 className={compact ? "mt-2 text-[18px] leading-tight text-navy" : "mt-2 text-[26px] leading-tight text-navy md:text-[30px]"}>{item.name}</h2>
+        <p className={`text-muted-foreground ${compact ? "mt-2 text-sm leading-[1.55]" : "mt-3 text-[16px] leading-7"}`}>{item.summary}</p>
+        <h3 className={`text-navy ${compact ? "mt-4 text-[17px]" : "mt-6 text-[19px]"}`}>Key Features</h3>
         <span className="mt-2 block h-0.5 w-8 bg-navy" />
-        <ul className={compact ? "mt-4 grid gap-3" : "mt-4 grid gap-3 sm:grid-cols-2"}>
-          {item.delivered.map((point) => <li key={point} className="flex items-center gap-2 text-[15px] text-navy"><CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />{point}</li>)}
+        <ul className={compact ? "mt-3 grid gap-2" : "mt-4 grid gap-3 sm:grid-cols-2"}>
+          {item.delivered.map((point) => <li key={point} className={`flex gap-2 text-navy ${compact ? "items-start text-[13px] leading-[1.45]" : "items-center text-[15px]"}`}><CheckCircle2 className={`shrink-0 text-primary ${compact ? "mt-0.5 size-3.5" : "size-4"}`} aria-hidden="true" />{point}</li>)}
         </ul>
-        <div className="mt-6 border-t border-border pt-5">
-          <p className="text-[14px] font-semibold text-navy">Technology used</p>
+        <div className={`border-t border-border ${compact ? "mt-4 pt-3" : "mt-6 pt-5"}`}>
+          <p className={`font-semibold text-navy ${compact ? "text-[13px]" : "text-[14px]"}`}>Technology used</p>
           <div className="technology-row mt-3 grid snap-x snap-proximity grid-flow-col auto-cols-[78px] gap-1.5 overflow-x-auto">
             {technologies.map((technology) => (
               <div key={technology.name} className="flex min-w-0 snap-start flex-col items-center gap-1.5 text-center">
                 <span className="grid h-12 w-12 place-items-center rounded-xl border border-border bg-gradient-to-b from-card to-muted p-2 shadow-card transition-transform hover:-translate-y-0.5">
                   <img src={technology.src} alt={`${technology.name} technology`} width={48} height={48} loading="lazy" className="h-full w-full object-contain" />
                 </span>
-                <span className="w-full text-[13px] font-medium leading-5 text-navy">{technology.name}</span>
+                <span className={`w-full font-medium leading-5 text-navy ${compact ? "text-xs" : "text-[13px]"}`}>{technology.name}</span>
               </div>
             ))}
           </div>
         </div>
-        <div className="mt-6 md:mt-auto md:pt-6">
-          <a href={item.url} target="_blank" rel="noopener" className="inline-flex items-center gap-1.5 rounded-md bg-navy px-5 py-3 text-[15px] font-semibold text-on-dark hover:opacity-90">Visit Live Website <ArrowUpRight className="h-4 w-4" /></a>
+        <div className={compact ? "mt-auto pt-4" : "mt-6 md:mt-auto md:pt-6"}>
+          <a href={item.url} target="_blank" rel="noopener" className={`inline-flex items-center gap-1.5 rounded-md bg-navy font-semibold text-on-dark hover:opacity-90 ${compact ? "min-h-10 px-4 py-2 text-sm" : "px-5 py-3 text-[15px]"}`}>Visit Live Website <ArrowUpRight className="h-4 w-4" /></a>
           <p className="mt-2 text-[13px] text-muted-foreground">{item.domain}</p>
         </div>
       </div>
