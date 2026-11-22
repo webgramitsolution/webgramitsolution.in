@@ -9,15 +9,15 @@ export function ServicePlanning({ plan, headline = false, whiteIntro = false, st
   const CardHeading = headline ? "h2" : "h3";
 
   return (
-    <section className={`border-y border-border py-12 md:py-16 ${storefront ? "bg-gradient-to-br from-white to-violet-soft/60" : "bg-sky-soft"}`}>
+    <section className="border-y border-border bg-sky-soft py-12 md:py-16">
       <div className="page-shell">
-        <div className={`grid items-center gap-7 md:grid-cols-[1.05fr_0.95fr] ${storefront ? "rounded-3xl border border-violet/15 bg-white p-5 shadow-card md:gap-9 md:p-8 lg:p-10" : whiteIntro ? "rounded-2xl bg-white p-5 md:p-7" : ""}`}>
+        <div className={`grid items-center gap-7 md:grid-cols-[1.05fr_0.95fr] ${storefront ? "md:gap-9" : whiteIntro ? "rounded-2xl bg-white p-5 md:p-7" : ""}`}>
           <div>
             {headline ? <HeroHeading className={headingClass} title={plan.title} /> : <h2 className={`${headingClass} ${storefront ? "text-pretty" : "text-balance"}`}>{plan.title}</h2>}
             <p className="mt-4 max-w-xl text-base leading-7 text-muted-foreground">{plan.summary}</p>
           </div>
           {storefront ? (
-            <div className="min-w-0 rounded-2xl border border-violet/15 bg-violet-soft/50 p-2 shadow-card">
+            <div className="min-w-0 rounded-2xl border border-border bg-white p-2 shadow-card">
               <img src={plan.image} alt={plan.alt} width={1536} height={768} loading="lazy" className="block h-auto w-full rounded-xl" />
             </div>
           ) : <img src={plan.image} alt={plan.alt} loading={headline ? "eager" : "lazy"} fetchPriority={headline ? "high" : undefined} width={plan.imageSize?.width ?? 800} height={plan.imageSize?.height ?? 450} className={`w-full ${plan.imageSize ? "h-auto object-contain" : "aspect-[16/9] rounded-2xl bg-card object-cover shadow-card"}`} />}
@@ -26,7 +26,7 @@ export function ServicePlanning({ plan, headline = false, whiteIntro = false, st
           {plan.choices.map(({ title, text }, index) => {
             const Icon = storefront ? storefrontIcons[index] : undefined;
             return (
-              <article key={title} className={`border bg-card p-6 shadow-card ${storefront ? "rounded-2xl border-violet/15" : "rounded-xl border-border"}`}>
+              <article key={title} className={`border bg-card p-6 shadow-card ${storefront ? "rounded-2xl border-border" : "rounded-xl border-border"}`}>
                 {Icon && <span className="mb-4 inline-grid size-10 place-items-center rounded-xl bg-violet-soft text-violet"><Icon className="size-5" aria-hidden="true" /></span>}
                 <CardHeading className="text-lg font-extrabold text-navy">{title}</CardHeading>
                 <p className="mt-3 text-sm leading-6 text-muted-foreground">{text}</p>
