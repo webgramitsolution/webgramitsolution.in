@@ -21,7 +21,7 @@ describe("public business identity", () => {
     assert.equal(service[1].itemListElement.length, 2);
     assert.equal(service[0].provider["@id"], businessIdentity["@id"]);
   });
-  it("allows search discovery and blocks listed training crawlers", () => {
+  it("allows requested crawlers while declaring content-use preferences", () => {
     const robots = readFileSync(new URL("../../public/robots.txt", import.meta.url), "utf8");
     const groups = robots.split(/\n\s*\n/);
     const wildcard = groups.find(group => group.includes("User-agent: *\n"));
@@ -29,11 +29,8 @@ describe("public business identity", () => {
     for (const path of ["/admin", "/guest", "/auth", "/api/", "/_serverFn/"]) {
       assert.ok(wildcard.split("\n").includes(`Disallow: ${path}`), path);
     }
-    for (const bot of ["GPTBot", "ClaudeBot", "Google-Extended"]) {
-      const group = groups.find(value => value.includes(`User-agent: ${bot}\n`));
-      assert.ok(group?.split("\n").includes("Disallow: /"), bot);
-    }
-    assert.ok(!/User-agent: (OAI-SearchBot|PerplexityBot)/.test(robots));
+    assert.ok(wildcard.includes("Content-Signal: search=yes, ai-train=no"));
+    assert.ok(!/^User-agent: (GPTBot|ClaudeBot|Google-Extended|OAI-SearchBot|PerplexityBot)\s*$/m.test(robots));
     assert.ok(robots.includes(`Sitemap: ${SITE_URL}/sitemap.xml`));
   });
 });

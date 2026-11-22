@@ -13,6 +13,7 @@ const staticGroups: SitemapGroup[] = [
     { path: "/", label: "Home" },
     { path: "/about-us", label: "About Webgram IT Solution" },
     { path: "/contact", label: "Contact" },
+    { path: "/pricing", label: "Project Pricing & Quotes" },
   ] },
   ...Object.values(menuSections).map(({ label, base, pages }) => ({
     title: label,

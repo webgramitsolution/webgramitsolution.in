@@ -21,6 +21,7 @@ import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as DpdpPolicyRouteImport } from './routes/dpdp-policy'
 import { Route as FeedDotxmlRouteImport } from './routes/feed[.]xml'
 import { Route as KwRouteImport } from './routes/kw'
+import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as SitemapRouteImport } from './routes/sitemap'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -111,6 +112,11 @@ const FeedDotxmlRoute = FeedDotxmlRouteImport.update({
 const KwRoute = KwRouteImport.update({
   id: '/kw',
   path: '/kw',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
@@ -279,6 +285,7 @@ export interface FileRoutesByFullPath {
   '/dpdp-policy': typeof DpdpPolicyRoute
   '/feed.xml': typeof FeedDotxmlRoute
   '/kw': typeof KwRoute
+  '/pricing': typeof PricingRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -321,6 +328,7 @@ export interface FileRoutesByTo {
   '/dpdp-policy': typeof DpdpPolicyRoute
   '/feed.xml': typeof FeedDotxmlRoute
   '/kw': typeof KwRoute
+  '/pricing': typeof PricingRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -364,6 +372,7 @@ export interface FileRoutesById {
   '/dpdp-policy': typeof DpdpPolicyRoute
   '/feed.xml': typeof FeedDotxmlRoute
   '/kw': typeof KwRoute
+  '/pricing': typeof PricingRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -408,6 +417,7 @@ export interface FileRouteTypes {
     | '/dpdp-policy'
     | '/feed.xml'
     | '/kw'
+    | '/pricing'
     | '/privacy-policy'
     | '/sitemap'
     | '/sitemap.xml'
@@ -450,6 +460,7 @@ export interface FileRouteTypes {
     | '/dpdp-policy'
     | '/feed.xml'
     | '/kw'
+    | '/pricing'
     | '/privacy-policy'
     | '/sitemap'
     | '/sitemap.xml'
@@ -492,6 +503,7 @@ export interface FileRouteTypes {
     | '/dpdp-policy'
     | '/feed.xml'
     | '/kw'
+    | '/pricing'
     | '/privacy-policy'
     | '/sitemap'
     | '/sitemap.xml'
@@ -536,6 +548,7 @@ export interface RootRouteChildren {
   DpdpPolicyRoute: typeof DpdpPolicyRoute
   FeedDotxmlRoute: typeof FeedDotxmlRoute
   KwRoute: typeof KwRoute
+  PricingRoute: typeof PricingRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   SitemapRoute: typeof SitemapRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -646,6 +659,13 @@ declare module '@tanstack/react-router' {
       path: '/kw'
       fullPath: '/kw'
       preLoaderRoute: typeof KwRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy-policy': {
@@ -899,6 +919,7 @@ const rootRouteChildren: RootRouteChildren = {
   DpdpPolicyRoute: DpdpPolicyRoute,
   FeedDotxmlRoute: FeedDotxmlRoute,
   KwRoute: KwRoute,
+  PricingRoute: PricingRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   SitemapRoute: SitemapRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,

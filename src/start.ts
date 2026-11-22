@@ -1,5 +1,6 @@
 import { createStart, createCsrfMiddleware, createMiddleware } from "@tanstack/react-start";
 
+import homepageMarkdown from "./lib/homepage.md?raw";
 import { renderErrorPage } from "./lib/error-page";
 const errorMiddleware = createMiddleware().server(async ({ next }) => {
   try {
@@ -16,16 +17,34 @@ const errorMiddleware = createMiddleware().server(async ({ next }) => {
   }
 });
 
-// Agents asking for Markdown get the llms.txt summary; HTML homepage advertises it via Link header.
+function prefersMarkdown(accept: string): boolean {
+  let markdown = 0;
+  let html = 0;
+  for (const entry of accept.split(",")) {
+    const [media, ...parameters] = entry.trim().toLowerCase().split(";");
+    const quality = parameters.map((value) => value.trim()).find((value) => value.startsWith("q="));
+    const weight = quality === undefined ? 1 : Number(quality.slice(2));
+    if (!(weight > 0 && weight <= 1)) continue;
+    if (media.trim() === "text/markdown") markdown = Math.max(markdown, weight);
+    if (media.trim() === "text/html" || media.trim() === "application/xhtml+xml") html = Math.max(html, weight);
+  }
+  return markdown > 0 && markdown >= html;
+}
+
+// Serve the Markdown variant at the same URL and keep it separate from cached HTML.
 const agentMiddleware = createMiddleware().server(async ({ request, next }) => {
   const url = new URL(request.url);
-  if ((request.method === "GET" || request.method === "HEAD") && /^\/(ae|kw)\/?$/.test(url.pathname)) {
+  const isReadRequest = request.method === "GET" || request.method === "HEAD";
+  if (isReadRequest && /^\/(ae|kw)\/?$/.test(url.pathname)) {
     return new Response(null, { status: 301, headers: { location: "/" } });
   }
-  if (url.pathname !== "/") return next();
-  const link = '</llms.txt>; rel="describedby"; type="text/markdown", </llms-full.txt>; rel="alternate"; type="text/markdown"';
-  if ((request.headers.get("accept") || "").includes("text/markdown")) {
-    return new Response(null, { status: 302, headers: { location: "/llms.txt", link, vary: "Accept" } });
+  if (url.pathname !== "/" || !isReadRequest) return next();
+
+  const link = '</llms.txt>; rel="describedby"; type="text/plain", </llms-full.txt>; rel="describedby"; type="text/plain"';
+  if (prefersMarkdown(request.headers.get("accept") ?? "")) {
+    return new Response(request.method === "HEAD" ? null : homepageMarkdown, {
+      headers: { "Content-Type": "text/markdown; charset=utf-8", Link: link, Vary: "Accept" },
+    });
   }
   const result = await next();
   try {

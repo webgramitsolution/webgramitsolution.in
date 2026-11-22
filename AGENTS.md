@@ -47,7 +47,7 @@
 - India is the only marketed region. Historical `/ae` and `/kw` URLs redirect to the homepage.
 - Public structured data uses the shared site identity and linked page IDs; include only evidenced facts and visible answers, not unsupported rating, price, founder or search-action claims, to keep machine-readable business information consistent.
 - FAQ JSON-LD is generated from the same grouped answers shown on the FAQ page and shares its page identity, preventing hidden or inconsistent answers; homepage head changes belong in the index route rather than a standalone HTML file.
-- Agent readiness: start.ts redirects Markdown requests on `/` to llms.txt and advertises it in the Link header; WebMCP tools stay read-only.
+- Agent readiness: start.ts serves a negotiated Markdown homepage at `/` and advertises llms.txt in the Link header; WebMCP tools stay read-only.
 - `/locations` pages share `location-page.tsx`; `projectsForLocation` shows only genuine city/NCR portfolio items.
 - Blog FAQs use `normalizeBlogFaqs` for both the visible section and FAQPage schema, so they always match.
 - Speed: GTM loads asynchronously from the shared document head, Manrope self-hosted, sign-in client loaded on demand, ImageKit sized via `ikResize`.
