@@ -57,10 +57,30 @@ export function BlogPage({ categories, posts, initialCategory = "all" }: { categ
     <main>
       <BlogPublicHeader categories={categories} activeSlug={roots.find((item) => item.id === category)?.slug} onSelect={(id) => { setCategory(id); setSubcategory("all"); }} />
 
-      <section className="bg-navy py-10 text-on-dark">
-        <div className="page-shell">
-          <HeroHeading className="text-3xl font-extrabold md:text-4xl" lines={["Webgram Ecommerce", "and Web Development Blog"]} />
-          <p className="mt-3 max-w-2xl leading-7 text-on-dark/80">Practical notes on storefronts, wholesale ordering, integrations and website upkeep for business owners and ecommerce teams.</p>
+      <section className="relative isolate overflow-hidden bg-navy text-on-dark">
+        <div className="page-shell relative z-10 py-8 md:py-10">
+          <div className="md:w-1/2 md:pr-6">
+            <HeroHeading className="text-3xl font-extrabold md:text-4xl" lines={["Webgram Ecommerce", "and Web Development Blog"]} />
+            <p className="mt-3 max-w-2xl leading-7 text-on-dark/80">Practical notes on storefronts, wholesale ordering, integrations and website upkeep for business owners and ecommerce teams.</p>
+          </div>
+        </div>
+        <div className="relative h-40 sm:h-48 md:absolute md:inset-y-0 md:right-0 md:h-full md:w-1/2">
+          <picture>
+            <source
+              type="image/avif"
+              srcSet="/images/blog-hero-640.avif 640w, /images/blog-hero-1536.avif 1536w"
+              sizes="(min-width: 768px) max(50vw, 740px), 100vw"
+            />
+            <img
+              src="/images/blog-hero.webp"
+              alt=""
+              width={1536}
+              height={480}
+              fetchPriority="high"
+              className="absolute inset-0 h-full w-full object-cover object-[center_43%]"
+            />
+          </picture>
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-linear-to-b from-navy to-transparent to-28% md:bg-linear-to-r md:to-20%" />
         </div>
       </section>
 
