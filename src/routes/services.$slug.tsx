@@ -78,5 +78,5 @@ function ServicesPage() {
     slug === "website-maintenance" ? <WebsiteMaintenancePage /> :
     <SubpageTemplate sectionLabel={section.label} page={page} />;
   const showLatestPosts = slug !== "web-portal-development" && slug !== "website-maintenance";
-  return <>{body}{slug === "woocommerce" ? <ServicePlanning plan={servicePlans.woocommerce} /> : null}{showLatestPosts ? <LatestBlogPosts /> : null}</>;
+  return <>{body}{slug === "woocommerce" ? <ServicePlanning plan={servicePlans.woocommerce} storefront /> : null}{showLatestPosts ? <LatestBlogPosts /> : null}</>;
 }
