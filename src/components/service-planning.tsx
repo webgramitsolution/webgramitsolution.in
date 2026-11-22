@@ -1,18 +1,18 @@
 import { HeroHeading } from "@/components/hero-heading";
-import { ArrowRight, CreditCard, Monitor, RefreshCw, Settings, ShieldCheck, Store } from "lucide-react";
+import { ArrowRight, CreditCard, LayoutGrid, RefreshCw, Settings, ShieldCheck, Store } from "lucide-react";
 import type { ServicePlan } from "@/lib/service-planning";
 
 const storefrontIcons = [Store, RefreshCw, CreditCard];
 
 const storefrontBenefits = [
-  [Monitor, "Responsive design"],
   [ShieldCheck, "Secure checkout"],
-  [Settings, "Easy product management"],
+  [LayoutGrid, "Responsive design"],
+  [Settings, "Easy store management"],
 ] as const;
 
-function WooCommerceSpotlight({ plan }: { plan: ServicePlan }) {
+function WooCommerceSpotlight() {
   return (
-    <div className="relative isolate grid overflow-hidden rounded-2xl border border-border bg-[#f2f8fd] shadow-card lg:min-h-[350px] lg:grid-cols-[52%_1fr] xl:min-h-[clamp(380px,30vw,450px)]">
+    <div className="relative isolate grid overflow-hidden rounded-2xl border border-border bg-[#f2f8fd] shadow-card lg:min-h-[330px] lg:grid-cols-[52%_1fr] xl:min-h-[clamp(365px,29vw,425px)]">
       <picture className="block max-lg:-mt-2 max-lg:[mask-image:linear-gradient(to_bottom,transparent,#000_10%)] lg:pointer-events-none lg:absolute lg:inset-0 lg:z-0">
         <source media="(min-width: 1024px)" srcSet="/images/woocommerce-storefront-banner.webp" />
         <img src="/images/woocommerce-storefront-showcase.webp" width={1280} height={960} alt="Furniture storefront preview on a laptop and phone" loading="lazy" decoding="async" className="block h-auto w-full lg:h-full lg:object-cover lg:object-right" />
@@ -21,22 +21,22 @@ function WooCommerceSpotlight({ plan }: { plan: ServicePlan }) {
         <h2 className="text-balance text-[clamp(1.8rem,3.25vw,3.55rem)] font-extrabold leading-[1.05] tracking-tight text-navy">
           Custom WooCommerce <span className="lg:block"><span className="text-[#0058c9]">Website</span> Development</span>
         </h2>
-        <p className="max-w-xl text-base leading-relaxed text-navy xl:text-lg">{plan.summary}</p>
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
-          <a href="#woocommerce-services" className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#005fdf] px-5 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-[#004fb9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
-            Explore WooCommerce <ArrowRight aria-hidden="true" className="size-4 shrink-0" />
+        <p className="max-w-xl text-base leading-relaxed text-navy xl:text-lg">
+          Get tailored WordPress ecommerce solutions with product catalogues, checkout and easy store management.
+        </p>
+        <div className="mt-2 flex flex-wrap items-center gap-4 xl:flex-nowrap xl:gap-3">
+          <a href="#woocommerce-services" className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full bg-navy px-4 py-2.5 text-sm font-bold text-on-dark shadow-card hover:bg-[#004fb9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
+            Explore Services <ArrowRight aria-hidden="true" className="size-4 shrink-0" />
           </a>
-          <a href="/work/portfolio" className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-navy underline decoration-[#0058c9] decoration-2 underline-offset-4 hover:text-[#0058c9]">
-            View our work <ArrowRight aria-hidden="true" className="size-4 shrink-0" />
-          </a>
+          <ul className="flex flex-wrap items-center gap-x-3 gap-y-2 xl:flex-nowrap xl:border-l xl:border-primary/30 xl:pl-3">
+            {storefrontBenefits.map(([Icon, label]) => (
+              <li key={label} className="inline-flex items-center gap-1.5 text-xs font-semibold leading-tight text-navy">
+                <Icon aria-hidden="true" className="size-5 shrink-0 text-[#0058c9]" />
+                <span className="xl:w-[4.5rem]">{label}</span>
+              </li>
+            ))}
+          </ul>
         </div>
-        <ul className="flex flex-wrap gap-2">
-          {storefrontBenefits.map(([Icon, label]) => (
-            <li key={label} className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-xs font-semibold text-navy shadow-sm">
-              <Icon aria-hidden="true" className="size-[18px] shrink-0 text-[#0058c9]" />{label}
-            </li>
-          ))}
-        </ul>
       </div>
 
     </div>
@@ -50,7 +50,7 @@ export function ServicePlanning({ plan, headline = false, whiteIntro = false, st
   return (
     <section className={`border-y border-border bg-sky-soft ${storefront ? "py-7 md:py-9" : "py-12 md:py-16"}`}>
       <div className="page-shell">
-        {storefront ? <WooCommerceSpotlight plan={plan} /> : (
+        {storefront ? <WooCommerceSpotlight /> : (
           <div className={`grid items-center gap-7 md:grid-cols-[1.05fr_0.95fr] ${whiteIntro ? "rounded-2xl bg-white p-5 md:p-7" : ""}`}>
             <div>
               {headline ? <HeroHeading className={headingClass} title={plan.title} /> : <h2 className={`${headingClass} text-balance`}>{plan.title}</h2>}
