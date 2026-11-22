@@ -1,3 +1,4 @@
+import { ServiceHero, serviceHeroImage } from "@/components/service-hero";
 import { ecommerceBuyerGuide as guide } from "@/lib/ecommerce-buyer-guide";
 import { HeroHeading } from "@/components/hero-heading";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -5,14 +6,14 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
-import { publicPageSchema } from "@/lib/site-identity";
+import { publicPageSchema, SITE_URL } from "@/lib/site-identity";
 import { faqGroups as groups } from "@/lib/faq-content";
 
 const URL = "https://webgramitsolution.in/resources/faqs";
 const title = "FAQs — Website, Ecommerce & B2B Development | Webgram IT Solution";
 const description =
   "Answers to common questions about Webgram IT Solution: website and ecommerce development, timelines, pricing, WooCommerce, Shopify, B2B portals, maintenance and support.";
-const heroImage = "https://ik.imagekit.io/2kynz1ge7/portfolio.png";
+const heroImage = SITE_URL + serviceHeroImage("website-faq");
 
 export const Route = createFileRoute("/resources/faqs")({
   head: () => ({
@@ -56,14 +57,21 @@ function FaqsPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
-      <section className="contact-hero text-on-dark">
-        <img src={heroImage} alt="Website development questions and answers" width={1536} height={1024} className="absolute inset-0 h-full w-full object-cover object-right" />
-        <div className="header-shell relative z-10 flex h-full flex-col justify-center py-6"><div className="max-w-[50%] max-md:max-w-full">
-          <HeroHeading className="page-title max-w-[700px] leading-[1.08]" lines={["Website Development FAQs", "Cost, Timelines and Support"]} accent="text-gold" />
-          <p className="page-lead mt-2 max-w-[34rem] text-on-dark/85">Quick answers about our services, process,<br className="hidden sm:block" /> timelines, pricing and support.</p></div>
+      <ServiceHero slug="website-faq">
+        <div className="ecom-shell relative flex h-full items-center py-6">
+          <div className="max-w-[540px]">
+            <HeroHeading className="text-[30px] font-medium leading-tight" lines={["Website Development FAQs", "Plan Your Build With Clarity"]} accent="text-[#f4c657]" />
+            <p className="mt-3 text-[13px] leading-relaxed text-on-dark/90 sm:text-[15px]">
+              <span className="block">Compare costs, timelines and platforms.</span>{" "}
+              <span className="block">Know what to expect after launch.</span>
+            </p>
+            <Button asChild className="mt-4">
+              <a href="#faq">Browse FAQs <ArrowRight aria-hidden="true" /></a>
+            </Button>
+          </div>
         </div>
-      </section>
-      <section className="py-10 md:py-14">
+      </ServiceHero>
+      <section id="faq" className="scroll-mt-32 py-10 md:py-14">
         <div className="header-shell grid gap-8">
           {groups.map((group) => (
             <div key={group.title}>

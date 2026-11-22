@@ -1,3 +1,4 @@
+import { ServiceHero, serviceHeroImage } from "@/components/service-hero";
 import { HeroHeading } from "@/components/hero-heading";
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -36,11 +37,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { contactImages, ikResize } from "@/lib/site-images";
+import { contactImages } from "@/lib/site-images";
 import { SiteHeader } from "@/components/site-header";
 import { submitEnquiry } from "@/lib/enquiry.functions";
 import { publicPageSchema, SITE_URL } from "@/lib/site-identity";
 import { contactFaqQuestions, pickFaqs } from "@/lib/faq-content";
+
+const contactHeroImage = SITE_URL + serviceHeroImage("contact-team");
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -72,9 +75,9 @@ export const Route = createFileRoute("/contact")({
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://webgramitsolution.in/contact" },
-      { property: "og:image", content: contactImages.banner },
+      { property: "og:image", content: contactHeroImage },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: contactImages.banner },
+      { name: "twitter:image", content: contactHeroImage },
     ],
   }),
   component: ContactPage,
@@ -88,28 +91,22 @@ function ContactHero() {
     [Rocket, "Start", "Your Project"],
   ] as const;
   return (
-    <section id="top" className="contact-hero">
-      <img
-        src={ikResize(contactImages.banner, 1920)}
-        srcSet={`${ikResize(contactImages.banner, 768)} 768w, ${ikResize(contactImages.banner, 1280)} 1280w, ${ikResize(contactImages.banner, 1920)} 1920w`}
-        sizes="100vw"
-        alt="Webgram IT Solution reception"
-        width={2170}
-        height={725}
-        className="absolute inset-0 h-full w-full object-cover object-right"
-      />
-      <div className="page-shell relative z-10 flex h-full items-center">
-        <div className="max-w-[570px] py-6 text-on-dark">
+    <ServiceHero slug="contact-team" id="top">
+      <div className="ecom-shell relative flex h-full items-center">
+        <div className="max-w-[540px] text-on-dark">
           <nav className="sr-only" aria-label="Breadcrumb">
             <Link to="/">Home</Link>
             <span className="mx-2">›</span>Contact Us
           </nav>
           <p className="sr-only">Get in Touch</p>
-          <HeroHeading className="text-[34px] font-extrabold leading-[1.03] sm:text-[41px] lg:text-[48px]" lines={["Request a Website", "Development Quote"]} accent="text-gold" />
+          <HeroHeading className="text-[34px] font-extrabold leading-[1.03] sm:text-[41px] lg:text-[48px]" lines={["Let’s Build Your Website", "Request a Project Quote"]} accent="text-[#f4c657]" />
           <p className="mt-4 text-[13px] leading-[1.55] text-on-dark/90 sm:text-[14px]">
-            Have a project in mind? We’re here to help you turn your ideas
-            <br className="hidden sm:block" /> into a powerful digital commerce experience.
+            <span className="block">Share your website or ecommerce plans.</span>{" "}
+            <span className="block">Get a scope and quote from our team.</span>
           </p>
+          <Button asChild className="mt-4">
+            <a href="#contact">Tell Us About Your Project</a>
+          </Button>
           <div className="mt-6 grid max-w-[520px] grid-cols-4 divide-x divide-on-dark/20">
             {promises.map(([Icon, first, second]) => (
               <div key={second} className="px-3 first:pl-0">
@@ -126,7 +123,7 @@ function ContactHero() {
           </div>
         </div>
       </div>
-    </section>
+    </ServiceHero>
   );
 }
 
@@ -351,7 +348,7 @@ function DirectContact() {
 
 function ContactMain() {
   return (
-    <section id="contact" className="bg-background py-6 md:py-8">
+    <section id="contact" className="scroll-mt-32 bg-background py-6 md:py-8">
       <div className="page-shell grid items-stretch gap-4 md:grid-cols-[.94fr_1.06fr]">
         <div className="rounded-lg border border-border/80 bg-card p-5 shadow-card sm:p-6">
           <p className="eyebrow flex items-center gap-3 text-muted-foreground">

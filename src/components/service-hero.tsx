@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 
 const descriptions = {
+  "website-faq": "Help centre and project planning materials on a studio desk",
+  "contact-team": "Two professionals discussing a website project at a studio table",
   "ecommerce-development": "Online storefront on laptop and phone in a retail showroom",
   "b2b-commerce": "Wholesale ordering dashboard in a distribution warehouse",
   "website-design-development": "Responsive business website displayed in an architecture studio",
@@ -20,9 +22,9 @@ export function serviceHeroImage(slug: string) {
   return Object.hasOwn(descriptions, slug) ? `/images/service-heroes/${slug}.webp` : undefined;
 }
 
-export function ServiceHero({ slug, children }: { slug: ServiceHeroSlug; children: ReactNode }) {
+export function ServiceHero({ slug, id, children }: { slug: ServiceHeroSlug; id?: string; children: ReactNode }) {
   return (
-    <section className="ecom-hero service-hero relative overflow-hidden bg-navy text-on-dark">
+    <section id={id} className="ecom-hero service-hero relative overflow-hidden bg-navy text-on-dark">
       <picture className="service-hero-art pointer-events-none absolute">
         <source media="(max-width: 767px)" srcSet={`/images/service-heroes/${slug}-mobile.webp`} width={840} height={504} />
         <img src={serviceHeroImage(slug)} alt={descriptions[slug]} width={2160} height={720} fetchPriority="high" className="block h-full w-full object-cover object-center md:max-xl:object-right" />
