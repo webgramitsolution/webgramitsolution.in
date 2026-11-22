@@ -69,7 +69,7 @@ export function LocationPage({ location: l }: { location: ServiceLocation }) {
   const nearby = locations.filter((location) => location.slug !== l.slug && location.zone === l.zone).slice(0, 5);
   const image = locationVisual(l);
   return (
-    <div className="location-layout min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
       <section className="ecom-hero location-hero relative overflow-hidden bg-navy text-on-dark">
         <img src={image.src} alt={image.alt} width={image.size} height={image.size} fetchPriority="high" className="location-hero-image absolute inset-y-0 right-0 h-full w-full object-cover object-center" />
@@ -285,7 +285,7 @@ export function LocationPage({ location: l }: { location: ServiceLocation }) {
 /** Hub listing every city page. */
 export function LocationsHub() {
   return (
-    <div className="location-layout min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
       <section className="ecom-hero location-hero relative overflow-hidden bg-navy text-on-dark">
         <img src={IMAGES.ecommerce} alt="" width={800} height={450} fetchPriority="high" className="location-hero-image absolute inset-y-0 right-0 h-full w-full object-cover" />

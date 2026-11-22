@@ -1201,10 +1201,6 @@ h1, h2, h3, h4, h5, h6 { font-weight: 500 !important; }
   .visual-article-content { min-height: 360px; padding: 14px; }
   .guest-writing-settings input, .guest-writing-settings textarea { font-size: 16px; }
 }
-.location-layout .ecom-shell {
-  width: 90%;
-}
-
 @media (min-width: 768px) {
   .location-hero.ecom-hero {
     height: auto;
