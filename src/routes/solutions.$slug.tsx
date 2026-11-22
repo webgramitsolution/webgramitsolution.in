@@ -6,7 +6,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { SubpageTemplate } from "@/components/subpage";
 import { B2BCommercePage } from "@/components/b2b-commerce-page";
 import { EcommerceDevelopmentPage } from "@/components/ecommerce-development-page";
-import { WebsiteDesignDevelopmentPage } from "@/components/website-design-development-page";
+import { WEBSITE_DEVELOPMENT_HERO, WebsiteDesignDevelopmentPage } from "@/components/website-design-development-page";
 import { getSubpage, menuSections } from "@/lib/menu-pages";
 import { servicePageSchema } from "@/lib/schema";
 import { NotFoundPage } from "@/components/not-found-page";
@@ -32,7 +32,7 @@ export const Route = createFileRoute("/solutions/$slug")({
     const title = content?.title ?? `${loaderData.title} | Webgram IT Solution`;
     const description = content?.plan.summary ?? loaderData.description;
     const url = `https://webgramitsolution.in/solutions/${params.slug}`;
-    const image = content?.plan.image;
+    const image = params.slug === "website-design-development" ? new URL(WEBSITE_DEVELOPMENT_HERO, url).href : content?.plan.image;
     return {
       links: [{ rel: "canonical", href: url }],
       meta: [

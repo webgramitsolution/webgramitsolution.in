@@ -138,17 +138,28 @@ function ProjectCarousel() {
   );
 }
 
+export const WEBSITE_DEVELOPMENT_HERO = "/images/business-website-development-hero.webp";
+
 export function WebsiteDesignDevelopmentPage({ designOnly = false }: { designOnly?: boolean }) {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <SiteHeader />
 
       <section className="ecom-hero relative overflow-hidden bg-navy text-on-dark">
-        <picture>
-          <source media="(max-width: 767px)" srcSet={WEBSITE_DESIGN_PHONE_HERO} />
-          <img src={WEBSITE_DESIGN_HERO} alt="High-converting ecommerce website displayed across desktop and mobile devices" width={1920} height={760} className="absolute inset-0 h-full w-full object-cover object-center" />
-        </picture>
-        <div className="ecom-hero-shade absolute inset-0" />
+        {designOnly ? (
+          <>
+            <picture>
+              <source media="(max-width: 767px)" srcSet={WEBSITE_DESIGN_PHONE_HERO} />
+              <img src={WEBSITE_DESIGN_HERO} alt="High-converting ecommerce website displayed across desktop and mobile devices" width={1920} height={760} className="absolute inset-0 h-full w-full object-cover object-center" />
+            </picture>
+            <div className="ecom-hero-shade absolute inset-0" aria-hidden="true" />
+          </>
+        ) : (
+          <picture className="absolute inset-y-0 right-0 w-full md:w-[58%] md:[mask-image:linear-gradient(to_right,transparent,#000_23%)]">
+            <source type="image/avif" srcSet="/images/business-website-development-hero-640.avif 640w, /images/business-website-development-hero-1200.avif 1200w" sizes="(min-width: 768px) 58vw, 100vw" />
+            <img src={WEBSITE_DEVELOPMENT_HERO} alt="Architecture firm website shown on a laptop and phone" width={1200} height={600} fetchPriority="high" className="block h-full w-full object-cover object-[right_center] opacity-60 md:opacity-100" />
+          </picture>
+        )}
         <div className="ecom-shell relative flex h-full items-center py-5">
           <div className="max-w-[525px]">
             <nav className="sr-only" aria-label="Breadcrumb"><Link to="/">Home</Link> › Solutions › Website Design &amp; Development</nav>
