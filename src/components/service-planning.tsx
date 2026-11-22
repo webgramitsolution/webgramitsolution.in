@@ -12,8 +12,12 @@ const storefrontBenefits = [
 
 function WooCommerceSpotlight({ plan }: { plan: ServicePlan }) {
   return (
-    <div className="grid overflow-hidden rounded-2xl border border-border bg-[#f2f8fd] shadow-card lg:grid-cols-[1.04fr_1fr]">
-      <div className="relative z-10 flex min-w-0 flex-col justify-center gap-5 px-5 py-7 sm:px-8 lg:py-10 xl:px-10">
+    <div className="relative isolate grid overflow-hidden rounded-2xl border border-border bg-[#f2f8fd] shadow-card lg:min-h-[390px] lg:grid-cols-[52%_1fr] xl:min-h-[clamp(420px,35vw,535px)]">
+      <picture className="block max-lg:-mt-2 max-lg:[mask-image:linear-gradient(to_bottom,transparent,#000_10%)] lg:pointer-events-none lg:absolute lg:inset-0 lg:z-0">
+        <source media="(min-width: 1024px)" srcSet="/images/woocommerce-storefront-banner.webp" />
+        <img src="/images/woocommerce-storefront-showcase.webp" width={1280} height={960} alt="Furniture storefront preview on a laptop and phone" loading="lazy" decoding="async" className="block h-auto w-full lg:h-full lg:object-cover lg:object-right" />
+      </picture>
+      <div className="relative z-10 row-start-1 flex min-w-0 flex-col justify-center gap-5 px-5 py-7 sm:px-8 lg:py-10 xl:px-10">
         <p className="inline-flex w-fit items-center gap-2 rounded-full bg-[#d9ebff] px-3.5 py-2 text-xs font-bold uppercase tracking-[0.14em] text-navy">
           <ShoppingCart aria-hidden="true" className="size-4 text-[#0058c9]" />
           Ecommerce Development
@@ -38,9 +42,7 @@ function WooCommerceSpotlight({ plan }: { plan: ServicePlan }) {
           ))}
         </ul>
       </div>
-      <div className="relative min-w-0 bg-[#dfedfa] lg:aspect-[4/3]">
-        <img src="/images/woocommerce-storefront-showcase.webp" width={1280} height={960} alt="Furniture storefront preview on a laptop and phone" loading="lazy" decoding="async" className="block h-auto w-full lg:absolute lg:inset-0 lg:h-full lg:object-cover" />
-      </div>
+
     </div>
   );
 }

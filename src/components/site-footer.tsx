@@ -7,18 +7,18 @@ const LOGO_URL = "https://ik.imagekit.io/x3cipokny/webgram%20it%20solution?updat
 
 const columns = [
   ["Solutions", [
-    { label: "Ecommerce Development", to: "/solutions/ecommerce-development" },
-    { label: "B2B Commerce", to: "/solutions/b2b-commerce" },
-    { label: "Website Development", to: "/solutions/website-design-development" },
-    { label: "Marketplace Development", to: "/solutions/marketplace-development" },
+    { label: "Online Store Development", to: "/solutions/ecommerce-development" },
+    { label: "Wholesale & B2B Commerce", to: "/solutions/b2b-commerce" },
+    { label: "Business Website Development", to: "/solutions/website-design-development" },
+    { label: "Multi-Vendor Marketplaces", to: "/solutions/marketplace-development" },
   ]],
   ["Services", [
-    { label: "Web Portal Development", to: "/services/web-portal-development" },
-    { label: "Website Design", to: "/services/website-design" },
-    { label: "WooCommerce Development", to: "/services/woocommerce" },
-    { label: "Shopify Development", to: "/services/shopify" },
-    { label: "API Integration", to: "/services/api-integration" },
-    { label: "Website Maintenance", to: "/services/website-maintenance" },
+    { label: "Custom Web Portals", to: "/services/web-portal-development" },
+    { label: "Website Design & Redesign", to: "/services/website-design" },
+    { label: "WooCommerce Stores", to: "/services/woocommerce" },
+    { label: "Shopify Stores", to: "/services/shopify" },
+    { label: "API & System Integrations", to: "/services/api-integration" },
+    { label: "Website Care & Support", to: "/services/website-maintenance" },
   ]],
   ["Resources", [
     { label: "Website Guides", to: "/resources/guides" },
@@ -82,8 +82,9 @@ export function SiteFooter() {
       <div className="page-shell grid gap-y-4 py-5 md:grid-cols-[1.3fr_repeat(5,1fr)] md:gap-0 lg:grid-cols-[1.6fr_repeat(5,1fr)]">
         <div className="md:pr-3 lg:pr-5">
           <img src={LOGO_URL} alt="Webgram IT Solution" width={720} height={177} loading="lazy" className="h-9 w-auto object-contain brightness-0 invert" />
-          <p className="mt-2 max-w-[250px] text-sm leading-relaxed text-on-dark/85">
-            Webgram IT Solution builds ecommerce stores, B2B ordering portals and business websites from New Delhi for clients across India.
+          <p className="mt-3 text-sm font-extrabold text-on-dark">Sell online. Make repeat orders easier.</p>
+          <p className="mt-1 max-w-[270px] text-sm leading-relaxed text-on-dark/85">
+            We design websites that help customers find you, shop your catalogue and place wholesale orders. Based in New Delhi, serving businesses across India.
           </p>
           <address className="mt-3 grid gap-1 text-[13px] not-italic text-on-dark/85">
             <span>Sangam Vihar, New Delhi, India</span>
