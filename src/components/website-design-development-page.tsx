@@ -75,10 +75,10 @@ const process = [
 ] as const;
 
 const industries = [
-  [industryImages.manufacturing, "Manufacturing"],
+  [industryImages.manufacturing, "Manufacturing", "manufacturing"],
   [industryImages.architecture, "Architecture & Interior"],
   [industryImages.realEstate, "Real Estate"],
-  [industryImages.retail, "Retail & Lifestyle"],
+  [industryImages.retail, "Retail & Lifestyle", "retail"],
   [industryImages.education, "Education"],
   [industryImages.healthcare, "Healthcare"],
   [industryImages.finance, "Finance & Consulting"],
@@ -201,7 +201,25 @@ export function WebsiteDesignDevelopmentPage({ designOnly = false }: { designOnl
 
       <section className="bg-sky-soft py-6 md:py-7">
         <div className="ecom-shell"><Eyebrow>Industries We Serve</Eyebrow><h2 className="mt-2 text-[23px] font-extrabold leading-none text-navy md:text-[26px]">Websites for Every Industry</h2>
-          <div className="ecom-scroll mt-4 grid grid-flow-col auto-cols-[185px] gap-3 overflow-x-auto md:grid-cols-7 md:overflow-visible">{industries.map(([image, title]) => <article key={title} className="overflow-hidden rounded-md border border-border bg-card"><div className="h-[94px] overflow-hidden"><img src={image} alt={title} width={500} height={300} loading="lazy" className="h-full w-full object-cover object-center" /></div><h3 className="px-2.5 py-2 text-[13px] font-extrabold text-navy">{title}</h3></article>)}</div>
+          <div className="ecom-scroll mt-4 grid grid-flow-col auto-cols-[185px] gap-3 overflow-x-auto md:grid-cols-7 md:overflow-visible">
+            {industries.map(([image, title, slug]) => (
+              <Link
+                key={title}
+                {...(slug
+                  ? { to: "/industries/$slug", params: { slug } }
+                  : { to: "/industries", "aria-label": `${title} — browse all industries` })}
+                className="group overflow-hidden rounded-md border border-border bg-card transition-colors hover:border-primary focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary"
+              >
+                <div className="h-[94px] overflow-hidden">
+                  <img src={image} alt="" width={500} height={300} loading="lazy" className="h-full w-full object-cover object-center" />
+                </div>
+                <h3 className="flex items-center justify-between gap-1 px-2.5 py-2 text-[13px] font-extrabold text-navy group-hover:text-primary">
+                  {title}
+                  <ArrowRight className="size-3.5 shrink-0 text-primary" aria-hidden="true" />
+                </h3>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
