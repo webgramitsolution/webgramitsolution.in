@@ -55,7 +55,7 @@ export function IndustriesDirectory() {
         <div className="page-shell">
           <h2 className="text-2xl text-navy md:text-3xl">Find your industry</h2>
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">Our New Delhi team builds ecommerce websites and B2B portals for businesses across India. Explore the catalogue, ordering and fulfilment needs of each sector.</p>
-          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {industries.map((industry) => (
               <Link key={industry.slug} to="/industries/$slug" params={{ slug: industry.slug }} className="group flex min-w-0 flex-col overflow-hidden rounded-lg border border-border bg-card shadow-card hover:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
                 <IndustryPicture slug={industry.slug} alt={industry.alt} />
