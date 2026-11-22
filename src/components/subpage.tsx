@@ -1,4 +1,3 @@
-import { ServiceHero, type ServiceHeroSlug } from "@/components/service-hero";
 import { HeroHeading } from "@/components/hero-heading";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
@@ -7,31 +6,17 @@ import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 import type { Subpage } from "@/lib/menu-pages";
 
-export function SubpageTemplate({ sectionLabel, page, heading, children, heroSlug }: { sectionLabel: string; page: Subpage; heading?: string; children?: React.ReactNode; heroSlug?: ServiceHeroSlug }) {
+export function SubpageTemplate({ sectionLabel, page, heading, children }: { sectionLabel: string; page: Subpage; heading?: string; children?: React.ReactNode }) {
   return (
     <div id="top" className="min-h-screen bg-background text-foreground">
       <SiteHeader />
-      {heroSlug ? (
-        <ServiceHero slug={heroSlug}>
-          <div className="ecom-shell relative flex h-full items-center py-5">
-            <div className="max-w-[540px]">
-              <HeroHeading lines={[page.title, page.tagline]} accent="text-gold" />
-              <p className="mt-3 max-w-[470px] text-sm leading-relaxed text-on-dark/90">{page.description}</p>
-              <Button asChild className="mt-4 h-10 bg-gold px-6 text-sm font-bold text-navy hover:bg-gold/90">
-                <Link to="/contact">Get a Free Consultation <ArrowRight /></Link>
-              </Button>
-            </div>
-          </div>
-        </ServiceHero>
-      ) : (
-        <section className="ecom-waves bg-navy py-12 text-on-dark md:py-16">
-          <div className="header-shell">
-            <p className="mb-3 text-sm font-bold text-gold">{sectionLabel}</p>
-            <HeroHeading className="page-title max-w-[720px] leading-[1.12]" {...(heading ? { title: heading } : { lines: [page.title, page.tagline] as const, accent: "text-gold" })} />
-            <p className="page-lead mt-3 max-w-[620px] text-on-dark/80">{page.description}</p>
-          </div>
-        </section>
-      )}
+      <section className="ecom-waves bg-navy py-12 text-on-dark md:py-16">
+        <div className="header-shell">
+          <p className="mb-3 text-sm font-bold text-gold">{sectionLabel}</p>
+          <HeroHeading className="page-title max-w-[720px] leading-[1.12]" {...(heading ? { title: heading } : { lines: [page.title, page.tagline] as const, accent: "text-gold" })} />
+          <p className="page-lead mt-3 max-w-[620px] text-on-dark/80">{page.description}</p>
+        </div>
+      </section>
       <section className="py-10 md:py-14">
         <div className="header-shell grid gap-8 md:grid-cols-[1.2fr_1fr] md:items-start">
           <div>

@@ -77,3 +77,10 @@ export const contactFaqQuestions = [
   "Who owns the website after it is built?",
   "How do I contact Webgram IT Solution?",
 ];
+
+export const wordpressFaqs: FaqItem[] = [
+  ["Can my team update the site after launch?", "Yes. We can build reusable blocks and assign editor roles so your team can update pages, images and articles. Training and the handover scope are agreed before launch."],
+  ["Can you redesign an existing WordPress site and keep its URLs?", "We audit current URLs, retain them where practical and map permanent redirects for pages that move. We test the redirects, enquiry forms and sitemap before switching to the new site."],
+  ["Can a WordPress website sell products online?", "Yes. WooCommerce adds catalogues, checkout, shipping and order management to WordPress. We scope payment methods, taxes and shipping rules around your store."],
+  ["What is included in ongoing WordPress maintenance?", "An agreed plan can cover plugin and core updates, backups, security checks and content changes. The scope sets who is responsible for each task and how support requests are handled."],
+];

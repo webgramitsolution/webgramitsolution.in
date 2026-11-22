@@ -1,3 +1,5 @@
+import { wordpressFaqs } from "@/lib/faq-content";
+import { WordPressPage } from "@/components/wordpress-page";
 import { serviceHeroImage } from "@/components/service-hero";
 import { ServicePlanning } from "@/components/service-planning";
 import { servicePlans } from "@/lib/service-planning";
@@ -51,7 +53,23 @@ export const Route = createFileRoute("/services/$slug")({
             ]
           : []),
       ],
-      scripts: servicePageSchema("services", "Services", params.slug, loaderData),
+      scripts: [
+        ...servicePageSchema("services", "Services", params.slug, loaderData),
+        ...(params.slug === "wordpress" ? [{
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "@id": "https://webgramitsolution.in/services/wordpress#wordpress-faq",
+            inLanguage: "en-IN",
+            mainEntity: wordpressFaqs.map(([name, text]) => ({
+              "@type": "Question",
+              name,
+              acceptedAnswer: { "@type": "Answer", text },
+            })),
+          }),
+        }] : []),
+      ],
     };
   },
   component: ServicesPage,
@@ -66,9 +84,10 @@ function ServicesPage() {
     slug === "web-portal-development" ? <WebPortalDevelopmentPage /> :
     slug === "website-design" ? <WebsiteDesignDevelopmentPage /> :
     slug === "woocommerce" ? <WooCommercePage /> :
+    slug === "wordpress" ? <WordPressPage /> :
     slug === "api-integration" ? <ApiIntegrationPage /> :
     slug === "website-maintenance" ? <WebsiteMaintenancePage /> :
-    <SubpageTemplate sectionLabel={section.label} page={page} heroSlug={slug === "wordpress" ? "wordpress" : undefined} />;
+    <SubpageTemplate sectionLabel={section.label} page={page} />;
   const showLatestPosts = slug !== "web-portal-development" && slug !== "website-maintenance";
   return <>{body}{slug === "woocommerce" ? <ServicePlanning plan={servicePlans.woocommerce} storefront /> : null}{showLatestPosts ? <LatestBlogPosts /> : null}</>;
 }
