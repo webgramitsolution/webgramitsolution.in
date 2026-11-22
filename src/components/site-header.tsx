@@ -19,6 +19,7 @@ type Target =
   | { to: "/auth" }
   | { to: "/solutions/$slug"; params: { slug: string } }
   | { to: "/services/$slug"; params: { slug: string } }
+  | { to: "/industries" }
   | { to: "/industries/$slug"; params: { slug: string } }
   | { to: "/work/$slug"; params: { slug: string } }
   | { to: "/resources/$slug"; params: { slug: string } };
@@ -33,7 +34,7 @@ const menu: Array<{ label: string; target?: Target; items?: Array<[string, Targe
   { label: "Work", items: ["Portfolio", "Case Studies", "Client Stories"].map((label) => [label, subpage("work", label)]) },
   { label: "Blog", target: { to: "/blog" } },
   { label: "Resources", items: ["Guides", "FAQs"].map((label) => [label, subpage("resources", label)]) },
-  { label: "Industries", items: Object.entries(menuSections.industries.pages).map(([slug, page]) => [page.title, { to: "/industries/$slug", params: { slug } }]) },
+  { label: "Industries", items: [["All Industries", { to: "/industries" }], ...Object.entries(menuSections.industries.pages).map(([slug, page]): [string, Target] => [page.title, { to: "/industries/$slug", params: { slug } }])] },
   { label: "About Us", target: { to: "/about" } },
   { label: "Contact Us", target: { to: "/contact" } },
 ];

@@ -16,9 +16,10 @@ const staticGroups: SitemapGroup[] = [
   ] },
   ...Object.values(menuSections).map(({ label, base, pages }) => ({
     title: label,
-    entries: Object.entries(pages)
-      .filter(([slug]) => slug !== "insights")
-      .map(([slug, page]) => ({ path: `${base}/${slug}`, label: page.title })),
+    entries: [
+      ...(base === "/industries" ? [{ path: base, label: "All industries" }] : []),
+      ...Object.entries(pages).filter(([slug]) => slug !== "insights").map(([slug, page]) => ({ path: `${base}/${slug}`, label: page.title })),
+    ],
   })),
   { title: "Project checklists", entries: Object.values(projectGuides).map(({ path, lines }) => ({ path, label: lines.join(" ") })) },
   { title: "Blog", entries: [{ path: "/blog", label: "All articles" }, { path: guide.path, label: guide.title }, { path: editorialAuthor.path, label: editorialAuthor.name }, ...editorialPosts.map((post) => ({ path: `/blog/${post.slug}`, label: post.title, lastmod: post.published_at }))] },

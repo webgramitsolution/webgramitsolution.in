@@ -29,6 +29,7 @@ import { Route as AuthorsWebgramEditorialTeamRouteImport } from './routes/author
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as BlogEcommerceWebsiteDevelopmentIndiaGuideRouteImport } from './routes/blog.ecommerce-website-development-india-guide'
+import { Route as IndustriesIndexRouteImport } from './routes/industries.index'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 import { Route as LocationsIndexRouteImport } from './routes/locations.index'
 import { Route as LocationsCityRouteImport } from './routes/locations.$city'
@@ -154,6 +155,11 @@ const BlogEcommerceWebsiteDevelopmentIndiaGuideRoute =
     path: '/blog/ecommerce-website-development-india-guide',
     getParentRoute: () => rootRouteImport,
   } as any)
+const IndustriesIndexRoute = IndustriesIndexRouteImport.update({
+  id: '/industries/',
+  path: '/industries/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndustriesSlugRoute = IndustriesSlugRouteImport.update({
   id: '/industries/$slug',
   path: '/industries/$slug',
@@ -294,6 +300,7 @@ export interface FileRoutesByFullPath {
   '/work/$slug': typeof WorkSlugRoute
   '/work/portfolio': typeof WorkPortfolioRoute
   '/blog/': typeof BlogIndexRoute
+  '/industries/': typeof IndustriesIndexRoute
   '/locations/': typeof LocationsIndexRoute
   '/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
   '/admin/requests': typeof AuthenticatedAdminRequestsRoute
@@ -335,6 +342,7 @@ export interface FileRoutesByTo {
   '/work/$slug': typeof WorkSlugRoute
   '/work/portfolio': typeof WorkPortfolioRoute
   '/blog': typeof BlogIndexRoute
+  '/industries': typeof IndustriesIndexRoute
   '/locations': typeof LocationsIndexRoute
   '/admin/requests': typeof AuthenticatedAdminRequestsRoute
   '/blog/category/$slug': typeof BlogCategorySlugRoute
@@ -377,6 +385,7 @@ export interface FileRoutesById {
   '/work/$slug': typeof WorkSlugRoute
   '/work/portfolio': typeof WorkPortfolioRoute
   '/blog/': typeof BlogIndexRoute
+  '/industries/': typeof IndustriesIndexRoute
   '/locations/': typeof LocationsIndexRoute
   '/_authenticated/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
   '/_authenticated/admin/requests': typeof AuthenticatedAdminRequestsRoute
@@ -420,6 +429,7 @@ export interface FileRouteTypes {
     | '/work/$slug'
     | '/work/portfolio'
     | '/blog/'
+    | '/industries/'
     | '/locations/'
     | '/admin/blog'
     | '/admin/requests'
@@ -461,6 +471,7 @@ export interface FileRouteTypes {
     | '/work/$slug'
     | '/work/portfolio'
     | '/blog'
+    | '/industries'
     | '/locations'
     | '/admin/requests'
     | '/blog/category/$slug'
@@ -502,6 +513,7 @@ export interface FileRouteTypes {
     | '/work/$slug'
     | '/work/portfolio'
     | '/blog/'
+    | '/industries/'
     | '/locations/'
     | '/_authenticated/admin/blog'
     | '/_authenticated/admin/requests'
@@ -545,6 +557,7 @@ export interface RootRouteChildren {
   WorkSlugRoute: typeof WorkSlugRoute
   WorkPortfolioRoute: typeof WorkPortfolioRoute
   BlogIndexRoute: typeof BlogIndexRoute
+  IndustriesIndexRoute: typeof IndustriesIndexRoute
   LocationsIndexRoute: typeof LocationsIndexRoute
   BlogCategorySlugRoute: typeof BlogCategorySlugRoute
 }
@@ -689,6 +702,13 @@ declare module '@tanstack/react-router' {
       path: '/blog/ecommerce-website-development-india-guide'
       fullPath: '/blog/ecommerce-website-development-india-guide'
       preLoaderRoute: typeof BlogEcommerceWebsiteDevelopmentIndiaGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/industries/': {
+      id: '/industries/'
+      path: '/industries'
+      fullPath: '/industries/'
+      preLoaderRoute: typeof IndustriesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/industries/$slug': {
@@ -903,6 +923,7 @@ const rootRouteChildren: RootRouteChildren = {
   WorkSlugRoute: WorkSlugRoute,
   WorkPortfolioRoute: WorkPortfolioRoute,
   BlogIndexRoute: BlogIndexRoute,
+  IndustriesIndexRoute: IndustriesIndexRoute,
   LocationsIndexRoute: LocationsIndexRoute,
   BlogCategorySlugRoute: BlogCategorySlugRoute,
 }

@@ -214,3 +214,16 @@ These are real, live client websites. Figures such as traffic or revenue are not
 - [Chhatarpur](https://webgramitsolution.in/locations/chhatarpur)
 - [Rajouri Garden](https://webgramitsolution.in/locations/rajouri-garden)
 - [Malviya Nagar](https://webgramitsolution.in/locations/malviya-nagar)
+
+## Industry websites and portals
+
+- [Industries directory](https://webgramitsolution.in/industries)
+- [Manufacturing](https://webgramitsolution.in/industries/manufacturing)
+- [Retail](https://webgramitsolution.in/industries/retail)
+- [Wholesale](https://webgramitsolution.in/industries/wholesale)
+- [Furniture](https://webgramitsolution.in/industries/furniture)
+- [Fashion](https://webgramitsolution.in/industries/fashion)
+- [Electronics](https://webgramitsolution.in/industries/electronics)
+- [Beauty and personal care](https://webgramitsolution.in/industries/beauty)
+- [Distribution](https://webgramitsolution.in/industries/distribution)
+- [Building materials](https://webgramitsolution.in/industries/building-materials)

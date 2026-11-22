@@ -16,6 +16,8 @@ Contact: +91 7551120242, info@webgramitsolution.in. GSTIN 07CUHPK2017G1ZW. Hours
 
 ## Industries
 
+- [Industries directory](https://webgramitsolution.in/industries): Sector-specific ecommerce and web portal design.
+- [Building materials](https://webgramitsolution.in/industries/building-materials): Product specifications, bulk orders and project enquiries.
 - [Manufacturing](https://webgramitsolution.in/industries/manufacturing): Technical catalogues and dealer portals.
 - [Wholesale](https://webgramitsolution.in/industries/wholesale): Trade terms and repeat ordering.
 - [Distribution](https://webgramitsolution.in/industries/distribution): Reseller orders, branch inventory and approvals.

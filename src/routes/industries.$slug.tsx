@@ -1,55 +1,52 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
-
-import { SubpageTemplate } from "@/components/subpage";
-import { industryContent } from "@/lib/industry-content";
-import { getSubpage } from "@/lib/menu-pages";
-import { publicPageSchema, SITE_URL } from "@/lib/site-identity";
+import { IndustryDetail } from "@/components/industry-pages";
+import { getIndustry, industryImage } from "@/lib/industry-page-data";
+import { BUSINESS_ID, publicPageSchema, SITE_URL } from "@/lib/site-identity";
 
 export const Route = createFileRoute("/industries/$slug")({
   loader: ({ params }) => {
-    const page = getSubpage("industries", params.slug);
-    const content = industryContent[params.slug as keyof typeof industryContent];
-    if (!page || !content) throw notFound();
-    return { page, content };
+    const industry = getIndustry(params.slug);
+    if (!industry) throw notFound();
+    return industry;
   },
-  head: ({ loaderData, params }) => {
-    if (!loaderData) return {};
-    const path = `/industries/${params.slug}`;
-    const { heading, description } = loaderData.content;
-    const title = `${heading} | Webgram`;
+  head: ({ loaderData: industry }) => {
+    if (!industry) return {};
+    const path = `/industries/${industry.slug}`;
+    const url = SITE_URL + path;
+    const title = `${industry.heading} | Webgram`;
+    const image = SITE_URL + industryImage(industry.slug) + ".webp";
+    const [question, answer] = industry.faq;
     return {
-      links: [{ rel: "canonical", href: `${SITE_URL}${path}` }],
+      links: [{ rel: "canonical", href: url }],
       meta: [
         { title },
-        { name: "description", content: description },
+        { name: "description", content: industry.description },
         { property: "og:title", content: title },
-        { property: "og:description", content: description },
-        { property: "og:url", content: `${SITE_URL}${path}` },
+        { property: "og:description", content: industry.description },
+        { property: "og:url", content: url },
         { property: "og:type", content: "website" },
+        { property: "og:image", content: image },
+        { property: "og:image:alt", content: industry.alt },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:image", content: image },
       ],
-      scripts: publicPageSchema(path, title, description),
+      scripts: [...publicPageSchema(path, title, industry.description), {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            { "@type": "Service", name: industry.heading, description: industry.description, url, image, provider: { "@id": BUSINESS_ID }, areaServed: { "@type": "Country", name: "India" } },
+            { "@type": "FAQPage", "@id": url + "#faq", mainEntity: [{ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } }] },
+            { "@type": "BreadcrumbList", itemListElement: ["Home", "Industries", industry.page.title].map((name, index) => ({ "@type": "ListItem", position: index + 1, name, item: [SITE_URL + "/", SITE_URL + "/industries", url][index] })) },
+          ],
+        }),
+      }],
     };
   },
-  component: IndustriesPage,
+  component: Page,
 });
 
-function IndustriesPage() {
-  const { page, content } = Route.useLoaderData();
-  return (
-    <SubpageTemplate sectionLabel="Industries" page={{ ...page, description: content.description }} heading={content.heading}>
-      <section className="border-t border-border bg-sky-soft py-10">
-        <div className="page-shell">
-          <div className="grid gap-5 md:grid-cols-2">
-            {content.sections.map(([title, copy]) => (
-              <article key={title} className="rounded-xl border border-border bg-card p-6 shadow-card">
-                <h2 className="text-xl font-extrabold text-navy">{title}</h2>
-                <p className="mt-3 leading-7 text-muted-foreground">{copy}</p>
-              </article>
-            ))}
-          </div>
-          <a href={content.next.href} className="mt-6 inline-block font-semibold text-primary hover:underline">{content.next.label}</a>
-        </div>
-      </section>
-    </SubpageTemplate>
-  );
+function Page() {
+  const industry = Route.useLoaderData();
+  return <IndustryDetail industry={industry} />;
 }
