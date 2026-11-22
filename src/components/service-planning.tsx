@@ -1,5 +1,5 @@
 import { HeroHeading } from "@/components/hero-heading";
-import { ArrowRight, CreditCard, Monitor, RefreshCw, Settings, ShieldCheck, ShoppingCart, Store } from "lucide-react";
+import { ArrowRight, CreditCard, Monitor, RefreshCw, Settings, ShieldCheck, Store } from "lucide-react";
 import type { ServicePlan } from "@/lib/service-planning";
 
 const storefrontIcons = [Store, RefreshCw, CreditCard];
@@ -12,16 +12,12 @@ const storefrontBenefits = [
 
 function WooCommerceSpotlight({ plan }: { plan: ServicePlan }) {
   return (
-    <div className="relative isolate grid overflow-hidden rounded-2xl border border-border bg-[#f2f8fd] shadow-card lg:min-h-[390px] lg:grid-cols-[52%_1fr] xl:min-h-[clamp(420px,35vw,535px)]">
+    <div className="relative isolate grid overflow-hidden rounded-2xl border border-border bg-[#f2f8fd] shadow-card lg:min-h-[350px] lg:grid-cols-[52%_1fr] xl:min-h-[clamp(380px,30vw,450px)]">
       <picture className="block max-lg:-mt-2 max-lg:[mask-image:linear-gradient(to_bottom,transparent,#000_10%)] lg:pointer-events-none lg:absolute lg:inset-0 lg:z-0">
         <source media="(min-width: 1024px)" srcSet="/images/woocommerce-storefront-banner.webp" />
         <img src="/images/woocommerce-storefront-showcase.webp" width={1280} height={960} alt="Furniture storefront preview on a laptop and phone" loading="lazy" decoding="async" className="block h-auto w-full lg:h-full lg:object-cover lg:object-right" />
       </picture>
-      <div className="relative z-10 row-start-1 flex min-w-0 flex-col justify-center gap-5 px-5 py-7 sm:px-8 lg:py-10 xl:px-10">
-        <p className="inline-flex w-fit items-center gap-2 rounded-full bg-[#d9ebff] px-3.5 py-2 text-xs font-bold uppercase tracking-[0.14em] text-navy">
-          <ShoppingCart aria-hidden="true" className="size-4 text-[#0058c9]" />
-          Ecommerce Development
-        </p>
+      <div className="relative z-10 row-start-1 flex min-w-0 flex-col justify-center gap-3 px-5 py-5 sm:px-8 lg:py-6 xl:px-10">
         <h2 className="text-balance text-[clamp(1.8rem,3.25vw,3.55rem)] font-extrabold leading-[1.05] tracking-tight text-navy">
           Custom WooCommerce <span className="lg:block"><span className="text-[#0058c9]">Website</span> Development</span>
         </h2>
@@ -52,7 +48,7 @@ export function ServicePlanning({ plan, headline = false, whiteIntro = false, st
   const CardHeading = headline ? "h2" : "h3";
 
   return (
-    <section className="border-y border-border bg-sky-soft py-12 md:py-16">
+    <section className={`border-y border-border bg-sky-soft ${storefront ? "py-7 md:py-9" : "py-12 md:py-16"}`}>
       <div className="page-shell">
         {storefront ? <WooCommerceSpotlight plan={plan} /> : (
           <div className={`grid items-center gap-7 md:grid-cols-[1.05fr_0.95fr] ${whiteIntro ? "rounded-2xl bg-white p-5 md:p-7" : ""}`}>
