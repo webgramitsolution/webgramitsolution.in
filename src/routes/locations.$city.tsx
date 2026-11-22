@@ -17,7 +17,8 @@ export const Route = createFileRoute("/locations/$city")({
     if (!loaderData) return { meta: [{ title: "Location not found" }, { name: "robots", content: "noindex" }] };
     const description = localSearch[params.city]?.description ?? loaderData.description;
     const faqs = locationAnswers(loaderData);
-    const image = BASE + locationVisual(loaderData).src;
+    const visual = locationVisual(loaderData);
+    const image = BASE + visual.src;
     const areaType = loaderData.place ?? (["delhi-ncr", "south-delhi"].includes(params.city) ? "Place" : "City");
     const url = `${BASE}/locations/${params.city}`;
     return {
@@ -31,6 +32,7 @@ export const Route = createFileRoute("/locations/$city")({
         { property: "og:url", content: url },
         { name: "twitter:card", content: "summary_large_image" },
         { property: "og:image", content: image },
+        { property: "og:image:alt", content: visual.alt },
         { name: "twitter:image", content: image },
       ],
       scripts: [{
@@ -38,7 +40,7 @@ export const Route = createFileRoute("/locations/$city")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@graph": [
-            { "@type": "Service", name: loaderData.keyword, serviceType: "Website & Ecommerce Development", description, areaServed: { "@type": areaType, name: loaderData.city, ...(areaType === "Country" ? {} : { containedInPlace: { "@type": "Country", name: "India" } }) }, provider: { "@id": `${BASE}/#business` }, url },
+            { "@type": "Service", name: loaderData.keyword, serviceType: "Website & Ecommerce Development", description, areaServed: { "@type": areaType, name: loaderData.city, ...(areaType === "Country" ? {} : { containedInPlace: { "@type": "Country", name: "India" } }) }, provider: { "@id": `${BASE}/#business` }, image, url },
             ...(faqs.length ? [{
               "@type": "FAQPage",
               "@id": `${url}#faq`,

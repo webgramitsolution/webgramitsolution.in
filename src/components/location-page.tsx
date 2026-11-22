@@ -1,3 +1,4 @@
+import { locationServiceFocus } from "@/lib/location-service-focus";
 import { HeroHeading } from "@/components/hero-heading";
 import { localSearch, locationAnswers } from "@/lib/location-search";
 import { Link } from "@tanstack/react-router";
@@ -61,8 +62,8 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 
 export function LocationPage({ location: l }: { location: ServiceLocation }) {
   const content = localSearch[l.slug];
-  const priorities = content?.priority ?? (l.zone === "delhi-industrial" ? [1, 4, 3] : l.zone === "delhi-neighbourhoods" ? [2, 7, 0] : [0, 1, 2]);
-  const featured = [...new Set([...priorities, ...services.keys()])];
+  const focus = new Map(locationServiceFocus[l.slug] ?? []);
+  const featured = [...new Set([...focus.keys(), ...(content?.priority ?? []), ...services.keys()])];
   const faqs = locationAnswers(l);
   const projects = projectsForLocation(l.slug, portfolio);
   const nearby = locations.filter((location) => location.slug !== l.slug && location.zone === l.zone).slice(0, 5);
@@ -130,7 +131,7 @@ export function LocationPage({ location: l }: { location: ServiceLocation }) {
                   <div className="flex flex-1 flex-col p-3.5">
                     <div className="flex items-center gap-2.5">
                       <span className="grid size-9 shrink-0 place-items-center rounded-md bg-primary-soft text-primary"><Icon className="size-5" aria-hidden="true" /></span>
-                      <h3 className="text-sm font-extrabold leading-snug text-navy">{name}</h3>
+                      <h3 className="text-sm font-extrabold leading-snug text-navy">{focus.get(index) ?? name}</h3>
                     </div>
                     <p className="mt-2 flex-1 text-sm leading-snug text-muted-foreground">{text}</p>
                     <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">Explore service <ArrowRight className="h-4 w-4" aria-hidden="true" /></span>
@@ -304,12 +305,12 @@ export function LocationsHub() {
           {locationGroups.map((group) => (
             <section key={group.title}>
               <h2 className="mb-4 text-[23px] font-extrabold text-navy md:text-[27px]">{group.title}</h2>
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              <div className={`grid gap-3 sm:grid-cols-2 ${group.locations.length === 6 ? "lg:grid-cols-3" : "lg:grid-cols-4"}`}>
                 {group.locations.map((l) => {
                   const image = locationVisual(l);
                   return (
                     <Link key={l.slug} to="/locations/$city" params={{ city: l.slug }} className="group flex min-w-0 flex-col overflow-hidden rounded-md border border-border bg-card shadow-card transition-colors hover:border-primary">
-                      <img src={image.src} alt={image.alt} width={image.size} height={image.size} loading="lazy" className="h-[132px] w-full object-cover object-right" />
+                      <img src={image.src} alt={image.alt} width={image.size} height={image.size} loading="lazy" className="aspect-[16/10] w-full object-cover object-[center_38%]" />
                       <div className="flex flex-1 flex-col p-3.5">
                       <p className="flex items-center gap-2 text-[14px] font-semibold text-primary"><MapPin className="h-4 w-4" />{l.city}</p>
                       <h3 className="mt-2 text-[17px] leading-snug text-navy">{l.keyword}</h3>
