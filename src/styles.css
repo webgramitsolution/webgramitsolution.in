@@ -1054,6 +1054,19 @@ a.bg-gold, button.bg-gold {
   object-position: right center;
   mask-image: linear-gradient(90deg, transparent 0%, #000 26%);
 }
+@media (min-width: 1180px) {
+  .woocommerce-hero.ecom-hero {
+    height: 380px;
+  }
+  .woocommerce-hero > .woocommerce-hero-image {
+    width: 760px;
+    object-fit: contain;
+    mask-image: linear-gradient(to right, transparent, #000 18%);
+  }
+  :is(html[dir="rtl"], html[lang="ar"]) .woocommerce-hero > .woocommerce-hero-image {
+    mask-image: linear-gradient(to left, transparent, #000 18%);
+  }
+}
 @media (max-width: 767px) {
   :is(.contact-hero, .site-hero, .ecom-hero) {
     isolation: isolate;
