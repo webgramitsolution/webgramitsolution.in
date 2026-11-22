@@ -110,10 +110,10 @@ export function WordPressPage() {
           </div>
         </section>
 
-        <section className="ecom-waves bg-navy py-8 text-on-dark">
-          <div className="ecom-shell relative grid items-center gap-6 md:grid-cols-2">
+        <section aria-labelledby="wordpress-quote" className="bg-navy py-8 text-on-dark md:py-10">
+          <div className="ecom-shell grid items-center gap-6 lg:grid-cols-2">
             <div>
-              <h2 className="text-2xl font-semibold">Build a WordPress site your team can run</h2>
+              <h2 id="wordpress-quote" className="text-2xl font-semibold">Build a WordPress site your team can run</h2>
               <p className="mt-3 max-w-lg text-sm leading-6 text-on-dark/85">Share your current site, the pages your team needs and the integrations you rely on. We’ll use those details to scope the build.</p>
               <Button asChild className="mt-4 h-10 bg-gold px-5 text-sm font-bold text-navy hover:bg-gold/90">
                 <Link to="/contact">Request a Project Quote <ArrowRight /></Link>
