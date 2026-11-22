@@ -69,11 +69,10 @@ export function LocationPage({ location: l }: { location: ServiceLocation }) {
   const nearby = locations.filter((location) => location.slug !== l.slug && location.zone === l.zone).slice(0, 5);
   const image = locationVisual(l);
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="location-layout min-h-screen bg-background text-foreground">
       <SiteHeader />
       <section className="ecom-hero location-hero relative overflow-hidden bg-navy text-on-dark">
         <img src={image.src} alt={image.alt} width={image.size} height={image.size} fetchPriority="high" className="location-hero-image absolute inset-y-0 right-0 h-full w-full object-cover object-center" />
-        <div className="ecom-hero-shade absolute inset-0" aria-hidden="true" />
         <div className="ecom-shell relative flex h-full items-center py-5">
           <div className="max-w-[520px]">
             <nav aria-label="Breadcrumb" className="sr-only">
@@ -286,11 +285,10 @@ export function LocationPage({ location: l }: { location: ServiceLocation }) {
 /** Hub listing every city page. */
 export function LocationsHub() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="location-layout min-h-screen bg-background text-foreground">
       <SiteHeader />
       <section className="ecom-hero location-hero relative overflow-hidden bg-navy text-on-dark">
         <img src={IMAGES.ecommerce} alt="" width={800} height={450} fetchPriority="high" className="location-hero-image absolute inset-y-0 right-0 h-full w-full object-cover" />
-        <div className="ecom-hero-shade absolute inset-0" aria-hidden="true" />
         <div className="ecom-shell relative flex h-full items-center py-5">
           <div className="w-full max-w-[540px]">
             <nav aria-label="Breadcrumb" className="sr-only"><Link tabIndex={-1} to="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Locations</span></nav>
@@ -305,7 +303,7 @@ export function LocationsHub() {
           {locationGroups.map((group) => (
             <section key={group.title}>
               <h2 className="mb-4 text-[23px] font-extrabold text-navy md:text-[27px]">{group.title}</h2>
-              <div className={`grid gap-3 sm:grid-cols-2 ${group.locations.length === 6 ? "lg:grid-cols-3" : "lg:grid-cols-4"}`}>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 {group.locations.map((l) => {
                   const image = locationVisual(l);
                   return (

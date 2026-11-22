@@ -1201,17 +1201,32 @@ h1, h2, h3, h4, h5, h6 { font-weight: 500 !important; }
   .visual-article-content { min-height: 360px; padding: 14px; }
   .guest-writing-settings input, .guest-writing-settings textarea { font-size: 16px; }
 }
-.location-hero {
-  background:
-    radial-gradient(ellipse at 88% 10%, color-mix(in oklab, var(--primary) 38%, transparent), transparent 55%),
-    radial-gradient(ellipse at 10% 120%, color-mix(in oklab, var(--primary) 22%, transparent), transparent 50%),
-    var(--navy);
+.location-layout .ecom-shell {
+  width: 90%;
 }
 
 @media (min-width: 768px) {
   .location-hero > .location-hero-image {
     width: 58%;
     object-fit: cover;
-    object-position: center;
+    object-position: center 38%;
+    opacity: 1;
+    mask-image: linear-gradient(to right, transparent, rgb(0 0 0 / 18%) 13%, #000 38%);
+  }
+
+  .location-hero > .ecom-shell > div:first-child {
+    width: 50%;
+    max-width: 32.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .location-hero::before {
+    background: linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--navy) 96%, transparent),
+      color-mix(in oklab, var(--navy) 88%, transparent) 60%,
+      color-mix(in oklab, var(--navy) 68%, transparent)
+    );
   }
 }
