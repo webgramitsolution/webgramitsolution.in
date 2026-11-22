@@ -57,7 +57,13 @@ export const businessIdentity = {
   },
 };
 
-export function publicPageSchema(path: string, name: string, description: string, type = "WebPage") {
+export function publicPageSchema(
+  path: string,
+  name: string,
+  description: string,
+  type = "WebPage",
+  parents: ReadonlyArray<{ name: string; path: string }> = [],
+) {
   const url = `${SITE_URL}${path}`;
   return [{
     type: "application/ld+json",
@@ -71,9 +77,15 @@ export function publicPageSchema(path: string, name: string, description: string
       breadcrumb: {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
-          { "@type": "ListItem", position: 2, name, item: url },
-        ],
+          { name: "Home", path: "/" },
+          ...parents,
+          { name, path },
+        ].map((crumb, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: crumb.name,
+          item: SITE_URL + crumb.path,
+        })),
       },
     }),
   }];

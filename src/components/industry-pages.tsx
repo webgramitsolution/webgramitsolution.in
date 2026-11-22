@@ -25,7 +25,7 @@ function IndustryHero({ industry }: { industry?: Industry }) {
     <header className="overflow-hidden bg-navy text-on-dark">
       <div className="grid items-stretch md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
         <div className="mx-auto flex w-full max-w-[740px] flex-col justify-center px-4 py-8 md:mr-0 md:min-h-[330px] md:py-10 lg:px-8">
-          <nav aria-label="Breadcrumb" className="mb-4 flex flex-wrap gap-x-2 text-sm text-on-dark/80">
+          <nav aria-label="Breadcrumb" className="sr-only focus-within:not-sr-only focus-within:mb-3 focus-within:flex focus-within:flex-wrap focus-within:gap-x-2 text-sm text-on-dark/80">
             <Link to="/" className="hover:underline">Home</Link>
             <span aria-hidden="true">/</span>
             {industry ? <><Link to="/industries" className="hover:underline">Industries</Link><span aria-hidden="true">/</span><span aria-current="page">{industry.page.title}</span></> : <span aria-current="page">Industries</span>}
@@ -54,7 +54,7 @@ export function IndustriesDirectory() {
       <section id="industry-directory" className="scroll-mt-28 bg-sky-soft py-8 md:py-12">
         <div className="page-shell">
           <h2 className="text-2xl text-navy md:text-3xl">Find your industry</h2>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">See how catalogue, ordering and fulfilment requirements shape the websites and portals we build for different businesses.</p>
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">Our New Delhi team builds ecommerce websites and B2B portals for businesses across India. Explore the catalogue, ordering and fulfilment needs of each sector.</p>
           <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {industries.map((industry) => (
               <Link key={industry.slug} to="/industries/$slug" params={{ slug: industry.slug }} className="group flex min-w-0 flex-col overflow-hidden rounded-lg border border-border bg-card shadow-card hover:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
@@ -124,8 +124,8 @@ export function IndustryDetail({ industry }: { industry: Industry }) {
         <div className="ecom-shell grid items-center gap-5 lg:grid-cols-[1fr_2fr]">
           <div>
             <p className="ecom-eyebrow text-primary">Why choose Webgram</p>
-            <h2 className={sectionTitle}>Built around how your buyers order</h2>
-            <p className="mt-2 max-w-md text-sm leading-6 text-muted-foreground">{industry.page.description}</p>
+            <h2 className={sectionTitle}>{industry.searchFocus[0]}</h2>
+            <p className="mt-2 max-w-md text-sm leading-6 text-muted-foreground">{industry.searchFocus[1]}</p>
           </div>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {industry.sections.map(([title, text], index) => {
@@ -235,7 +235,10 @@ export function IndustryDetail({ industry }: { industry: Industry }) {
             </details>
           </div>
           <nav aria-label="Related industries">
-            <h2 className="text-xl text-navy">Related industries</h2>
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <h2 className="text-xl text-navy">Related industries</h2>
+              <Link to="/industries" className="text-sm font-semibold text-primary hover:underline">View all industries</Link>
+            </div>
             <ul className="mt-3 flex flex-wrap gap-2">
               {industry.related.map((slug) => {
                 const next = getIndustry(slug);
