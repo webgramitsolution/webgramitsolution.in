@@ -24,14 +24,15 @@ export function ScrollingFrame({ item, height = 400, eager = false }: { item: Po
 
 export function PortfolioCard({ item, compact = false, eager = false }: { item: PortfolioItem; compact?: boolean; eager?: boolean }) {
   const technologies = technologyStack.filter((t) => t.name !== "More");
+  const metadataSize = compact ? "text-xs leading-4" : "text-[14px]";
 
   return (
     <article className={compact ? "flex min-w-0 flex-col gap-3 rounded-lg border border-border bg-card p-3 shadow-card" : "grid gap-6 rounded-lg border border-border bg-card p-4 shadow-card md:grid-cols-2 md:p-6 lg:gap-8"}>
       <ScrollingFrame item={item} height={compact ? 260 : 460} eager={eager} />
       <div className={`flex min-w-0 flex-col ${compact ? "flex-1" : ""}`}>
-        <div className={`flex flex-wrap items-center justify-between ${compact ? "gap-x-2 gap-y-1 text-xs leading-4" : "gap-2 text-[14px]"}`}>
-          <p className="font-semibold text-primary">{item.category}</p>
-          <p className="flex items-center gap-1 text-muted-foreground"><MapPin className={compact ? "size-3.5 shrink-0" : "size-4 shrink-0"} aria-hidden="true" />{item.location}</p>
+        <div className={`flex flex-wrap items-center justify-between ${compact ? "gap-x-2 gap-y-1" : "gap-2"}`}>
+          <p className={`font-semibold text-primary ${metadataSize}`}>{item.category}</p>
+          <p className={`flex items-center gap-1 text-muted-foreground ${metadataSize}`}><MapPin className={compact ? "size-3.5 shrink-0" : "size-4 shrink-0"} aria-hidden="true" />{item.location}</p>
         </div>
         <h2 className={compact ? "mt-2 text-[18px] leading-tight text-navy" : "mt-2 text-[26px] leading-tight text-navy md:text-[30px]"}>{item.name}</h2>
         <p className={`text-muted-foreground ${compact ? "mt-2 text-sm leading-[1.55]" : "mt-3 text-[16px] leading-7"}`}>{item.summary}</p>
