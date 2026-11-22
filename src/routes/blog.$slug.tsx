@@ -1,3 +1,4 @@
+import { blogWordCount } from "@/lib/blog-word-count";
 import { editorialAuthor, editorialPosts } from "@/lib/editorial-posts";
 import { blogFaqSchema, normalizeBlogFaqs } from "@/lib/blog-faqs";
 import { createFileRoute, notFound } from "@tanstack/react-router";
@@ -11,11 +12,11 @@ import { BUSINESS_ID, SITE_URL, WEBSITE_ID, businessIdentity } from "@/lib/site-
 
 const SITE = SITE_URL;
 
-type SchemaPost = { title: string; seo_description?: string | null; excerpt?: string | null; featured_image?: string | null; featured_image_alt?: string | null; published_at?: string | null; updated_at?: string | null; author_name?: string | null; tags?: string[] | null; authorPath?: string | undefined; content?: string | null; category?: { name: string; slug: string } | null };
+type SchemaPost = { title: string; seo_description?: string | null; excerpt?: string | null; featured_image?: string | null; featured_image_alt?: string | null; published_at?: string | null; updated_at?: string | null; author_name?: string | null; tags?: string[] | null; authorPath?: string | undefined; faqs?: unknown; content?: string | null; category?: { name: string; slug: string } | null };
 
 function blogPostingSchema(post: SchemaPost, slug: string) {
   const url = `${SITE}/blog/${slug}`;
-  const words = (post.content ?? "").trim().split(/\s+/).filter(Boolean).length;
+  const words = blogWordCount(post.content ?? "", normalizeBlogFaqs(post.faqs));
   const crumbs = [{ name: "Home", item: `${SITE}/` }, { name: "Blog", item: `${SITE}/blog` }, ...(post.category ? [{ name: post.category.name, item: `${SITE}/blog/category/${post.category.slug}` }] : []), { name: post.title, item: url }];
   return {
     "@context": "https://schema.org",
@@ -58,7 +59,7 @@ export const Route = createFileRoute("/blog/$slug")({
   },
   notFoundComponent: NotFoundPage,
   errorComponent: () => <div className="page-shell py-16"><h1>Article unavailable</h1><p className="my-4">Please try again shortly.</p><Button asChild><a href="/blog">Back to blog</a></Button></div>,
-  head: ({ loaderData, params }) => { const faqs = normalizeBlogFaqs(loaderData?.faqs); return ({ links: [{ rel: "canonical", href: `${SITE}/blog/${params.slug}` }], scripts: loaderData ? [{ type: "application/ld+json", children: JSON.stringify(blogPostingSchema(loaderData, params.slug)) }, ...(faqs.length ? [{ type: "application/ld+json", children: JSON.stringify(blogFaqSchema(faqs, `${SITE}/blog/${params.slug}`, WEBSITE_ID)) }] : [])] : [], meta: [
+  head: ({ loaderData, params }) => { const faqs = normalizeBlogFaqs(loaderData?.faqs); return ({ links: [{ rel: "canonical", href: `${SITE}/blog/${params.slug}` }], scripts: loaderData ? [{ type: "application/ld+json", children: JSON.stringify(blogPostingSchema(loaderData, params.slug)) }, ...(faqs.length ? [{ type: "application/ld+json", children: JSON.stringify(blogFaqSchema(faqs, `${SITE}/blog/${params.slug}`, WEBSITE_ID, "en-IN")) }] : [])] : [], meta: [
     { property: "og:url", content: `${SITE}/blog/${params.slug}` },
     ...(loaderData?.published_at ? [{ property: "article:published_time", content: loaderData.published_at }, { property: "article:author", content: loaderData.author_name }] : []),
     { title: loaderData ? `${loaderData.seo_title ?? loaderData.title} | Webgram Blog` : "Article | Webgram IT Solution" },

@@ -1,3 +1,4 @@
+import { blogWordCount } from "@/lib/blog-word-count";
 import { BlogCoverImage } from "@/components/blog-cover-image";
 import { normalizeBlogFaqs } from "@/lib/blog-faqs";
 import { useEffect, useState } from "react";
@@ -64,7 +65,7 @@ export function ArticleBody({ content, preview = false, advertisements = false, 
         index += 1;
       }
       items.push(current.join("\n").trim());
-      blocks.push(<div key={`rich-${index}`} className={mode === "grid" ? "article-grid" : mode === "gallery-four" ? "article-gallery article-gallery-four" : "article-gallery"}>{items.filter(Boolean).map((item, itemIndex) => { const match = item.match(imagePattern); return match ? <img key={itemIndex} src={match[2]} alt={match[1] || "Article gallery image"} loading="lazy" /> : <p key={itemIndex}><InlineText value={item} /></p>; })}</div>);
+      blocks.push(<div key={`rich-${index}`} role={mode === "gallery-four" ? "region" : undefined} aria-label={mode === "gallery-four" ? "Article image gallery" : undefined} tabIndex={mode === "gallery-four" ? 0 : undefined} className={mode === "grid" ? "article-grid" : mode === "gallery-four" ? "article-gallery article-gallery-four" : "article-gallery"}>{items.filter(Boolean).map((item, itemIndex) => { const match = item.match(imagePattern); return match ? <img key={itemIndex} src={match[2]} alt={match[1] || "Article gallery image"} loading="lazy" /> : <p key={itemIndex}><InlineText value={item} /></p>; })}</div>);
       index += 1; continue;
     }
     const image = line.match(imagePattern);
@@ -115,8 +116,8 @@ export function ArticleBody({ content, preview = false, advertisements = false, 
 export function BlogDetailPage({ post, categories, trackViews = true }: { post: Post; categories: BlogMenuCategory[]; trackViews?: boolean }) {
   const [expandedSlug, setExpandedSlug] = useState<string | null>(null);
   const expanded = expandedSlug === post.slug;
-  const minutes = Math.max(2, Math.ceil(post.content.split(/\s+/).length / 200));
   const faqs = normalizeBlogFaqs(post.faqs);
+  const minutes = Math.max(2, Math.ceil(blogWordCount(post.content, faqs) / 200));
   useEffect(() => {
     if (!trackViews) return;
     const key = `viewed:${post.slug}`;

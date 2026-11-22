@@ -676,6 +676,19 @@ a.bg-gold, button.bg-gold {
 @media (max-width: 639px) { .article-gallery { grid-template-columns: 1fr; } .article-gallery img { height: auto; max-height: 360px; } }
 .article-gallery-four img { height: auto; aspect-ratio: 4 / 3; }
 @media (min-width: 768px) { .article-gallery-four { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 767px) {
+  .article-gallery-four {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: min(75vw, 260px);
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    padding-bottom: .5rem;
+    scroll-snap-type: x proximity;
+  }
+  .article-gallery-four > * { scroll-snap-align: start; }
+}
+
 
 .contact-hero {
   position: relative;
