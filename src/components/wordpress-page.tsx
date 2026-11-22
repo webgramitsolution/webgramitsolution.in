@@ -53,15 +53,6 @@ export function WordPressPage() {
           </div>
         </ServiceHero>
 
-        <section className="bg-card py-7 md:py-9">
-          <div className="ecom-shell rounded-xl border border-border bg-sky-soft py-5">
-            <h2 className="text-xl text-navy">What does a WordPress development company do?</h2>
-            <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
-              It builds or redesigns websites on WordPress and configures the editing experience for your team. We plan reusable page blocks, publishing access, enquiry forms, integrations and post-launch support around how your business operates.
-            </p>
-          </div>
-        </section>
-
         <section className="bg-sky-soft py-8 md:py-10" aria-labelledby="wordpress-services">
           <div className="ecom-shell">
             <h2 id="wordpress-services" className="ecom-title">WordPress Development Services</h2>
