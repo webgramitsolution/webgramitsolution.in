@@ -1,3 +1,4 @@
+import { WebsiteIndustriesSection, WebsiteTechnologySection, WebsiteTypesSection } from "@/components/website-capability-sections";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Blocks, ChevronDown, ClipboardList, Code2, LayoutTemplate, Rocket, ShieldCheck, Workflow } from "lucide-react";
 import { HeroHeading } from "@/components/hero-heading";
@@ -76,6 +77,8 @@ export function WordPressPage() {
           </div>
         </section>
 
+        <WebsiteTypesSection wordpress />
+
         <section className="bg-card py-8 md:py-10" aria-labelledby="wordpress-process">
           <div className="ecom-shell">
             <h2 id="wordpress-process" className="ecom-title">Our WordPress Development Process</h2>
@@ -90,6 +93,9 @@ export function WordPressPage() {
             </ol>
           </div>
         </section>
+
+        <WebsiteIndustriesSection />
+        <WebsiteTechnologySection wordpress />
 
         <section className="bg-sky-soft py-8 md:py-10" aria-labelledby="wordpress-faq">
           <div className="ecom-shell">
