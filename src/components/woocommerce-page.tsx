@@ -1,3 +1,4 @@
+import { ServiceHero } from "@/components/service-hero";
 import { HeroHeading } from "@/components/hero-heading";
 import { Link } from "@tanstack/react-router";
 import {
@@ -108,11 +109,7 @@ function Projects() {
 export function WooCommercePage() {
   return <main className="min-h-screen bg-background text-foreground">
     <SiteHeader />
-    <section className="ecom-hero woocommerce-hero relative overflow-hidden bg-navy text-on-dark">
-      <picture className="pointer-events-none absolute inset-0">
-        <img src="/images/woocommerce-showroom-hero.webp" alt="WooCommerce furniture store displayed on laptop and phone in a showroom" width={2172} height={724} fetchPriority="high" className="h-full w-full object-cover object-[76%_center] md:object-right" />
-      </picture>
-      <div className="storefront-hero-shade pointer-events-none absolute inset-y-0 start-0 hidden md:block" aria-hidden="true" />
+    <ServiceHero slug="woocommerce">
       <div className="ecom-shell relative flex h-full items-center py-5">
         <div className="relative max-w-[540px]">
           <nav className="sr-only" aria-label="Breadcrumb"><Link to="/">Home</Link> › Services › WooCommerce Development</nav>
@@ -122,7 +119,7 @@ export function WooCommercePage() {
           <div className="mt-4 grid max-w-[410px] grid-cols-4 gap-3">{heroBenefits.map(([Icon, first, second]) => <div key={first} className="text-center text-[12px] font-semibold leading-[1.25]"><span className="mx-auto mb-1.5 grid h-9 w-9 place-items-center rounded-full border border-on-dark/50"><Icon className="h-4 w-4" /></span>{first}<br />{second}</div>)}</div>
         </div>
       </div>
-    </section>
+    </ServiceHero>
 
     <section className="bg-card py-6 md:py-7"><div className="ecom-shell grid gap-5 md:grid-cols-[1.05fr_1.95fr] md:items-center">
       <div><Eyebrow>Why Choose Webgram</Eyebrow><h2 className="mt-2 text-[23px] font-extrabold leading-[1.05] text-navy md:text-[27px]">Your WooCommerce<br />Development Partner</h2><p className="mt-2 max-w-[470px] text-[14px] leading-[1.5] text-muted-foreground md:text-[14px]">We create high-performance WooCommerce stores tailored to your business goals, with custom designs, advanced functionality and smooth integrations to deliver a complete eCommerce solution.</p></div>

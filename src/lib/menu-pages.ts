@@ -68,7 +68,7 @@ export const menuSections: Record<SectionKey, MenuSection> = {
       },
       wordpress: {
         title: "WordPress",
-        tagline: "WordPress websites your team can edit",
+        tagline: "A CMS your team can edit",
         planning: { heading: "Plan your WordPress CMS and handover", text: "Identify the pages and forms your team needs to update, and who can publish. We scope reusable page blocks, author permissions, updates and backups around your workflow." },
         description:
           "Custom WordPress websites with tailored themes and plugins — easy for your team to update every day.",

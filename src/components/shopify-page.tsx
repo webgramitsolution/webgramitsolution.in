@@ -1,3 +1,4 @@
+import { ServiceHero } from "@/components/service-hero";
 import { HeroHeading } from "@/components/hero-heading";
 import { Link } from "@tanstack/react-router";
 import {
@@ -56,17 +57,11 @@ function Eyebrow({ children }: { children: ReactNode }) {
   return <p className="flex items-center gap-2 text-[12px] font-extrabold uppercase tracking-[0.16em] text-primary"><span className="h-0.5 w-8 bg-gold" />{children}</p>;
 }
 
-export const SHOPIFY_HERO_IMAGE = "/images/shopify-fashion-showroom-hero.webp";
-
 export function ShopifyPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <SiteHeader />
-      <section className="ecom-hero shopify-hero relative overflow-hidden bg-navy text-on-dark">
-        <picture className="pointer-events-none absolute inset-0">
-          <img src={SHOPIFY_HERO_IMAGE} alt="Indian fashion storefront shown on a laptop and phone in a textile showroom" width={2172} height={724} fetchPriority="high" className="h-full w-full object-cover object-[76%_center] md:object-right" />
-        </picture>
-        <div className="storefront-hero-shade pointer-events-none absolute inset-y-0 start-0 hidden md:block" aria-hidden="true" />
+      <ServiceHero slug="shopify">
         <div className="ecom-shell relative flex h-full items-center py-5">
           <div className="relative max-w-[540px]">
             <nav className="sr-only" aria-label="Breadcrumb"><Link to="/">Home</Link> › Services › Shopify Development</nav>
@@ -81,7 +76,7 @@ export function ShopifyPage() {
             </div>
           </div>
         </div>
-      </section>
+      </ServiceHero>
 
       <DirectAnswer id="what-shopify-company-does" question={shopifyDirectAnswer.question} answer={shopifyDirectAnswer.answer} />
 

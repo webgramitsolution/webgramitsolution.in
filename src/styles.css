@@ -1068,16 +1068,39 @@ a.bg-gold, button.bg-gold {
   object-position: right center;
   mask-image: linear-gradient(90deg, transparent 0%, #000 26%);
 }
-.storefront-hero-shade {
-  width: min(540px, 65%);
-  background: linear-gradient(to right, var(--navy) 0%, color-mix(in oklab, var(--navy) 86%, transparent) 68%, transparent 100%);
+.service-hero-art {
+  inset: 0;
 }
-:is(html[dir="rtl"], html[lang="ar"]) .storefront-hero-shade {
-  background: linear-gradient(to left, var(--navy) 0%, color-mix(in oklab, var(--navy) 86%, transparent) 68%, transparent 100%);
+.service-hero-shade {
+  width: min(620px, 76%);
+  background: linear-gradient(to right, var(--navy), color-mix(in oklab, var(--navy) 90%, transparent) 73%, transparent);
+}
+:is(html[dir="rtl"], html[lang="ar"]) .service-hero-shade {
+  background: linear-gradient(to left, var(--navy), color-mix(in oklab, var(--navy) 90%, transparent) 73%, transparent);
 }
 @media (min-width: 1180px) {
-  :is(.woocommerce-hero, .shopify-hero).ecom-hero {
+  .service-hero.ecom-hero {
     height: 380px;
+  }
+}
+@media (min-width: 1500px) {
+  .service-hero.ecom-hero {
+    height: clamp(380px, 26vw, 500px);
+  }
+}
+@media (max-width: 767px) {
+  .service-hero.ecom-hero::before {
+    content: none;
+  }
+  .service-hero .service-hero-art {
+    inset-block-start: auto;
+    height: clamp(185px, 53vw, 270px);
+    mask-image: linear-gradient(to bottom, transparent, #000 22%);
+  }
+  .service-hero.ecom-hero > .ecom-shell {
+    align-items: flex-start;
+    min-height: 0;
+    padding-block: 1.75rem clamp(175px, 50vw, 255px);
   }
 }
 @media (max-width: 767px) {

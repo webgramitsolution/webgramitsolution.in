@@ -1,3 +1,4 @@
+import { ServiceHero } from "@/components/service-hero";
 import { HeroHeading } from "@/components/hero-heading";
 import { Link } from "@tanstack/react-router";
 import { ComparisonTable, DirectAnswer } from "@/components/direct-answer";
@@ -40,8 +41,6 @@ import stakeholder6 from "@/assets/b2b-stakeholder-6.jpg";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 
-const heroImage =
-  "https://ik.imagekit.io/home1/About%20us%20page/B2B%20Ecommerce%20Development.png";
 
 const heroCapabilities = [
   [Users, "Wholesale &", "Tier Pricing"],
@@ -123,15 +122,7 @@ export function B2BCommercePage() {
     <main className="min-h-screen bg-background text-foreground">
       <SiteHeader />
 
-      <section className="ecom-hero relative overflow-hidden bg-navy text-on-dark">
-        <img
-          src={heroImage}
-          alt="B2B ecommerce dashboard displayed on laptop and mobile devices"
-          width={2112}
-          height={745}
-          className="absolute inset-0 h-full w-full object-cover object-center"
-        />
-        <div className="ecom-hero-shade absolute inset-0" />
+      <ServiceHero slug="b2b-commerce">
         <div className="ecom-shell relative flex h-full items-center py-5">
           <div className="max-w-[620px]">
             <nav className="sr-only" aria-label="Breadcrumb">
@@ -165,7 +156,7 @@ export function B2BCommercePage() {
             </div>
           </div>
         </div>
-      </section>
+      </ServiceHero>
 
       <DirectAnswer
         id="what-is-b2b-ecommerce"

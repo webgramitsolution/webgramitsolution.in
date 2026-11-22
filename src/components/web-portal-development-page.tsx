@@ -1,3 +1,4 @@
+import { ServiceHero } from "@/components/service-hero";
 import { HeroHeading } from "@/components/hero-heading";
 import { Link } from "@tanstack/react-router";
 import {
@@ -123,9 +124,7 @@ export function WebPortalDevelopmentPage() {
   return <main className="min-h-screen bg-background text-foreground">
     <SiteHeader />
 
-    <section className="ecom-hero relative overflow-hidden bg-navy text-on-dark">
-      <img src={portalImages.hero} alt="Webgram admin dashboard, vendor portal and customer portal on laptop, tablet and phone" width={2170} height={725} className="absolute inset-0 h-full w-full object-cover object-center" />
-      <div className="ecom-hero-shade absolute inset-0" />
+    <ServiceHero slug="web-portal-development">
       <div className="ecom-shell relative flex h-full items-center py-5">
         <div className="max-w-[520px]">
           <nav className="sr-only" aria-label="Breadcrumb"><Link to="/">Home</Link> › Services › Web Portal Development</nav>
@@ -135,7 +134,7 @@ export function WebPortalDevelopmentPage() {
           <div className="mt-4 grid max-w-[500px] grid-cols-3 gap-3 sm:grid-cols-5">{heroBenefits.map(([Icon, first, second]) => <div key={first} className="text-center text-[12px] font-semibold leading-[1.25]"><span className="mx-auto mb-1.5 grid h-9 w-9 place-items-center rounded-full border border-on-dark/50"><Icon className="h-4 w-4" /></span>{first}<br />{second}</div>)}</div>
         </div>
       </div>
-    </section>
+    </ServiceHero>
 
     <section className="bg-card py-6 md:py-7"><div className="ecom-shell grid gap-5 md:grid-cols-[1.05fr_1.95fr] md:items-center">
       <div><Eyebrow>Why Choose Webgram</Eyebrow><h2 className="mt-2 text-[23px] font-extrabold leading-[1.05] text-navy md:text-[27px]">Your Web Portal<br />Development Partner</h2><p className="mt-2 max-w-[470px] text-[14px] leading-[1.5] text-muted-foreground md:text-[14px]">We build secure, scalable and feature-rich web portals that streamline operations, improve collaboration and enhance user experiences for your customers, vendors, employees and business partners.</p></div>

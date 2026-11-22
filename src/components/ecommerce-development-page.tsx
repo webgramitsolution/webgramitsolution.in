@@ -1,3 +1,4 @@
+import { ServiceHero } from "@/components/service-hero";
 import { HeroHeading } from "@/components/hero-heading";
 import { Link } from "@tanstack/react-router";
 import {
@@ -37,7 +38,6 @@ import industriesStrip from "@/assets/ecommerce-industries.jpg";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 
-const heroImage = "https://ik.imagekit.io/home1/About%20us%20page/ecommer.png";
 
 const benefits = [
   [Store, "24/7", "Sales Channel"],
@@ -193,15 +193,7 @@ export function EcommerceDevelopmentPage() {
     <main className="min-h-screen bg-background text-foreground">
       <SiteHeader />
 
-      <section className="ecom-hero relative overflow-hidden bg-navy text-on-dark">
-        <img
-          src={heroImage}
-          alt="Laptop and phone displaying a responsive furniture ecommerce store"
-          width={2112}
-          height={745}
-          className="absolute inset-0 h-full w-full object-cover object-center"
-        />
-        <div className="ecom-hero-shade absolute inset-0" />
+      <ServiceHero slug="ecommerce-development">
         <div className="ecom-shell relative flex h-full items-center py-6">
           <div className="max-w-[520px]">
             <nav className="sr-only" aria-label="Breadcrumb">
@@ -254,7 +246,7 @@ export function EcommerceDevelopmentPage() {
             </div>
           </div>
         </div>
-      </section>
+      </ServiceHero>
 
       <DirectAnswer
         id="what-is-ecommerce-development"

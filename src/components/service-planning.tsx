@@ -1,4 +1,3 @@
-import { HeroHeading } from "@/components/hero-heading";
 import { ArrowRight, CreditCard, LayoutGrid, RefreshCw, Settings, ShieldCheck, Store } from "lucide-react";
 import type { ServicePlan } from "@/lib/service-planning";
 
@@ -43,9 +42,8 @@ function WooCommerceSpotlight() {
   );
 }
 
-export function ServicePlanning({ plan, headline = false, whiteIntro = false, storefront = false }: { plan: ServicePlan; headline?: boolean; whiteIntro?: boolean; storefront?: boolean }) {
+export function ServicePlanning({ plan, whiteIntro = false, storefront = false }: { plan: ServicePlan; whiteIntro?: boolean; storefront?: boolean }) {
   const headingClass = "max-w-2xl text-3xl font-extrabold leading-tight text-navy md:text-4xl";
-  const CardHeading = headline ? "h2" : "h3";
 
   return (
     <section className={`border-y border-border bg-sky-soft ${storefront ? "py-7 md:py-9" : "py-12 md:py-16"}`}>
@@ -53,10 +51,10 @@ export function ServicePlanning({ plan, headline = false, whiteIntro = false, st
         {storefront ? <WooCommerceSpotlight /> : (
           <div className={`grid items-center gap-7 md:grid-cols-[1.05fr_0.95fr] ${whiteIntro ? "rounded-2xl bg-white p-5 md:p-7" : ""}`}>
             <div>
-              {headline ? <HeroHeading className={headingClass} title={plan.title} /> : <h2 className={`${headingClass} text-balance`}>{plan.title}</h2>}
+              <h2 className={`${headingClass} text-balance`}>{plan.title}</h2>
               <p className="mt-4 max-w-xl text-base leading-7 text-muted-foreground">{plan.summary}</p>
             </div>
-            <img src={plan.image} alt={plan.alt} loading={headline ? "eager" : "lazy"} fetchPriority={headline ? "high" : undefined} width={plan.imageSize?.width ?? 800} height={plan.imageSize?.height ?? 450} className={`w-full ${plan.imageSize ? "h-auto object-contain" : "aspect-[16/9] rounded-2xl bg-card object-cover shadow-card"}`} />
+            <img src={plan.image} alt={plan.alt} loading="lazy" width={plan.imageSize?.width ?? 800} height={plan.imageSize?.height ?? 450} className={`w-full ${plan.imageSize ? "h-auto object-contain" : "aspect-[16/9] rounded-2xl bg-card object-cover shadow-card"}`} />
           </div>
         )}
         <div id={storefront ? "woocommerce-services" : undefined} className={`grid scroll-mt-32 gap-4 md:grid-cols-3 ${storefront ? "mt-5" : "mt-8"}`}>
@@ -65,7 +63,7 @@ export function ServicePlanning({ plan, headline = false, whiteIntro = false, st
             return (
               <article key={title} className={`border bg-card p-6 shadow-card ${storefront ? "rounded-2xl border-border" : "rounded-xl border-border"}`}>
                 {Icon && <span className="mb-4 inline-grid size-10 place-items-center rounded-xl bg-primary-soft text-primary"><Icon className="size-5" aria-hidden="true" /></span>}
-                <CardHeading className="text-lg font-extrabold text-navy">{title}</CardHeading>
+                <h3 className="text-lg font-extrabold text-navy">{title}</h3>
                 <p className="mt-3 text-sm leading-6 text-muted-foreground">{text}</p>
               </article>
             );

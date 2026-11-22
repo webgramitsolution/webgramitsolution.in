@@ -1,12 +1,14 @@
+import { HeroHeading } from "@/components/hero-heading";
+import { ServiceHero, serviceHeroImage } from "@/components/service-hero";
 import { SiteHeader } from "@/components/site-header";
 import { ServicePlanning } from "@/components/service-planning";
 import { servicePlans } from "@/lib/service-planning";
-import { createFileRoute, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
 import { SubpageTemplate } from "@/components/subpage";
 import { B2BCommercePage } from "@/components/b2b-commerce-page";
 import { EcommerceDevelopmentPage } from "@/components/ecommerce-development-page";
-import { WEBSITE_DEVELOPMENT_HERO, WebsiteDesignDevelopmentPage } from "@/components/website-design-development-page";
+import { WebsiteDesignDevelopmentPage } from "@/components/website-design-development-page";
 import { getSubpage, menuSections } from "@/lib/menu-pages";
 import { servicePageSchema } from "@/lib/schema";
 import { NotFoundPage } from "@/components/not-found-page";
@@ -32,7 +34,8 @@ export const Route = createFileRoute("/solutions/$slug")({
     const title = content?.title ?? `${loaderData.title} | Webgram IT Solution`;
     const description = content?.plan.summary ?? loaderData.description;
     const url = `https://webgramitsolution.in/solutions/${params.slug}`;
-    const image = params.slug === "website-design-development" ? new URL(WEBSITE_DEVELOPMENT_HERO, url).href : content?.plan.image;
+    const heroPath = serviceHeroImage(params.slug);
+    const image = heroPath ? new URL(heroPath, url).href : content?.plan.image;
     return {
       links: [{ rel: "canonical", href: url }],
       meta: [
@@ -59,6 +62,22 @@ function SolutionsPage() {
   if (slug === "ecommerce-development") return <><EcommerceDevelopmentPage /><ServicePlanning plan={servicePlans.ecommerce} /></>;
   if (slug === "b2b-commerce") return <><B2BCommercePage /><ServicePlanning plan={servicePlans.b2b} /></>;
   if (slug === "website-design-development") return <><WebsiteDesignDevelopmentPage /><ServicePlanning plan={servicePlans.development} /></>;
-  if (slug === "marketplace-development") return <><SiteHeader /><main><ServicePlanning plan={servicePlans.marketplace} headline /></main></>;
+  if (slug === "marketplace-development") {
+    return <>
+      <SiteHeader />
+      <main>
+        <ServiceHero slug="marketplace-development">
+          <div className="ecom-shell relative flex h-full items-center py-5">
+            <div className="max-w-[540px]">
+              <HeroHeading lines={["B2B Marketplace", "Website Development"]} accent="text-gold" />
+              <p className="mt-3 max-w-[470px] text-sm leading-relaxed text-on-dark/90">{page.description}</p>
+              <Link to="/contact" className="mt-4 inline-flex min-h-10 items-center rounded-md bg-gold px-5 text-sm font-bold text-navy hover:bg-gold/90">Get a Marketplace Quote</Link>
+            </div>
+          </div>
+        </ServiceHero>
+        <ServicePlanning plan={servicePlans.marketplace} />
+      </main>
+    </>;
+  }
   return <SubpageTemplate sectionLabel={section.label} page={page} />;
 }

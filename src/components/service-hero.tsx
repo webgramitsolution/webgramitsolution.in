@@ -1,0 +1,34 @@
+import type { ReactNode } from "react";
+
+const descriptions = {
+  "ecommerce-development": "Online storefront on laptop and phone in a retail showroom",
+  "b2b-commerce": "Wholesale ordering dashboard in a distribution warehouse",
+  "website-design-development": "Responsive business website displayed in an architecture studio",
+  "marketplace-development": "Multi-vendor marketplace catalogue and seller workspace",
+  "web-portal-development": "Customer and vendor portal dashboards in an operations office",
+  "website-design": "Responsive website mockups in a brand design studio",
+  wordpress: "WordPress content editor and business website in an editorial studio",
+  woocommerce: "Furniture storefront on laptop and phone in a showroom",
+  shopify: "Indian fashion storefront on laptop and phone in a textile showroom",
+  "api-integration": "Connected order and inventory dashboards in a commerce operations centre",
+  "website-maintenance": "Website uptime and backup monitoring in a technical support workspace",
+} as const;
+
+export type ServiceHeroSlug = keyof typeof descriptions;
+
+export function serviceHeroImage(slug: string) {
+  return Object.hasOwn(descriptions, slug) ? `/images/service-heroes/${slug}.webp` : undefined;
+}
+
+export function ServiceHero({ slug, children }: { slug: ServiceHeroSlug; children: ReactNode }) {
+  return (
+    <section className="ecom-hero service-hero relative overflow-hidden bg-navy text-on-dark">
+      <picture className="service-hero-art pointer-events-none absolute">
+        <source media="(max-width: 767px)" srcSet={`/images/service-heroes/${slug}-mobile.webp`} width={840} height={504} />
+        <img src={serviceHeroImage(slug)} alt={descriptions[slug]} width={2160} height={720} fetchPriority="high" className="block h-full w-full object-cover object-center md:max-xl:object-right" />
+      </picture>
+      <div className="service-hero-shade pointer-events-none absolute inset-y-0 start-0 hidden md:block" aria-hidden="true" />
+      {children}
+    </section>
+  );
+}
