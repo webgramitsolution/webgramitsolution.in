@@ -1,33 +1,72 @@
 import { HeroHeading } from "@/components/hero-heading";
-import { ArrowRight, CreditCard, RefreshCw, Store } from "lucide-react";
+import { ArrowRight, CreditCard, Monitor, RefreshCw, Settings, ShieldCheck, ShoppingCart, Store } from "lucide-react";
 import type { ServicePlan } from "@/lib/service-planning";
 
 const storefrontIcons = [Store, RefreshCw, CreditCard];
 
+const storefrontBenefits = [
+  [Monitor, "Responsive design"],
+  [ShieldCheck, "Secure checkout"],
+  [Settings, "Easy product management"],
+] as const;
+
+function WooCommerceSpotlight({ plan }: { plan: ServicePlan }) {
+  return (
+    <div className="grid overflow-hidden rounded-2xl border border-border bg-[#f2f8fd] shadow-card lg:grid-cols-[1.04fr_1fr]">
+      <div className="relative z-10 flex min-w-0 flex-col justify-center gap-5 px-5 py-7 sm:px-8 lg:py-10 xl:px-10">
+        <p className="inline-flex w-fit items-center gap-2 rounded-full bg-[#d9ebff] px-3.5 py-2 text-xs font-bold uppercase tracking-[0.14em] text-navy">
+          <ShoppingCart aria-hidden="true" className="size-4 text-[#0058c9]" />
+          Ecommerce Development
+        </p>
+        <h2 className="text-balance text-[clamp(1.8rem,3.25vw,3.55rem)] font-extrabold leading-[1.05] tracking-tight text-navy">
+          Custom WooCommerce <span className="lg:block"><span className="text-[#0058c9]">Website</span> Development</span>
+        </h2>
+        <p className="max-w-xl text-base leading-relaxed text-navy xl:text-lg">{plan.summary}</p>
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+          <a href="#woocommerce-services" className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#005fdf] px-5 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-[#004fb9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
+            Explore WooCommerce <ArrowRight aria-hidden="true" className="size-4 shrink-0" />
+          </a>
+          <a href="/work/portfolio" className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-navy underline decoration-[#0058c9] decoration-2 underline-offset-4 hover:text-[#0058c9]">
+            View our work <ArrowRight aria-hidden="true" className="size-4 shrink-0" />
+          </a>
+        </div>
+        <ul className="flex flex-wrap gap-2">
+          {storefrontBenefits.map(([Icon, label]) => (
+            <li key={label} className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-xs font-semibold text-navy shadow-sm">
+              <Icon aria-hidden="true" className="size-[18px] shrink-0 text-[#0058c9]" />{label}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="relative min-w-0 bg-[#dfedfa] lg:aspect-[4/3]">
+        <img src="/images/woocommerce-storefront-showcase.webp" width={1280} height={960} alt="Furniture storefront preview on a laptop and phone" loading="lazy" decoding="async" className="block h-auto w-full lg:absolute lg:inset-0 lg:h-full lg:object-cover" />
+      </div>
+    </div>
+  );
+}
+
 export function ServicePlanning({ plan, headline = false, whiteIntro = false, storefront = false }: { plan: ServicePlan; headline?: boolean; whiteIntro?: boolean; storefront?: boolean }) {
-  const headingClass = `max-w-2xl text-3xl font-extrabold leading-tight text-navy ${storefront ? "tracking-tight md:text-[clamp(2rem,3.1vw,3rem)]" : "md:text-4xl"}`;
+  const headingClass = "max-w-2xl text-3xl font-extrabold leading-tight text-navy md:text-4xl";
   const CardHeading = headline ? "h2" : "h3";
 
   return (
     <section className="border-y border-border bg-sky-soft py-12 md:py-16">
       <div className="page-shell">
-        <div className={`grid items-center gap-7 md:grid-cols-[1.05fr_0.95fr] ${storefront ? "md:gap-9" : whiteIntro ? "rounded-2xl bg-white p-5 md:p-7" : ""}`}>
-          <div>
-            {headline ? <HeroHeading className={headingClass} title={plan.title} /> : <h2 className={`${headingClass} ${storefront ? "text-pretty" : "text-balance"}`}>{plan.title}</h2>}
-            <p className="mt-4 max-w-xl text-base leading-7 text-muted-foreground">{plan.summary}</p>
-          </div>
-          {storefront ? (
-            <div className="min-w-0 rounded-2xl border border-border bg-white p-2 shadow-card">
-              <img src={plan.image} alt={plan.alt} width={1536} height={768} loading="lazy" className="block h-auto w-full rounded-xl" />
+        {storefront ? <WooCommerceSpotlight plan={plan} /> : (
+          <div className={`grid items-center gap-7 md:grid-cols-[1.05fr_0.95fr] ${whiteIntro ? "rounded-2xl bg-white p-5 md:p-7" : ""}`}>
+            <div>
+              {headline ? <HeroHeading className={headingClass} title={plan.title} /> : <h2 className={`${headingClass} text-balance`}>{plan.title}</h2>}
+              <p className="mt-4 max-w-xl text-base leading-7 text-muted-foreground">{plan.summary}</p>
             </div>
-          ) : <img src={plan.image} alt={plan.alt} loading={headline ? "eager" : "lazy"} fetchPriority={headline ? "high" : undefined} width={plan.imageSize?.width ?? 800} height={plan.imageSize?.height ?? 450} className={`w-full ${plan.imageSize ? "h-auto object-contain" : "aspect-[16/9] rounded-2xl bg-card object-cover shadow-card"}`} />}
-        </div>
-        <div className={`grid gap-4 md:grid-cols-3 ${storefront ? "mt-5" : "mt-8"}`}>
+            <img src={plan.image} alt={plan.alt} loading={headline ? "eager" : "lazy"} fetchPriority={headline ? "high" : undefined} width={plan.imageSize?.width ?? 800} height={plan.imageSize?.height ?? 450} className={`w-full ${plan.imageSize ? "h-auto object-contain" : "aspect-[16/9] rounded-2xl bg-card object-cover shadow-card"}`} />
+          </div>
+        )}
+        <div id={storefront ? "woocommerce-services" : undefined} className={`grid scroll-mt-32 gap-4 md:grid-cols-3 ${storefront ? "mt-5" : "mt-8"}`}>
           {plan.choices.map(({ title, text }, index) => {
             const Icon = storefront ? storefrontIcons[index] : undefined;
             return (
               <article key={title} className={`border bg-card p-6 shadow-card ${storefront ? "rounded-2xl border-border" : "rounded-xl border-border"}`}>
-                {Icon && <span className="mb-4 inline-grid size-10 place-items-center rounded-xl bg-violet-soft text-violet"><Icon className="size-5" aria-hidden="true" /></span>}
+                {Icon && <span className="mb-4 inline-grid size-10 place-items-center rounded-xl bg-primary-soft text-primary"><Icon className="size-5" aria-hidden="true" /></span>}
                 <CardHeading className="text-lg font-extrabold text-navy">{title}</CardHeading>
                 <p className="mt-3 text-sm leading-6 text-muted-foreground">{text}</p>
               </article>
