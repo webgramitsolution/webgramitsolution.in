@@ -1,6 +1,8 @@
 import { createStart, createCsrfMiddleware, createMiddleware } from "@tanstack/react-start";
 
 import homepageMarkdown from "./lib/homepage.md?raw";
+import { faqGroups } from "./lib/faq-content";
+import { SITE_URL } from "./lib/site-identity";
 import { renderErrorPage } from "./lib/error-page";
 const errorMiddleware = createMiddleware().server(async ({ next }) => {
   try {
@@ -31,6 +33,16 @@ function prefersMarkdown(accept: string): boolean {
   return markdown > 0 && markdown >= html;
 }
 
+const faqMarkdown = [
+  "# Website Development FAQs",
+  "Answers from Webgram IT Solution in New Delhi about website projects, ecommerce platforms, pricing and ongoing support.",
+  ...faqGroups.flatMap(({ title, items }) => [
+    `## ${title}`,
+    ...items.flatMap(([question, answer]) => [`### ${question}`, answer]),
+  ]),
+  `[Project pricing and quotes](${SITE_URL}/pricing) · [Website guides](${SITE_URL}/resources/guides) · [Contact Webgram](${SITE_URL}/contact)`,
+].join("\n\n") + "\n";
+
 // Serve the Markdown variant at the same URL and keep it separate from cached HTML.
 const agentMiddleware = createMiddleware().server(async ({ request, next }) => {
   const url = new URL(request.url);
@@ -38,11 +50,14 @@ const agentMiddleware = createMiddleware().server(async ({ request, next }) => {
   if (isReadRequest && /^\/(ae|kw)\/?$/.test(url.pathname)) {
     return new Response(null, { status: 301, headers: { location: "/" } });
   }
-  if (url.pathname !== "/" || !isReadRequest) return next();
+  const markdown = url.pathname === "/" ? homepageMarkdown
+    : url.pathname === "/resources/faqs" ? faqMarkdown
+    : undefined;
+  if (!markdown || !isReadRequest) return next();
 
   const link = '</llms.txt>; rel="describedby"; type="text/plain", </llms-full.txt>; rel="describedby"; type="text/plain"';
   if (prefersMarkdown(request.headers.get("accept") ?? "")) {
-    return new Response(request.method === "HEAD" ? null : homepageMarkdown, {
+    return new Response(request.method === "HEAD" ? null : markdown, {
       headers: { "Content-Type": "text/markdown; charset=utf-8", Link: link, Vary: "Accept" },
     });
   }

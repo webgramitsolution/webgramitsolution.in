@@ -23,6 +23,7 @@ const columns = [
   ["Resources", [
     { label: "Website Guides", to: "/resources/guides" },
     { label: "FAQs", to: "/resources/faqs" },
+    { label: "Pricing & Quotes", to: "/pricing" },
     { label: "Ecommerce Buyer’s Guide", to: "/blog/ecommerce-website-development-india-guide" },
     { label: "Ecommerce Redesign", to: projectGuides.redesign.path },
     { label: "Website Handover", to: projectGuides.handover.path },

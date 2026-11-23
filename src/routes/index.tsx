@@ -231,9 +231,6 @@ function Hero() {
               <Link to="/work/portfolio">View Our Work</Link>
             </Button>
           </div>
-          <Link to="/pricing" className="mt-3 inline-block text-sm font-semibold text-on-dark underline underline-offset-4">
-            Project Pricing &amp; Quotes
-          </Link>
           <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-[13px] font-medium text-on-dark/90">
             {["Shopify", "WooCommerce", "B2B Portals"].map((item) => (
               <span key={item} className="flex items-center gap-2">

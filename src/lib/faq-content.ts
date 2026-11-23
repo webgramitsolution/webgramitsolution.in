@@ -1,8 +1,9 @@
 /** Approved public FAQ answers, shared by the FAQ page, its schema and the Contact page. */
 export type FaqItem = [question: string, answer: string];
 
-export const faqGroups: Array<{ title: string; items: FaqItem[] }> = [
+export const faqGroups: Array<{ id: string; title: string; items: FaqItem[] }> = [
   {
+    id: "ecommerce-development",
     title: "Finding an ecommerce development partner",
     items: [
       ["Who builds ecommerce websites in Delhi NCR?", "Webgram IT Solution builds ecommerce websites for Delhi NCR businesses from its office in Sangam Vihar, New Delhi. We build Shopify and WooCommerce storefronts, wholesale ordering portals and custom commerce applications. The project scope can include catalogue setup, Indian payment methods and shipping integrations."],
@@ -18,6 +19,7 @@ export const faqGroups: Array<{ title: string; items: FaqItem[] }> = [
     ],
   },
   {
+    id: "about-webgram",
     title: "About Webgram",
     items: [
       ["What does Webgram IT Solution do?", "Webgram IT Solution is a Delhi-based web development company that designs and builds business websites, ecommerce stores, B2B commerce platforms, marketplaces and custom web portals, along with API integrations, maintenance and speed optimisation."],
@@ -27,15 +29,17 @@ export const faqGroups: Array<{ title: string; items: FaqItem[] }> = [
     ],
   },
   {
+    id: "projects-and-pricing",
     title: "Projects & pricing",
     items: [
-      ["How much does a website cost?", "Cost depends on the number of pages, features, integrations and content. After a short discussion we share a fixed itemised quote. Contact us at +91 7551120242 or info@webgramitsolution.in."],
+      ["How much does a website cost?", "Webgram prices website projects individually. The cost depends on the number of pages, design, content migration and integrations. We review your requirements and provide an itemised quote covering the agreed scope."],
       ["How long does a website project take?", "A business website usually takes 2 to 4 weeks. Ecommerce stores take around 4 to 8 weeks. B2B portals or marketplaces depend on the workflows and integrations involved."],
       ["Can you work on my existing website?", "Yes. We redesign, fix, speed up and extend existing WordPress, WooCommerce, Shopify and custom websites."],
       ["What do you need from me to start?", "Your logo, business details, service or product information, photos and any reference websites you like. We guide you through everything else."],
     ],
   },
   {
+    id: "platforms-and-features",
     title: "Platforms & features",
     items: [
       ["Which platforms does Webgram IT Solution use?", "We use WordPress, WooCommerce, Shopify and modern JavaScript frameworks like React and Next.js. We recommend the platform that fits your goals and budget."],
@@ -47,6 +51,7 @@ export const faqGroups: Array<{ title: string; items: FaqItem[] }> = [
     ],
   },
   {
+    id: "support-and-handover",
     title: "Support",
     items: [
       ["Do you provide support after the website is launched?", "Yes. We offer maintenance plans that include updates, backups, security monitoring and content changes."],
