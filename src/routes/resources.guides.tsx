@@ -1,3 +1,5 @@
+import { ServiceHero, serviceHeroImage } from "@/components/service-hero";
+import { SITE_URL } from "@/lib/site-identity";
 import { projectGuides } from "@/lib/project-guides";
 import { HeroHeading } from "@/components/hero-heading";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -6,7 +8,8 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 
-const URL = "https://webgramitsolution.in/resources/guides";
+const URL = SITE_URL + "/resources/guides";
+const heroImage = SITE_URL + serviceHeroImage("website-guides");
 const title = "Website & Ecommerce Guides for Business Owners | Webgram IT Solution";
 const description =
   "Step-by-step guides from Webgram IT Solution on planning a business website, launching an ecommerce or B2B store, choosing WooCommerce vs Shopify, speed and SEO basics.";
@@ -21,7 +24,9 @@ export const Route = createFileRoute("/resources/guides")({
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
       { property: "og:url", content: URL },
-      { name: "twitter:card", content: "summary" },
+      { property: "og:image", content: heroImage },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: heroImage },
     ],
   }),
   component: GuidesPage,
@@ -93,16 +98,24 @@ function GuidesPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
-      <section className="contact-hero bg-navy py-12 text-on-dark md:py-16">
-        <div className="header-shell">
-          <p className="page-eyebrow text-gold">Resources</p>
-          <HeroHeading className="page-title mt-2" lines={["Guides for Growing", "Your Business Online"]} />
-          <p className="page-lead mt-3 max-w-[680px] text-on-dark/85">
-            Practical, jargon-free playbooks from the Webgram IT Solution team — based on 100+ websites, ecommerce stores and B2B portals we have delivered.
-          </p>
+      <ServiceHero slug="website-guides">
+        <div className="ecom-shell relative flex h-full items-center py-6">
+          <div className="max-w-[540px]">
+            <HeroHeading
+              className="text-[30px] font-medium leading-tight"
+              lines={["Guides for Growing", "Your Business Online"]}
+              accent="text-[#f4c657]"
+            />
+            <p className="mt-3 max-w-md text-sm leading-relaxed text-on-dark/90 md:text-base">
+              Plan your website, compare ecommerce platforms and get your online store or B2B portal ready to launch.
+            </p>
+            <Button asChild className="mt-4 min-h-11">
+              <a href="#guides-list">Browse Guides <ArrowRight aria-hidden="true" /></a>
+            </Button>
+          </div>
         </div>
-      </section>
-      <section className="py-10 md:py-14">
+      </ServiceHero>
+      <section id="guides-list" aria-label="Website and ecommerce guides" className="scroll-mt-32 py-10 md:py-14">
         <div className="header-shell grid gap-8 md:grid-cols-[240px_minmax(0,1fr)]">
           <nav aria-label="Guides" className="h-fit rounded-lg border border-border bg-card p-4 shadow-card md:sticky md:top-28">
             <p className="text-[14px] font-semibold uppercase text-primary">In this page</p>
