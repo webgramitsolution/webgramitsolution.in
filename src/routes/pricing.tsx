@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowDown, ArrowRight, Building2, Check, Layers3, Mail, ShoppingBag } from "lucide-react";
+import { ArrowDown, ArrowRight, Building2, CalendarCheck, Check, ClipboardList, Layers3, Mail, Receipt, ShoppingBag } from "lucide-react";
 import { HeroHeading } from "@/components/hero-heading";
 import { ServiceHero, serviceHeroImage } from "@/components/service-hero";
 import { SiteHeader } from "@/components/site-header";
@@ -61,9 +61,9 @@ const projectTypes = [
 ] as const;
 
 const quoteItems = [
-  ["Development scope", "The pages, features, integrations and migration work your project needs."],
-  ["Delivery and handover", "Expected milestones, testing, launch and ownership of the website and accounts."],
-  ["Recurring costs", "Hosting, platform fees, third-party subscriptions and ongoing support where applicable."],
+  [ClipboardList, "Development scope", "The pages, features, integrations and migration work your project needs."],
+  [CalendarCheck, "Delivery and handover", "Expected milestones, testing, launch and ownership of the website and accounts."],
+  [Receipt, "Recurring costs", "Hosting, platform fees, third-party subscriptions and ongoing support where applicable."],
 ] as const;
 
 function PricingPage() {
@@ -131,19 +131,22 @@ function PricingPage() {
           </div>
         </section>
 
-        <section className="bg-card py-9 md:py-12" aria-labelledby="quote-breakdown">
-          <div className="page-shell grid items-start gap-6 lg:grid-cols-[.8fr_1.2fr]">
-            <div>
-              <h2 id="quote-breakdown" className="text-2xl font-semibold text-navy md:text-3xl">What goes into a quote?</h2>
-              <p className="mt-3 max-w-md leading-relaxed text-muted-foreground">
-                Ask for these items to be listed separately so you can compare upfront costs and ongoing commitments.
-              </p>
-            </div>
-            <dl className="divide-y divide-border rounded-xl border border-border bg-sky-soft px-5 md:px-6">
-              {quoteItems.map(([label, detail]) => (
-                <div key={label} className="grid gap-1 py-4 sm:grid-cols-[9rem_1fr] sm:gap-4">
-                  <dt className="font-semibold text-navy">{label}</dt>
-                  <dd className="text-sm leading-6 text-muted-foreground">{detail}</dd>
+        <section className="bg-background py-8 md:py-10" aria-labelledby="quote-breakdown">
+          <div className="page-shell">
+            <h2 id="quote-breakdown" className="text-2xl font-semibold text-navy md:text-3xl">What goes into a quote?</h2>
+            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
+              See what you’re paying for upfront and what to budget for after launch.
+            </p>
+            <dl className="mt-5 grid gap-3 md:grid-cols-3 md:gap-4">
+              {quoteItems.map(([Icon, label, detail]) => (
+                <div key={label} className="rounded-xl border border-border bg-card p-4 shadow-card md:p-5">
+                  <dt className="flex items-center gap-3 text-base font-semibold text-navy">
+                    <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-primary-soft text-primary">
+                      <Icon className="size-5" aria-hidden="true" />
+                    </span>
+                    {label}
+                  </dt>
+                  <dd className="mt-3 text-sm leading-6 text-muted-foreground">{detail}</dd>
                 </div>
               ))}
             </dl>
