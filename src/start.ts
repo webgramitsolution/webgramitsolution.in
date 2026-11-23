@@ -47,6 +47,12 @@ const faqMarkdown = [
 const agentMiddleware = createMiddleware().server(async ({ request, next }) => {
   const url = new URL(request.url);
   const isReadRequest = request.method === "GET" || request.method === "HEAD";
+  if (url.hostname === "www.webgramitsolution.in") {
+    return new Response(null, {
+      status: isReadRequest ? 301 : 308,
+      headers: { Location: SITE_URL + url.pathname + url.search },
+    });
+  }
   if (isReadRequest && /^\/(ae|kw)\/?$/.test(url.pathname)) {
     return new Response(null, { status: 301, headers: { location: "/" } });
   }
