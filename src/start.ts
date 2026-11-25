@@ -49,15 +49,20 @@ const faqMarkdown =
 const agentMiddleware = createMiddleware().server(async ({ request, next }) => {
   const url = new URL(request.url);
   const isReadRequest = request.method === "GET" || request.method === "HEAD";
+  const isApexHost = url.hostname === new URL(SITE_URL).hostname;
+  const isWwwHost = url.hostname === "www.webgramitsolution.in";
   const isPublicPage = !/^\/(?:api|_serverFn|admin|auth)(?:\/|$)/.test(url.pathname);
   const pathname =
     isReadRequest && isPublicPage ? url.pathname.replace(/\/+$/, "") || "/" : url.pathname;
   const canonicalPath = isReadRequest && /^\/(ae|kw)$/.test(pathname) ? "/" : pathname;
-  if (url.hostname === "www.webgramitsolution.in" || canonicalPath !== url.pathname) {
+  if (isWwwHost || (isApexHost && canonicalPath !== url.pathname)) {
     return new Response(null, {
       status: isReadRequest ? 301 : 308,
       headers: { Location: SITE_URL + canonicalPath + url.search },
     });
+  }
+  if (isReadRequest && /^\/(ae|kw)\/?$/.test(url.pathname)) {
+    return new Response(null, { status: 301, headers: { Location: "/" } });
   }
   const markdown =
     url.pathname === "/"
