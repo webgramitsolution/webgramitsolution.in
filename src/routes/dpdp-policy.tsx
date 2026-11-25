@@ -3,7 +3,8 @@ import { LegalPage } from "@/components/legal-page";
 import { dpdpSections } from "@/lib/legal-content";
 
 const title = "DPDP Policy | Webgram IT Solution";
-const description = "Read how Webgram IT Solution handles digital personal data under India's Digital Personal Data Protection Act, 2023 and applicable rules.";
+const description =
+  "Read how Webgram IT Solution handles digital personal data under India's Digital Personal Data Protection Act, 2023 and applicable rules.";
 const url = "https://webgramitsolution.in/dpdp-policy";
 
 export const Route = createFileRoute("/dpdp-policy")({

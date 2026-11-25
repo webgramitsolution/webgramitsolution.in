@@ -39,7 +39,6 @@ import industriesStrip from "@/assets/ecommerce-industries.jpg";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 
-
 const benefits = [
   [Store, "24/7", "Sales Channel"],
   [BarChart3, "Higher", "Brand Visibility"],
@@ -98,7 +97,10 @@ const process = [
 ] as const;
 
 const technologies = [
-  { name: "WooCommerce", src: "https://ik.imagekit.io/cf1bg2bnu/WooCommerce.png?updatedAt=1791030824171" },
+  {
+    name: "WooCommerce",
+    src: "https://ik.imagekit.io/cf1bg2bnu/WooCommerce.png?updatedAt=1791030824171",
+  },
   { name: "WordPress", src: "https://ik.imagekit.io/cf1bg2bnu/wordpress.webp" },
   { name: "React.js", src: "https://ik.imagekit.io/cf1bg2bnu/React.js.webp" },
   { name: "Node.js", src: "https://ik.imagekit.io/cf1bg2bnu/Node.js.webp" },
@@ -163,10 +165,16 @@ function IndustryCarousel() {
             />
             <div className="absolute inset-x-0 bottom-0 bg-navy/90 px-3 py-2 text-[13px] font-bold text-on-dark">
               {slug ? (
-                <Link to="/industries/$slug" params={{ slug }} className="after:absolute after:inset-0 hover:underline">
+                <Link
+                  to="/industries/$slug"
+                  params={{ slug }}
+                  className="after:absolute after:inset-0 hover:underline"
+                >
                   {industry} <ArrowRight aria-hidden="true" className="ml-1 inline h-3 w-3" />
                 </Link>
-              ) : industry}
+              ) : (
+                industry
+              )}
             </div>
           </article>
         ))}
@@ -205,9 +213,15 @@ export function EcommerceDevelopmentPage() {
               <Link to="/">Home</Link> <span className="px-1.5">›</span> Solutions{" "}
               <span className="px-1.5">›</span> Ecommerce Development
             </nav>
-            <HeroHeading className="text-[30px] font-medium leading-[1.08] sm:text-[34px] md:text-[36px] lg:text-[39px]" lines={["Custom Online Stores", "for D2C and Retail Brands"]} accent="text-gold" />
+            <HeroHeading
+              className="text-[30px] font-medium leading-[1.08] sm:text-[34px] md:text-[36px] lg:text-[39px]"
+              lines={["Custom Online Stores", "for D2C and Retail Brands"]}
+              accent="text-gold"
+            />
             <p className="mt-3 max-w-[500px] text-[14px] leading-[1.5] text-on-dark/90 sm:text-[14px]">
-              We design mobile storefronts, product catalogues and checkout flows for Indian retail and D2C brands. We also scope migrations, inventory, payment gateways and launch support.
+              We design mobile storefronts, product catalogues and checkout flows for Indian retail
+              and D2C brands. We also scope migrations, inventory, payment gateways and launch
+              support.
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Button
@@ -260,7 +274,9 @@ export function EcommerceDevelopmentPage() {
       >
         <Link to="/services/shopify">Shopify development</Link>
         <span aria-hidden="true"> · </span>
-        <Link to="/services/$slug" params={{ slug: "woocommerce" }}>WooCommerce development</Link>
+        <Link to="/services/$slug" params={{ slug: "woocommerce" }}>
+          WooCommerce development
+        </Link>
       </DirectAnswer>
 
       <ComparisonTable
@@ -269,17 +285,50 @@ export function EcommerceDevelopmentPage() {
         intro="Both platforms run successful Indian stores. The right choice depends on how much control, B2B logic and monthly cost your business needs."
         columns={["Feature", "WooCommerce", "Shopify", "Best Suited For"]}
         rows={[
-          { feature: "Ownership & hosting", a: "Open-source on your own hosting; full code and data control.", b: "Hosted SaaS; Shopify manages servers and updates.", best: "WooCommerce for control, Shopify for hands-off hosting." },
-          { feature: "Running cost", a: "No platform subscription; pay for hosting, plugins and maintenance.", b: "Monthly plan plus paid apps and theme costs.", best: "Compare plans, extensions and ongoing support for your store." },
-          { feature: "B2B features (tiered pricing, MOQ, RFQ)", a: "Flexible through B2B plugins and custom development.", b: "Advanced B2B tools mainly on higher plans or apps.", best: "WooCommerce for wholesalers and manufacturers." },
-          { feature: "Indian payments & GST", a: "Razorpay, Cashfree, PayU and GST invoice plugins.", b: "Razorpay and other Indian gateways; GST via apps.", best: "Both work; WooCommerce offers deeper invoice customisation." },
-          { feature: "Speed to launch", a: "Needs setup, hosting and configuration.", b: "Quick to launch with ready themes.", best: "Shopify for fast retail launches." },
-          { feature: "Customisation", a: "Custom extensions and integrations with ERP and CRM systems.", b: "Limited to theme code, apps and APIs.", best: "WooCommerce for custom workflows." },
-          { feature: "Maintenance", a: "Updates, security and backups are your responsibility.", b: "Platform handles security and core updates.", best: "Shopify for small teams without technical staff." },
+          {
+            feature: "Ownership & hosting",
+            a: "Open-source on your own hosting; full code and data control.",
+            b: "Hosted SaaS; Shopify manages servers and updates.",
+            best: "WooCommerce for control, Shopify for hands-off hosting.",
+          },
+          {
+            feature: "Running cost",
+            a: "No platform subscription; pay for hosting, plugins and maintenance.",
+            b: "Monthly plan plus paid apps and theme costs.",
+            best: "Compare plans, extensions and ongoing support for your store.",
+          },
+          {
+            feature: "B2B features (tiered pricing, MOQ, RFQ)",
+            a: "Flexible through B2B plugins and custom development.",
+            b: "Advanced B2B tools mainly on higher plans or apps.",
+            best: "WooCommerce for wholesalers and manufacturers.",
+          },
+          {
+            feature: "Indian payments & GST",
+            a: "Razorpay, Cashfree, PayU and GST invoice plugins.",
+            b: "Razorpay and other Indian gateways; GST via apps.",
+            best: "Both work; WooCommerce offers deeper invoice customisation.",
+          },
+          {
+            feature: "Speed to launch",
+            a: "Needs setup, hosting and configuration.",
+            b: "Quick to launch with ready themes.",
+            best: "Shopify for fast retail launches.",
+          },
+          {
+            feature: "Customisation",
+            a: "Custom extensions and integrations with ERP and CRM systems.",
+            b: "Limited to theme code, apps and APIs.",
+            best: "WooCommerce for custom workflows.",
+          },
+          {
+            feature: "Maintenance",
+            a: "Updates, security and backups are your responsibility.",
+            b: "Platform handles security and core updates.",
+            best: "Shopify for small teams without technical staff.",
+          },
         ]}
       />
-
-
 
       <section className="bg-card py-6">
         <div className="ecom-shell grid items-center gap-5 md:grid-cols-[1.05fr_1.55fr]">
@@ -352,7 +401,11 @@ export function EcommerceDevelopmentPage() {
       <section className="bg-card py-6">
         <div className="ecom-shell grid items-center gap-6 md:grid-cols-[285px_minmax(0,1fr)]">
           <div>
-            <Eyebrow><Link to="/industries" className="hover:underline">Industries We Serve</Link></Eyebrow>
+            <Eyebrow>
+              <Link to="/industries" className="hover:underline">
+                Industries We Serve
+              </Link>
+            </Eyebrow>
             <h2 className="ecom-title mt-2">
               Ecommerce for
               <br />
@@ -377,14 +430,25 @@ export function EcommerceDevelopmentPage() {
 
       <section aria-label="Ecommerce development process" className="bg-sky-soft py-6 md:py-6">
         <div className="ecom-shell">
-          <p className="flex items-center gap-2 text-[12px] font-semibold uppercase text-primary md:text-[13px]"><span className="h-0.5 w-6 shrink-0 bg-gold md:w-8" />Our Development Process</p>
+          <p className="flex items-center gap-2 text-[12px] font-semibold uppercase text-primary md:text-[13px]">
+            <span className="h-0.5 w-6 shrink-0 bg-gold md:w-8" />
+            Our Development Process
+          </p>
           <h2 className="mt-2 text-[20px] font-medium leading-[1.4] text-navy md:mt-3 md:text-[27px] md:leading-[1.3]">
             From Idea to Launch — A Clear &amp; Proven Process
           </h2>
           <ol className="mt-5 grid list-none gap-0 p-0 md:grid-cols-6 md:gap-3">
             {process.map(([Icon, number, title, text], index) => (
-              <li key={title} className="relative grid min-w-0 grid-cols-[38px_minmax(0,1fr)] items-start gap-3 pb-5 last:pb-0 md:grid-cols-[45px_minmax(0,1fr)] md:gap-2 md:pb-0">
-                {index < process.length - 1 && <span aria-hidden="true" className="absolute bottom-0 left-[18px] top-[38px] w-px bg-primary/20 md:hidden" />}
+              <li
+                key={title}
+                className="relative grid min-w-0 grid-cols-[38px_minmax(0,1fr)] items-start gap-3 pb-5 last:pb-0 md:grid-cols-[45px_minmax(0,1fr)] md:gap-2 md:pb-0"
+              >
+                {index < process.length - 1 && (
+                  <span
+                    aria-hidden="true"
+                    className="absolute bottom-0 left-[18px] top-[38px] w-px bg-primary/20 md:hidden"
+                  />
+                )}
                 {index < process.length - 1 && (
                   <span
                     aria-hidden="true"
@@ -398,10 +462,19 @@ export function EcommerceDevelopmentPage() {
                 </span>
                 <div className="relative z-10 min-w-0">
                   <div className="flex min-h-[22px] items-center gap-2 pt-0.5 md:block md:pt-0">
-                    <strong aria-hidden="true" className="block text-[12px] font-medium leading-5 text-primary md:text-[13px] md:font-bold md:text-navy">{number}</strong>
-                    <h3 className="text-[16px] font-medium leading-[22px] text-navy md:mt-1 md:text-[15px] md:leading-5">{title}</h3>
+                    <strong
+                      aria-hidden="true"
+                      className="block text-[12px] font-medium leading-5 text-primary md:text-[13px] md:font-bold md:text-navy"
+                    >
+                      {number}
+                    </strong>
+                    <h3 className="text-[16px] font-medium leading-[22px] text-navy md:mt-1 md:text-[15px] md:leading-5">
+                      {title}
+                    </h3>
                   </div>
-                  <p className="mt-1 text-[15px] leading-[22px] text-muted-foreground md:text-[14px] md:leading-[1.4]">{text}</p>
+                  <p className="mt-1 text-[15px] leading-[22px] text-muted-foreground md:text-[14px] md:leading-[1.4]">
+                    {text}
+                  </p>
                 </div>
               </li>
             ))}
@@ -458,7 +531,35 @@ export function EcommerceDevelopmentPage() {
               by Industry
             </h2>
             <p className="ecom-copy mt-2">
-              Compare storefront concepts for <Link to="/industries/$slug" params={{ slug: "fashion" }} className="text-primary underline">fashion</Link>, <Link to="/industries/$slug" params={{ slug: "furniture" }} className="text-primary underline">furniture</Link> and <Link to="/industries/$slug" params={{ slug: "electronics" }} className="text-primary underline">electronics</Link>. Visit our <Link to="/work/portfolio" className="text-primary underline">portfolio</Link> to see live client websites.
+              Compare storefront concepts for{" "}
+              <Link
+                to="/industries/$slug"
+                params={{ slug: "fashion" }}
+                className="text-primary underline"
+              >
+                fashion
+              </Link>
+              ,{" "}
+              <Link
+                to="/industries/$slug"
+                params={{ slug: "furniture" }}
+                className="text-primary underline"
+              >
+                furniture
+              </Link>{" "}
+              and{" "}
+              <Link
+                to="/industries/$slug"
+                params={{ slug: "electronics" }}
+                className="text-primary underline"
+              >
+                electronics
+              </Link>
+              . Visit our{" "}
+              <Link to="/work/portfolio" className="text-primary underline">
+                portfolio
+              </Link>{" "}
+              to see live client websites.
             </p>
             <Button
               asChild
@@ -477,9 +578,7 @@ export function EcommerceDevelopmentPage() {
               >
                 <div className="relative min-h-[132px] flex-1 overflow-hidden">
                   <div className="relative z-10 w-[65%] p-3 pr-1">
-                    <h3 className="text-[15px] font-medium leading-5 text-navy">
-                      {project.title}
-                    </h3>
+                    <h3 className="text-[15px] font-medium leading-5 text-navy">{project.title}</h3>
                     <p className="mt-2 text-[14px] leading-5 text-muted-foreground">
                       {project.description}
                     </p>
@@ -497,7 +596,14 @@ export function EcommerceDevelopmentPage() {
                   </div>
                 </div>
                 <div className="flex min-h-16 flex-wrap content-start gap-1.5 px-3 pb-3 pt-2 md:min-h-20 lg:min-h-16">
-                  {project.tags.map((tag) => <span key={tag} className="max-w-full rounded-sm bg-primary-soft px-1.5 py-1 text-[13px] font-medium leading-4 text-navy">{tag}</span>)}
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="max-w-full rounded-sm bg-primary-soft px-1.5 py-1 text-[13px] font-medium leading-4 text-navy"
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </article>
             ))}

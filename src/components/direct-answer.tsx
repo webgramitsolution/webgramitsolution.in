@@ -1,6 +1,11 @@
 import type { ReactNode } from "react";
 
-export function DirectAnswer({ id, question, answer, children }: {
+export function DirectAnswer({
+  id,
+  question,
+  answer,
+  children,
+}: {
   id: string;
   question: string;
   answer: string;
@@ -13,8 +18,14 @@ export function DirectAnswer({ id, question, answer, children }: {
           <h2 id={id} className="text-[20px] font-medium leading-[1.3] text-navy md:text-[24px]">
             {question}
           </h2>
-          <p className="mt-2 max-w-[900px] text-[15px] leading-[1.6] text-foreground md:text-[16px]">{answer}</p>
-          {children && <div className="mt-3 text-sm font-semibold text-primary [&_a]:underline [&_a]:underline-offset-4">{children}</div>}
+          <p className="mt-2 max-w-[900px] text-[15px] leading-[1.6] text-foreground md:text-[16px]">
+            {answer}
+          </p>
+          {children && (
+            <div className="mt-3 text-sm font-semibold text-primary [&_a]:underline [&_a]:underline-offset-4">
+              {children}
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -42,7 +53,9 @@ export function ComparisonTable({
         <h2 id={id} className="text-[20px] font-medium leading-[1.3] text-navy md:text-[26px]">
           {title}
         </h2>
-        <p className="mt-2 max-w-[860px] text-[15px] leading-[1.6] text-muted-foreground md:text-[16px]">{intro}</p>
+        <p className="mt-2 max-w-[860px] text-[15px] leading-[1.6] text-muted-foreground md:text-[16px]">
+          {intro}
+        </p>
         <div className="mt-4 overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[640px] border-collapse text-left text-[14px] md:text-[15px]">
             <caption className="sr-only">{title}</caption>

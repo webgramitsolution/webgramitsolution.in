@@ -2,7 +2,8 @@ export const ecommerceBuyerGuide = {
   slug: "ecommerce-website-development-india-guide",
   path: "/blog/ecommerce-website-development-india-guide",
   title: "Ecommerce Website Development in India: A 10-Step Buyer’s Guide",
-  description: "Plan an ecommerce website in India with this 10-step guide to Shopify vs WooCommerce, development quotes, B2B portals, payments, SEO migrations and handover.",
+  description:
+    "Plan an ecommerce website in India with this 10-step guide to Shopify vs WooCommerce, development quotes, B2B portals, payments, SEO migrations and handover.",
   image: "/images/blog-covers/ecommerce-website-development-india-guide.webp",
   imageAlt: "Ecommerce founder planning a store launch with a laptop and packaging samples",
 } as const;

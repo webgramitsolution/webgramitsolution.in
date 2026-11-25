@@ -30,16 +30,40 @@ export const Route = createFileRoute("/industries/$slug")({
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:image", content: image },
       ],
-      scripts: [...publicPageSchema(path, industry.page.title, industry.description, "WebPage", [{ name: "Industries", path: "/industries" }]), {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@graph": [
-            { "@type": "Service", name: industry.heading, serviceType: industry.searchFocus[0], description: industry.description, url, image, provider: { "@id": BUSINESS_ID }, areaServed: { "@type": "Country", name: "India" } },
-            { "@type": "FAQPage", "@id": url + "#faq", mainEntity: [{ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } }] },
-          ],
-        }),
-      }],
+      scripts: [
+        ...publicPageSchema(path, industry.page.title, industry.description, "WebPage", [
+          { name: "Industries", path: "/industries" },
+        ]),
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Service",
+                name: industry.heading,
+                serviceType: industry.searchFocus[0],
+                description: industry.description,
+                url,
+                image,
+                provider: { "@id": BUSINESS_ID },
+                areaServed: { "@type": "Country", name: "India" },
+              },
+              {
+                "@type": "FAQPage",
+                "@id": url + "#faq",
+                mainEntity: [
+                  {
+                    "@type": "Question",
+                    name: question,
+                    acceptedAnswer: { "@type": "Answer", text: answer },
+                  },
+                ],
+              },
+            ],
+          }),
+        },
+      ],
     };
   },
   component: Page,

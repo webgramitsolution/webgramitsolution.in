@@ -50,7 +50,11 @@ function withNoindexOnPreviewHosts(request: Request, response: Response): Respon
   if (!/(\.lovable\.app|\.lovableproject\.com|\.lovable\.dev)$/.test(host)) return response;
   const headers = new Headers(response.headers);
   headers.set("X-Robots-Tag", "noindex, nofollow");
-  return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
 }
 
 export default {

@@ -12,9 +12,14 @@ export const businessIdentity = {
   url: `${SITE_URL}/`,
   logo: "https://ik.imagekit.io/e1owsmcrg/webgramitsolution.com.jpg",
   image: "https://ik.imagekit.io/2kynz1ge7/Webgram%20It%20Solution.jfif",
-  description: "Webgram IT Solution is a Delhi NCR based web development company specializing in ecommerce websites, B2B commerce platforms, WooCommerce development, Shopify development and custom web portals for businesses across India.",
+  description:
+    "Webgram IT Solution is a Delhi NCR based web development company specializing in ecommerce websites, B2B commerce platforms, WooCommerce development, Shopify development and custom web portals for businesses across India.",
   foundingDate: "2022",
-  founder: { "@type": "Person", name: "Vikas Kumar", sameAs: "https://www.linkedin.com/in/digivikas/" },
+  founder: {
+    "@type": "Person",
+    name: "Vikas Kumar",
+    sameAs: "https://www.linkedin.com/in/digivikas/",
+  },
   telephone: "+917551120242",
   email: "info@webgramitsolution.in",
   vatID: "07CUHPK2017G1ZW",
@@ -28,10 +33,17 @@ export const businessIdentity = {
   },
   areaServed: { "@type": "Country", name: "India" },
   serviceType: [
-    "Ecommerce Website Development", "WooCommerce Development", "Shopify Development",
-    "B2B Commerce Platform", "Marketplace Development", "Web Portal Development",
-    "Website Design", "API Integration", "Website Maintenance",
-    "B2B Marketplace Website Development", "IndiaMART Style B2B Portal Development",
+    "Ecommerce Website Development",
+    "WooCommerce Development",
+    "Shopify Development",
+    "B2B Commerce Platform",
+    "Marketplace Development",
+    "Web Portal Development",
+    "Website Design",
+    "API Integration",
+    "Website Maintenance",
+    "B2B Marketplace Website Development",
+    "IndiaMART Style B2B Portal Development",
   ],
   sameAs: [
     "https://www.facebook.com/webgramitsolution/",
@@ -48,7 +60,14 @@ export const businessIdentity = {
     areaServed: "IN",
     availableLanguage: ["en", "hi"],
   },
-  knowsAbout: ["Ecommerce Website Design", "Shopify", "WooCommerce", "Custom Ecommerce Development", "B2B Ecommerce", "Marketplace Development"],
+  knowsAbout: [
+    "Ecommerce Website Design",
+    "Shopify",
+    "WooCommerce",
+    "Custom Ecommerce Development",
+    "B2B Ecommerce",
+    "Marketplace Development",
+  ],
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
     dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
@@ -65,28 +84,30 @@ export function publicPageSchema(
   parents: ReadonlyArray<{ name: string; path: string }> = [],
 ) {
   const url = `${SITE_URL}${path}`;
-  return [{
-    type: "application/ld+json",
-    children: JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": type,
-      "@id": `${url}#webpage`,
-      url, name, description,
-      about: { "@id": BUSINESS_ID },
-      isPartOf: { "@id": WEBSITE_ID },
-      breadcrumb: {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { name: "Home", path: "/" },
-          ...parents,
-          { name, path },
-        ].map((crumb, index) => ({
-          "@type": "ListItem",
-          position: index + 1,
-          name: crumb.name,
-          item: SITE_URL + crumb.path,
-        })),
-      },
-    }),
-  }];
+  return [
+    {
+      type: "application/ld+json",
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": type,
+        "@id": `${url}#webpage`,
+        url,
+        name,
+        description,
+        about: { "@id": BUSINESS_ID },
+        isPartOf: { "@id": WEBSITE_ID },
+        breadcrumb: {
+          "@type": "BreadcrumbList",
+          itemListElement: [{ name: "Home", path: "/" }, ...parents, { name, path }].map(
+            (crumb, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              name: crumb.name,
+              item: SITE_URL + crumb.path,
+            }),
+          ),
+        },
+      }),
+    },
+  ];
 }

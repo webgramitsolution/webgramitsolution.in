@@ -12,11 +12,17 @@ describe("blog FAQ schema", () => {
       "bad",
       null,
     ]);
-    assert.deepEqual(faqs, [{ question: "What is WooCommerce?", answer: "A WordPress store plugin." }]);
+    assert.deepEqual(faqs, [
+      { question: "What is WooCommerce?", answer: "A WordPress store plugin." },
+    ]);
   });
   it("schema lists exactly the visible questions and links to the article", () => {
     const url = "https://webgramitsolution.in/blog/sample";
-    const schema = blogFaqSchema([{ question: "What is SEO?", answer: "Search optimisation." }], url, "https://webgramitsolution.in/#website");
+    const schema = blogFaqSchema(
+      [{ question: "What is SEO?", answer: "Search optimisation." }],
+      url,
+      "https://webgramitsolution.in/#website",
+    );
     assert.equal(schema["@type"], "FAQPage");
     assert.equal(schema.mainEntity.length, 1);
     assert.equal(schema.mainEntity[0]?.name, "What is SEO?");

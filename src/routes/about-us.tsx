@@ -53,7 +53,12 @@ export const Route = createFileRoute("/about-us")({
       { name: "twitter:image", content: `${aboutImages.banner}?tr=w-1200,h-630,c-at_max` },
     ],
     links: [{ rel: "canonical", href: "https://webgramitsolution.in/about-us" }],
-    scripts: publicPageSchema("/about-us", "About Webgram IT Solution", "Webgram IT Solution builds business websites, ecommerce stores and B2B commerce platforms in Delhi NCR.", "AboutPage"),
+    scripts: publicPageSchema(
+      "/about-us",
+      "About Webgram IT Solution",
+      "Webgram IT Solution builds business websites, ecommerce stores and B2B commerce platforms in Delhi NCR.",
+      "AboutPage",
+    ),
   }),
   component: AboutPage,
 });
@@ -89,10 +94,17 @@ function AboutHero() {
           fetchPriority="high"
         />
       </picture>
-      <div className="service-hero-shade pointer-events-none absolute inset-y-0 start-0 hidden md:block" aria-hidden="true" />
+      <div
+        className="service-hero-shade pointer-events-none absolute inset-y-0 start-0 hidden md:block"
+        aria-hidden="true"
+      />
       <div className="page-shell relative z-10 flex h-full items-center py-6 md:absolute md:inset-0">
         <div className="max-w-[440px] text-on-dark">
-          <HeroHeading className="mt-2 text-[32px] font-extrabold leading-[1.05] sm:text-[38px] lg:text-[42px]" lines={["About Us", "Webgram IT Solution"]} accent="text-[#f4c657]" />
+          <HeroHeading
+            className="mt-2 text-[32px] font-extrabold leading-[1.05] sm:text-[38px] lg:text-[42px]"
+            lines={["About Us", "Webgram IT Solution"]}
+            accent="text-[#f4c657]"
+          />
           <p className="mt-4 max-w-[400px] text-[14px] leading-[1.6] text-on-dark/90">
             We are a technology-driven company focused on building high-performance eCommerce, B2B,
             B2C and custom digital solutions that help businesses grow, scale and succeed.
@@ -115,9 +127,7 @@ function AboutHero() {
               <span className="grid h-8 w-8 place-items-center rounded-full bg-card text-navy">
                 <Play aria-hidden="true" className="h-3.5 w-3.5 fill-current" />
               </span>
-              <span className="text-[13px] font-semibold leading-tight">
-                Watch Video
-              </span>
+              <span className="text-[13px] font-semibold leading-tight">Watch Video</span>
             </a>
           </div>
           <div className="mt-6 grid grid-cols-4 divide-x divide-on-dark/25">
@@ -386,7 +396,11 @@ function Workspace() {
 
 function WhyChoose() {
   const items = [
-    [BadgeCheck, "Proven Expertise", "Published examples of our ecommerce and web development work."],
+    [
+      BadgeCheck,
+      "Proven Expertise",
+      "Published examples of our ecommerce and web development work.",
+    ],
     [HeartHandshake, "Client-Centric Approach", "Solutions tailored to your business goals."],
     [Clock, "Quality & Timely Delivery", "On-time project delivery with best practices."],
     [MessageSquare, "Transparent Communication", "Clear updates at every stage of development."],
@@ -431,10 +445,27 @@ function AboutPage() {
         <div className="page-shell max-w-3xl">
           <h2 className="text-2xl font-extrabold text-navy">Who is behind Webgram’s guides?</h2>
           <p className="mt-3 leading-7 text-muted-foreground">
-            Webgram IT Solution was founded by <a className="font-semibold text-primary underline" href={businessIdentity.founder.sameAs}>Vikas Kumar</a> in New Delhi. Our team publishes guides on ecommerce, web development and B2B portals. Article bylines and dates identify the author and when the guidance was published or updated.
+            Webgram IT Solution was founded by{" "}
+            <a
+              className="font-semibold text-primary underline"
+              href={businessIdentity.founder.sameAs}
+            >
+              Vikas Kumar
+            </a>{" "}
+            in New Delhi. Our team publishes guides on ecommerce, web development and B2B portals.
+            Article bylines and dates identify the author and when the guidance was published or
+            updated.
           </p>
           <p className="mt-3 leading-7 text-muted-foreground">
-            Explore our <Link to="/work/portfolio" className="font-semibold text-primary underline">published client work</Link> to see examples of what we build. If you spot an error in a guide, <Link to="/contact" className="font-semibold text-primary underline">send us the page link and the correction</Link>.
+            Explore our{" "}
+            <Link to="/work/portfolio" className="font-semibold text-primary underline">
+              published client work
+            </Link>{" "}
+            to see examples of what we build. If you spot an error in a guide,{" "}
+            <Link to="/contact" className="font-semibold text-primary underline">
+              send us the page link and the correction
+            </Link>
+            .
           </p>
         </div>
       </section>

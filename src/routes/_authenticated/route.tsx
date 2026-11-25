@@ -26,15 +26,17 @@ function AdminRoute() {
   useEffect(() => {
     let unsubscribe: (() => void) | undefined;
     let cancelled = false;
-    void import("@/integrations/supabase/client").then(({ supabase }) => {
-      if (cancelled) return;
-      const { data } = supabase.auth.onAuthStateChange((event, session) => {
-        if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED") return;
-        void router.invalidate();
-        if (session) void queryClient.invalidateQueries();
-      });
-      unsubscribe = () => data.subscription.unsubscribe();
-    }).catch((error) => console.error("Could not listen for admin sign-in changes", error));
+    void import("@/integrations/supabase/client")
+      .then(({ supabase }) => {
+        if (cancelled) return;
+        const { data } = supabase.auth.onAuthStateChange((event, session) => {
+          if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED") return;
+          void router.invalidate();
+          if (session) void queryClient.invalidateQueries();
+        });
+        unsubscribe = () => data.subscription.unsubscribe();
+      })
+      .catch((error) => console.error("Could not listen for admin sign-in changes", error));
     return () => {
       cancelled = true;
       unsubscribe?.();

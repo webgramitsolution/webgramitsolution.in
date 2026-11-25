@@ -48,7 +48,12 @@ export const Route = createFileRoute("/work/portfolio")({
                 itemListElement: portfolio.map((item, index) => ({
                   "@type": "ListItem",
                   position: index + 1,
-                  item: { "@type": "WebSite", name: item.name, url: item.url, description: item.summary },
+                  item: {
+                    "@type": "WebSite",
+                    name: item.name,
+                    url: item.url,
+                    description: item.summary,
+                  },
                 })),
               },
             },
@@ -73,22 +78,37 @@ function PortfolioPage() {
               accent="text-[#f4c657]"
             />
             <p className="mt-4 max-w-[455px] text-sm leading-relaxed text-on-dark/90 md:text-base">
-              Explore live ecommerce stores, B2B platforms and business websites we built for clients in India and Canada.
+              Explore live ecommerce stores, B2B platforms and business websites we built for
+              clients in India and Canada.
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Button asChild className="min-h-11">
-                <a href="#portfolio-projects">Browse Projects <ArrowDown aria-hidden="true" /></a>
+                <a href="#portfolio-projects">
+                  Browse Projects <ArrowDown aria-hidden="true" />
+                </a>
               </Button>
-              <Button asChild variant="outline" className="min-h-11 border-on-dark/60 bg-transparent text-on-dark hover:bg-on-dark/10 hover:text-on-dark">
-                <Link to="/contact">Discuss Your Project <ArrowRight aria-hidden="true" /></Link>
+              <Button
+                asChild
+                variant="outline"
+                className="min-h-11 border-on-dark/60 bg-transparent text-on-dark hover:bg-on-dark/10 hover:text-on-dark"
+              >
+                <Link to="/contact">
+                  Discuss Your Project <ArrowRight aria-hidden="true" />
+                </Link>
               </Button>
             </div>
           </div>
         </div>
       </ServiceHero>
-      <section id="portfolio-projects" aria-label="Live website projects" className="scroll-mt-32 py-10 md:py-14">
+      <section
+        id="portfolio-projects"
+        aria-label="Live website projects"
+        className="scroll-mt-32 py-10 md:py-14"
+      >
         <div className="header-shell grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {portfolio.map((item, index) => <PortfolioCard key={item.domain} item={item} compact eager={index === 0} />)}
+          {portfolio.map((item, index) => (
+            <PortfolioCard key={item.domain} item={item} compact eager={index === 0} />
+          ))}
         </div>
       </section>
       <DirectAnswer
@@ -102,21 +122,53 @@ function PortfolioPage() {
         intro="A quick comparison of the three website types shown in our portfolio, so you can pick the right starting point."
         columns={["Feature", "Ecommerce Store", "Business Website", "Best Suited For"]}
         rows={[
-          { feature: "Main goal", a: "Sell products online", b: "Generate calls and enquiries", best: "Retail brands vs service businesses" },
-          { feature: "Platforms", a: "WooCommerce, Shopify", b: "WordPress, React", best: "Catalogue size and budget decide" },
-          { feature: "Key pages", a: "Catalogue, cart, checkout", b: "Services, about, contact", best: "Depends on how customers buy" },
-          { feature: "Integrations", a: "Payments, shipping, inventory", b: "Forms, WhatsApp, maps", best: "Plan before design starts" },
-          { feature: "Wholesale needs", a: "Add B2B pricing and MOQ", b: "Usually not required", best: "Manufacturers and distributors" },
+          {
+            feature: "Main goal",
+            a: "Sell products online",
+            b: "Generate calls and enquiries",
+            best: "Retail brands vs service businesses",
+          },
+          {
+            feature: "Platforms",
+            a: "WooCommerce, Shopify",
+            b: "WordPress, React",
+            best: "Catalogue size and budget decide",
+          },
+          {
+            feature: "Key pages",
+            a: "Catalogue, cart, checkout",
+            b: "Services, about, contact",
+            best: "Depends on how customers buy",
+          },
+          {
+            feature: "Integrations",
+            a: "Payments, shipping, inventory",
+            b: "Forms, WhatsApp, maps",
+            best: "Plan before design starts",
+          },
+          {
+            feature: "Wholesale needs",
+            a: "Add B2B pricing and MOQ",
+            b: "Usually not required",
+            best: "Manufacturers and distributors",
+          },
         ]}
       />
       <section className="bg-sky-soft py-10">
         <div className="header-shell flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
           <div>
             <h2 className="text-[26px] text-navy">Want a website like these?</h2>
-            <p className="mt-1 text-[16px] text-muted-foreground">Tell us about your business and we will share a plan, timeline and quote.</p>
+            <p className="mt-1 text-[16px] text-muted-foreground">
+              Tell us about your business and we will share a plan, timeline and quote.
+            </p>
           </div>
-          <Button asChild className="h-11 bg-gold px-6 text-[15px] font-semibold text-navy hover:bg-gold/90">
-            <Link to="/contact">Start Your Project <ArrowRight className="ml-1 h-4 w-4" /></Link>
+          <Button
+            asChild
+            className="h-11 bg-gold px-6 text-[15px] font-semibold text-navy hover:bg-gold/90"
+          >
+            <Link to="/contact">
+              Start Your Project <ArrowRight className="ml-1 h-4 w-4" />
+            </Link>
           </Button>
         </div>
       </section>

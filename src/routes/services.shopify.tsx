@@ -8,7 +8,12 @@ import { ShopifyPage } from "@/components/shopify-page";
 import { servicePageSchema } from "@/lib/schema";
 import { getSubpage } from "@/lib/menu-pages";
 import { BUSINESS_ID, WEBSITE_ID, SITE_URL } from "@/lib/site-identity";
-import { SHOPIFY_DESCRIPTION, SHOPIFY_TITLE, SHOPIFY_URL, shopifyFaqs } from "@/lib/shopify-content";
+import {
+  SHOPIFY_DESCRIPTION,
+  SHOPIFY_TITLE,
+  SHOPIFY_URL,
+  shopifyFaqs,
+} from "@/lib/shopify-content";
 
 export const Route = createFileRoute("/services/shopify")({
   head: () => ({

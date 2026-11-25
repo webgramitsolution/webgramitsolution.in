@@ -1,6 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { IndustriesDirectory } from "@/components/industry-pages";
-import { industries, industriesDirectory as directory, industryImage } from "@/lib/industry-page-data";
+import {
+  industries,
+  industriesDirectory as directory,
+  industryImage,
+} from "@/lib/industry-page-data";
 import { publicPageSchema, SITE_URL } from "@/lib/site-identity";
 
 const url = SITE_URL + directory.path;
@@ -19,17 +23,23 @@ export const Route = createFileRoute("/industries/")({
       { property: "og:image", content: image },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    scripts: [...publicPageSchema(directory.path, directory.title, directory.description, "CollectionPage"), {
-      type: "application/ld+json",
-      children: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "@id": url + "#industry-directory",
-        itemListElement: industries.map(({ slug, page }, index) => ({
-          "@type": "ListItem", position: index + 1, name: page.title, url: `${url}/${slug}`,
-        })),
-      }),
-    }],
+    scripts: [
+      ...publicPageSchema(directory.path, directory.title, directory.description, "CollectionPage"),
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "@id": url + "#industry-directory",
+          itemListElement: industries.map(({ slug, page }, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            name: page.title,
+            url: `${url}/${slug}`,
+          })),
+        }),
+      },
+    ],
   }),
   component: IndustriesDirectory,
 });

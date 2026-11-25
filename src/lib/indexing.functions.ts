@@ -4,7 +4,14 @@ import { requireAdmin } from "./admin-auth.functions";
 
 export const submitToIndexNow = createServerFn({ method: "POST" })
   .middleware([requireAdmin])
-  .inputValidator((d) => z.object({ urls: z.array(z.string().url()).min(1).max(100), requestId: z.string().uuid().optional() }).parse(d))
+  .inputValidator((d) =>
+    z
+      .object({
+        urls: z.array(z.string().url()).min(1).max(100),
+        requestId: z.string().uuid().optional(),
+      })
+      .parse(d),
+  )
   .handler(async ({ data }) => {
     const { submitIndexNow, isOwnUrl } = await import("./indexing.server");
     if (!data.urls.every(isOwnUrl)) {

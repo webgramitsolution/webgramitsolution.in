@@ -5,5 +5,7 @@ export function articlePreviewBlockCount(total: number): number {
 
 export function articleAdBoundaries(total: number, phone: boolean): number[] {
   const count = Math.min(Math.max(0, total), phone ? 6 : 4);
-  return Array.from({ length: count }, (_, index) => Math.max(0, Math.ceil(total * (index + 1) / (count + 1)) - 1));
+  return Array.from({ length: count }, (_, index) =>
+    Math.max(0, Math.ceil((total * (index + 1)) / (count + 1)) - 1),
+  );
 }

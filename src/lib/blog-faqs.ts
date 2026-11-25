@@ -1,6 +1,7 @@
 export type BlogFaq = { question: string; answer: string };
 
-const clean = (value: unknown) => (typeof value === "string" ? value.replace(/\s+/g, " ").trim() : "");
+const clean = (value: unknown) =>
+  typeof value === "string" ? value.replace(/\s+/g, " ").trim() : "";
 
 /** One normaliser for visible article FAQs and their FAQPage schema, so both always match. */
 export function normalizeBlogFaqs(raw: unknown): BlogFaq[] {
@@ -28,6 +29,11 @@ export function blogFaqSchema(faqs: BlogFaq[], url: string, websiteId: string, i
     inLanguage,
     isPartOf: { "@id": websiteId },
     about: { "@id": `${url}#article` },
-    mainEntity: faqs.map((faq, index) => ({ "@type": "Question", "@id": `${url}#faq-${index + 1}`, name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })),
+    mainEntity: faqs.map((faq, index) => ({
+      "@type": "Question",
+      "@id": `${url}#faq-${index + 1}`,
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
   };
 }

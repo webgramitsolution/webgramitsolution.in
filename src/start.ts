@@ -28,27 +28,30 @@ function prefersMarkdown(accept: string): boolean {
     const weight = quality === undefined ? 1 : Number(quality.slice(2));
     if (!(weight > 0 && weight <= 1)) continue;
     if (media.trim() === "text/markdown") markdown = Math.max(markdown, weight);
-    if (media.trim() === "text/html" || media.trim() === "application/xhtml+xml") html = Math.max(html, weight);
+    if (media.trim() === "text/html" || media.trim() === "application/xhtml+xml")
+      html = Math.max(html, weight);
   }
   return markdown > 0 && markdown >= html;
 }
 
-const faqMarkdown = [
-  "# Website Development FAQs",
-  "Answers from Webgram IT Solution in New Delhi about website projects, ecommerce platforms, pricing and ongoing support.",
-  ...faqGroups.flatMap(({ title, items }) => [
-    `## ${title}`,
-    ...items.flatMap(([question, answer]) => [`### ${question}`, answer]),
-  ]),
-  `[Project pricing and quotes](${SITE_URL}/pricing) · [Website guides](${SITE_URL}/resources/guides) · [Contact Webgram](${SITE_URL}/contact)`,
-].join("\n\n") + "\n";
+const faqMarkdown =
+  [
+    "# Website Development FAQs",
+    "Answers from Webgram IT Solution in New Delhi about website projects, ecommerce platforms, pricing and ongoing support.",
+    ...faqGroups.flatMap(({ title, items }) => [
+      `## ${title}`,
+      ...items.flatMap(([question, answer]) => [`### ${question}`, answer]),
+    ]),
+    `[Project pricing and quotes](${SITE_URL}/pricing) · [Website guides](${SITE_URL}/resources/guides) · [Contact Webgram](${SITE_URL}/contact)`,
+  ].join("\n\n") + "\n";
 
 // Serve the Markdown variant at the same URL and keep it separate from cached HTML.
 const agentMiddleware = createMiddleware().server(async ({ request, next }) => {
   const url = new URL(request.url);
   const isReadRequest = request.method === "GET" || request.method === "HEAD";
   const isPublicPage = !/^\/(?:api|_serverFn|admin|auth)(?:\/|$)/.test(url.pathname);
-  const pathname = isReadRequest && isPublicPage ? url.pathname.replace(/\/+$/, "") || "/" : url.pathname;
+  const pathname =
+    isReadRequest && isPublicPage ? url.pathname.replace(/\/+$/, "") || "/" : url.pathname;
   const canonicalPath = isReadRequest && /^\/(ae|kw)$/.test(pathname) ? "/" : pathname;
   if (url.hostname === "www.webgramitsolution.in" || canonicalPath !== url.pathname) {
     return new Response(null, {
@@ -56,12 +59,16 @@ const agentMiddleware = createMiddleware().server(async ({ request, next }) => {
       headers: { Location: SITE_URL + canonicalPath + url.search },
     });
   }
-  const markdown = url.pathname === "/" ? homepageMarkdown
-    : url.pathname === "/resources/faqs" ? faqMarkdown
-    : undefined;
+  const markdown =
+    url.pathname === "/"
+      ? homepageMarkdown
+      : url.pathname === "/resources/faqs"
+        ? faqMarkdown
+        : undefined;
   if (!markdown || !isReadRequest) return next();
 
-  const link = '</llms.txt>; rel="describedby"; type="text/plain", </llms-full.txt>; rel="describedby"; type="text/plain"';
+  const link =
+    '</llms.txt>; rel="describedby"; type="text/plain", </llms-full.txt>; rel="describedby"; type="text/plain"';
   if (prefersMarkdown(request.headers.get("accept") ?? "")) {
     return new Response(request.method === "HEAD" ? null : markdown, {
       headers: { "Content-Type": "text/markdown; charset=utf-8", Link: link, Vary: "Accept" },
@@ -69,7 +76,8 @@ const agentMiddleware = createMiddleware().server(async ({ request, next }) => {
   }
   const result = await next();
   try {
-    const res = (result as unknown as { response?: Response }).response ?? (result as unknown as Response);
+    const res =
+      (result as unknown as { response?: Response }).response ?? (result as unknown as Response);
     res?.headers?.append?.("link", link);
     res?.headers?.append?.("vary", "Accept");
   } catch {

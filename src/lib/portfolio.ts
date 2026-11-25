@@ -9,7 +9,6 @@ import mukesh from "@/assets/mukeshmurtikar.jpg";
 import adlite from "@/assets/adliteelectricals.jpg";
 import chandraLakshmiGlass from "@/assets/chandralakshmiglass.webp";
 
-
 export type PortfolioItem = {
   name: string;
   url: string;
@@ -32,7 +31,12 @@ export const portfolio: PortfolioItem[] = [
     image: kingsports,
     summary:
       "A premium corporate website for an Indian sports management company covering athlete management, brand partnerships, digital media and sports infrastructure across football, cricket and tennis.",
-    delivered: ["Custom corporate design", "Service & athlete sections", "SEO-ready page structure", "Enquiry-focused layout"],
+    delivered: [
+      "Custom corporate design",
+      "Service & athlete sections",
+      "SEO-ready page structure",
+      "Enquiry-focused layout",
+    ],
   },
   {
     name: "Houskase",
@@ -43,7 +47,12 @@ export const portfolio: PortfolioItem[] = [
     image: houskase,
     summary:
       "A high-utility ecommerce experience for household essentials, office supplies, mobile accessories and stationery. Clear collections, combo offers and frictionless product discovery support Houskase’s growing customer base across Delhi and beyond.",
-    delivered: ["WooCommerce storefront", "Combo & offer collections", "Mobile-first shopping", "Payment & shipping setup"],
+    delivered: [
+      "WooCommerce storefront",
+      "Combo & offer collections",
+      "Mobile-first shopping",
+      "Payment & shipping setup",
+    ],
   },
   {
     name: "Regal Consulting Group",
@@ -54,7 +63,12 @@ export const portfolio: PortfolioItem[] = [
     image: regal,
     summary:
       "A professional website for an Ontario workforce solutions firm offering temporary staffing, permanent recruitment, executive search and payroll support for manufacturing and warehousing.",
-    delivered: ["Employer & job-seeker journeys", "Industry pages", "Registration forms", "Clean corporate branding"],
+    delivered: [
+      "Employer & job-seeker journeys",
+      "Industry pages",
+      "Registration forms",
+      "Clean corporate branding",
+    ],
   },
   {
     name: "Fresh & Bright Cleaners",
@@ -76,7 +90,12 @@ export const portfolio: PortfolioItem[] = [
     image: naval,
     summary:
       "An institutional healthcare website for a Lucknow supplier established in 2005, presenting pharmaceuticals, surgical instruments, hospital furniture and GeM procurement support to government and private organisations.",
-    delivered: ["Product & service pages", "Institutional sales focus", "Trust-building content", "Contact & enquiry flow"],
+    delivered: [
+      "Product & service pages",
+      "Institutional sales focus",
+      "Trust-building content",
+      "Contact & enquiry flow",
+    ],
   },
   {
     name: "My Party Suppliers",
@@ -87,7 +106,12 @@ export const portfolio: PortfolioItem[] = [
     image: party,
     summary:
       "A wholesale ecommerce website for party decorations and balloons, built for bulk buyers and resellers with category browsing and SEO-friendly product pages.",
-    delivered: ["Wholesale catalogue", "Bulk enquiry flow", "Category structure", "Search-optimised pages"],
+    delivered: [
+      "Wholesale catalogue",
+      "Bulk enquiry flow",
+      "Category structure",
+      "Search-optimised pages",
+    ],
   },
   {
     name: "Chaatewala",
@@ -98,7 +122,12 @@ export const portfolio: PortfolioItem[] = [
     image: chaatewala,
     summary:
       "A B2B website for a Delhi umbrella importer and wholesale supplier, helping gift, bulk and resale buyers explore products and request factory-price orders.",
-    delivered: ["Bulk order focus", "Product showcase", "Local SEO for Delhi", "WhatsApp & call leads"],
+    delivered: [
+      "Bulk order focus",
+      "Product showcase",
+      "Local SEO for Delhi",
+      "WhatsApp & call leads",
+    ],
   },
   {
     name: "Mukesh Murtikar",
@@ -109,7 +138,12 @@ export const portfolio: PortfolioItem[] = [
     image: mukesh,
     summary:
       "An elegant online store for sculptures, statues, idols and wall décor with rich category navigation, offers and a heritage-inspired visual identity.",
-    delivered: ["Ecommerce store design", "Category navigation", "Offers & coupons", "Customer accounts"],
+    delivered: [
+      "Ecommerce store design",
+      "Category navigation",
+      "Offers & coupons",
+      "Customer accounts",
+    ],
   },
   {
     name: "Adlite Electricals",
@@ -120,7 +154,12 @@ export const portfolio: PortfolioItem[] = [
     image: adlite,
     summary:
       "A focused industrial website for an electrical engineering company established in 2008, showcasing LT and HT VCB panels, breakers, transformers, EV chargers, renewable-energy EPC and consulting capabilities.",
-    delivered: ["Industrial product catalogue", "Energy solution positioning", "Enquiry-focused journeys", "Responsive company profile"],
+    delivered: [
+      "Industrial product catalogue",
+      "Energy solution positioning",
+      "Enquiry-focused journeys",
+      "Responsive company profile",
+    ],
   },
   {
     name: "Chandra Lakshmi Safety Glass",
@@ -131,7 +170,12 @@ export const portfolio: PortfolioItem[] = [
     image: chandraLakshmiGlass,
     summary:
       "A manufacturing website presenting toughened, laminated, insulated and vehicle glass. Buyers can browse glass by application, learn about the Sonepat plant and request a quote.",
-    delivered: ["Glass products and applications", "Manufacturing process overview", "Plant and company profile", "Quote enquiries"],
+    delivered: [
+      "Glass products and applications",
+      "Manufacturing process overview",
+      "Plant and company profile",
+      "Quote enquiries",
+    ],
     technologySummary: "HTML, CSS and JavaScript",
   },
 ];

@@ -27,7 +27,11 @@ export function BlogCoverImage({
       <source
         type="image/avif"
         srcSet={`${base}-480.avif 480w, ${base}-960.avif 960w, ${base}-1536.avif 1536w`}
-        sizes={priority ? "(min-width: 1280px) 896px, calc(100vw - 2rem)" : "(min-width: 768px) 24vw, 48vw"}
+        sizes={
+          priority
+            ? "(min-width: 1280px) 896px, calc(100vw - 2rem)"
+            : "(min-width: 768px) 24vw, 48vw"
+        }
       />
       {image}
     </picture>

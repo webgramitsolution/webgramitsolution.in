@@ -17,12 +17,14 @@ describe("business facts", () => {
     const text = JSON.stringify(trustFacts);
     assert.ok(text.includes("Since 2022"));
     assert.ok(text.includes("Mon–Sat"));
-    for (const claim of ["12+", "200+", "98%", "24/7", "500+", "99.9%"]) assert.ok(!text.includes(claim), claim);
+    for (const claim of ["12+", "200+", "98%", "24/7", "500+", "99.9%"])
+      assert.ok(!text.includes(claim), claim);
   });
   it("Contact page shows eight real FAQ answers, no placeholder", () => {
     const faqs = pickFaqs(contactFaqQuestions);
     assert.equal(faqs.length, 8);
-    for (const [, answer] of faqs) assert.ok(!answer.includes("Contact our team for a detailed answer"));
+    for (const [, answer] of faqs)
+      assert.ok(!answer.includes("Contact our team for a detailed answer"));
   });
   it("Shopify page has eight FAQs and quotes the supplied 4 to 8 week ecommerce timeline", () => {
     assert.equal(shopifyFaqs.length, 8);

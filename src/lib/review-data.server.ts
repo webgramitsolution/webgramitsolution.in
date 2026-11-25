@@ -17,7 +17,19 @@ export async function getPublishedReviews() {
 
 async function loadPublishedReviews() {
   type Review = Database["public"]["Tables"]["homepage_reviews"]["Row"];
-  const data = await rows<Pick<Review, "id" | "customer_name" | "customer_role" | "company_name" | "review_text" | "rating" | "avatar_url" | "display_order">>(
+  const data = await rows<
+    Pick<
+      Review,
+      | "id"
+      | "customer_name"
+      | "customer_role"
+      | "company_name"
+      | "review_text"
+      | "rating"
+      | "avatar_url"
+      | "display_order"
+    >
+  >(
     "SELECT id,customer_name,customer_role,company_name,review_text,rating,avatar_url,display_order FROM homepage_reviews WHERE is_published = TRUE ORDER BY display_order, created_at DESC",
   );
   // Only show detailed, genuine-looking reviews (no one- or two-line reviews).

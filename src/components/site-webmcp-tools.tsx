@@ -21,7 +21,8 @@ export function SiteWebMCPTools() {
 
   useWebMCP({
     name: "get_business_info",
-    description: "Get Webgram IT Solution's contact details, services, service areas and opening hours.",
+    description:
+      "Get Webgram IT Solution's contact details, services, service areas and opening hours.",
     annotations: { readOnlyHint: true },
     execute: () =>
       runWebMCPTool("get_business_info", () =>
@@ -48,7 +49,8 @@ export function SiteWebMCPTools() {
 
   useWebMCP({
     name: "open_page",
-    description: "Open a key page of the site: ecommerce, b2b, portfolio, faqs, blog, contact or about.",
+    description:
+      "Open a key page of the site: ecommerce, b2b, portfolio, faqs, blog, contact or about.",
     inputSchema: {
       type: "object",
       properties: {

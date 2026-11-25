@@ -7,7 +7,8 @@ const section = menuSections.resources;
 
 export const Route = createFileRoute("/resources/$slug")({
   loader: ({ params, location }) => {
-    if (params.slug === "blog") throw redirect({ href: `/blog${location.searchStr}`, statusCode: 301 });
+    if (params.slug === "blog")
+      throw redirect({ href: `/blog${location.searchStr}`, statusCode: 301 });
     const page = getSubpage("resources", params.slug);
     if (!page) throw notFound();
     return page;
@@ -18,7 +19,10 @@ export const Route = createFileRoute("/resources/$slug")({
       ...(params.slug === "insights" ? [{ name: "robots", content: "noindex, follow" }] : []),
       { title: `${loaderData?.title ?? "Resources"} | Webgram IT Solution` },
       { name: "description", content: loaderData?.description ?? "" },
-      { property: "og:title", content: `${loaderData?.title ?? "Resources"} | Webgram IT Solution` },
+      {
+        property: "og:title",
+        content: `${loaderData?.title ?? "Resources"} | Webgram IT Solution`,
+      },
       { property: "og:description", content: loaderData?.description ?? "" },
       { property: "og:type", content: "website" },
       { property: "og:url", content: `https://webgramitsolution.in/resources/${params.slug}` },

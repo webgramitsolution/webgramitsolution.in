@@ -30,35 +30,63 @@ export const submitEnquiry = createServerFn({ method: "POST" })
     const inbox = process.env["ENQUIRY_INBOX"] || "info@webgramitsolution.in";
     const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
     const deliveries = [
-      ["team email", sendTemplateEmail("new-enquiry", inbox, {
-        templateData: { name: data.name, email: data.email, phone: data.phone, service: data.service, message },
-        replyTo: data.email,
-      })],
-      ["acknowledgement", sendTemplateEmail("enquiry-acknowledgement", data.email, {
-        templateData: { name: data.name, service: data.service },
-        replyTo: inbox,
-      })],
+      [
+        "team email",
+        sendTemplateEmail("new-enquiry", inbox, {
+          templateData: {
+            name: data.name,
+            email: data.email,
+            phone: data.phone,
+            service: data.service,
+            message,
+          },
+          replyTo: data.email,
+        }),
+      ],
+      [
+        "acknowledgement",
+        sendTemplateEmail("enquiry-acknowledgement", data.email, {
+          templateData: { name: data.name, service: data.service },
+          replyTo: inbox,
+        }),
+      ],
     ] as const;
     const { forwardEnquiry } = await import("./enquiry-crm.server");
     const results = await Promise.allSettled([
       ...deliveries.map(([, task]) => task),
-      forwardEnquiry({ id: String(id), name: data.name, email: data.email, phone: data.phone,
-        service: data.service, message: data.message, business: data.business, budget: data.budget, timeline: data.timeline }),
+      forwardEnquiry({
+        id: String(id),
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        service: data.service,
+        message: data.message,
+        business: data.business,
+        budget: data.budget,
+        timeline: data.timeline,
+      }),
     ]);
     results.forEach((result, index) => {
-      if (result.status === "rejected") console.error("Enquiry delivery failed", { id, channel: deliveries[index]?.[0] ?? "CRM" });
+      if (result.status === "rejected")
+        console.error("Enquiry delivery failed", { id, channel: deliveries[index]?.[0] ?? "CRM" });
     });
     return { ok: true };
   });
 
 export const replyToEnquiry = createServerFn({ method: "POST" })
   .middleware([requireAdmin])
-  .inputValidator((input: unknown) => z.object({ id: z.string().uuid(), message: z.string().trim().min(5).max(5000) }).parse(input))
+  .inputValidator((input: unknown) =>
+    z.object({ id: z.string().uuid(), message: z.string().trim().min(5).max(5000) }).parse(input),
+  )
   .handler(async ({ data }) => {
     const { rows, write } = await import("./mysql.server");
-    const [enquiry] = await rows<{ id: string; name: string; email: string; service: string }>("SELECT id,name,email,service FROM enquiries WHERE id = ?", [data.id]);
+    const [enquiry] = await rows<{ id: string; name: string; email: string; service: string }>(
+      "SELECT id,name,email,service FROM enquiries WHERE id = ?",
+      [data.id],
+    );
     if (!enquiry) throw new Error("Enquiry not found.");
-    const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
+    const esc = (s: string) =>
+      s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
     const { sendSmtpMail } = await import("./smtp.server");
     await sendSmtpMail({
       to: enquiry.email,
@@ -68,7 +96,10 @@ export const replyToEnquiry = createServerFn({ method: "POST" })
       replyTo: "info@webgramitsolution.in",
     });
     try {
-      await write("UPDATE enquiries SET reply_message = ?, replied_at = UTC_TIMESTAMP(3), status = 'contacted' WHERE id = ?", [data.message, data.id]);
+      await write(
+        "UPDATE enquiries SET reply_message = ?, replied_at = UTC_TIMESTAMP(3), status = 'contacted' WHERE id = ?",
+        [data.message, data.id],
+      );
     } catch {
       throw new Error("Reply sent, but could not be saved.");
     }

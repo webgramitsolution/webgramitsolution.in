@@ -27,9 +27,18 @@ export const IMAGES = {
   marketplace: ikResize(`${lib}/Marketplace%20Development.png`, 800),
   custom: ikResize(`${lib}/Custom%20Commerce%20Platforms.png`, 800),
   /** Case-study card artwork — wide device shots, one per case study. */
-  caseManufacturing: ikResize(`${lib}/From%20Traditional%20Sales%20to%20a%20Scalable%20Digital%20Platform.png`, 1400),
-  caseLifestyle: ikResize(`${lib}/Modern%20Ecommerce%20Experience%20for%20a%20Lifestyle%20Brand.png`, 1400),
-  caseDistribution: ikResize(`${lib}/Business%20Management%20Portal%20for%20a%20Distribution%20Company.png`, 1400),
+  caseManufacturing: ikResize(
+    `${lib}/From%20Traditional%20Sales%20to%20a%20Scalable%20Digital%20Platform.png`,
+    1400,
+  ),
+  caseLifestyle: ikResize(
+    `${lib}/Modern%20Ecommerce%20Experience%20for%20a%20Lifestyle%20Brand.png`,
+    1400,
+  ),
+  caseDistribution: ikResize(
+    `${lib}/Business%20Management%20Portal%20for%20a%20Distribution%20Company.png`,
+    1400,
+  ),
 } as const;
 
 /** Brand logos shown under "Trusted by Businesses Building Their Digital Future". */
@@ -54,16 +63,37 @@ export const aboutImages = {
   mission: ikResize(`https://ik.imagekit.io/home1/ArchFacing.png`, 1200),
   /** Workspace gallery, in display order. */
   workspace: [
-    { label: "Modern Office Space", src: ikResize(`https://ik.imagekit.io/home1/About%20us%20page/A%20createive%20and%20collaborative%20Environment%20ka%20image%20ye%20abhi%20add%20karo%20(1).png`, 900) },
-    { label: "Team Collaboration", src: ikResize(`https://ik.imagekit.io/home1/About%20us%20page/A%20createive%20and%20collaborative%20Environment%20ka%20image%20ye%20abhi%20add%20karo%20(3).png`, 900) },
-    { label: "Focused Development", src: ikResize(`https://ik.imagekit.io/home1/About%20us%20page/A%20createive%20and%20collaborative%20Environment%20ka%20image%20ye%20abhi%20add%20karo%20(2).png`, 900) },
+    {
+      label: "Modern Office Space",
+      src: ikResize(
+        `https://ik.imagekit.io/home1/About%20us%20page/A%20createive%20and%20collaborative%20Environment%20ka%20image%20ye%20abhi%20add%20karo%20(1).png`,
+        900,
+      ),
+    },
+    {
+      label: "Team Collaboration",
+      src: ikResize(
+        `https://ik.imagekit.io/home1/About%20us%20page/A%20createive%20and%20collaborative%20Environment%20ka%20image%20ye%20abhi%20add%20karo%20(3).png`,
+        900,
+      ),
+    },
+    {
+      label: "Focused Development",
+      src: ikResize(
+        `https://ik.imagekit.io/home1/About%20us%20page/A%20createive%20and%20collaborative%20Environment%20ka%20image%20ye%20abhi%20add%20karo%20(2).png`,
+        900,
+      ),
+    },
   ],
 } as const;
 
 /** Contact-page artwork supplied for the single-page contact experience. */
 export const contactImages = {
   banner: `https://ik.imagekit.io/home1/About%20us%20page/cotact%20banner.png`,
-  advisor: ikResize(`https://ik.imagekit.io/home1/About%20us%20page/about%20us%20page%20-%20coantact%20us%20image.png?updatedAt=1790588444335`, 900),
+  advisor: ikResize(
+    `https://ik.imagekit.io/home1/About%20us%20page/about%20us%20page%20-%20coantact%20us%20image.png?updatedAt=1790588444335`,
+    900,
+  ),
 } as const;
 
 /** Technology grid — transparent square logos, listed in reference order. */
@@ -146,12 +176,18 @@ export const apiPlatformLogos = [
   { name: "Razorpay", src: "https://ik.imagekit.io/x3cipokny/Logo/Razorpay%20Logo.png" },
   { name: "SAP", src: "https://ik.imagekit.io/x3cipokny/Logo/SAP%20Logo.png" },
   { name: "Google Ads", src: "https://ik.imagekit.io/x3cipokny/Logo/Google%20Ads%20Logo.png" },
-  { name: "Google Analytics", src: "https://ik.imagekit.io/x3cipokny/Logo/Google%20Analytics%20Logo.png" },
+  {
+    name: "Google Analytics",
+    src: "https://ik.imagekit.io/x3cipokny/Logo/Google%20Analytics%20Logo.png",
+  },
   { name: "AWS", src: "https://ik.imagekit.io/x3cipokny/Logo/AWS%20Logo.png" },
   { name: "SendGrid", src: "https://ik.imagekit.io/x3cipokny/Logo/SendGrid%20Logo.png" },
   { name: "Google Maps", src: "https://ik.imagekit.io/x3cipokny/Logo/Google%20Maps%20Logo.png" },
   { name: "Zoho", src: "https://ik.imagekit.io/x3cipokny/Logo/Zoho%20Logo.png" },
-  { name: "Meta WhatsApp", src: "https://ik.imagekit.io/x3cipokny/Logo/Meta%20WhatsApp%20Logo.png" },
+  {
+    name: "Meta WhatsApp",
+    src: "https://ik.imagekit.io/x3cipokny/Logo/Meta%20WhatsApp%20Logo.png",
+  },
   { name: "HubSpot", src: "https://ik.imagekit.io/x3cipokny/Logo/HubSpot%20Logo.png" },
   { name: "Twilio", src: "https://ik.imagekit.io/x3cipokny/Logo/Twilio%20Logo.png" },
   { name: "Mailchimp", src: "https://ik.imagekit.io/x3cipokny/Logo/Mailchimp%20Logo.png" },
@@ -204,18 +240,50 @@ export const wooIntegrations = [
 ] as const;
 
 export const webDevelopmentTechnologies = [
-  { name: "CloudFlare", src: "https://ik.imagekit.io/home1/CloudFlare", viewBox: "130 302 993 516" },
-  { name: "JavaScript", src: "https://ik.imagekit.io/home1/JavaScript.png", viewBox: "286 205 681 723" },
+  {
+    name: "CloudFlare",
+    src: "https://ik.imagekit.io/home1/CloudFlare",
+    viewBox: "130 302 993 516",
+  },
+  {
+    name: "JavaScript",
+    src: "https://ik.imagekit.io/home1/JavaScript.png",
+    viewBox: "286 205 681 723",
+  },
   { name: "Python", src: "https://ik.imagekit.io/home1/Python.png", viewBox: "275 173 704 678" },
   { name: "MongoDB", src: "https://ik.imagekit.io/home1/MongoDB.png", viewBox: "468 253 314 585" },
-  { name: "Yoast SEO", src: "https://ik.imagekit.io/home1/Yoast%20SEO.png", viewBox: "253 201 770 747" },
-  { name: "RankMath", src: "https://ik.imagekit.io/home1/RankMath.png", viewBox: "176 256 908 636" },
-  { name: "WP Bakery", src: "https://ik.imagekit.io/home1/WP%20Bakery.png", viewBox: "237 272 785 585" },
-  { name: "Elementor", src: "https://ik.imagekit.io/home1/Elementor.png", viewBox: "253 217 747 697" },
+  {
+    name: "Yoast SEO",
+    src: "https://ik.imagekit.io/home1/Yoast%20SEO.png",
+    viewBox: "253 201 770 747",
+  },
+  {
+    name: "RankMath",
+    src: "https://ik.imagekit.io/home1/RankMath.png",
+    viewBox: "176 256 908 636",
+  },
+  {
+    name: "WP Bakery",
+    src: "https://ik.imagekit.io/home1/WP%20Bakery.png",
+    viewBox: "237 272 785 585",
+  },
+  {
+    name: "Elementor",
+    src: "https://ik.imagekit.io/home1/Elementor.png",
+    viewBox: "253 217 747 697",
+  },
   { name: "ACF", src: "https://ik.imagekit.io/home1/ACF%202.png", viewBox: "125 358 1017 502" },
-  { name: "WooCommerce", src: "https://ik.imagekit.io/home1/WooCommerce.png", viewBox: "166 310 922 578" },
+  {
+    name: "WooCommerce",
+    src: "https://ik.imagekit.io/home1/WooCommerce.png",
+    viewBox: "166 310 922 578",
+  },
   { name: "Java", src: "https://ik.imagekit.io/home1/Java.png", viewBox: "414 144 484 535" },
   { name: "MySQL", src: "https://ik.imagekit.io/home1/MySQL.png", viewBox: "122 310 1026 701" },
   { name: "PHP", src: "https://ik.imagekit.io/home1/PHP.png", viewBox: "133 321 978 582" },
-  { name: "WordPress", src: "https://ik.imagekit.io/home1/WordPress.png", viewBox: "273 187 706 695" },
+  {
+    name: "WordPress",
+    src: "https://ik.imagekit.io/home1/WordPress.png",
+    viewBox: "273 187 706 695",
+  },
 ] as const;

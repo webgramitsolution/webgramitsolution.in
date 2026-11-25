@@ -31,7 +31,8 @@ import { getPublishedHomepageReviews } from "@/lib/reviews.functions";
 import { publicPageSchema } from "@/lib/site-identity";
 
 const HOME_TITLE = "Ecommerce Website Development Company in Delhi NCR | Webgram IT Solution";
-const HOME_DESCRIPTION = "Delhi NCR ecommerce development partner for Indian manufacturers, wholesalers and D2C brands. Build and maintain Shopify, WooCommerce and custom commerce platforms.";
+const HOME_DESCRIPTION =
+  "Delhi NCR ecommerce development partner for Indian manufacturers, wholesalers and D2C brands. Build and maintain Shopify, WooCommerce and custom commerce platforms.";
 const HERO_DESKTOP = "/images/delhi-commerce-hero.webp";
 const HERO_PHONE = "/images/delhi-commerce-hero-mobile.webp?v=2";
 const SOCIAL_IMAGE = "https://webgramitsolution.in/images/commerce-social.jpg";
@@ -49,8 +50,20 @@ export const Route = createFileRoute("/")({
   head: () => ({
     links: [
       { rel: "canonical", href: "https://webgramitsolution.in/" },
-      { rel: "preload", as: "image", href: HERO_DESKTOP, media: "(min-width: 768px)", fetchPriority: "high" },
-      { rel: "preload", as: "image", href: HERO_PHONE, media: "(max-width: 767px)", fetchPriority: "high" },
+      {
+        rel: "preload",
+        as: "image",
+        href: HERO_DESKTOP,
+        media: "(min-width: 768px)",
+        fetchPriority: "high",
+      },
+      {
+        rel: "preload",
+        as: "image",
+        href: HERO_PHONE,
+        media: "(max-width: 767px)",
+        fetchPriority: "high",
+      },
       { rel: "alternate", hrefLang: "en-in", href: "https://webgramitsolution.in/" },
       { rel: "alternate", hrefLang: "x-default", href: "https://webgramitsolution.in/" },
     ],
@@ -61,8 +74,7 @@ export const Route = createFileRoute("/")({
       { name: "robots", content: "index, follow" },
       {
         name: "description",
-        content:
-          HOME_DESCRIPTION,
+        content: HOME_DESCRIPTION,
       },
       { property: "og:title", content: HOME_TITLE },
       { property: "og:url", content: "https://webgramitsolution.in/" },
@@ -178,15 +190,21 @@ const strengths: Array<{ icon: Icon; title: string; text: string; tone: string }
 
 const industries = ["Manufacturing", "Retail", "Wholesale", "Furniture", "Fashion", "Electronics"];
 
-
 const b2bFeatures = [
-  [ReceiptText, "Customer-specific pricing"], [BriefcaseBusiness, "Wholesale pricing"],
-  [ShieldCheck, "MOQ controls"], [BarChart3, "RFQ / Request for Quotation"],
-  [PackageCheck, "Bulk ordering"], [Layers3, "Tier pricing"],
-  [Users, "Dealer / Distributor login"], [Zap, "Credit purchase"],
-  [ClipboardCheck, "GST invoice"], [Users, "Customer groups"],
-  [BriefcaseBusiness, "Sales representative"], [ShieldCheck, "Approval workflows"],
-  [MapPin, "Location-based pricing"], [Warehouse, "Multi-warehouse"],
+  [ReceiptText, "Customer-specific pricing"],
+  [BriefcaseBusiness, "Wholesale pricing"],
+  [ShieldCheck, "MOQ controls"],
+  [BarChart3, "RFQ / Request for Quotation"],
+  [PackageCheck, "Bulk ordering"],
+  [Layers3, "Tier pricing"],
+  [Users, "Dealer / Distributor login"],
+  [Zap, "Credit purchase"],
+  [ClipboardCheck, "GST invoice"],
+  [Users, "Customer groups"],
+  [BriefcaseBusiness, "Sales representative"],
+  [ShieldCheck, "Approval workflows"],
+  [MapPin, "Location-based pricing"],
+  [Warehouse, "Multi-warehouse"],
   [Store, "Inventory management"],
 ] as const;
 
@@ -207,12 +225,21 @@ function Hero() {
           />
         </picture>
       </div>
-      <div className="bg-hero-overlay pointer-events-none absolute inset-y-0 start-0" aria-hidden="true" />
+      <div
+        className="bg-hero-overlay pointer-events-none absolute inset-y-0 start-0"
+        aria-hidden="true"
+      />
       <div className="page-shell hero-copy">
         <div className="max-w-[510px]">
-          <HeroHeading className="max-w-[510px] text-[36px] font-extrabold leading-[1.08] tracking-tight lg:text-[54px]" lines={["Ecommerce websites", "built in Delhi NCR."]} accent="text-[#f4c657]" />
+          <HeroHeading
+            className="max-w-[510px] text-[36px] font-extrabold leading-[1.08] tracking-tight lg:text-[54px]"
+            lines={["Ecommerce websites", "built in Delhi NCR."]}
+            accent="text-[#f4c657]"
+          />
           <p className="mt-4 max-w-[500px] text-[14px] font-normal leading-5 text-on-dark/90 sm:text-[15px]">
-            Build a Shopify or WooCommerce store, a wholesale ordering portal, or a custom commerce platform. Our Delhi NCR team supports Indian manufacturers, distributors and D2C brands from planning through launch and ongoing maintenance.
+            Build a Shopify or WooCommerce store, a wholesale ordering portal, or a custom commerce
+            platform. Our Delhi NCR team supports Indian manufacturers, distributors and D2C brands
+            from planning through launch and ongoing maintenance.
           </p>
           <div className="mt-5 flex flex-wrap gap-2.5">
             <Button
@@ -220,7 +247,9 @@ function Hero() {
               size="lg"
               className="h-10 bg-[#f4c657] px-5 text-[14px] font-extrabold text-navy hover:bg-[#ffe29c]"
             >
-              <Link to="/contact">Request a Project Quote <ArrowRight /></Link>
+              <Link to="/contact">
+                Request a Project Quote <ArrowRight />
+              </Link>
             </Button>
             <Button
               asChild
@@ -297,28 +326,32 @@ function Services() {
           </Link>
         </div>
         <div className="mt-5 grid grid-cols-2 gap-2.5 md:grid-cols-3 md:gap-3">
-          {services.map(({ icon: IconComponent, title, text, link, to, slug, image, alt }, index) => (
-            <article
-              key={title}
-              className={`relative min-h-[320px] overflow-hidden rounded-md border border-border bg-card p-3 shadow-card md:min-h-[210px] md:p-4 md:pr-[46%] ${index === 3 ? "md:hidden" : ""}`}
-            >
-              <span className="grid h-11 w-11 place-items-center rounded-md bg-primary text-primary-foreground">
-                <IconComponent className="h-6 w-6" />
-              </span>
-              <h3 className="mt-3 text-[13px] font-extrabold leading-tight text-navy">{title}</h3>
-              <p className="mt-2 text-[13px] font-medium leading-4 text-muted-foreground">{text}</p>
-              <Link
-                to={to}
-                params={{ slug }}
-                className="mt-3 inline-block text-[13px] font-extrabold text-primary"
+          {services.map(
+            ({ icon: IconComponent, title, text, link, to, slug, image, alt }, index) => (
+              <article
+                key={title}
+                className={`relative min-h-[320px] overflow-hidden rounded-md border border-border bg-card p-3 shadow-card md:min-h-[210px] md:p-4 md:pr-[46%] ${index === 3 ? "md:hidden" : ""}`}
               >
-                {link} →
-              </Link>
-              <div className="service-visual max-md:!bottom-0 max-md:!left-0 max-md:!right-0 max-md:!top-auto max-md:!h-[112px] max-md:!w-full">
-                <img src={image} alt={alt} width={640} height={640} loading="lazy" />
-              </div>
-            </article>
-          ))}
+                <span className="grid h-11 w-11 place-items-center rounded-md bg-primary text-primary-foreground">
+                  <IconComponent className="h-6 w-6" />
+                </span>
+                <h3 className="mt-3 text-[13px] font-extrabold leading-tight text-navy">{title}</h3>
+                <p className="mt-2 text-[13px] font-medium leading-4 text-muted-foreground">
+                  {text}
+                </p>
+                <Link
+                  to={to}
+                  params={{ slug }}
+                  className="mt-3 inline-block text-[13px] font-extrabold text-primary"
+                >
+                  {link} →
+                </Link>
+                <div className="service-visual max-md:!bottom-0 max-md:!left-0 max-md:!right-0 max-md:!top-auto max-md:!h-[112px] max-md:!w-full">
+                  <img src={image} alt={alt} width={640} height={640} loading="lazy" />
+                </div>
+              </article>
+            ),
+          )}
         </div>
       </div>
     </section>
@@ -343,7 +376,9 @@ function Ecosystem() {
             size="sm"
             className="mt-3 h-9 bg-primary px-5 text-[13px] font-medium text-primary-foreground md:h-8 md:px-4 md:text-[13px] lg:h-9 lg:px-5 lg:text-[13px]"
           >
-            <Link to="/services/$slug" params={{ slug: "api-integration" }}>Learn More <ArrowRight /></Link>
+            <Link to="/services/$slug" params={{ slug: "api-integration" }}>
+              Learn More <ArrowRight />
+            </Link>
           </Button>
         </div>
         <div className="min-w-0">
@@ -402,7 +437,11 @@ function Industries() {
     <section id="industries" className="bg-navy py-7 text-on-dark">
       <div className="page-shell grid gap-5 md:grid-cols-[180px_1fr] lg:grid-cols-[220px_1fr]">
         <div>
-          <p className="eyebrow"><Link to="/industries" className="hover:underline">Industries</Link></p>
+          <p className="eyebrow">
+            <Link to="/industries" className="hover:underline">
+              Industries
+            </Link>
+          </p>
           <h2 className="mt-2 text-[27px] font-extrabold leading-[0.95]">
             Built Around
             <br />
@@ -411,13 +450,24 @@ function Industries() {
           <p className="mt-3 text-[13px] leading-4 text-on-dark/75">
             We develop customized commerce solutions for diverse industries.
           </p>
-          <Button asChild size="sm" className="mt-4 bg-primary px-5 text-[13px] font-bold text-primary-foreground hover:bg-primary/90 md:bg-gold md:text-navy md:hover:bg-gold/90">
-            <Link to="/industries">Explore All Industries <ArrowRight /></Link>
+          <Button
+            asChild
+            size="sm"
+            className="mt-4 bg-primary px-5 text-[13px] font-bold text-primary-foreground hover:bg-primary/90 md:bg-gold md:text-navy md:hover:bg-gold/90"
+          >
+            <Link to="/industries">
+              Explore All Industries <ArrowRight />
+            </Link>
           </Button>
         </div>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-6">
           {industries.map((industry) => (
-            <Link key={industry} to="/industries/$slug" params={{ slug: industry.toLowerCase() }} className="industry-card focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-gold">
+            <Link
+              key={industry}
+              to="/industries/$slug"
+              params={{ slug: industry.toLowerCase() }}
+              className="industry-card focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-gold"
+            >
               <img
                 src={`${HOME_ART}/${industry.toLowerCase()}.webp`}
                 alt=""
@@ -427,7 +477,9 @@ function Industries() {
                 className="industry-image"
               />
               <div className="industry-shade" />
-              <strong>{industry} <span aria-hidden="true">→</span></strong>
+              <strong>
+                {industry} <span aria-hidden="true">→</span>
+              </strong>
             </Link>
           ))}
         </div>
@@ -437,17 +489,37 @@ function Industries() {
 }
 
 function B2BFeatures() {
-  return <section className="bg-background py-7 md:py-8">
-    <div className="page-shell">
-      <p className="eyebrow text-primary">B2B Commerce</p>
-      <h2 className="section-title mt-2">Powering Modern B2B Commerce</h2>
-      <p className="section-subtitle max-w-xl">Advanced B2B features that digitize wholesale and distribution businesses.</p>
-      <div className="b2b-feature-grid mt-5 grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-5">
-        {b2bFeatures.map(([IconComponent, label]) => <div key={label} className="grid min-h-16 grid-cols-[32px_1fr] items-center gap-2 rounded-md border border-border bg-card p-2.5 shadow-card"><span className="grid h-8 w-8 place-items-center rounded bg-primary-soft text-primary"><IconComponent className="h-4 w-4" /></span><strong className="text-[13px] leading-tight text-navy md:text-[12px]">{label}</strong></div>)}
+  return (
+    <section className="bg-background py-7 md:py-8">
+      <div className="page-shell">
+        <p className="eyebrow text-primary">B2B Commerce</p>
+        <h2 className="section-title mt-2">Powering Modern B2B Commerce</h2>
+        <p className="section-subtitle max-w-xl">
+          Advanced B2B features that digitize wholesale and distribution businesses.
+        </p>
+        <div className="b2b-feature-grid mt-5 grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-5">
+          {b2bFeatures.map(([IconComponent, label]) => (
+            <div
+              key={label}
+              className="grid min-h-16 grid-cols-[32px_1fr] items-center gap-2 rounded-md border border-border bg-card p-2.5 shadow-card"
+            >
+              <span className="grid h-8 w-8 place-items-center rounded bg-primary-soft text-primary">
+                <IconComponent className="h-4 w-4" />
+              </span>
+              <strong className="text-[13px] leading-tight text-navy md:text-[12px]">
+                {label}
+              </strong>
+            </div>
+          ))}
+        </div>
+        <Button asChild className="mt-4 h-10 w-full font-bold">
+          <Link to="/solutions/$slug" params={{ slug: "b2b-commerce" }}>
+            Build Your B2B Platform <ArrowRight />
+          </Link>
+        </Button>
       </div>
-      <Button asChild className="mt-4 h-10 w-full font-bold"><Link to="/solutions/$slug" params={{ slug: "b2b-commerce" }}>Build Your B2B Platform <ArrowRight /></Link></Button>
-    </div>
-  </section>;
+    </section>
+  );
 }
 
 function MobileCommerceExperience() {
@@ -466,7 +538,14 @@ function MobileCommerceExperience() {
       label: "B2B Ecommerce",
       image: IMAGES.caseManufacturing,
       alt: "Scalable B2B commerce platform for wholesale businesses",
-      features: ["Wholesale Pricing", "Bulk Orders", "RFQ", "MOQ Controls", "Dealer Login", "Credit Terms"],
+      features: [
+        "Wholesale Pricing",
+        "Bulk Orders",
+        "RFQ",
+        "MOQ Controls",
+        "Dealer Login",
+        "Credit Terms",
+      ],
       linkLabel: "Explore B2B Solutions",
       slug: "b2b-commerce",
     },
@@ -475,7 +554,14 @@ function MobileCommerceExperience() {
       label: "Marketplace",
       image: IMAGES.caseDistribution,
       alt: "Multi-vendor marketplace and operations dashboard",
-      features: ["Multi-Vendor", "Seller Portal", "Commissions", "Order Routing", "Payouts", "Analytics"],
+      features: [
+        "Multi-Vendor",
+        "Seller Portal",
+        "Commissions",
+        "Order Routing",
+        "Payouts",
+        "Analytics",
+      ],
       linkLabel: "Explore Marketplace Solutions",
       slug: "marketplace-development",
     },
@@ -483,36 +569,70 @@ function MobileCommerceExperience() {
   const [activeId, setActiveId] = useState<(typeof experiences)[number]["id"]>("b2c");
   const active = experiences.find((experience) => experience.id === activeId) ?? experiences[0];
 
-  return <section className="bg-sky-soft py-7 md:hidden">
-    <div className="page-shell">
-      <h2 className="section-title">Ecommerce Experiences That Convert</h2>
-      <p className="section-subtitle">We create high-converting commerce experiences for every business model.</p>
-      <div className="mt-4 grid grid-cols-3 gap-2" role="tablist" aria-label="Commerce experience types">
-        {experiences.map((experience) => (
-          <Button
-            key={experience.id}
-            type="button"
-            size="sm"
-            variant={activeId === experience.id ? "default" : "outline"}
-            role="tab"
-            aria-selected={activeId === experience.id}
-            aria-controls="commerce-experience-panel"
-            onClick={() => setActiveId(experience.id)}
-            className="h-8 min-w-0 px-1 text-[12px]"
-          >
-            {experience.label}
-          </Button>
-        ))}
-      </div>
-      <article id="commerce-experience-panel" role="tabpanel" className="mt-3 grid grid-cols-[minmax(0,1.15fr)_minmax(0,.85fr)] gap-3 rounded-md border border-border bg-card p-3 shadow-card">
-        <img key={active.id} src={active.image} alt={active.alt} width={1934} height={813} loading="lazy" className="h-full min-h-36 w-full rounded object-cover" />
-        <div className="flex flex-col justify-center">
-          {active.features.map((item) => <span key={item} className="flex items-center gap-1.5 py-1 text-[13px] font-semibold text-navy"><CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-primary" />{item}</span>)}
-          <Link to="/solutions/$slug" params={{ slug: active.slug }} className="mt-2 text-[13px] font-extrabold text-primary">{active.linkLabel} →</Link>
+  return (
+    <section className="bg-sky-soft py-7 md:hidden">
+      <div className="page-shell">
+        <h2 className="section-title">Ecommerce Experiences That Convert</h2>
+        <p className="section-subtitle">
+          We create high-converting commerce experiences for every business model.
+        </p>
+        <div
+          className="mt-4 grid grid-cols-3 gap-2"
+          role="tablist"
+          aria-label="Commerce experience types"
+        >
+          {experiences.map((experience) => (
+            <Button
+              key={experience.id}
+              type="button"
+              size="sm"
+              variant={activeId === experience.id ? "default" : "outline"}
+              role="tab"
+              aria-selected={activeId === experience.id}
+              aria-controls="commerce-experience-panel"
+              onClick={() => setActiveId(experience.id)}
+              className="h-8 min-w-0 px-1 text-[12px]"
+            >
+              {experience.label}
+            </Button>
+          ))}
         </div>
-      </article>
-    </div>
-  </section>;
+        <article
+          id="commerce-experience-panel"
+          role="tabpanel"
+          className="mt-3 grid grid-cols-[minmax(0,1.15fr)_minmax(0,.85fr)] gap-3 rounded-md border border-border bg-card p-3 shadow-card"
+        >
+          <img
+            key={active.id}
+            src={active.image}
+            alt={active.alt}
+            width={1934}
+            height={813}
+            loading="lazy"
+            className="h-full min-h-36 w-full rounded object-cover"
+          />
+          <div className="flex flex-col justify-center">
+            {active.features.map((item) => (
+              <span
+                key={item}
+                className="flex items-center gap-1.5 py-1 text-[13px] font-semibold text-navy"
+              >
+                <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-primary" />
+                {item}
+              </span>
+            ))}
+            <Link
+              to="/solutions/$slug"
+              params={{ slug: active.slug }}
+              className="mt-2 text-[13px] font-extrabold text-primary"
+            >
+              {active.linkLabel} →
+            </Link>
+          </div>
+        </article>
+      </div>
+    </section>
+  );
 }
 
 function Technology() {
@@ -557,37 +677,70 @@ function Technology() {
 }
 
 function MobileServices() {
-  return <section className="bg-sky-soft px-4 py-6 md:hidden">
-    <div className="mx-auto max-w-md">
-      <p className="page-eyebrow text-primary">Our Services</p>
-      <h2 className="mt-2 text-[22px] font-extrabold text-navy">Everything your digital business needs.</h2>
-      <div className="mt-4 grid grid-cols-2 gap-3">
-        {services.map(({ icon: IconComponent, title }, index) => <Link key={title} to="/solutions/$slug" params={{ slug: ["ecommerce-development", "b2b-commerce", "website-design-development"][index] ?? "ecommerce-development" }} className="flex min-h-24 flex-col justify-between rounded-md border border-border bg-card p-4 shadow-card">
-          <IconComponent className="h-6 w-6 text-primary" />
-          <strong className="mt-3 text-[14px] leading-4 text-navy">{title}</strong>
-        </Link>)}
+  return (
+    <section className="bg-sky-soft px-4 py-6 md:hidden">
+      <div className="mx-auto max-w-md">
+        <p className="page-eyebrow text-primary">Our Services</p>
+        <h2 className="mt-2 text-[22px] font-extrabold text-navy">
+          Everything your digital business needs.
+        </h2>
+        <div className="mt-4 grid grid-cols-2 gap-3">
+          {services.map(({ icon: IconComponent, title }, index) => (
+            <Link
+              key={title}
+              to="/solutions/$slug"
+              params={{
+                slug:
+                  ["ecommerce-development", "b2b-commerce", "website-design-development"][index] ??
+                  "ecommerce-development",
+              }}
+              className="flex min-h-24 flex-col justify-between rounded-md border border-border bg-card p-4 shadow-card"
+            >
+              <IconComponent className="h-6 w-6 text-primary" />
+              <strong className="mt-3 text-[14px] leading-4 text-navy">{title}</strong>
+            </Link>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>;
+    </section>
+  );
 }
 
 type Review = Awaited<ReturnType<typeof getPublishedHomepageReviews>>[number];
 
 function MobileReviews({ reviews }: { reviews: Review[] }) {
   if (!reviews.length) return null;
-  return <section className="bg-background py-7" aria-labelledby="home-reviews-title">
-    <div className="page-shell">
-      <p className="page-eyebrow text-primary">Client reviews</p>
-      <h2 id="home-reviews-title" className="mt-2 text-[23px] font-extrabold text-navy">Trusted by growing businesses.</h2>
-      <div className="case-scroll -mx-4 mt-4 grid snap-x snap-mandatory grid-flow-col auto-cols-[88%] gap-3 overflow-x-auto px-4 pb-2 md:auto-cols-[45%] lg:auto-cols-[32%]">
-        {reviews.map((review) => <article key={review.id} className="snap-start rounded-md border border-border bg-card p-5 shadow-card">
-          <div className="flex gap-1 text-gold" aria-label={`${review.rating} out of 5 stars`}>{Array.from({ length: review.rating }, (_, index) => <Star key={index} className="h-4 w-4 fill-current" />)}</div>
-          <p className="mt-4 text-[15px] leading-6 text-foreground">“{review.review_text}”</p>
-          <div className="mt-5 border-t border-border pt-4"><strong className="block text-sm text-navy">{review.customer_name}</strong><span className="text-[14px] text-muted-foreground">{[review.customer_role, review.company_name].filter(Boolean).join(" · ")}</span></div>
-        </article>)}
+  return (
+    <section className="bg-background py-7" aria-labelledby="home-reviews-title">
+      <div className="page-shell">
+        <p className="page-eyebrow text-primary">Client reviews</p>
+        <h2 id="home-reviews-title" className="mt-2 text-[23px] font-extrabold text-navy">
+          Trusted by growing businesses.
+        </h2>
+        <div className="case-scroll -mx-4 mt-4 grid snap-x snap-mandatory grid-flow-col auto-cols-[88%] gap-3 overflow-x-auto px-4 pb-2 md:auto-cols-[45%] lg:auto-cols-[32%]">
+          {reviews.map((review) => (
+            <article
+              key={review.id}
+              className="snap-start rounded-md border border-border bg-card p-5 shadow-card"
+            >
+              <div className="flex gap-1 text-gold" aria-label={`${review.rating} out of 5 stars`}>
+                {Array.from({ length: review.rating }, (_, index) => (
+                  <Star key={index} className="h-4 w-4 fill-current" />
+                ))}
+              </div>
+              <p className="mt-4 text-[15px] leading-6 text-foreground">“{review.review_text}”</p>
+              <div className="mt-5 border-t border-border pt-4">
+                <strong className="block text-sm text-navy">{review.customer_name}</strong>
+                <span className="text-[14px] text-muted-foreground">
+                  {[review.customer_role, review.company_name].filter(Boolean).join(" · ")}
+                </span>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>;
+    </section>
+  );
 }
 
 function HomePage() {
@@ -617,11 +770,21 @@ function HomePortfolio() {
         <div className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-4">
           <div>
             <p className="eyebrow text-primary">Portfolio</p>
-            <h2 className="section-title mt-1 text-[26px] leading-[1.08] md:whitespace-nowrap">Websites We Have Built</h2>
-            <p className="mt-1.5 max-w-[500px] text-[16px] leading-6 text-muted-foreground">Explore live ecommerce stores, wholesale platforms and business websites we’ve delivered.</p>
+            <h2 className="section-title mt-1 text-[26px] leading-[1.08] md:whitespace-nowrap">
+              Websites We Have Built
+            </h2>
+            <p className="mt-1.5 max-w-[500px] text-[16px] leading-6 text-muted-foreground">
+              Explore live ecommerce stores, wholesale platforms and business websites we’ve
+              delivered.
+            </p>
           </div>
-          <Button asChild className="hidden h-10 w-fit bg-gold px-5 text-[14px] font-semibold text-navy hover:bg-gold/90 sm:inline-flex">
-            <Link to="/work/$slug" params={{ slug: "portfolio" }}>View Full Portfolio <ArrowRight /></Link>
+          <Button
+            asChild
+            className="hidden h-10 w-fit bg-gold px-5 text-[14px] font-semibold text-navy hover:bg-gold/90 sm:inline-flex"
+          >
+            <Link to="/work/$slug" params={{ slug: "portfolio" }}>
+              View Full Portfolio <ArrowRight />
+            </Link>
           </Button>
         </div>
         <div className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-4 md:gap-3 lg:gap-4">

@@ -4,9 +4,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LocationsHub } from "@/components/location-page";
 
 const URL = "https://webgramitsolution.in/locations";
-const IMAGE = "https://webgramitsolution.in" + (locationHeroVisual("directory")?.src ?? "/images/locations/delhi-ncr.webp");
+const IMAGE =
+  "https://webgramitsolution.in" +
+  (locationHeroVisual("directory")?.src ?? "/images/locations/delhi-ncr.webp");
 const TITLE = "Areas We Serve — Website Development Across India | Webgram";
-const DESCRIPTION = "Explore website design and development services in Delhi NCR, Delhi neighbourhoods and industrial areas, Gujarat and Ludhiana, with remote delivery across India.";
+const DESCRIPTION =
+  "Explore website design and development services in Delhi NCR, Delhi neighbourhoods and industrial areas, Gujarat and Ludhiana, with remote delivery across India.";
 
 export const Route = createFileRoute("/locations/")({
   head: () => ({
@@ -22,7 +25,24 @@ export const Route = createFileRoute("/locations/")({
       { property: "og:image", content: IMAGE },
       { name: "twitter:image", content: IMAGE },
     ],
-    scripts: [{ type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://webgramitsolution.in/" }, { "@type": "ListItem", position: 2, name: "Locations", item: URL }] }) }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://webgramitsolution.in/",
+            },
+            { "@type": "ListItem", position: 2, name: "Locations", item: URL },
+          ],
+        }),
+      },
+    ],
   }),
   component: LocationsHub,
 });

@@ -9,24 +9,38 @@ const BASE = "https://webgramitsolution.in";
 
 export const Route = createFileRoute("/locations/$city")({
   loader: ({ params, location: requestLocation }) => {
-    if (params.city === "gurgaon") throw redirect({ href: `/locations/gurugram${requestLocation.searchStr}`, statusCode: 301 });
+    if (params.city === "gurgaon")
+      throw redirect({ href: `/locations/gurugram${requestLocation.searchStr}`, statusCode: 301 });
     const location = getLocation(params.city);
     if (!location) throw notFound();
     return location;
   },
   head: ({ loaderData, params }) => {
-    if (!loaderData) return { meta: [{ title: "Location not found" }, { name: "robots", content: "noindex" }] };
+    if (!loaderData)
+      return { meta: [{ title: "Location not found" }, { name: "robots", content: "noindex" }] };
     const description = localSearch[params.city]?.description ?? loaderData.description;
     const faqs = locationAnswers(loaderData);
     const visual = locationVisual(loaderData);
     const hero = locationHeroVisual(loaderData.slug);
     const image = BASE + (hero?.src ?? visual.src);
-    const areaType = loaderData.place ?? (["delhi-ncr", "south-delhi"].includes(params.city) ? "Place" : "City");
+    const areaType =
+      loaderData.place ?? (["delhi-ncr", "south-delhi"].includes(params.city) ? "Place" : "City");
     const url = `${BASE}/locations/${params.city}`;
     return {
       links: [
         { rel: "canonical", href: url },
-        ...(hero ? [{ rel: "preload", as: "image", href: hero.mobile, type: "image/avif", media: "(max-width: 767px)", fetchPriority: "high" as const }] : []),
+        ...(hero
+          ? [
+              {
+                rel: "preload",
+                as: "image",
+                href: hero.mobile,
+                type: "image/avif",
+                media: "(max-width: 767px)",
+                fetchPriority: "high" as const,
+              },
+            ]
+          : []),
       ],
       meta: [
         { title: loaderData.title },
@@ -40,25 +54,58 @@ export const Route = createFileRoute("/locations/$city")({
         { property: "og:image:alt", content: visual.alt },
         { name: "twitter:image", content: image },
       ],
-      scripts: [{
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@graph": [
-            { "@type": "Service", name: loaderData.keyword, serviceType: "Website & Ecommerce Development", description, areaServed: { "@type": areaType, name: loaderData.city, ...(areaType === "Country" ? {} : { containedInPlace: { "@type": "Country", name: "India" } }) }, provider: { "@id": `${BASE}/#business` }, image, url },
-            ...(faqs.length ? [{
-              "@type": "FAQPage",
-              "@id": `${url}#faq`,
-              mainEntity: faqs.map(([question, answer]) => ({
-                "@type": "Question",
-                name: question,
-                acceptedAnswer: { "@type": "Answer", text: answer },
-              })),
-            }] : []),
-            { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: `${BASE}/` }, { "@type": "ListItem", position: 2, name: "Locations", item: `${BASE}/locations` }, { "@type": "ListItem", position: 3, name: loaderData.city, item: url }] },
-          ],
-        }),
-      }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Service",
+                name: loaderData.keyword,
+                serviceType: "Website & Ecommerce Development",
+                description,
+                areaServed: {
+                  "@type": areaType,
+                  name: loaderData.city,
+                  ...(areaType === "Country"
+                    ? {}
+                    : { containedInPlace: { "@type": "Country", name: "India" } }),
+                },
+                provider: { "@id": `${BASE}/#business` },
+                image,
+                url,
+              },
+              ...(faqs.length
+                ? [
+                    {
+                      "@type": "FAQPage",
+                      "@id": `${url}#faq`,
+                      mainEntity: faqs.map(([question, answer]) => ({
+                        "@type": "Question",
+                        name: question,
+                        acceptedAnswer: { "@type": "Answer", text: answer },
+                      })),
+                    },
+                  ]
+                : []),
+              {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  { "@type": "ListItem", position: 1, name: "Home", item: `${BASE}/` },
+                  {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: "Locations",
+                    item: `${BASE}/locations`,
+                  },
+                  { "@type": "ListItem", position: 3, name: loaderData.city, item: url },
+                ],
+              },
+            ],
+          }),
+        },
+      ],
     };
   },
   component: Page,

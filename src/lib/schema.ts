@@ -25,7 +25,10 @@ export function servicePageSchema(
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: page.title,
-          itemListElement: page.points.map((p) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: p } })),
+          itemListElement: page.points.map((p) => ({
+            "@type": "Offer",
+            itemOffered: { "@type": "Service", name: p },
+          })),
         },
       }),
     },

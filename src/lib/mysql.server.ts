@@ -35,12 +35,17 @@ export async function readyDatabase() {
 export async function rows<T>(sql: string, values: Value[] = []): Promise<T[]> {
   const [result] = await (await readyDatabase()).execute<RowDataPacket[]>(sql, values);
   // mysql2 returns UTC Date objects and MariaDB can return JSON as text.
-  return result.map((row) => Object.fromEntries(Object.entries(row).map(([key, value]) => {
-    if (value instanceof Date) return [key, value.toISOString()];
-    if (["noindex", "is_active", "is_published"].includes(key)) return [key, Boolean(value)];
-    if (["tags", "faqs", "preferences"].includes(key) && typeof value === "string") return [key, JSON.parse(value)];
-    return [key, value];
-  }))) as T[];
+  return result.map((row) =>
+    Object.fromEntries(
+      Object.entries(row).map(([key, value]) => {
+        if (value instanceof Date) return [key, value.toISOString()];
+        if (["noindex", "is_active", "is_published"].includes(key)) return [key, Boolean(value)];
+        if (["tags", "faqs", "preferences"].includes(key) && typeof value === "string")
+          return [key, JSON.parse(value)];
+        return [key, value];
+      }),
+    ),
+  ) as T[];
 }
 
 export async function write(sql: string, values: Value[] = []) {
@@ -58,7 +63,10 @@ export function saveRecord(
   const columns = Object.keys(record);
   const values = Object.values(record);
   if (edit) {
-    return write(`UPDATE ${table} SET ${columns.map((column) => `${column} = ?`).join(", ")} WHERE id = ?`, [...values, id]);
+    return write(
+      `UPDATE ${table} SET ${columns.map((column) => `${column} = ?`).join(", ")} WHERE id = ?`,
+      [...values, id],
+    );
   }
   return write(
     `INSERT INTO ${table} (id, ${columns.join(", ")}) VALUES (?, ${columns.map(() => "?").join(", ")})`,
@@ -67,6 +75,9 @@ export function saveRecord(
 }
 
 export async function isAdmin(userId: string) {
-  const users = await rows<{ user_id: string }>("SELECT user_id FROM admin_users WHERE user_id = ?", [userId]);
+  const users = await rows<{ user_id: string }>(
+    "SELECT user_id FROM admin_users WHERE user_id = ?",
+    [userId],
+  );
   return users.length > 0;
 }

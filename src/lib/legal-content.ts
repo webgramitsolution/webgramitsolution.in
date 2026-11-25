@@ -38,7 +38,12 @@ export const dpdpSections: LegalSection[] = [
       "Personal data may include your name, business or professional details, email address, telephone number, country, project requirements, enquiry history, support messages and communications. Client delivery records may include authorised system contacts, approvals, invoices, service requests and materials supplied for a project. Please do not place passwords, complete payment-card details, government identity documents or unrelated sensitive information in ordinary forms or articles.",
       "Technical records may include an IP address, date and time, requested page, browser and device details, referring page, language or country selection, consent choice, session and security events. We collect information directly from you, automatically from your browser where permitted, from an organisation that authorises you to communicate for it, and from service providers used to deliver a requested feature. We do not collect personal data merely because it is technically possible, and we do not sell contact lists or personal data.",
     ],
-    bullets: ["Contact and business-enquiry details", "Account, content and moderation records", "Project communications and approvals", "Consent, technical and security records"],
+    bullets: [
+      "Contact and business-enquiry details",
+      "Account, content and moderation records",
+      "Project communications and approvals",
+      "Consent, technical and security records",
+    ],
   },
   {
     title: "Notice, consent and specified purpose",
@@ -133,7 +138,12 @@ export const privacySections: LegalSection[] = [
       "Information you provide can include name, business name, email address, phone number, country, project requirements, support messages, enquiry history, and account details. We never ask you to place passwords, full payment-card numbers, government identification or highly sensitive personal details inside an ordinary enquiry or article field.",
       "Our systems may receive IP address, date and time, requested page, browser and device information, referring page, language, country choice, cookie consent and security events. These records help deliver pages, diagnose faults, prevent abuse and understand aggregate performance. Advertising and analytics data is processed only when enabled and subject to the relevant consent and platform controls. We do not intentionally build hidden personal profiles for sale.",
     ],
-    bullets: ["Contact and business enquiry details", "Account, article and moderation records", "Technical, consent and security events", "Project communications and agreed delivery records"],
+    bullets: [
+      "Contact and business enquiry details",
+      "Account, article and moderation records",
+      "Technical, consent and security events",
+      "Project communications and agreed delivery records",
+    ],
   },
   {
     title: "Purpose, consent and lawful processing",

@@ -48,19 +48,27 @@ const contactHeroImage = SITE_URL + serviceHeroImage("contact-team");
 export const Route = createFileRoute("/contact")({
   head: () => ({
     links: [{ rel: "canonical", href: "https://webgramitsolution.in/contact" }],
-    scripts: [...publicPageSchema("/contact", "Contact Webgram IT Solution", "Contact the Webgram IT Solution team in Sangam Vihar, New Delhi for website and ecommerce development.", "ContactPage"), {
-      type: "application/ld+json",
-      children: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "@id": `${SITE_URL}/contact#faq`,
-        mainEntity: faqs.map(([question, answer]) => ({
-          "@type": "Question",
-          name: question,
-          acceptedAnswer: { "@type": "Answer", text: answer },
-        })),
-      }),
-    }],
+    scripts: [
+      ...publicPageSchema(
+        "/contact",
+        "Contact Webgram IT Solution",
+        "Contact the Webgram IT Solution team in Sangam Vihar, New Delhi for website and ecommerce development.",
+        "ContactPage",
+      ),
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "@id": `${SITE_URL}/contact#faq`,
+          mainEntity: faqs.map(([question, answer]) => ({
+            "@type": "Question",
+            name: question,
+            acceptedAnswer: { "@type": "Answer", text: answer },
+          })),
+        }),
+      },
+    ],
     meta: [
       { title: "Request a Website Development Quote | Webgram India" },
       {
@@ -99,7 +107,11 @@ function ContactHero() {
             <span className="mx-2">›</span>Contact Us
           </nav>
           <p className="sr-only">Get in Touch</p>
-          <HeroHeading className="text-[34px] font-extrabold leading-[1.03] sm:text-[41px] lg:text-[48px]" lines={["Let’s Build Your Website", "Request a Project Quote"]} accent="text-[#f4c657]" />
+          <HeroHeading
+            className="text-[34px] font-extrabold leading-[1.03] sm:text-[41px] lg:text-[48px]"
+            lines={["Let’s Build Your Website", "Request a Project Quote"]}
+            accent="text-[#f4c657]"
+          />
           <p className="mt-4 text-[13px] leading-[1.55] text-on-dark/90 sm:text-[14px]">
             <span className="block">Share your website or ecommerce plans.</span>{" "}
             <span className="block">Get a scope and quote from our team.</span>
@@ -127,7 +139,8 @@ function ContactHero() {
   );
 }
 
-const fieldClass = "h-9 bg-card text-[14px] shadow-none md:text-[14px] placeholder:text-muted-foreground/60";
+const fieldClass =
+  "h-9 bg-card text-[14px] shadow-none md:text-[14px] placeholder:text-muted-foreground/60";
 
 function ContactForm() {
   const send = useServerFn(submitEnquiry);
@@ -144,23 +157,81 @@ function ContactForm() {
   const [done, setDone] = useState(false);
   const [error, setError] = useState("");
   async function submit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault(); setBusy(true); setError("");
+    event.preventDefault();
+    setBusy(true);
+    setError("");
     try {
-      await send({ data: { name, email, phone: `+91${phone}`, service: projectType, message, business, budget, timeline, website } });
+      await send({
+        data: {
+          name,
+          email,
+          phone: `+91${phone}`,
+          service: projectType,
+          message,
+          business,
+          budget,
+          timeline,
+          website,
+        },
+      });
       setDone(true);
-    } catch (caught) { setError(caught instanceof Error && caught.message.length < 120 ? caught.message : "Please check your details and try again."); }
-    finally { setBusy(false); }
+    } catch (caught) {
+      setError(
+        caught instanceof Error && caught.message.length < 120
+          ? caught.message
+          : "Please check your details and try again.",
+      );
+    } finally {
+      setBusy(false);
+    }
   }
-  if (done) return <div className="rounded-md border border-success/30 bg-success-soft p-6 text-center"><h3 className="text-xl font-extrabold text-navy">Message received</h3><p className="mt-2 text-sm text-muted-foreground">Your enquiry is with our team. We’ll review your project and reply to the email address you provided.</p></div>;
+  if (done)
+    return (
+      <div className="rounded-md border border-success/30 bg-success-soft p-6 text-center">
+        <h3 className="text-xl font-extrabold text-navy">Message received</h3>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Your enquiry is with our team. We’ll review your project and reply to the email address
+          you provided.
+        </p>
+      </div>
+    );
   return (
     <form className="grid grid-cols-1 gap-4 sm:grid-cols-2" onSubmit={submit}>
-      <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" value={website} onChange={(event) => setWebsite(event.target.value)} className="hidden" />
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        value={website}
+        onChange={(event) => setWebsite(event.target.value)}
+        className="hidden"
+      />
       <label className="contact-field">
-        Your Name *<Input required minLength={2} maxLength={100} autoComplete="name" value={name} onChange={(event) => setName(event.target.value)} placeholder="Enter your name" className={fieldClass} />
+        Your Name *
+        <Input
+          required
+          minLength={2}
+          maxLength={100}
+          autoComplete="name"
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+          placeholder="Enter your name"
+          className={fieldClass}
+        />
       </label>
       <label className="contact-field">
         Email Address *
-        <Input required type="email" maxLength={255} autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="Enter your email" className={fieldClass} />
+        <Input
+          required
+          type="email"
+          maxLength={255}
+          autoComplete="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          placeholder="Enter your email"
+          className={fieldClass}
+        />
       </label>
       <label className="contact-field">
         Phone Number *
@@ -200,15 +271,34 @@ function ContactForm() {
             <SelectValue placeholder="Select project type" />
           </SelectTrigger>
           <SelectContent>
-            {["Website Design", "Ecommerce Development", "Shopify Development", "WooCommerce Development", "B2B Commerce", "Web Portal Development", "API Integration", "Website Maintenance", "Other"].map((service) => (
-              <SelectItem key={service} value={service}>{service}</SelectItem>
+            {[
+              "Website Design",
+              "Ecommerce Development",
+              "Shopify Development",
+              "WooCommerce Development",
+              "B2B Commerce",
+              "Web Portal Development",
+              "API Integration",
+              "Website Maintenance",
+              "Other",
+            ].map((service) => (
+              <SelectItem key={service} value={service}>
+                {service}
+              </SelectItem>
             ))}
           </SelectContent>
         </Select>
       </label>
       <label className="contact-field">
         Business Name
-        <Input maxLength={120} autoComplete="organization" value={business} onChange={(event) => setBusiness(event.target.value)} placeholder="Enter your business name" className={fieldClass} />
+        <Input
+          maxLength={120}
+          autoComplete="organization"
+          value={business}
+          onChange={(event) => setBusiness(event.target.value)}
+          placeholder="Enter your business name"
+          className={fieldClass}
+        />
       </label>
       <label className="contact-field">
         Project Budget
@@ -233,7 +323,9 @@ function ContactForm() {
           </SelectTrigger>
           <SelectContent>
             {["Within 1 month", "1–3 months", "3+ months", "Still planning"].map((option) => (
-              <SelectItem key={option} value={option}>{option}</SelectItem>
+              <SelectItem key={option} value={option}>
+                {option}
+              </SelectItem>
             ))}
           </SelectContent>
         </Select>
@@ -255,13 +347,24 @@ function ContactForm() {
           <input required type="checkbox" className="h-4 w-4 shrink-0 accent-primary" />
           <span className="min-w-0">
             I agree to the{" "}
-            <Link to="/terms-and-conditions" className="font-bold text-primary underline">Terms</Link>
+            <Link to="/terms-and-conditions" className="font-bold text-primary underline">
+              Terms
+            </Link>
             {" & "}
-            <Link to="/privacy-policy" className="font-bold text-primary underline">Privacy Policy</Link>
+            <Link to="/privacy-policy" className="font-bold text-primary underline">
+              Privacy Policy
+            </Link>
           </span>
         </label>
-        {error ? <p role="alert" className="w-full text-xs font-semibold text-destructive">{error}</p> : null}
-        <Button disabled={busy} className="h-10 shrink-0 bg-gold px-7 text-[14px] font-bold text-navy hover:bg-gold/90">
+        {error ? (
+          <p role="alert" className="w-full text-xs font-semibold text-destructive">
+            {error}
+          </p>
+        ) : null}
+        <Button
+          disabled={busy}
+          className="h-10 shrink-0 bg-gold px-7 text-[14px] font-bold text-navy hover:bg-gold/90"
+        >
           {busy ? "Sending…" : "Request a Quote"} <ArrowRight />
         </Button>
       </div>
@@ -305,7 +408,9 @@ function DirectContact() {
               </span>
               <div className="min-w-0">
                 <strong className="block text-[14px] font-semibold text-on-dark/85">{title}</strong>
-                <span className="mt-0.5 block break-all text-[13px] font-bold lg:whitespace-nowrap lg:break-normal lg:text-[14px]">{value}</span>
+                <span className="mt-0.5 block break-all text-[13px] font-bold lg:whitespace-nowrap lg:break-normal lg:text-[14px]">
+                  {value}
+                </span>
                 <small className="mt-0.5 block text-[13px] text-on-dark/60">{note}</small>
               </div>
             </div>
@@ -326,7 +431,9 @@ function DirectContact() {
               <Headphones className="h-5 w-5 text-primary" />
             </span>
             <div className="min-w-0">
-              <strong className="text-[14px] font-extrabold lg:whitespace-nowrap">Talk to Our Experts</strong>
+              <strong className="text-[14px] font-extrabold lg:whitespace-nowrap">
+                Talk to Our Experts
+              </strong>
               <p className="mt-1 text-[13px] leading-[1.45] text-muted-foreground">
                 Get free consultation for your project requirements.
               </p>
@@ -396,9 +503,13 @@ function Location() {
                 <br />
                 New Delhi, Delhi 110062
                 <br />
-                <a href="tel:+917551120242" className="font-semibold text-navy">+91 7551120242</a>
+                <a href="tel:+917551120242" className="font-semibold text-navy">
+                  +91 7551120242
+                </a>
                 <br />
-                <a href="mailto:info@webgramitsolution.in" className="font-semibold text-navy">info@webgramitsolution.in</a>
+                <a href="mailto:info@webgramitsolution.in" className="font-semibold text-navy">
+                  info@webgramitsolution.in
+                </a>
               </p>
             </div>
           </div>
@@ -431,7 +542,11 @@ function Location() {
 }
 
 function PinterestIcon({ className }: { className?: string }) {
-  return <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.65 19.31c-.09-1.7-.02-3.74.43-5.67l1.29-5.45s-.32-.65-.32-1.61c0-1.51.87-2.64 1.96-2.64.93 0 1.38.7 1.38 1.53 0 .93-.59 2.32-.9 3.61-.26 1.08.54 1.96 1.6 1.96 1.92 0 3.39-2.02 3.39-4.94 0-2.58-1.86-4.39-4.51-4.39-3.07 0-4.87 2.3-4.87 4.68 0 .93.36 1.92.8 2.46.09.11.1.2.08.31l-.3 1.22c-.05.2-.16.25-.37.15-1.39-.65-2.26-2.68-2.26-4.31 0-3.51 2.55-6.73 7.36-6.73 3.86 0 6.86 2.75 6.86 6.43 0 3.84-2.42 6.92-5.77 6.92-1.13 0-2.19-.59-2.55-1.28l-.69 2.64c-.25.97-.93 2.18-1.38 2.92.91.28 1.85.42 2.82.42A10 10 0 0 0 12 2Z" /></svg>;
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
+      <path d="M12 2a10 10 0 0 0-3.65 19.31c-.09-1.7-.02-3.74.43-5.67l1.29-5.45s-.32-.65-.32-1.61c0-1.51.87-2.64 1.96-2.64.93 0 1.38.7 1.38 1.53 0 .93-.59 2.32-.9 3.61-.26 1.08.54 1.96 1.6 1.96 1.92 0 3.39-2.02 3.39-4.94 0-2.58-1.86-4.39-4.51-4.39-3.07 0-4.87 2.3-4.87 4.68 0 .93.36 1.92.8 2.46.09.11.1.2.08.31l-.3 1.22c-.05.2-.16.25-.37.15-1.39-.65-2.26-2.68-2.26-4.31 0-3.51 2.55-6.73 7.36-6.73 3.86 0 6.86 2.75 6.86 6.43 0 3.84-2.42 6.92-5.77 6.92-1.13 0-2.19-.59-2.55-1.28l-.69 2.64c-.25.97-.93 2.18-1.38 2.92.91.28 1.85.42 2.82.42A10 10 0 0 0 12 2Z" />
+    </svg>
+  );
 }
 
 function ConnectHours() {
@@ -531,7 +646,9 @@ function Faq() {
             variant="outline"
             className="hidden h-9 border-navy text-[13px] text-navy sm:flex"
           >
-            <Link to="/resources/faqs">View All FAQs <ArrowRight /></Link>
+            <Link to="/resources/faqs">
+              View All FAQs <ArrowRight />
+            </Link>
           </Button>
         </div>
         <div className="mt-4 grid gap-4 md:grid-cols-2">

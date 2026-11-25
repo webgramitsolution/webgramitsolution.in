@@ -1,21 +1,18 @@
 import { DEFAULT_AUTH_URL, DEFAULT_AUTH_PUBLISHABLE_KEY } from "./public-config";
 // Validates Supabase Auth identity for protected server functions.
-import { createMiddleware } from '@tanstack/react-start'
-import { getRequest } from '@tanstack/react-start/server'
-import { createClient } from '@supabase/supabase-js'
+import { createMiddleware } from "@tanstack/react-start";
+import { getRequest } from "@tanstack/react-start/server";
+import { createClient } from "@supabase/supabase-js";
 import { attachSupabaseAuthLazily } from "@/lib/lazy-auth-attacher";
 
-
-
-
 function isNewSupabaseApiKey(value: string): boolean {
-  return value.startsWith('sb_publishable_') || value.startsWith('sb_secret_');
+  return value.startsWith("sb_publishable_") || value.startsWith("sb_secret_");
 }
 
 function createSupabaseFetch(supabaseKey: string): typeof fetch {
   return (input, init) => {
     const headers = new Headers(
-      typeof Request !== 'undefined' && input instanceof Request ? input.headers : undefined,
+      typeof Request !== "undefined" && input instanceof Request ? input.headers : undefined,
     );
 
     if (init?.headers) {
@@ -23,27 +20,34 @@ function createSupabaseFetch(supabaseKey: string): typeof fetch {
     }
 
     // New Supabase API keys are opaque strings, not bearer JWTs.
-    if (isNewSupabaseApiKey(supabaseKey) && headers.get('Authorization') === `Bearer ${supabaseKey}`) {
-      headers.delete('Authorization');
+    if (
+      isNewSupabaseApiKey(supabaseKey) &&
+      headers.get("Authorization") === `Bearer ${supabaseKey}`
+    ) {
+      headers.delete("Authorization");
     }
 
-    headers.set('apikey', supabaseKey);
+    headers.set("apikey", supabaseKey);
     return fetch(input, { ...init, headers });
   };
 }
 
-export const requireSupabaseAuth = createMiddleware({ type: 'function' }).middleware([attachSupabaseAuthLazily]).server(
-  async ({ next }) => {
-
-    const SUPABASE_URL = (typeof process !== 'undefined' ? process.env['SUPABASE_URL'] : undefined) || DEFAULT_AUTH_URL;
-    const SUPABASE_PUBLISHABLE_KEY = (typeof process !== 'undefined' ? process.env['SUPABASE_PUBLISHABLE_KEY'] : undefined) || DEFAULT_AUTH_PUBLISHABLE_KEY;
+export const requireSupabaseAuth = createMiddleware({ type: "function" })
+  .middleware([attachSupabaseAuthLazily])
+  .server(async ({ next }) => {
+    const SUPABASE_URL =
+      (typeof process !== "undefined" ? process.env["SUPABASE_URL"] : undefined) ||
+      DEFAULT_AUTH_URL;
+    const SUPABASE_PUBLISHABLE_KEY =
+      (typeof process !== "undefined" ? process.env["SUPABASE_PUBLISHABLE_KEY"] : undefined) ||
+      DEFAULT_AUTH_PUBLISHABLE_KEY;
 
     if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
       const missing = [
-        ...(!SUPABASE_URL ? ['SUPABASE_URL'] : []),
-        ...(!SUPABASE_PUBLISHABLE_KEY ? ['SUPABASE_PUBLISHABLE_KEY'] : []),
+        ...(!SUPABASE_URL ? ["SUPABASE_URL"] : []),
+        ...(!SUPABASE_PUBLISHABLE_KEY ? ["SUPABASE_PUBLISHABLE_KEY"] : []),
       ];
-      const message = `Missing Supabase environment variable(s): ${missing.join(', ')}. Connect Supabase in Lovable Cloud.`;
+      const message = `Missing Supabase environment variable(s): ${missing.join(", ")}. Connect Supabase in Lovable Cloud.`;
       console.error(`[Supabase] ${message}`);
       throw new Error(message);
     }
@@ -51,54 +55,49 @@ export const requireSupabaseAuth = createMiddleware({ type: 'function' }).middle
     const request = getRequest();
 
     if (!request?.headers) {
-      throw new Error('Unauthorized: No request headers available');
+      throw new Error("Unauthorized: No request headers available");
     }
 
-
-    const authHeader = request.headers.get('authorization');
+    const authHeader = request.headers.get("authorization");
 
     if (!authHeader) {
-      throw new Error('Unauthorized: No authorization header provided');
+      throw new Error("Unauthorized: No authorization header provided");
     }
 
-    if (!authHeader.startsWith('Bearer ')) {
-      throw new Error('Unauthorized: Only Bearer tokens are supported');
+    if (!authHeader.startsWith("Bearer ")) {
+      throw new Error("Unauthorized: Only Bearer tokens are supported");
     }
 
-    const token = authHeader.replace('Bearer ', '');
+    const token = authHeader.replace("Bearer ", "");
     if (!token) {
-      throw new Error('Unauthorized: No token provided');
+      throw new Error("Unauthorized: No token provided");
     }
 
-    if (token.split('.').length !== 3) {
-      throw new Error('Unauthorized: Invalid token');
+    if (token.split(".").length !== 3) {
+      throw new Error("Unauthorized: Invalid token");
     }
 
-    const supabase = createClient(
-      SUPABASE_URL!,
-      SUPABASE_PUBLISHABLE_KEY!,
-      {
-        global: {
-          fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY!),
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+    const supabase = createClient(SUPABASE_URL!, SUPABASE_PUBLISHABLE_KEY!, {
+      global: {
+        fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY!),
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-        auth: {
-          storage: undefined,
-          persistSession: false,
-          autoRefreshToken: false,
-        },
-      }
-    );
+      },
+      auth: {
+        storage: undefined,
+        persistSession: false,
+        autoRefreshToken: false,
+      },
+    });
 
     const { data, error } = await supabase.auth.getClaims(token);
     if (error || !data?.claims) {
-      throw new Error('Unauthorized: Invalid token');
+      throw new Error("Unauthorized: Invalid token");
     }
 
     if (!data.claims.sub) {
-      throw new Error('Unauthorized: No user ID found in token');
+      throw new Error("Unauthorized: No user ID found in token");
     }
 
     return next({
@@ -106,5 +105,4 @@ export const requireSupabaseAuth = createMiddleware({ type: 'function' }).middle
         userId: data.claims.sub,
       },
     });
-  },
-);
+  });

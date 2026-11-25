@@ -74,13 +74,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Digital commerce solutions built to sell and scale." },
       { name: "author", content: "Webgram IT Solution" },
       { property: "og:title", content: "Webgram IT Solution" },
-      { property: "og:description", content: "Digital commerce solutions built to sell and scale." },
+      {
+        property: "og:description",
+        content: "Digital commerce solutions built to sell and scale.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       // Manrope is served from this website, so text no longer waits for Google Fonts.
-      { rel: "preload", as: "font", type: "font/woff2", href: manropeLatin, crossOrigin: "anonymous" },
+      {
+        rel: "preload",
+        as: "font",
+        type: "font/woff2",
+        href: manropeLatin,
+        crossOrigin: "anonymous",
+      },
       { rel: "preconnect", href: "https://ik.imagekit.io" },
       {
         rel: "stylesheet",
@@ -101,7 +110,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@id": WEBSITE_ID,
           name: "Webgram IT Solution",
           url: "https://webgramitsolution.in/",
-          description: "Custom ecommerce websites, B2B platforms and WooCommerce development in Delhi NCR.",
+          description:
+            "Custom ecommerce websites, B2B platforms and WooCommerce development in Delhi NCR.",
           inLanguage: "en-IN",
           publisher: { "@id": BUSINESS_ID },
         }),
@@ -120,7 +130,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             ["Blog", "/blog"],
             ["About Us", "/about-us"],
             ["Contact", "/contact"],
-          ].map(([name, path], i) => ({ "@type": "SiteNavigationElement", position: i + 1, name, url: `https://webgramitsolution.in${path}` })),
+          ].map(([name, path], i) => ({
+            "@type": "SiteNavigationElement",
+            position: i + 1,
+            name,
+            url: `https://webgramitsolution.in${path}`,
+          })),
         }),
       },
     ],

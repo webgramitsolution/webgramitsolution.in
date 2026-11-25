@@ -13,7 +13,7 @@ export function locationHeroVisual(slug: string) {
     src: `${base}.webp`,
     mobile: `${base}-mobile.avif`,
     desktop: `${base}-${mediumWidth}.avif ${mediumWidth}w, ${base}-${width}.avif ${width}w`,
-    sizes: `max(58vw, ${Math.ceil(348 * width / height)}px)`,
+    sizes: `max(58vw, ${Math.ceil((348 * width) / height)}px)`,
     width,
     height,
   };

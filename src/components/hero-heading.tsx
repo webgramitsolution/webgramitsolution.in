@@ -1,6 +1,5 @@
 type HeadingContent =
-  | { title: string; lines?: never }
-  | { lines: readonly [string, string]; title?: never };
+  { title: string; lines?: never } | { lines: readonly [string, string]; title?: never };
 
 function textWidth(text: string) {
   return [...text].reduce((width, char) => {
@@ -40,8 +39,7 @@ export function HeroHeading({
   return (
     <h1 id={id} className={className} style={{ containerType: "inline-size" }}>
       <span className="block whitespace-nowrap" style={{ fontSize: `min(1em, ${limit}cqi)` }}>
-        <span className="block">{first}</span>
-        {" "}
+        <span className="block">{first}</span>{" "}
         {second && <span className={`block ${accent ?? ""}`}>{second}</span>}
       </span>
     </h1>

@@ -29,29 +29,33 @@ export const Route = createFileRoute("/resources/faqs")({
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: heroImage },
     ],
-    scripts: [...publicPageSchema("/resources/faqs", title, description), {
-      type: "application/ld+json",
-      children: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "@id": `${URL}#faq`,
-        url: URL,
-        name: title,
-        inLanguage: "en-IN",
-        isPartOf: { "@id": WEBSITE_ID },
-        about: { "@id": BUSINESS_ID },
-        publisher: { "@id": BUSINESS_ID },
-        mainEntity: groups.flatMap((group) => group.items).map(([name, text]) => ({
-          "@type": "Question",
-          name,
-          acceptedAnswer: { "@type": "Answer", text, author: { "@id": BUSINESS_ID } },
-        })),
-      }),
-    }],
+    scripts: [
+      ...publicPageSchema("/resources/faqs", title, description),
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "@id": `${URL}#faq`,
+          url: URL,
+          name: title,
+          inLanguage: "en-IN",
+          isPartOf: { "@id": WEBSITE_ID },
+          about: { "@id": BUSINESS_ID },
+          publisher: { "@id": BUSINESS_ID },
+          mainEntity: groups
+            .flatMap((group) => group.items)
+            .map(([name, text]) => ({
+              "@type": "Question",
+              name,
+              acceptedAnswer: { "@type": "Answer", text, author: { "@id": BUSINESS_ID } },
+            })),
+        }),
+      },
+    ],
   }),
   component: FaqsPage,
 });
-
 
 function FaqsPage() {
   return (
@@ -61,13 +65,19 @@ function FaqsPage() {
         <ServiceHero slug="website-faq">
           <div className="ecom-shell relative flex h-full items-center py-6">
             <div className="max-w-[540px]">
-              <HeroHeading className="text-[30px] font-medium leading-tight" lines={["Website Development FAQs", "Plan Your Build With Clarity"]} accent="text-[#f4c657]" />
+              <HeroHeading
+                className="text-[30px] font-medium leading-tight"
+                lines={["Website Development FAQs", "Plan Your Build With Clarity"]}
+                accent="text-[#f4c657]"
+              />
               <p className="mt-3 text-[13px] leading-relaxed text-on-dark/90 sm:text-[15px]">
                 <span className="block">Compare costs, timelines and platforms.</span>{" "}
                 <span className="block">Know what to expect after launch.</span>
               </p>
               <Button asChild className="mt-4">
-                <a href="#faq">Browse FAQs <ArrowRight aria-hidden="true" /></a>
+                <a href="#faq">
+                  Browse FAQs <ArrowRight aria-hidden="true" />
+                </a>
               </Button>
             </div>
           </div>
@@ -76,7 +86,11 @@ function FaqsPage() {
           <div className="header-shell grid gap-8">
             <nav aria-label="FAQ topics" className="flex flex-wrap gap-2">
               {groups.map(({ id, title }) => (
-                <a key={id} href={`#${id}`} className="rounded-md border border-border bg-card px-3 py-2 text-sm font-medium text-navy hover:border-primary hover:text-primary">
+                <a
+                  key={id}
+                  href={`#${id}`}
+                  className="rounded-md border border-border bg-card px-3 py-2 text-sm font-medium text-navy hover:border-primary hover:text-primary"
+                >
                   {title}
                 </a>
               ))}
@@ -86,9 +100,19 @@ function FaqsPage() {
                 <h2 className="text-[24px] text-navy">{group.title}</h2>
                 <div className="mt-3 grid items-start gap-3 md:grid-cols-2">
                   {group.items.map(([q, a]) => (
-                    <details key={q} open={q === b2bPortalCost[0] || q === storePlatformChoice[0] ? true : undefined} className="group rounded-lg border border-border bg-card px-5 py-4 shadow-card">
+                    <details
+                      key={q}
+                      open={
+                        q === b2bPortalCost[0] || q === storePlatformChoice[0] ? true : undefined
+                      }
+                      className="group rounded-lg border border-border bg-card px-5 py-4 shadow-card"
+                    >
                       <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[17px] font-medium text-navy">
-                        {q}<ChevronDown aria-hidden="true" className="h-5 w-5 shrink-0 transition-transform group-open:rotate-180" />
+                        {q}
+                        <ChevronDown
+                          aria-hidden="true"
+                          className="h-5 w-5 shrink-0 transition-transform group-open:rotate-180"
+                        />
                       </summary>
                       <p className="mt-3 text-[16px] leading-7 text-muted-foreground">{a}</p>
                     </details>
@@ -98,17 +122,32 @@ function FaqsPage() {
             ))}
             <div className="flex flex-wrap gap-x-5 gap-y-3 font-semibold text-primary underline underline-offset-4">
               <Link to="/pricing">Project Pricing &amp; Quotes</Link>
-              <Link to="/solutions/$slug" params={{ slug: "b2b-commerce" }}>B2B Ecommerce Portals</Link>
-              <Link to="/solutions/$slug" params={{ slug: "ecommerce-development" }}>Compare Ecommerce Platforms</Link>
+              <Link to="/solutions/$slug" params={{ slug: "b2b-commerce" }}>
+                B2B Ecommerce Portals
+              </Link>
+              <Link to="/solutions/$slug" params={{ slug: "ecommerce-development" }}>
+                Compare Ecommerce Platforms
+              </Link>
               <Link to="/resources/guides">Browse Website Guides</Link>
               <a href={guide.path}>Read the 10-step ecommerce website development guide</a>
             </div>
             <div className="rounded-xl bg-sky-soft p-6">
               <h2 className="text-[22px] text-navy">Still have a question?</h2>
-              <p className="mt-1 text-[16px] text-muted-foreground">Send us a message and our team will get back to you.</p>
+              <p className="mt-1 text-[16px] text-muted-foreground">
+                Send us a message and our team will get back to you.
+              </p>
               <div className="mt-4 flex flex-wrap gap-3">
-                <Button asChild className="h-11 bg-gold px-6 text-[15px] font-semibold text-navy hover:bg-gold/90"><Link to="/contact">Contact Us <ArrowRight className="ml-1 h-4 w-4" /></Link></Button>
-                <Button asChild variant="outline" className="h-11 px-6 text-[15px]"><Link to="/work/portfolio">View Portfolio</Link></Button>
+                <Button
+                  asChild
+                  className="h-11 bg-gold px-6 text-[15px] font-semibold text-navy hover:bg-gold/90"
+                >
+                  <Link to="/contact">
+                    Contact Us <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" className="h-11 px-6 text-[15px]">
+                  <Link to="/work/portfolio">View Portfolio</Link>
+                </Button>
               </div>
             </div>
           </div>
