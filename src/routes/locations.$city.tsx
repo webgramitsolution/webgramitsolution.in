@@ -19,11 +19,15 @@ export const Route = createFileRoute("/locations/$city")({
     const description = localSearch[params.city]?.description ?? loaderData.description;
     const faqs = locationAnswers(loaderData);
     const visual = locationVisual(loaderData);
-    const image = BASE + (locationHeroVisual(loaderData.slug)?.src ?? visual.src);
+    const hero = locationHeroVisual(loaderData.slug);
+    const image = BASE + (hero?.src ?? visual.src);
     const areaType = loaderData.place ?? (["delhi-ncr", "south-delhi"].includes(params.city) ? "Place" : "City");
     const url = `${BASE}/locations/${params.city}`;
     return {
-      links: [{ rel: "canonical", href: url }],
+      links: [
+        { rel: "canonical", href: url },
+        ...(hero ? [{ rel: "preload", as: "image", href: hero.mobile, type: "image/avif", media: "(max-width: 767px)", fetchPriority: "high" as const }] : []),
+      ],
       meta: [
         { title: loaderData.title },
         { name: "description", content: description },

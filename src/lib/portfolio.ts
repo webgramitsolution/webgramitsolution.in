@@ -7,6 +7,7 @@ import party from "@/assets/mypartysuppliers.jpg";
 import chaatewala from "@/assets/chaatewala.jpg";
 import mukesh from "@/assets/mukeshmurtikar.jpg";
 import adlite from "@/assets/adliteelectricals.jpg";
+import chandraLakshmiGlass from "@/assets/chandralakshmiglass.webp";
 
 
 export type PortfolioItem = {
@@ -18,6 +19,7 @@ export type PortfolioItem = {
   image: string;
   summary: string;
   delivered: string[];
+  technologySummary?: string;
 };
 
 export const portfolio: PortfolioItem[] = [
@@ -119,5 +121,17 @@ export const portfolio: PortfolioItem[] = [
     summary:
       "A focused industrial website for an electrical engineering company established in 2008, showcasing LT and HT VCB panels, breakers, transformers, EV chargers, renewable-energy EPC and consulting capabilities.",
     delivered: ["Industrial product catalogue", "Energy solution positioning", "Enquiry-focused journeys", "Responsive company profile"],
+  },
+  {
+    name: "Chandra Lakshmi Safety Glass",
+    url: "https://chandralakshmiglass.com/",
+    domain: "chandralakshmiglass.com",
+    category: "Industrial Glass Manufacturing",
+    location: "Sonepat, India",
+    image: chandraLakshmiGlass,
+    summary:
+      "A manufacturing website presenting toughened, laminated, insulated and vehicle glass. Buyers can browse glass by application, learn about the Sonepat plant and request a quote.",
+    delivered: ["Glass products and applications", "Manufacturing process overview", "Plant and company profile", "Quote enquiries"],
+    technologySummary: "HTML, CSS and JavaScript",
   },
 ];

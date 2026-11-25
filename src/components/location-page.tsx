@@ -13,11 +13,11 @@ import { locations, locationGroups, projectsForLocation, type ServiceLocation } 
 import { portfolio } from "@/lib/portfolio";
 
 import { locationVisual } from "@/lib/location-visuals";
-import { IMAGES, maintenanceImages, technologyStack } from "@/lib/site-images";
-import corporateImage from "@/assets/corporate-websites.jpg";
-import businessImage from "@/assets/business-websites.jpg";
-import shopifyImage from "@/assets/shopify-hero.jpg";
-import wooImage from "@/assets/woocommerce-hero.jpg";
+import { ikResize, IMAGES, maintenanceImages, technologyStack } from "@/lib/site-images";
+import corporateImage from "@/assets/corporate-websites-card.webp";
+import businessImage from "@/assets/business-websites-card.webp";
+import shopifyImage from "@/assets/shopify-hero-card.webp";
+import wooImage from "@/assets/woocommerce-hero-card.webp";
 
 const industryAliases: Partial<Record<string, IndustrySlug>> = {
   apparel: "fashion",
@@ -41,7 +41,7 @@ const industryAliases: Partial<Record<string, IndustrySlug>> = {
   "wholesale traders": "wholesale",
 };
 
-const serviceImages = [IMAGES.ecommerce, IMAGES.b2b, corporateImage, wooImage, IMAGES.custom, maintenanceImages.hero, shopifyImage, businessImage];
+const serviceImages = [IMAGES.ecommerce, IMAGES.b2b, corporateImage, wooImage, IMAGES.custom, ikResize(maintenanceImages.hero, 640), shopifyImage, businessImage];
 
 const process = [
   [Search, "Discovery", "Review your buyers, catalogue and growth goals."],
@@ -150,7 +150,7 @@ export function LocationPage({ location: l }: { location: ServiceLocation }) {
               const visual = serviceImages[index];
               return (
                 <a key={to} href={to} className="group flex min-w-0 flex-col overflow-hidden rounded-md border border-border bg-card shadow-card transition-colors hover:border-primary">
-                  {visual ? <img src={visual} alt="" width={800} height={450} loading="lazy" className="h-[132px] w-full object-cover" /> : null}
+                  {visual ? <img src={visual} alt="" width={640} height={360} loading="lazy" decoding="async" className="h-[132px] w-full object-cover" /> : null}
                   <div className="flex flex-1 flex-col p-3.5">
                     <div className="flex items-center gap-2.5">
                       <span className="grid size-9 shrink-0 place-items-center rounded-md bg-primary-soft text-primary"><Icon className="size-5" aria-hidden="true" /></span>

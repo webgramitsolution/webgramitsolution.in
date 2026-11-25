@@ -41,7 +41,7 @@
 - Service CTA bands share `TrustFacts` and FAQ answers come from one approved content module (pickFaqs throws on unknown questions), so no page shows invented counts or placeholder answers.
 - Runtime data uses Hostinger MySQL through server functions. Supabase Auth verifies admin identities and MySQL holds the admin allowlist. Enquiries use server validation and a per-email database lock to enforce the submission limit.
 - Self-hosted builds use Nitro `node-server` (`npm run build` → `npm start`) since Hostinger runs Node.js; Lovable builds override the preset.
-- Search pings: admin-only server fn calls Google Indexing API and IndexNow (key file in public/); RSS at /feed.xml.
+- Search pings: the admin-only IndexNow action accepts canonical-host URLs; Google discovers public pages through the sitemap and Search Console. RSS lives at /feed.xml.
 - Share the supplied testimonial strip above the public footer; never duplicate it in pages.
 - Portfolio/website previews use bundled assets for self-hosting; PortfolioCard has a compact grid variant to preserve readable details.
 - India is the only marketed region. Historical `/ae` and `/kw` URLs redirect to the homepage.
@@ -50,4 +50,4 @@
 - Agent readiness: start.ts serves a negotiated Markdown homepage at `/` and advertises llms.txt in the Link header; WebMCP tools stay read-only.
 - `/locations` pages share `location-page.tsx`; `projectsForLocation` shows only genuine city/NCR portfolio items.
 - Blog FAQs use `normalizeBlogFaqs` for both the visible section and FAQPage schema, so they always match.
-- Speed: GTM loads asynchronously from the shared document head, Manrope self-hosted, sign-in client loaded on demand, ImageKit sized via `ikResize`.
+- Speed: GTM queues events immediately and loads after the initial page load. Manrope is self-hosted, sign-in subscriptions are limited to admin routes, and ImageKit images are sized via `ikResize`.

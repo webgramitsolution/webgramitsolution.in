@@ -26,9 +26,9 @@ const seoTitles: Record<string, string> = {
   "website-maintenance": "Website Maintenance Services in Delhi NCR | Webgram",
 };
 export const Route = createFileRoute("/services/$slug")({
-  loader: ({ params }) => {
+  loader: ({ params, location }) => {
     // Keep the pre-rename URL working: /services/website-development → Web Portal Development.
-    if (params.slug === "website-development") throw redirect({ href: "/services/web-portal-development", replace: true });
+    if (params.slug === "website-development") throw redirect({ href: `/services/web-portal-development${location.searchStr}`, statusCode: 301 });
     const page = getSubpage("services", params.slug);
     if (!page) throw notFound();
     return page;

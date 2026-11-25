@@ -136,7 +136,6 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en-IN">
       <head>
         <script dangerouslySetInnerHTML={{ __html: GTM_INITIALIZATION }} />
-        <script async src={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`} />
         <HeadContent />
       </head>
       <body>
@@ -158,26 +157,6 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const router = useRouter();
-
-  // The sign-in client loads after the page is shown, so it is not part of the first download.
-  useEffect(() => {
-    let unsubscribe: (() => void) | undefined;
-    let cancelled = false;
-    void import("@/integrations/supabase/client").then(({ supabase }) => {
-      if (cancelled) return;
-      const { data } = supabase.auth.onAuthStateChange((event, session) => {
-        if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED") return;
-        void router.invalidate();
-        if (session) void queryClient.invalidateQueries();
-      });
-      unsubscribe = () => data.subscription.unsubscribe();
-    });
-    return () => {
-      cancelled = true;
-      unsubscribe?.();
-    };
-  }, [queryClient, router]);
 
   return (
     <QueryClientProvider client={queryClient}>

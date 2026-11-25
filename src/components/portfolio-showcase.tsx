@@ -15,7 +15,7 @@ export function ScrollingFrame({ item, height = 400, eager = false }: { item: Po
         </span>
       </div>
       <div className="portfolio-frame relative overflow-hidden bg-white" style={{ height, ["--frame-h" as string]: `${height}px` }}>
-        <img src={item.image} alt={`${item.name} full live website preview, designed by Webgram IT Solution`} loading={eager ? "eager" : "lazy"} fetchPriority={eager ? "high" : "auto"} decoding="async" width={1440} className="portfolio-scroll block h-auto w-full" />
+        <img src={item.image} alt={`${item.name} website preview, designed by Webgram IT Solution`} loading={eager ? "eager" : "lazy"} fetchPriority={eager ? "high" : "auto"} decoding="async" width={1440} className="portfolio-scroll block h-auto w-full" />
         <span className="absolute bottom-3 right-3 rounded-full bg-navy/90 px-3 py-1.5 text-[12px] font-semibold text-white opacity-0 shadow-md transition-opacity group-hover:opacity-100">Open live website</span>
       </div>
     </a>
@@ -43,7 +43,7 @@ export function PortfolioCard({ item, compact = false, eager = false }: { item: 
         </ul>
         <div className={`border-t border-border ${compact ? "mt-4 pt-3" : "mt-6 pt-5"}`}>
           <p className={`font-semibold text-navy ${compact ? "text-[13px]" : "text-[14px]"}`}>Technology used</p>
-          <div className="technology-row mt-3 grid snap-x snap-proximity grid-flow-col auto-cols-[78px] gap-1.5 overflow-x-auto">
+          {item.technologySummary ? <p className="mt-2 text-sm text-muted-foreground">{item.technologySummary}</p> : <div className="technology-row mt-3 grid snap-x snap-proximity grid-flow-col auto-cols-[78px] gap-1.5 overflow-x-auto">
             {technologies.map((technology) => (
               <div key={technology.name} className="flex min-w-0 snap-start flex-col items-center gap-1.5 text-center">
                 <span className="grid h-12 w-12 place-items-center rounded-xl border border-border bg-gradient-to-b from-card to-muted p-2 shadow-card transition-transform hover:-translate-y-0.5">
@@ -52,7 +52,7 @@ export function PortfolioCard({ item, compact = false, eager = false }: { item: 
                 <span className={`w-full font-medium leading-5 text-navy ${compact ? "text-xs" : "text-[13px]"}`}>{technology.name}</span>
               </div>
             ))}
-          </div>
+          </div>}
         </div>
         <div className={compact ? "mt-auto pt-4" : "mt-6 md:mt-auto md:pt-6"}>
           <a href={item.url} target="_blank" rel="noopener" className={`inline-flex items-center gap-1.5 rounded-md bg-navy font-semibold text-on-dark hover:opacity-90 ${compact ? "min-h-10 px-4 py-2 text-sm" : "px-5 py-3 text-[15px]"}`}>Visit Live Website <ArrowUpRight className="h-4 w-4" /></a>

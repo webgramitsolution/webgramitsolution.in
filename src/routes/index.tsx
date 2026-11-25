@@ -33,7 +33,7 @@ import { publicPageSchema } from "@/lib/site-identity";
 const HOME_TITLE = "Ecommerce Website Development Company in Delhi NCR | Webgram IT Solution";
 const HOME_DESCRIPTION = "Delhi NCR ecommerce development partner for Indian manufacturers, wholesalers and D2C brands. Build and maintain Shopify, WooCommerce and custom commerce platforms.";
 const HERO_DESKTOP = "/images/delhi-commerce-hero.webp";
-const HERO_PHONE = "/images/delhi-commerce-hero-mobile.webp";
+const HERO_PHONE = "/images/delhi-commerce-hero-mobile.webp?v=2";
 const SOCIAL_IMAGE = "https://webgramitsolution.in/images/commerce-social.jpg";
 
 export const Route = createFileRoute("/")({
@@ -195,7 +195,7 @@ function Hero() {
     <section id="top" className="hero-shell">
       <div className="hero-media">
         <picture>
-          <source media="(max-width: 767px)" srcSet={HERO_PHONE} />
+          <source media="(max-width: 767px)" srcSet={HERO_PHONE} width={660} height={383} />
           <img
             src={HERO_DESKTOP}
             loading="eager"

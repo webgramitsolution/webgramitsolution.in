@@ -47,14 +47,14 @@ const faqMarkdown = [
 const agentMiddleware = createMiddleware().server(async ({ request, next }) => {
   const url = new URL(request.url);
   const isReadRequest = request.method === "GET" || request.method === "HEAD";
-  if (url.hostname === "www.webgramitsolution.in") {
+  const isPublicPage = !/^\/(?:api|_serverFn|admin|auth)(?:\/|$)/.test(url.pathname);
+  const pathname = isReadRequest && isPublicPage ? url.pathname.replace(/\/+$/, "") || "/" : url.pathname;
+  const canonicalPath = isReadRequest && /^\/(ae|kw)$/.test(pathname) ? "/" : pathname;
+  if (url.hostname === "www.webgramitsolution.in" || canonicalPath !== url.pathname) {
     return new Response(null, {
       status: isReadRequest ? 301 : 308,
-      headers: { Location: SITE_URL + url.pathname + url.search },
+      headers: { Location: SITE_URL + canonicalPath + url.search },
     });
-  }
-  if (isReadRequest && /^\/(ae|kw)\/?$/.test(url.pathname)) {
-    return new Response(null, { status: 301, headers: { location: "/" } });
   }
   const markdown = url.pathname === "/" ? homepageMarkdown
     : url.pathname === "/resources/faqs" ? faqMarkdown
