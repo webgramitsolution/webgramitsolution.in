@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useMatches,
   HeadContent,
   Scripts,
   type ErrorComponentProps,
@@ -170,8 +171,17 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+declare module "@tanstack/react-router" {
+  interface StaticDataRouteOption {
+    compactFooter?: boolean;
+  }
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const compactFooter = useMatches({
+    select: (matches) => matches.at(-1)?.staticData.compactFooter,
+  });
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -179,8 +189,12 @@ function RootComponent() {
       <Outlet />
       <SiteWebMCPTools />
       <Toaster richColors position="top-center" />
-      <TestimonialStrip />
-      <SiteFooter />
+      {!compactFooter && (
+        <>
+          <TestimonialStrip />
+          <SiteFooter />
+        </>
+      )}
     </QueryClientProvider>
   );
 }

@@ -19,6 +19,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as DpdpPolicyRouteImport } from './routes/dpdp-policy'
+import { Route as EcommerceQuoteRouteImport } from './routes/ecommerce-quote'
 import { Route as FeedDotxmlRouteImport } from './routes/feed[.]xml'
 import { Route as KwRouteImport } from './routes/kw'
 import { Route as PricingRouteImport } from './routes/pricing'
@@ -102,6 +103,11 @@ const DisclaimerRoute = DisclaimerRouteImport.update({
 const DpdpPolicyRoute = DpdpPolicyRouteImport.update({
   id: '/dpdp-policy',
   path: '/dpdp-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EcommerceQuoteRoute = EcommerceQuoteRouteImport.update({
+  id: '/ecommerce-quote',
+  path: '/ecommerce-quote',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FeedDotxmlRoute = FeedDotxmlRouteImport.update({
@@ -283,6 +289,7 @@ export interface FileRoutesByFullPath {
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
   '/dpdp-policy': typeof DpdpPolicyRoute
+  '/ecommerce-quote': typeof EcommerceQuoteRoute
   '/feed.xml': typeof FeedDotxmlRoute
   '/kw': typeof KwRoute
   '/pricing': typeof PricingRoute
@@ -326,6 +333,7 @@ export interface FileRoutesByTo {
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
   '/dpdp-policy': typeof DpdpPolicyRoute
+  '/ecommerce-quote': typeof EcommerceQuoteRoute
   '/feed.xml': typeof FeedDotxmlRoute
   '/kw': typeof KwRoute
   '/pricing': typeof PricingRoute
@@ -370,6 +378,7 @@ export interface FileRoutesById {
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
   '/dpdp-policy': typeof DpdpPolicyRoute
+  '/ecommerce-quote': typeof EcommerceQuoteRoute
   '/feed.xml': typeof FeedDotxmlRoute
   '/kw': typeof KwRoute
   '/pricing': typeof PricingRoute
@@ -415,6 +424,7 @@ export interface FileRouteTypes {
     | '/cookie-policy'
     | '/disclaimer'
     | '/dpdp-policy'
+    | '/ecommerce-quote'
     | '/feed.xml'
     | '/kw'
     | '/pricing'
@@ -458,6 +468,7 @@ export interface FileRouteTypes {
     | '/cookie-policy'
     | '/disclaimer'
     | '/dpdp-policy'
+    | '/ecommerce-quote'
     | '/feed.xml'
     | '/kw'
     | '/pricing'
@@ -501,6 +512,7 @@ export interface FileRouteTypes {
     | '/cookie-policy'
     | '/disclaimer'
     | '/dpdp-policy'
+    | '/ecommerce-quote'
     | '/feed.xml'
     | '/kw'
     | '/pricing'
@@ -546,6 +558,7 @@ export interface RootRouteChildren {
   CookiePolicyRoute: typeof CookiePolicyRoute
   DisclaimerRoute: typeof DisclaimerRoute
   DpdpPolicyRoute: typeof DpdpPolicyRoute
+  EcommerceQuoteRoute: typeof EcommerceQuoteRoute
   FeedDotxmlRoute: typeof FeedDotxmlRoute
   KwRoute: typeof KwRoute
   PricingRoute: typeof PricingRoute
@@ -645,6 +658,13 @@ declare module '@tanstack/react-router' {
       path: '/dpdp-policy'
       fullPath: '/dpdp-policy'
       preLoaderRoute: typeof DpdpPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ecommerce-quote': {
+      id: '/ecommerce-quote'
+      path: '/ecommerce-quote'
+      fullPath: '/ecommerce-quote'
+      preLoaderRoute: typeof EcommerceQuoteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/feed.xml': {
@@ -917,6 +937,7 @@ const rootRouteChildren: RootRouteChildren = {
   CookiePolicyRoute: CookiePolicyRoute,
   DisclaimerRoute: DisclaimerRoute,
   DpdpPolicyRoute: DpdpPolicyRoute,
+  EcommerceQuoteRoute: EcommerceQuoteRoute,
   FeedDotxmlRoute: FeedDotxmlRoute,
   KwRoute: KwRoute,
   PricingRoute: PricingRoute,
