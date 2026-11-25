@@ -10,7 +10,12 @@ export const Route = createFileRoute("/sitemap.xml")({
       GET: async () => {
         try {
           const { getSitemapGroups } = await import("@/lib/sitemap.server");
-          const groups = await getSitemapGroups();
+          let maxAge = 300;
+          const groups = await getSitemapGroups().catch((error) => {
+            console.error("Could not load dynamic sitemap entries", error);
+            maxAge = 30;
+            return getSitemapGroups(false);
+          });
           const urls = groups.flatMap(({ entries }) =>
             entries.map(
               ({ path, lastmod }) =>
@@ -21,7 +26,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           return new Response(xml, {
             headers: {
               "Content-Type": "application/xml; charset=utf-8",
-              "Cache-Control": "public, max-age=300",
+              "Cache-Control": `public, max-age=${maxAge}`,
             },
           });
         } catch {

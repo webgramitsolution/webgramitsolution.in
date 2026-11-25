@@ -116,7 +116,7 @@ export const Route = createFileRoute("/blog/$slug")({
     }
     const [post, blog] = await Promise.all([
       getPublicBlogPost({ data: { slug: params.slug } }),
-      getPublicBlog(),
+      getPublicBlog().catch(() => ({ categories: [], posts: [] })),
     ]);
     if (!post) throw notFound();
     return {
@@ -137,6 +137,13 @@ export const Route = createFileRoute("/blog/$slug")({
     </div>
   ),
   head: ({ loaderData, params }) => {
+    if (!loaderData)
+      return {
+        meta: [
+          { title: "Article unavailable | Webgram IT Solution" },
+          { name: "robots", content: "noindex" },
+        ],
+      };
     const faqs = normalizeBlogFaqs(loaderData?.faqs);
     return {
       links: [{ rel: "canonical", href: `${SITE}/blog/${params.slug}` }],

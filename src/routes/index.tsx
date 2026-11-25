@@ -26,6 +26,7 @@ import { Button } from "@/components/ui/button";
 import { IMAGES, aboutImages, clientLogos, technologyStack } from "@/lib/site-images";
 import { SiteHeader } from "@/components/site-header";
 import { ScrollingFrame } from "@/components/portfolio-showcase";
+import { editorialArticles } from "@/lib/editorial-articles";
 import { portfolio } from "@/lib/portfolio";
 import { getPublishedHomepageReviews } from "@/lib/reviews.functions";
 import { publicPageSchema } from "@/lib/site-identity";
@@ -757,6 +758,7 @@ function HomePage() {
       <B2BFeatures />
       <MobileCommerceExperience />
       <HomePortfolio />
+      <HomeGuides />
       <Technology />
       <MobileReviews reviews={reviews} />
     </main>
@@ -794,6 +796,42 @@ function HomePortfolio() {
               <h3 className="mt-3 text-[17px] text-navy">{item.name}</h3>
               <p className="text-[14px] text-muted-foreground">{item.category}</p>
             </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HomeGuides() {
+  return (
+    <section className="border-t border-border bg-background py-9" aria-labelledby="home-guides">
+      <div className="page-shell">
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <h2 id="home-guides" className="text-2xl text-navy">
+            Guides for planning your online store
+          </h2>
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
+          >
+            Browse the journal <ArrowRight className="size-4" aria-hidden="true" />
+          </Link>
+        </div>
+        <div className="mt-4 grid gap-3 md:grid-cols-3">
+          {editorialArticles.slice(0, 3).map(([slug, title, excerpt]) => (
+            <article key={slug} className="rounded-lg border border-border bg-card p-4">
+              <h3 className="text-base font-semibold text-navy">
+                <Link
+                  to="/blog/$slug"
+                  params={{ slug }}
+                  className="hover:text-primary hover:underline"
+                >
+                  {title}
+                </Link>
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">{excerpt}</p>
+            </article>
           ))}
         </div>
       </div>
