@@ -1,11 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { HeroHeading } from "@/components/hero-heading";
+import { ServiceHero, serviceHeroImage } from "@/components/service-hero";
 import { SiteHeader } from "@/components/site-header";
 import { editorialAuthor as author, editorialPosts } from "@/lib/editorial-posts";
 import { BUSINESS_ID, SITE_URL } from "@/lib/site-identity";
 
 const url = SITE_URL + author.path;
 const title = "Webgram IT Solution Editorial Team | Author Profile";
+const heroImage = SITE_URL + serviceHeroImage("editorial-team");
 
 export const Route = createFileRoute("/authors/webgram-editorial-team")({
   head: () => ({
@@ -16,6 +18,8 @@ export const Route = createFileRoute("/authors/webgram-editorial-team")({
       { property: "og:title", content: title },
       { property: "og:description", content: author.description },
       { property: "og:url", content: url },
+      { property: "og:image", content: heroImage },
+      { name: "twitter:image", content: heroImage },
     ],
     scripts: [
       {
@@ -44,15 +48,18 @@ function AuthorPage() {
     <>
       <SiteHeader />
       <main>
-        <header className="bg-navy py-10 text-on-dark">
-          <div className="page-shell">
-            <HeroHeading
-              className="max-w-xl text-3xl md:text-4xl"
-              lines={["Webgram IT Solution", "Editorial Team"]}
-            />
-            <p className="mt-3 max-w-2xl leading-7 text-on-dark/85">{author.description}</p>
+        <ServiceHero slug="editorial-team">
+          <div className="ecom-shell relative flex h-full items-center py-6">
+            <div className="max-w-[500px]">
+              <HeroHeading
+                className="text-3xl leading-tight md:text-4xl"
+                lines={["Webgram IT Solution", "Editorial Team"]}
+                accent="text-[#f4c657]"
+              />
+              <p className="mt-3 max-w-[440px] leading-7 text-on-dark/90">{author.description}</p>
+            </div>
           </div>
-        </header>
+        </ServiceHero>
         <div className="page-shell py-8">
           <p className="max-w-3xl leading-7 text-muted-foreground">
             Our guides are written for business owners and teams evaluating an agency, launching a

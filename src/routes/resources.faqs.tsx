@@ -131,25 +131,49 @@ function FaqsPage() {
               <Link to="/resources/guides">Browse Website Guides</Link>
               <a href={guide.path}>Read the 10-step ecommerce website development guide</a>
             </div>
-            <div className="rounded-xl bg-sky-soft p-6">
-              <h2 className="text-[22px] text-navy">Still have a question?</h2>
-              <p className="mt-1 text-[16px] text-muted-foreground">
-                Send us a message and our team will get back to you.
-              </p>
-              <div className="mt-4 flex flex-wrap gap-3">
-                <Button
-                  asChild
-                  className="h-11 bg-gold px-6 text-[15px] font-semibold text-navy hover:bg-gold/90"
-                >
-                  <Link to="/contact">
-                    Contact Us <ArrowRight className="ml-1 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" className="h-11 px-6 text-[15px]">
-                  <Link to="/work/portfolio">View Portfolio</Link>
-                </Button>
+            <section
+              aria-labelledby="faq-contact-title"
+              className="relative isolate overflow-hidden rounded-xl bg-navy px-5 py-7 text-on-dark md:px-8 md:py-9"
+            >
+              <img
+                src="/images/service-heroes/faq-contact.webp"
+                alt=""
+                loading="lazy"
+                decoding="async"
+                width={1440}
+                height={480}
+                className="absolute inset-0 -z-20 h-full w-full object-cover object-right"
+              />
+              <div
+                className="absolute inset-0 -z-10 bg-navy/75 sm:bg-transparent sm:bg-linear-to-r sm:from-navy sm:via-navy/85 sm:to-transparent"
+                aria-hidden="true"
+              />
+              <div className="max-w-md">
+                <h2 id="faq-contact-title" className="text-[23px] leading-tight md:text-[26px]">
+                  Still have a question?
+                </h2>
+                <p className="mt-2 text-[15px] leading-relaxed text-on-dark/90">
+                  Send us a message and our team will get back to you.
+                </p>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <Button
+                    asChild
+                    className="h-11 bg-gold px-6 text-[15px] font-semibold text-navy hover:bg-gold/90"
+                  >
+                    <Link to="/contact">
+                      Contact Us <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="h-11 border-on-dark/60 bg-transparent px-6 text-[15px] text-on-dark hover:bg-on-dark/10 hover:text-on-dark"
+                  >
+                    <Link to="/work/portfolio">View Portfolio</Link>
+                  </Button>
+                </div>
               </div>
-            </div>
+            </section>
           </div>
         </section>
       </main>

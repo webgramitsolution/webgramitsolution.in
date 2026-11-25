@@ -493,13 +493,13 @@ export function BlogDetailPage({
             </Link>
           </nav>
         </div>
-        <div className="mx-auto grid w-full max-w-[1280px] py-5 xl:grid-cols-[160px_minmax(0,1fr)_160px] xl:gap-4 xl:px-4">
-          <aside className="hidden xl:block">
-            <div className="sticky top-28">
+        <div className="mx-auto grid w-full max-w-[1280px] py-5 min-[960px]:grid-cols-[160px_minmax(0,1fr)_160px] min-[960px]:gap-4 min-[960px]:px-4">
+          <div className="hidden min-[960px]:block">
+            <div className="sticky top-24">
               <BlogAdBand rail position="detailLeft" label="Advertisement — left" />
             </div>
-          </aside>
-          <div className="min-w-0 bg-card px-3 md:px-5 xl:px-0">
+          </div>
+          <div className="min-w-0 bg-card px-3 md:px-5 min-[960px]:px-0">
             <BlogAdBand position="top" label="Advertisement above featured image" />
             {post.featured_image ? (
               <figure className="aspect-[16/6.2] overflow-hidden rounded-md border border-border bg-muted shadow-card">
@@ -606,11 +606,11 @@ export function BlogDetailPage({
               ) : null}
             </div>
           </div>
-          <aside className="hidden xl:block">
-            <div className="sticky top-28">
+          <div className="hidden min-[960px]:block">
+            <div className="sticky top-24">
               <BlogAdBand rail position="detailRight" label="Advertisement — right" />
             </div>
-          </aside>
+          </div>
         </div>
         <BlogAdsConsent />
       </main>
