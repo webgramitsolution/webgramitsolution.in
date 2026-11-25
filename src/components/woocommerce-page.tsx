@@ -1,3 +1,4 @@
+import { DirectAnswer } from "@/components/direct-answer";
 import { ServiceHero } from "@/components/service-hero";
 import { HeroHeading } from "@/components/hero-heading";
 import { Link } from "@tanstack/react-router";
@@ -120,6 +121,11 @@ export function WooCommercePage() {
         </div>
       </div>
     </ServiceHero>
+    <DirectAnswer
+      id="woocommerce-fit"
+      question="When is WooCommerce a good fit?"
+      answer="WooCommerce is a good fit when your team wants WordPress for content and needs control over catalogue, shipping or checkout rules. Budget for hosting, any paid extensions and maintaining the store after launch. For example, confirm who will test plugin updates against checkout before deploying them."
+    />
 
     <section className="bg-card py-6 md:py-7"><div className="ecom-shell grid gap-5 md:grid-cols-[1.05fr_1.95fr] md:items-center">
       <div><Eyebrow>Why Choose Webgram</Eyebrow><h2 className="mt-2 text-[23px] font-extrabold leading-[1.05] text-navy md:text-[27px]">Your WooCommerce<br />Development Partner</h2><p className="mt-2 max-w-[470px] text-[14px] leading-[1.5] text-muted-foreground md:text-[14px]">We create high-performance WooCommerce stores tailored to your business goals, with custom designs, advanced functionality and smooth integrations to deliver a complete eCommerce solution.</p></div>

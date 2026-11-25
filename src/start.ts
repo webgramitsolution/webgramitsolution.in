@@ -23,7 +23,7 @@ function prefersMarkdown(accept: string): boolean {
   let markdown = 0;
   let html = 0;
   for (const entry of accept.split(",")) {
-    const [media, ...parameters] = entry.trim().toLowerCase().split(";");
+    const [media = "", ...parameters] = entry.trim().toLowerCase().split(";");
     const quality = parameters.map((value) => value.trim()).find((value) => value.startsWith("q="));
     const weight = quality === undefined ? 1 : Number(quality.slice(2));
     if (!(weight > 0 && weight <= 1)) continue;

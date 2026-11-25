@@ -1,3 +1,4 @@
+import { DirectAnswer } from "@/components/direct-answer";
 import { ServiceHero } from "@/components/service-hero";
 import { HeroHeading } from "@/components/hero-heading";
 import { Link } from "@tanstack/react-router";
@@ -135,6 +136,11 @@ export function WebPortalDevelopmentPage() {
         </div>
       </div>
     </ServiceHero>
+    <DirectAnswer
+      id="portal-fit"
+      question="When does a business need a custom web portal?"
+      answer="A custom portal makes sense when customers, dealers or staff need to sign in and complete tasks such as placing orders, submitting requests or tracking approvals. Start by defining what each role can see and which system holds the source data. For example, an account manager can approve a dealer request while an ERP still owns stock and prices."
+    />
 
     <section className="bg-card py-6 md:py-7"><div className="ecom-shell grid gap-5 md:grid-cols-[1.05fr_1.95fr] md:items-center">
       <div><Eyebrow>Why Choose Webgram</Eyebrow><h2 className="mt-2 text-[23px] font-extrabold leading-[1.05] text-navy md:text-[27px]">Your Web Portal<br />Development Partner</h2><p className="mt-2 max-w-[470px] text-[14px] leading-[1.5] text-muted-foreground md:text-[14px]">We build secure, scalable and feature-rich web portals that streamline operations, improve collaboration and enhance user experiences for your customers, vendors, employees and business partners.</p></div>

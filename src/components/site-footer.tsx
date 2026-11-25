@@ -15,6 +15,7 @@ const columns = [
   ["Services", [
     { label: "Custom Web Portals", to: "/services/web-portal-development" },
     { label: "Website Design & Redesign", to: "/services/website-design" },
+    { label: "WordPress Development", to: "/services/wordpress" },
     { label: "WooCommerce Stores", to: "/services/woocommerce" },
     { label: "Shopify Stores", to: "/services/shopify" },
     { label: "API & System Integrations", to: "/services/api-integration" },
@@ -33,6 +34,8 @@ const columns = [
     { label: "Editorial Team", to: "/authors/webgram-editorial-team" },
     { label: "About Us", to: "/about-us" },
     { label: "Website Portfolio", to: "/work/portfolio" },
+    { label: "Case Studies", to: "/work/case-studies" },
+    { label: "Industries", to: "/industries" },
     { label: "Contact", to: "/contact" },
     { label: "Sitemap", to: "/sitemap" },
   ]],

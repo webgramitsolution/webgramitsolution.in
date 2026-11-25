@@ -1,3 +1,4 @@
+import { DirectAnswer } from "@/components/direct-answer";
 import { HeroHeading } from "@/components/hero-heading";
 import { ServiceHero, serviceHeroImage } from "@/components/service-hero";
 import { SiteHeader } from "@/components/site-header";
@@ -69,12 +70,19 @@ function SolutionsPage() {
         <ServiceHero slug="marketplace-development">
           <div className="ecom-shell relative flex h-full items-center py-5">
             <div className="max-w-[540px]">
-              <HeroHeading lines={["B2B Marketplace", "Website Development"]} accent="text-gold" />
+              <HeroHeading className="page-title" lines={["B2B Marketplace", "Website Development"]} accent="text-gold" />
               <p className="mt-3 max-w-[470px] text-sm leading-relaxed text-on-dark/90">{page.description}</p>
               <Link to="/contact" className="mt-4 inline-flex min-h-10 items-center rounded-md bg-gold px-5 text-sm font-bold text-navy hover:bg-gold/90">Get a Marketplace Quote</Link>
             </div>
           </div>
         </ServiceHero>
+        <DirectAnswer
+          id="marketplace-vs-portal"
+          question="Do I need a marketplace or a B2B ordering portal?"
+          answer="A marketplace is for several sellers that manage their own listings and fulfil orders under shared rules. A B2B ordering portal is for one supplier selling to approved business buyers. If you run a marketplace, decide who receives payments, handles returns and pays out sellers before building checkout."
+        >
+          <Link to="/solutions/$slug" params={{ slug: "b2b-commerce" }}>Explore B2B ordering portals</Link>
+        </DirectAnswer>
         <ServicePlanning plan={servicePlans.marketplace} />
       </main>
     </>;

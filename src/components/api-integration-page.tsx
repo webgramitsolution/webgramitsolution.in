@@ -1,3 +1,4 @@
+import { DirectAnswer } from "@/components/direct-answer";
 import { ServiceHero } from "@/components/service-hero";
 import { HeroHeading } from "@/components/hero-heading";
 import { Link } from "@tanstack/react-router";
@@ -92,6 +93,11 @@ function Projects() {
 export function ApiIntegrationPage() {
   return <main className="min-h-screen bg-background text-foreground"><SiteHeader />
     <ServiceHero slug="api-integration"><div className="ecom-shell relative flex h-full items-center py-5"><div className="max-w-[530px]"><nav className="sr-only" aria-label="Breadcrumb"><Link to="/">Home</Link> › Services › API & Third-Party Integration</nav><HeroHeading className="text-[29px] font-medium leading-[1.08] sm:text-[33px] md:text-[36px] lg:text-[39px]" lines={["API Integration", "for Commerce Operations"]} accent="text-gold" /><p className="mt-3 max-w-[480px] text-[13px] leading-[1.45] text-on-dark/90 md:text-[14px]">Connect storefronts and apps to inventory, payments, CRM and analytics. We scope data ownership, sync timing and how your team handles failed updates.</p><div className="mt-4 flex flex-wrap gap-3"><Button asChild className="h-10 bg-gold px-6 text-[13px] font-bold text-navy hover:bg-gold/90"><Link to="/contact">Get a Free Consultation <ArrowRight /></Link></Button><Button asChild variant="outline" className="h-10 border-on-dark/70 bg-transparent px-6 text-[13px] font-bold text-on-dark hover:bg-on-dark/10 hover:text-on-dark"><a href="#integration-solutions">View Integration Solutions <ArrowRight /></a></Button></div><div className="mt-4 grid max-w-[500px] grid-cols-5 gap-2">{heroBenefits.map(([Icon, first, second]) => <div key={first} className="text-center text-[12px] font-semibold leading-[1.25]"><span className="mx-auto mb-1.5 grid h-9 w-9 place-items-center rounded-full border border-on-dark/50"><Icon className="h-4 w-4" /></span>{first}<br />{second}</div>)}</div></div></div></ServiceHero>
+    <DirectAnswer
+      id="integration-cost"
+      question="What affects the cost of an API integration?"
+      answer="API integration costs depend on the systems involved, the data they exchange and how quickly updates must appear. A nightly product import has a different scope from synchronising orders, stock and refunds throughout the day. Agree how failed updates will be retried and who will be notified before approving the quote."
+    />
 
     <section className="bg-card py-6 md:py-7"><div className="ecom-shell grid gap-5 md:grid-cols-[1.05fr_1.95fr] md:items-center"><div><Eyebrow>Why Choose Webgram</Eyebrow><h2 className="mt-2 text-[23px] font-extrabold leading-[1.05] text-navy md:text-[27px]">Your Integration Partner</h2><p className="mt-2 max-w-[470px] text-[14px] leading-[1.5] text-muted-foreground md:text-[14px]">We help businesses connect their websites, applications and software with trusted third-party services through robust and secure API integrations.</p></div><div className="grid grid-cols-2 gap-3 md:grid-cols-4">{strengths.map(([Icon, title, text]) => <article key={title} className="min-h-[145px] rounded-md border border-border bg-card p-4 shadow-card"><Icon className="h-9 w-9 text-primary" /><h3 className="mt-3 text-[13px] font-extrabold leading-[1.2] text-navy">{title}</h3><p className="mt-1.5 text-[14px] leading-[1.45] text-muted-foreground">{text}</p></article>)}</div></div></section>
 

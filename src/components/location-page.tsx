@@ -1,3 +1,4 @@
+import { getIndustry, type IndustrySlug } from "@/lib/industry-page-data";
 import { LocationHeroPicture } from "@/components/location-hero-picture";
 import { locationServiceFocus } from "@/lib/location-service-focus";
 import { HeroHeading } from "@/components/hero-heading";
@@ -17,6 +18,28 @@ import corporateImage from "@/assets/corporate-websites.jpg";
 import businessImage from "@/assets/business-websites.jpg";
 import shopifyImage from "@/assets/shopify-hero.jpg";
 import wooImage from "@/assets/woocommerce-hero.jpg";
+
+const industryAliases: Partial<Record<string, IndustrySlug>> = {
+  apparel: "fashion",
+  "apparel wholesale": "fashion",
+  "b2b wholesale": "wholesale",
+  boutiques: "fashion",
+  distributors: "distribution",
+  "electrical products": "electronics",
+  "electrical supplies": "electronics",
+  "electronics retail": "electronics",
+  "fashion & apparel": "fashion",
+  "home décor": "furniture",
+  "industrial & electrical": "electronics",
+  "industrial wholesale": "wholesale",
+  "lifestyle retail": "retail",
+  "local retailers": "retail",
+  "local retail": "retail",
+  manufacturers: "manufacturing",
+  "retail brands": "retail",
+  "wholesale suppliers": "wholesale",
+  "wholesale traders": "wholesale",
+};
 
 const serviceImages = [IMAGES.ecommerce, IMAGES.b2b, corporateImage, wooImage, IMAGES.custom, maintenanceImages.hero, shopifyImage, businessImage];
 
@@ -165,7 +188,21 @@ export function LocationPage({ location: l }: { location: ServiceLocation }) {
         <div className="ecom-shell grid gap-5 md:grid-cols-2">
           <div className="rounded-xl border border-border bg-card p-6 shadow-card md:p-7">
             <h2 className="text-[22px] text-navy md:text-[24px]">Industries we serve in {l.city}</h2>
-            <div className="mt-5 flex flex-wrap gap-2">{l.industries.map((i) => <span key={i} className="rounded-full border border-border bg-primary-soft px-3.5 py-1.5 text-[14px] font-medium text-navy">{i}</span>)}</div>
+            <ul className="mt-5 flex flex-wrap gap-2">
+              {l.industries.map((label) => {
+                const name = label.toLowerCase();
+                const industry = getIndustry(industryAliases[name] ?? name);
+                const className = "block rounded-full border border-border bg-primary-soft px-3.5 py-1.5 text-[14px] font-medium text-navy";
+                return (
+                  <li key={label}>
+                    {industry ? (
+                      <Link to="/industries/$slug" params={{ slug: industry.slug }} className={`${className} hover:border-primary hover:text-primary hover:underline`}>{label}</Link>
+                    ) : <span className={className}>{label}</span>}
+                  </li>
+                );
+              })}
+            </ul>
+            <Link to="/industries" className="mt-4 inline-block text-sm font-semibold text-primary hover:underline">Explore all industries</Link>
           </div>
           <div className="rounded-xl border border-border bg-card p-6 shadow-card md:p-7">
             <h2 className="text-[22px] text-navy md:text-[24px]">Areas we cover</h2>

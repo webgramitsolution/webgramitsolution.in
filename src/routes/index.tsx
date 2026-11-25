@@ -131,7 +131,7 @@ const services: Array<{
     text: "Multi-vendor marketplaces with seller tools, commissions, payouts and order management.",
     link: "Explore Marketplace",
     to: "/solutions/$slug",
-    slug: "b2b-commerce",
+    slug: "marketplace-development",
     image: `${HOME_ART}/marketplace.webp`,
     alt: "Seller dashboard alongside parcels for a multi-vendor marketplace",
   },
@@ -402,7 +402,7 @@ function Industries() {
     <section id="industries" className="bg-navy py-7 text-on-dark">
       <div className="page-shell grid gap-5 md:grid-cols-[180px_1fr] lg:grid-cols-[220px_1fr]">
         <div>
-          <p className="eyebrow">Industries</p>
+          <p className="eyebrow"><Link to="/industries" className="hover:underline">Industries</Link></p>
           <h2 className="mt-2 text-[27px] font-extrabold leading-[0.95]">
             Built Around
             <br />
@@ -412,12 +412,12 @@ function Industries() {
             We develop customized commerce solutions for diverse industries.
           </p>
           <Button asChild size="sm" className="mt-4 bg-primary px-5 text-[13px] font-bold text-primary-foreground hover:bg-primary/90 md:bg-gold md:text-navy md:hover:bg-gold/90">
-            <Link to="/work/$slug" params={{ slug: "portfolio" }}>View Our Work <ArrowRight /></Link>
+            <Link to="/industries">Explore All Industries <ArrowRight /></Link>
           </Button>
         </div>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-6">
           {industries.map((industry) => (
-            <article key={industry} className="industry-card">
+            <Link key={industry} to="/industries/$slug" params={{ slug: industry.toLowerCase() }} className="industry-card focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-gold">
               <img
                 src={`${HOME_ART}/${industry.toLowerCase()}.webp`}
                 alt=""
@@ -427,8 +427,8 @@ function Industries() {
                 className="industry-image"
               />
               <div className="industry-shade" />
-              <strong>{industry} →</strong>
-            </article>
+              <strong>{industry} <span aria-hidden="true">→</span></strong>
+            </Link>
           ))}
         </div>
       </div>
@@ -600,7 +600,7 @@ function HomePage() {
       <Services />
       <Ecosystem />
       <WhyUs />
-      <div className="hidden md:block"><Industries /></div>
+      <Industries />
       <B2BFeatures />
       <MobileCommerceExperience />
       <HomePortfolio />

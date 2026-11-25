@@ -7,7 +7,7 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 import { BUSINESS_ID, publicPageSchema, SITE_URL, WEBSITE_ID } from "@/lib/site-identity";
-import { faqGroups as groups } from "@/lib/faq-content";
+import { b2bPortalCost, faqGroups as groups, storePlatformChoice } from "@/lib/faq-content";
 
 const URL = SITE_URL + "/resources/faqs";
 const title = "FAQs — Website, Ecommerce & B2B Development | Webgram IT Solution";
@@ -86,7 +86,7 @@ function FaqsPage() {
                 <h2 className="text-[24px] text-navy">{group.title}</h2>
                 <div className="mt-3 grid items-start gap-3 md:grid-cols-2">
                   {group.items.map(([q, a]) => (
-                    <details key={q} className="group rounded-lg border border-border bg-card px-5 py-4 shadow-card">
+                    <details key={q} open={q === b2bPortalCost[0] || q === storePlatformChoice[0] ? true : undefined} className="group rounded-lg border border-border bg-card px-5 py-4 shadow-card">
                       <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[17px] font-medium text-navy">
                         {q}<ChevronDown aria-hidden="true" className="h-5 w-5 shrink-0 transition-transform group-open:rotate-180" />
                       </summary>
@@ -98,6 +98,8 @@ function FaqsPage() {
             ))}
             <div className="flex flex-wrap gap-x-5 gap-y-3 font-semibold text-primary underline underline-offset-4">
               <Link to="/pricing">Project Pricing &amp; Quotes</Link>
+              <Link to="/solutions/$slug" params={{ slug: "b2b-commerce" }}>B2B Ecommerce Portals</Link>
+              <Link to="/solutions/$slug" params={{ slug: "ecommerce-development" }}>Compare Ecommerce Platforms</Link>
               <Link to="/resources/guides">Browse Website Guides</Link>
               <a href={guide.path}>Read the 10-step ecommerce website development guide</a>
             </div>

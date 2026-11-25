@@ -25,7 +25,7 @@ export const shopifyServices = [
 
 export const shopifyComparison = [
   { feature: "Setup speed", a: "Faster: hosting, security and checkout are managed by Shopify", b: "Needs hosting, WordPress and plugin setup", best: "Shopify for a quick launch" },
-  { feature: "Monthly cost", a: "Shopify subscription plus paid apps", b: "Hosting plus optional paid plugins", best: "WooCommerce for lower running cost" },
+  { feature: "Monthly cost", a: "Shopify subscription plus paid apps", b: "Hosting plus optional paid plugins", best: "Compare the total cost for your store" },
   { feature: "Customisation", a: "Theme and app based; deep changes are limited", b: "Full code access and custom features", best: "WooCommerce for unique workflows" },
   { feature: "Maintenance", a: "Platform updates handled by Shopify", b: "You or your developer update plugins and WordPress", best: "Shopify for low upkeep" },
   { feature: "Indian checkout & COD", a: "Razorpay, GoKwik and COD via apps", b: "Razorpay, PayU and COD via plugins", best: "Both work well in India" },
@@ -37,7 +37,7 @@ export const shopifyFaqs: FaqItem[] = [
   ["How long does it take to build a Shopify store?", "Ecommerce stores usually take around 4 to 8 weeks. The exact time depends on the number of products, design changes and integrations such as GoKwik, Shiprocket or WhatsApp."],
   ["How much does Shopify store development cost?", "Cost depends on design, number of products, apps and integrations. After a short discussion we share a fixed itemised quote. Shopify's own subscription and any paid apps are billed separately by Shopify and the app providers."],
   ["Can you integrate Razorpay, GoKwik checkout and Shiprocket on Shopify?", "Yes. We set up Razorpay and GoKwik checkout with COD options, Shiprocket for shipping and tracking, WATI or interakt for WhatsApp updates and Judge.me for product reviews."],
-  ["Should I choose Shopify or WooCommerce?", "WooCommerce is ideal for businesses needing full customization and ownership. Shopify suits those wanting a faster setup with less technical management. We help you choose based on your budget, products and business goals."],
+  ["What should I budget for after launching on Shopify?", "Budget for the Shopify plan and any apps your store requires. Check payment fees, theme updates and ongoing support separately when comparing platforms."],
   ["Can you move my existing store to Shopify?", "Yes. We migrate products, collections, customers and important pages from WooCommerce or another platform to Shopify, and set up redirects so existing links keep working."],
   ["Who owns the Shopify store after it is built?", "You do. After final payment the website, content and domain are fully yours."],
   ["Do you provide support after the store goes live?", "Yes. We offer maintenance plans that include updates, backups, security monitoring and content changes."],

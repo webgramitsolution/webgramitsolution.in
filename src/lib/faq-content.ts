@@ -1,6 +1,16 @@
 /** Approved public FAQ answers, shared by the FAQ page, its schema and the Contact page. */
 export type FaqItem = [question: string, answer: string];
 
+export const b2bPortalCost: FaqItem = [
+  "How much does a B2B ecommerce portal cost?",
+  "Webgram quotes B2B portals individually based on the catalogue, buyer accounts, pricing rules and integrations. A portal for approved dealers to browse a catalogue and request quotes has a smaller scope than one with contract prices, bulk ordering and live ERP stock sync. Ask for an itemised quote that separates the build from hosting, licences and ongoing support.",
+];
+
+export const storePlatformChoice: FaqItem = [
+  "Should I choose Shopify or WooCommerce?",
+  "Choose Shopify if you want managed hosting and standard store workflows with less technical upkeep. Choose WooCommerce if you want to run the store on your own WordPress hosting or customise the checkout and catalogue rules. Compare the full running cost, including Shopify plans and apps or WordPress hosting, plugins and maintenance.",
+];
+
 export const faqGroups: Array<{ id: string; title: string; items: FaqItem[] }> = [
   {
     id: "ecommerce-development",
@@ -33,6 +43,7 @@ export const faqGroups: Array<{ id: string; title: string; items: FaqItem[] }> =
     title: "Projects & pricing",
     items: [
       ["How much does a website cost?", "Webgram prices website projects individually. The cost depends on the number of pages, design, content migration and integrations. We review your requirements and provide an itemised quote covering the agreed scope."],
+      b2bPortalCost,
       ["How long does a website project take?", "A business website usually takes 2 to 4 weeks. Ecommerce stores take around 4 to 8 weeks. B2B portals or marketplaces depend on the workflows and integrations involved."],
       ["Can you work on my existing website?", "Yes. We redesign, fix, speed up and extend existing WordPress, WooCommerce, Shopify and custom websites."],
       ["What do you need from me to start?", "Your logo, business details, service or product information, photos and any reference websites you like. We guide you through everything else."],
@@ -45,7 +56,7 @@ export const faqGroups: Array<{ id: string; title: string; items: FaqItem[] }> =
       ["Which platforms does Webgram IT Solution use?", "We use WordPress, WooCommerce, Shopify and modern JavaScript frameworks like React and Next.js. We recommend the platform that fits your goals and budget."],
       ["Can Webgram build a B2B or wholesale ecommerce store?", "Yes. We build B2B portals with customer-specific pricing, MOQ, RFQ and quotes, bulk ordering, credit terms and ERP integration."],
       ["Will my website work on mobile and be SEO ready?", "Every website we build is mobile-first, fast-loading and includes clean page structure, meta tags, sitemaps and structured data."],
-      ["What is the best platform for an ecommerce website in India?", "WooCommerce is ideal for businesses needing full customization and ownership. Shopify suits those wanting a faster setup with less technical management. We help you choose based on your budget, products and business goals."],
+      storePlatformChoice,
       ["Do you build multi-vendor marketplace websites?", "Yes. We build multi-vendor marketplaces with seller tools, commission management, payouts and order management for businesses across India."],
       ["Can you integrate payment gateways, CRMs and ERPs?", "Yes. We integrate Indian and international payment gateways, shipping and logistics, CRMs, ERPs and custom third-party APIs."],
     ],

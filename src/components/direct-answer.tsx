@@ -1,5 +1,11 @@
-/** Short, extractable definition block placed under a question-style H2 for answer engines. */
-export function DirectAnswer({ id, question, answer }: { id: string; question: string; answer: string }) {
+import type { ReactNode } from "react";
+
+export function DirectAnswer({ id, question, answer, children }: {
+  id: string;
+  question: string;
+  answer: string;
+  children?: ReactNode;
+}) {
   return (
     <section aria-labelledby={id} className="bg-card py-6">
       <div className="ecom-shell">
@@ -8,6 +14,7 @@ export function DirectAnswer({ id, question, answer }: { id: string; question: s
             {question}
           </h2>
           <p className="mt-2 max-w-[900px] text-[15px] leading-[1.6] text-foreground md:text-[16px]">{answer}</p>
+          {children && <div className="mt-3 text-sm font-semibold text-primary [&_a]:underline [&_a]:underline-offset-4">{children}</div>}
         </div>
       </div>
     </section>

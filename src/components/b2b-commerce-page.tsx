@@ -1,6 +1,7 @@
 import { ServiceHero } from "@/components/service-hero";
 import { HeroHeading } from "@/components/hero-heading";
 import { Link } from "@tanstack/react-router";
+import { b2bPortalCost } from "@/lib/faq-content";
 import { ComparisonTable, DirectAnswer } from "@/components/direct-answer";
 import {
   ArrowRight,
@@ -90,12 +91,12 @@ const process = [
 ] as const;
 
 const industries = [
-  [industry1, "Manufacturing", "Industrial products and machinery"],
-  [industry2, "Furniture & Interiors", "Office and home furniture"],
-  [industry3, "Electronics & Electrical", "Components and equipment"],
-  [industry4, "Building Materials", "Construction and supplies"],
-  [industry5, "Fashion & Apparel", "Wholesale clothing and accessories"],
-  [industry6, "Food & Beverages", "Bulk supply and distribution"],
+  [industry1, "Manufacturing", "Industrial products and machinery", "manufacturing"],
+  [industry2, "Furniture & Interiors", "Office and home furniture", "furniture"],
+  [industry3, "Electronics & Electrical", "Components and equipment", "electronics"],
+  [industry4, "Building Materials", "Construction and supplies", "building-materials"],
+  [industry5, "Fashion & Apparel", "Wholesale clothing and accessories", "fashion"],
+  [industry6, "Food & Beverages", "Bulk supply and distribution", null],
 ] as const;
 
 const ctaBenefits = [
@@ -160,9 +161,11 @@ export function B2BCommercePage() {
 
       <DirectAnswer
         id="what-is-b2b-ecommerce"
-        question="What is B2B ecommerce development?"
-        answer="B2B ecommerce development is building an online ordering platform for business buyers instead of retail shoppers. Webgram IT Solution builds B2B portals for manufacturers, wholesalers and distributors with customer-specific pricing, minimum order quantities, bulk ordering, RFQ workflows, dealer accounts, GST invoicing and ERP-ready integrations, so repeat trade orders move online."
-      />
+        question={b2bPortalCost[0]}
+        answer={b2bPortalCost[1]}
+      >
+        <Link to="/pricing">See project pricing and quote details</Link>
+      </DirectAnswer>
       <ComparisonTable
         id="b2b-vs-b2c-ecommerce"
         title="B2B vs B2C Ecommerce: Key Differences"
@@ -256,11 +259,12 @@ export function B2BCommercePage() {
       <section className="bg-card py-6 md:py-7">
         <div className="ecom-shell">
           <SectionIntro title="Industries We Serve" description="" />
+          <Link to="/industries" className="mt-2 inline-block text-sm font-semibold text-primary hover:underline">Explore all industries</Link>
           <div className="ecom-scroll mt-4 grid grid-flow-col auto-cols-[200px] gap-3 overflow-x-auto md:grid-cols-6 md:overflow-visible">
-            {industries.map(([image, title, text]) => (
+            {industries.map(([image, title, text, slug]) => (
               <article key={title} className="overflow-hidden rounded-md border border-border bg-card">
                 <div className="relative h-[96px] overflow-hidden md:h-[104px]"><img src={image} alt={title} width={320} height={640} loading="lazy" className="h-full w-full object-cover object-center" /></div>
-                <div className="min-h-[66px] px-3 py-2.5"><h3 className="text-[13.5px] font-extrabold text-navy md:text-[14px]">{title}</h3><p className="mt-1 text-[15px] leading-[1.5] text-muted-foreground md:text-[13px]">{text}</p></div>
+                <div className="min-h-[66px] px-3 py-2.5"><h3 className="text-[13.5px] font-extrabold text-navy md:text-[14px]">{slug ? <Link to="/industries/$slug" params={{ slug }} className="hover:text-primary hover:underline">{title}</Link> : title}</h3><p className="mt-1 text-[15px] leading-[1.5] text-muted-foreground md:text-[13px]">{text}</p></div>
               </article>
             ))}
           </div>

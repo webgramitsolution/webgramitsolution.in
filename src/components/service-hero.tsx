@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 const descriptions = {
+  "case-studies": "Illustrative ecommerce storefront, wholesale dashboard and business website on three devices",
   "website-guides": "Website planning checklists and a guides library on a studio desk",
   "project-pricing": "Project planning meeting with a website wireframe and printed scope on the desk",
   "portfolio-studio": "Illustration of ecommerce, wholesale and service websites on three devices in a design studio",

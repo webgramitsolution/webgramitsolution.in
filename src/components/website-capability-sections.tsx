@@ -85,7 +85,7 @@ export function WebsiteTypesSection({ wordpress = false }: { wordpress?: boolean
     <section className="bg-sky-soft py-6 md:py-7">
       <div className="ecom-shell"><Eyebrow>Types of Websites We Develop</Eyebrow><h2 className="mt-2 text-[23px] font-extrabold leading-none text-navy md:text-[27px]">{wordpress ? "WordPress Websites for Every Need" : "Website Solutions for Every Need"}</h2>
         <div className="ecom-scroll mt-4 grid grid-flow-col auto-cols-[235px] gap-3 overflow-x-auto md:grid-cols-6 md:overflow-visible">
-          {cards.map(([image, Icon, title, text, tone]) => <article key={title} className="overflow-hidden rounded-md border border-border bg-card shadow-card"><div className="aspect-[1.55/1] overflow-hidden"><img src={image} alt={title} width={640} height={420} loading="lazy" className="h-full w-full object-cover object-center" /></div><div className="grid min-h-[98px] grid-cols-[32px_1fr] gap-2.5 p-3"><span className={`grid h-8 w-8 place-items-center rounded-md ${tone}`}><Icon className="h-5 w-5" /></span><div><h3 className="text-[14px] font-extrabold leading-[1.2] text-navy">{title}</h3><p className="mt-1.5 text-[13px] leading-[1.45] text-muted-foreground">{text}</p></div></div></article>)}
+          {cards.map(([image, Icon, title, text, tone]) => <article key={title} className="overflow-hidden rounded-md border border-border bg-card shadow-card"><div className="aspect-[1.55/1] overflow-hidden"><img src={image} alt={title} width={640} height={420} loading="lazy" className="h-full w-full object-cover object-center" /></div><div className="grid min-h-[98px] grid-cols-[32px_1fr] gap-2.5 p-3"><span className={`grid h-8 w-8 place-items-center rounded-md ${tone}`}><Icon className="h-5 w-5" /></span><div><h3 className="text-[14px] font-extrabold leading-[1.2] text-navy">{title === "WooCommerce stores" ? <Link to="/services/$slug" params={{ slug: "woocommerce" }} className="hover:text-primary hover:underline">{title}</Link> : title}</h3><p className="mt-1.5 text-[13px] leading-[1.45] text-muted-foreground">{text}</p></div></div></article>)}
         </div>
       </div>
     </section>
@@ -95,7 +95,7 @@ export function WebsiteTypesSection({ wordpress = false }: { wordpress?: boolean
 export function WebsiteIndustriesSection() {
   return (
     <section className="bg-sky-soft py-6 md:py-7">
-      <div className="ecom-shell"><Eyebrow>Industries We Serve</Eyebrow><h2 className="mt-2 text-[23px] font-extrabold leading-none text-navy md:text-[26px]">Websites for Every Industry</h2>
+      <div className="ecom-shell"><Eyebrow><Link to="/industries" className="hover:underline">Industries We Serve</Link></Eyebrow><h2 className="mt-2 text-[23px] font-extrabold leading-none text-navy md:text-[26px]">Websites for Every Industry</h2>
         <div className="ecom-scroll mt-4 grid grid-flow-col auto-cols-[185px] gap-3 overflow-x-auto md:grid-cols-7 md:overflow-visible">
           {industries.map(([image, title, slug]) => (
             <Link

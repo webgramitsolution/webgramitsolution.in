@@ -1,4 +1,5 @@
 import { Eyebrow, WebsiteIndustriesSection, WebsiteTechnologySection, WebsiteTypesSection } from "@/components/website-capability-sections";
+import { DirectAnswer } from "@/components/direct-answer";
 import { ServiceHero } from "@/components/service-hero";
 import { HeroHeading } from "@/components/hero-heading";
 import { Link } from "@tanstack/react-router";
@@ -103,6 +104,14 @@ export function WebsiteDesignDevelopmentPage({ designOnly = false }: { designOnl
           </div>
         </div>
       </ServiceHero>
+
+      <DirectAnswer
+        id={designOnly ? "redesign-scope" : "business-website-cost"}
+        question={designOnly ? "What should a business website redesign include?" : "What affects the cost of a business website?"}
+        answer={designOnly
+          ? "A redesign should improve the navigation, key pages and mobile layout around what visitors need to do. Review the pages that already bring in enquiries and decide which URLs to keep or redirect. Test forms and analytics before switching to the new site."
+          : "The cost depends on page templates, content migration and integrations. A service website with an enquiry form has a different scope from a site with multiple editors and a CRM connection. Ask for separate estimates for the build, hosting and ongoing changes."}
+      />
 
       <section className="bg-card py-6 md:py-7">
         <div className="ecom-shell grid gap-5 md:grid-cols-[1.1fr_1.9fr] md:items-center">

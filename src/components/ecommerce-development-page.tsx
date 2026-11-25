@@ -29,6 +29,7 @@ import {
   Wrench,
 } from "lucide-react";
 import { useRef, type ReactNode } from "react";
+import { storePlatformChoice } from "@/lib/faq-content";
 import { ComparisonTable, DirectAnswer } from "@/components/direct-answer";
 
 import electronicsCaseImage from "@/assets/ecommerce-electronics-case.jpg";
@@ -80,11 +81,11 @@ const features = [
 ] as const;
 
 const industries = [
-  "Fashion & Apparel",
-  "Beauty & Cosmetics",
-  "Electronics & Gadgets",
-  "Furniture & Home Decor",
-  "Food & Grocery",
+  ["Fashion & Apparel", "fashion"],
+  ["Beauty & Cosmetics", "beauty"],
+  ["Electronics & Gadgets", "electronics"],
+  ["Furniture & Home Decor", "furniture"],
+  ["Food & Grocery", null],
 ] as const;
 
 const process = [
@@ -146,14 +147,14 @@ function IndustryCarousel() {
         className="ecom-scroll flex snap-x gap-2 overflow-x-auto scroll-smooth"
         aria-label="Ecommerce industries"
       >
-        {industries.map((industry, index) => (
+        {industries.map(([industry, slug], index) => (
           <article
             key={industry}
             className="relative h-[150px] min-w-[190px] flex-1 snap-start overflow-hidden rounded-md md:min-w-0"
           >
             <img
               src={industriesStrip}
-              alt={industry}
+              alt=""
               width={1920}
               height={512}
               loading="lazy"
@@ -161,7 +162,11 @@ function IndustryCarousel() {
               style={{ left: `${index * -100}%` }}
             />
             <div className="absolute inset-x-0 bottom-0 bg-navy/90 px-3 py-2 text-[13px] font-bold text-on-dark">
-              {industry} <ArrowRight className="ml-1 inline h-3 w-3" />
+              {slug ? (
+                <Link to="/industries/$slug" params={{ slug }} className="after:absolute after:inset-0 hover:underline">
+                  {industry} <ArrowRight aria-hidden="true" className="ml-1 inline h-3 w-3" />
+                </Link>
+              ) : industry}
             </div>
           </article>
         ))}
@@ -250,9 +255,13 @@ export function EcommerceDevelopmentPage() {
 
       <DirectAnswer
         id="what-is-ecommerce-development"
-        question="What is ecommerce website development?"
-        answer="Ecommerce website development is the process of planning, designing and building an online store where customers browse products, pay securely and track orders. Webgram IT Solution builds B2C and B2B ecommerce websites on WooCommerce, Shopify and custom stacks, with Razorpay payments, GST-ready invoicing, mobile-first design and SEO foundations included."
-      />
+        question={storePlatformChoice[0]}
+        answer={storePlatformChoice[1]}
+      >
+        <Link to="/services/shopify">Shopify development</Link>
+        <span aria-hidden="true"> · </span>
+        <Link to="/services/$slug" params={{ slug: "woocommerce" }}>WooCommerce development</Link>
+      </DirectAnswer>
 
       <ComparisonTable
         id="woocommerce-vs-shopify"
@@ -261,11 +270,11 @@ export function EcommerceDevelopmentPage() {
         columns={["Feature", "WooCommerce", "Shopify", "Best Suited For"]}
         rows={[
           { feature: "Ownership & hosting", a: "Open-source on your own hosting; full code and data control.", b: "Hosted SaaS; Shopify manages servers and updates.", best: "WooCommerce for control, Shopify for hands-off hosting." },
-          { feature: "Running cost", a: "No platform subscription; pay for hosting, plugins and maintenance.", b: "Monthly plan plus paid apps and theme costs.", best: "WooCommerce for lower long-term cost at scale." },
+          { feature: "Running cost", a: "No platform subscription; pay for hosting, plugins and maintenance.", b: "Monthly plan plus paid apps and theme costs.", best: "Compare plans, extensions and ongoing support for your store." },
           { feature: "B2B features (tiered pricing, MOQ, RFQ)", a: "Flexible through B2B plugins and custom development.", b: "Advanced B2B tools mainly on higher plans or apps.", best: "WooCommerce for wholesalers and manufacturers." },
           { feature: "Indian payments & GST", a: "Razorpay, Cashfree, PayU and GST invoice plugins.", b: "Razorpay and other Indian gateways; GST via apps.", best: "Both work; WooCommerce offers deeper invoice customisation." },
           { feature: "Speed to launch", a: "Needs setup, hosting and configuration.", b: "Quick to launch with ready themes.", best: "Shopify for fast retail launches." },
-          { feature: "Customisation", a: "Unlimited custom features, ERP and CRM integrations.", b: "Limited to theme code, apps and APIs.", best: "WooCommerce for custom workflows." },
+          { feature: "Customisation", a: "Custom extensions and integrations with ERP and CRM systems.", b: "Limited to theme code, apps and APIs.", best: "WooCommerce for custom workflows." },
           { feature: "Maintenance", a: "Updates, security and backups are your responsibility.", b: "Platform handles security and core updates.", best: "Shopify for small teams without technical staff." },
         ]}
       />
@@ -343,7 +352,7 @@ export function EcommerceDevelopmentPage() {
       <section className="bg-card py-6">
         <div className="ecom-shell grid items-center gap-6 md:grid-cols-[285px_minmax(0,1fr)]">
           <div>
-            <Eyebrow>Industries We Serve</Eyebrow>
+            <Eyebrow><Link to="/industries" className="hover:underline">Industries We Serve</Link></Eyebrow>
             <h2 className="ecom-title mt-2">
               Ecommerce for
               <br />
@@ -449,7 +458,7 @@ export function EcommerceDevelopmentPage() {
               by Industry
             </h2>
             <p className="ecom-copy mt-2">
-              Compare storefront concepts for fashion, furniture and electronics. Visit the portfolio to see live client websites.
+              Compare storefront concepts for <Link to="/industries/$slug" params={{ slug: "fashion" }} className="text-primary underline">fashion</Link>, <Link to="/industries/$slug" params={{ slug: "furniture" }} className="text-primary underline">furniture</Link> and <Link to="/industries/$slug" params={{ slug: "electronics" }} className="text-primary underline">electronics</Link>. Visit our <Link to="/work/portfolio" className="text-primary underline">portfolio</Link> to see live client websites.
             </p>
             <Button
               asChild
